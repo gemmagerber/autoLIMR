@@ -20,14 +20,32 @@ library(knitr)
 library(usethis)
 library(rmarkdown)
 
+use_mit_license() # pick a licence
+
 devtools::document()
 devtools::test()
 devtools::check()
 devtools::load_all()
 
+# Vignettes
+usethis::use_vignette("autoLIMR_vignette")
+
+# Package description
+usethis::use_tidy_description()
+
+# start adding functions
+usethis::use_version()
+
+use_git()
+use_github()
+
 # Dependencies
 usethis::use_package("readxl", "Imports") # Dependencies
 usethis::use_package("openxlsx", "Imports") # Dependencies
+
+usethis::use_package("knitr", "Suggests") # Dependencies
+usethis::use_package("rmarkdown", "Suggests") # Dependencies
+usethis::use_package("testthat", "Suggests") # Dependencies
 
 # Add functions and tests
 use_r("error_print")

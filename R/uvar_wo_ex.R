@@ -7,26 +7,29 @@
 #'
 uvar_wo_ex <- function(x, respiration) {
   if (!is.null(respiration) | respiration == FALSE) {
-    wo.ex_uvar <- paste0(x,
-                         "_U = ",
-                         "Flowto(",
-                         x,
-                         ") - ",
-                         x,
-                         "_P")
+    wo.ex_uvar <- paste0(
+      x,
+      "_U = ",
+      "Flowto(",
+      x,
+      ") - ",
+      x,
+      "_P"
+    )
   }
 
   if (respiration == TRUE) {
-    wo.ex_uvar <- paste0(x,
-                         "_U = ",
-                         "Flowto(",
-                         x,
-                         ") - ",
-                         x,
-                         "_P - ",
-                         x,
-                         "_R")
-
+    wo.ex_uvar <- paste0(
+      x,
+      "_U = ",
+      "Flowto(",
+      x,
+      ") - ",
+      x,
+      "_P - ",
+      x,
+      "_R"
+    )
   }
   return(wo.ex_uvar)
 }

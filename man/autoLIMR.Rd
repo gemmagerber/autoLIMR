@@ -48,15 +48,3 @@ Two folders containing weighted, and unweighted network LIM
 autoLIMR Automatically defines LIM weighted and unweighted declaration files
 from two input workbooks
 }
-\examples{
-\dontrun{autoLIMR(net_data_input = "your_network_data_workbook.xlsx",
-adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
-NLNode = NULL,
-respiration = NULL,
-respiration_element = "CO2",
-primary_producer = NULL,
-author = "<your name>",
-date = "<the date>",
-weighted = TRUE)}
-
-}

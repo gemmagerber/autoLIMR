@@ -1,19 +1,30 @@
 Type: Package
 Package: autoLIMR
-Title: What the Package Does (Title Case)
+Title: Automated Translation of Network Data into Declaration Files Compatible with LIM and limSolve
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line) Use four
-    spaces when indenting paragraphs within the Description.
+Author: person("Gemma", "Gerber", 
+    email = "gemmagerber@live.com",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-8722-3113"))
+Maintainer: Gemma Gerber <gemmagerber@live.com>
+Description: Using linear inverse modelling (LIM) via R
+    packages LIM and limSolve are a great way to calculate 
+    multiple plausible network solutions. These packages 
+    require network data to be coded into "LIM Declaration 
+    Files", which can be be tedious and difficult to 
+    manually code. autoLIMR provides an automated translation
+    from network data (in .xlsx format) to LIM declaration 
+    files compatible with LIM and limSolve. autoLIMR 
+    provides the option to translate multiple network 
+    datasets into multiple LIM Declaration Files at once.
 License: MIT + file LICENSE
 Imports: 
-    openxlsx,
-    readxl
+    openxlsx (>= 4.2.5),
+    readxl (>= 1.4.0)
 Suggests: 
-    knitr,
-    rmarkdown,
-    testthat (>= 3.0.0)
+    knitr (>= 1.39),
+    rmarkdown (>= 2.14),
+    testthat (>= 3.1.4)
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

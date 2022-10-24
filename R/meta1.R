@@ -12,23 +12,25 @@
 
 #' @export
 #'
-meta1 <- function (x,
-                   author = NULL,
-                   date = NULL,
-                   respiration,
-                   respiration_element,
-                   NLNode,
-                   weighted,
-                   primary_producer) {
+meta1 <- function(x,
+                  author = NULL,
+                  date = NULL,
+                  respiration,
+                  respiration_element,
+                  NLNode,
+                  weighted,
+                  primary_producer) {
   if (weighted == TRUE) {
     head1 <- "! Weighted Network"
   } else {
     head1 <- "! Unweighted Network"
   }
 
-  heading2 <- paste0("! ",
-                     names(x),
-                     "Network LIM Declaration File")
+  heading2 <- paste0(
+    "! ",
+    names(x),
+    "Network LIM Declaration File"
+  )
   reference2 <-
     "! Composed with autoLIM::autoLIMR (Gerber et al., in prep)"
 
@@ -46,36 +48,40 @@ meta1 <- function (x,
 
   living <-
     paste0("! Living compartments: ", length(net_data_node(
-      x, NLNode = NLNode, node.type = "living"
+      x,
+      NLNode = NLNode, node.type = "living"
     )))
 
-  NLN <- net_data_node(x, NLNode = NLNode,
-                       node.type = "nonliving")
+  NLN <- net_data_node(x,
+    NLNode = NLNode,
+    node.type = "nonliving"
+  )
   nonliving <- paste0("! Non-living compartments: ", length(NLN))
 
   resp <-
-    paste0("! Respiration included: ",
-           ifelse(respiration == TRUE, "Yes", "No"))
+    paste0(
+      "! Respiration included: ",
+      ifelse(respiration == TRUE, "Yes", "No")
+    )
   uflows <-
     paste0("! U included: ", ifelse(length(NLNode) > 0, "Yes", "No"))
 
   externals <- net_data_external_list(x,
-                                      respiration = respiration,
-                                      respiration_element = respiration_element)
+    respiration = respiration,
+    respiration_element = respiration_element
+  )
 
   externals2 <-
     paste0("! External compartments: ", length(externals))
 
   countx <- if (respiration == TRUE) {
     countx <- paste0(length(externals) - 1 +
-                       length(primary_producer) +
-                       length(net_data_node(
-                         x,
-                         NLNode = NLNode,
-                         node.type = "living"
-                       )))
-
-
+      length(primary_producer) +
+      length(net_data_node(
+        x,
+        NLNode = NLNode,
+        node.type = "living"
+      )))
   } else {
     countx <- paste0(length(externals))
   }

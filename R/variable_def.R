@@ -26,14 +26,14 @@ variable_def <-
       p_var <- pp_true(p_var, primary_producer = primary_producer)
       u_var <- pp_true(u_var, primary_producer = primary_producer)
       ae_var <- pp_true(ae_var, primary_producer = primary_producer)
-
     }
 
-    toreturn <- c(q_var,
-                  p_var,
-                  u_var,
-                  ae_var)
+    toreturn <- c(
+      q_var,
+      p_var,
+      u_var,
+      ae_var
+    )
 
     return(toreturn)
-
   }

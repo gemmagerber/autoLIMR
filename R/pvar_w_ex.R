@@ -7,32 +7,36 @@
 #'
 #' @export
 #'
-pvar_w_ex <- function (x, respiration, NLNode) {
+pvar_w_ex <- function(x, respiration, NLNode) {
   if (!is.null(respiration) | respiration == FALSE) {
     w.ex_pvar <-
-      paste0(x,
-             "_P = ",
-             "Flowfrom(",
-             x,
-             ") - ",
-             x,
-             "_U - ",
-             x,
-             "_EX")
+      paste0(
+        x,
+        "_P = ",
+        "Flowfrom(",
+        x,
+        ") - ",
+        x,
+        "_U - ",
+        x,
+        "_EX"
+      )
   }
   if (respiration == TRUE) {
     w.ex_pvar <-
-      paste0(x,
-             "_P = ",
-             "Flowfrom(",
-             x,
-             ") - ",
-             x,
-             "_R - ",
-             x,
-             "_U - ",
-             x,
-             "_EX")
+      paste0(
+        x,
+        "_P = ",
+        "Flowfrom(",
+        x,
+        ") - ",
+        x,
+        "_R - ",
+        x,
+        "_U - ",
+        x,
+        "_EX"
+      )
   }
   return(w.ex_pvar)
 }

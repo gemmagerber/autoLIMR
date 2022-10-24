@@ -6,13 +6,14 @@
 #' @export
 #'
 pvar <- function(x, respiration, NLNode) {
-
   # Search network input data for columns that match "Export" or similar
   search.ex <- search_cols(x, col.match = "Export")
 
   # Create matrix that only contains export columns and compartment names
-  exmat <- x[, grep(pattern =
-                      paste0(search.ex, collapse = "|"), colnames(x)), drop = TRUE]
+  exmat <- x[, grep(
+    pattern =
+      paste0(search.ex, collapse = "|"), colnames(x)
+  ), drop = TRUE]
 
   # Remove rows containing NLNodes
   ex.mat <-

@@ -11,16 +11,19 @@ merge_sections <- function(type = NULL, ...) {
     stats::setNames(do.call(mapply, c(FUN = c, lapply(l, `[`, keys))), keys)
 
   if (!is.null(type)) {
-    x <- lapply(x,
-                function(x)
-                  c(
-                    paste0("### ", toupper(type)),
-                    "",
-                    x ,
-                    "",
-                    paste0("### END ", toupper(type)),
-                    ""
-                  ))
+    x <- lapply(
+      x,
+      function(x) {
+        c(
+          paste0("### ", toupper(type)),
+          "",
+          x,
+          "",
+          paste0("### END ", toupper(type)),
+          ""
+        )
+      }
+    )
   }
   return(x)
 }

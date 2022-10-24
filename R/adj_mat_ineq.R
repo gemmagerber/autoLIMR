@@ -4,7 +4,7 @@
 #'
 #' @export
 #'
-adj_mat_ineq <- function (x) {
+adj_mat_ineq <- function(x) {
   x <- na.omit(as.data.frame(as.table(x)))
   x$flowtype <-
     ifelse(
@@ -54,42 +54,48 @@ adj_mat_ineq <- function (x) {
       "none",
       ifelse(
         grepl(",", x$Freq) & grepl("NLNode", x$Var2),
-        paste0(x$flownames,
-               " = ",
-               x$Var1,
-               x$Variable,
-               " * ",
-               "[",
-               x$Freq,
-               "]"),
+        paste0(
+          x$flownames,
+          " = ",
+          x$Var1,
+          x$Variable,
+          " * ",
+          "[",
+          x$Freq,
+          "]"
+        ),
         ifelse(
           grepl(",", x$Freq) & !grepl("NLNode", x$Var2),
-          paste0(x$flownames,
-                 " = ",
-                 x$Var2,
-                 x$Variable,
-                 " * ",
-                 "[",
-                 x$Freq,
-                 "]"),
+          paste0(
+            x$flownames,
+            " = ",
+            x$Var2,
+            x$Variable,
+            " * ",
+            "[",
+            x$Freq,
+            "]"
+          ),
           ifelse(
             !grepl(",", x$Freq) & grepl("NLNode", x$Var2),
-            paste0(x$flownames,
-                   " < ",
-                   x$Var1,
-                   x$Variable,
-                   " * ",
-                   x$Freq)
-            ,
+            paste0(
+              x$flownames,
+              " < ",
+              x$Var1,
+              x$Variable,
+              " * ",
+              x$Freq
+            ),
             ifelse(
               !grepl(",", x$Freq) & !grepl("NLNode", x$Var2),
-              paste0(x$flownames,
-                     " < ",
-                     x$Var2,
-                     x$Variable,
-                     " * ",
-                     x$Freq)
-              ,
+              paste0(
+                x$flownames,
+                " < ",
+                x$Var2,
+                x$Variable,
+                " * ",
+                x$Freq
+              ),
               "none"
             )
           )
@@ -100,9 +106,11 @@ adj_mat_ineq <- function (x) {
   na.remove <- x[!grepl("none", x$ineq), ]
   ineq.vec <- as.vector(na.remove$ineq)
 
-  toreturn <- c("! Adjacency Matrix Inequalities",
-                "",
-                ineq.vec)
+  toreturn <- c(
+    "! Adjacency Matrix Inequalities",
+    "",
+    ineq.vec
+  )
 
   return(toreturn)
 }

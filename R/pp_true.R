@@ -18,9 +18,9 @@ pp_true <- function(x, primary_producer) {
 
   if (length(ppq) >= 1) {
     gsub(vec_x,
-         pattern = ppq_pattern,
-         replacement = paste0(primary_producer, "_GPP"))
-
+      pattern = ppq_pattern,
+      replacement = paste0(primary_producer, "_GPP")
+    )
   } else {
     if (length(ppq == 0)) {
       x
@@ -31,8 +31,7 @@ pp_true <- function(x, primary_producer) {
           pattern = ppnpp_pattern,
           replacement = paste0(primary_producer, "_NPP")
         )
-      }
-      else {
+      } else {
         if (length(ppnpp) == 0) {
           x
         }

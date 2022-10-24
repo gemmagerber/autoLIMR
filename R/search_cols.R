@@ -3,14 +3,16 @@
 #' @param x the matrix
 #' @param col.match the node type to match
 #' @export
-search_cols <- function (x, col.match) {
+search_cols <- function(x, col.match) {
   if (col.match == "Input") {
     x <- grep(
       as.vector(colnames(x)),
-      pattern = paste0(c(
-        "Import", "Input", "^+In+$", "^+IN+$", "IN_"
+      pattern = paste0(
+        c(
+          "Import", "Input", "^+In+$", "^+IN+$", "IN_"
+        ),
+        collapse = "|"
       ),
-      collapse = "|"),
       value = TRUE,
       invert = FALSE,
       ignore.case = FALSE
@@ -22,7 +24,8 @@ search_cols <- function (x, col.match) {
     x <- grep(
       colnames(x),
       pattern = paste0(c("Export", "Exports", "Ex", "EX", "EX_"),
-                       collapse = "|"),
+        collapse = "|"
+      ),
       value = TRUE,
       invert = FALSE,
       ignore.case = TRUE
@@ -33,10 +36,12 @@ search_cols <- function (x, col.match) {
   if (col.match == "AE") {
     x <- grep(
       colnames(x),
-      pattern = paste0(c(
-        "AE", "Assimilation", "efficiency", "AssEm"
+      pattern = paste0(
+        c(
+          "AE", "Assimilation", "efficiency", "AssEm"
+        ),
+        collapse = "|"
       ),
-      collapse = "|"),
       value = TRUE,
       invert = FALSE,
       ignore.case = TRUE
@@ -48,7 +53,8 @@ search_cols <- function (x, col.match) {
     x <- grep(
       colnames(x),
       pattern = paste0(c("Custom"),
-                       collapse = "|"),
+        collapse = "|"
+      ),
       value = TRUE,
       invert = FALSE,
       ignore.case = TRUE
@@ -60,7 +66,8 @@ search_cols <- function (x, col.match) {
     x <- grep(
       colnames(x),
       pattern = paste0(c("Parameters|Parameters"),
-                       collapse = "|"),
+        collapse = "|"
+      ),
       value = TRUE,
       invert = FALSE,
       ignore.case = TRUE

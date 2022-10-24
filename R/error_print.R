@@ -19,7 +19,7 @@ error_print <-
       )
     }
     if (!is.null(net_data_input) &
-        !is.null(adj_mat_input)) {
+      !is.null(adj_mat_input)) {
       message("Good to go!")
     }
   }

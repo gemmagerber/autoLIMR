@@ -5,9 +5,11 @@
 qvar <- function(x) {
   search.in <- search_cols(x, col.match = "Input")
 
-  inmat <- x[, grep(pattern =
-                      paste0(search.in, collapse = "|"),
-                    colnames(x)), drop = TRUE]
+  inmat <- x[, grep(
+    pattern =
+      paste0(search.in, collapse = "|"),
+    colnames(x)
+  ), drop = TRUE]
 
   in.mat <-
     inmat[grep("NLNode", rownames(inmat), invert = TRUE), , drop = FALSE]
@@ -24,18 +26,18 @@ qvar <- function(x) {
 
   if (identical(wo.in, character(0)) & length(w.in) > 0) {
     var <- paste0(w.in, "_Q = ", "Flowto(", w.in, ") - ", w.in, "_IN")
-
   }
 
   if (length(wo.in) > 0 & identical(w.in, character(0))) {
     var <- paste0(wo.in, "_Q = ", "Flowto(", wo.in, ")")
-
   }
 
   qvar <-
-    c("! Consumption (Q) / Gross Primary Production (GPP) Variables",
+    c(
+      "! Consumption (Q) / Gross Primary Production (GPP) Variables",
       "",
       sort(var),
-      "")
+      ""
+    )
   return(qvar)
 }

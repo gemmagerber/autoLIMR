@@ -3,7 +3,7 @@
 #' @param x network data input matrix
 #' @export
 
-net_data_inex_flows <-  function (x) {
+net_data_inex_flows <- function(x) {
   ex.mat2 <- matrix_def(x, mat.type = "Export")
   in.mat2 <- matrix_def(x, mat.type = "Input")
 

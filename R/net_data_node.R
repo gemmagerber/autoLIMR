@@ -4,8 +4,7 @@
 #' @param node.type living/nonliving/Input/Export
 #' @param NLNode the defined NLNodes from the main autoLIMR argument
 #' @export
-net_data_node <- function (x, node.type, NLNode) {
-
+net_data_node <- function(x, node.type, NLNode) {
   if (node.type == "living") {
     LN <- grep(
       as.vector(rownames(x)),
@@ -17,7 +16,6 @@ net_data_node <- function (x, node.type, NLNode) {
     return(LN)
   }
   if (node.type == "nonliving") {
-
     NLN <- grep(
       as.vector(rownames(x)),
       pattern = paste0(NLNode, "NLNode", collapse = "|"),
@@ -39,7 +37,5 @@ net_data_node <- function (x, node.type, NLNode) {
     export.nodes <-
       as.vector(paste0(rownames(export.matrix), "Export"))
     return(export.nodes)
-
   }
-
 }

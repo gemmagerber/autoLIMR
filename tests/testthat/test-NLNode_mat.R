@@ -15,6 +15,5 @@ test_that(
     expect_match(rownames(new_mat), "NLNode", all = FALSE)
 
     expect_no_match(rownames(new_mat), "NLNode", all = FALSE)
-
-})
-
+  }
+)

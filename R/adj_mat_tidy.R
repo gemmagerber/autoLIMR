@@ -5,10 +5,10 @@
 #'
 #' @export
 #'
-adj_mat_tidy <- function (x, NLNode) {
+adj_mat_tidy <- function(x, NLNode) {
   x <- as.matrix(x)
   rownames(x) <- x[, 1] # Make Compartment Name the Row Name
-  x <- x[,-1] # Make Compartment Name the Row Name
+  x <- x[, -1] # Make Compartment Name the Row Name
   rownames(x) <- gsub(rownames(x), pattern = " ", replacement = ".")
   x <- sci_notation_off(x)
   x <-

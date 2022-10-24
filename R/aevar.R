@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-aevar <- function (x, respiration) {
+aevar <- function(x, respiration) {
   ae.search <- search_cols(x, col.match = "AE")
   aemat <- x[, c(ae.search), drop = T]
   ae.mat <-
@@ -15,29 +15,34 @@ aevar <- function (x, respiration) {
 
   if (length(w.ae) > 0) {
     # Function: Define AE variables only for nodes that have AE inequalities
-    aevar_w_ae <- function (x, respiration) {
-      w.ae_uvar <- paste0(x,
-                          "_AE = ",
-                          x,
-                          "_P")
+    aevar_w_ae <- function(x, respiration) {
+      w.ae_uvar <- paste0(
+        x,
+        "_AE = ",
+        x,
+        "_P"
+      )
 
       if (respiration == TRUE) {
-        w.ae_uvar <- paste0(x,
-                            "_AE = ",
-                            x,
-                            "_P + ",
-                            x,
-                            "_R")
-
+        w.ae_uvar <- paste0(
+          x,
+          "_AE = ",
+          x,
+          "_P + ",
+          x,
+          "_R"
+        )
       }
       return(w.ae_uvar)
     }
 
     ae_var <- aevar_w_ae(w.ae, respiration = respiration)
     ae_var <-
-      c("! Assimilation Efficiency (AE) Variables",
+      c(
+        "! Assimilation Efficiency (AE) Variables",
         "",
-        sort(ae_var))
+        sort(ae_var)
+      )
   } else {
     ae_var <- c("! No Assimilation Efficiency (AE) Variables defined")
   }

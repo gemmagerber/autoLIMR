@@ -1,5 +1,4 @@
 test_that("Tidies up network data input sheet", {
-
   example_net <- data.frame(
     Compartment = c("Detritus", "Plant", "Invertebrate", "Vertebrate"),
     Biomass = c(10000.2, 800, 2000, 55),
@@ -21,7 +20,6 @@ test_that("Tidies up network data input sheet", {
 
   tidy_net <- net_data_tidy(x = example_net, NLNode = "Detritus")
 
-expect_no_match(tidy_net, " ", all = FALSE)
-expect_no_match(tidy_net, ",", all = FALSE)
-
-  })
+  expect_no_match(tidy_net, " ", all = FALSE)
+  expect_no_match(tidy_net, ",", all = FALSE)
+})

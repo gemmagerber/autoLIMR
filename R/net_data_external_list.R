@@ -5,8 +5,8 @@
 #' @param respiration_element if Respiration = TRUE, the respiration element to be defined. Default to "CO2"
 #' @export
 #'
-net_data_external_list <- function (x, respiration,
-                                    respiration_element) {
+net_data_external_list <- function(x, respiration,
+                                   respiration_element) {
   exports <- net_data_node(x, node.type = "Export")
   inputs <- net_data_node(x, node.type = "Input")
 
@@ -21,9 +21,10 @@ net_data_external_list <- function (x, respiration,
   }
 
   returnme <-
-    c(resp.vec,
+    c(
+      resp.vec,
       sort(inputs),
-      sort(exports))
+      sort(exports)
+    )
   return(returnme)
-
 }

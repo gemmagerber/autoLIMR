@@ -12,18 +12,20 @@ read_all_sheets <- function(filename, tibble = FALSE) {
       call. = FALSE
     )
   }
-  options('scipen' = 99999)
+  options("scipen" = 99999)
   sheets <- readxl::excel_sheets(filename)
   x <-
-    lapply(sheets, function(X)
+    lapply(sheets, function(X) {
       readxl::read_excel(
         filename,
         sheet = X,
         col_types = "text",
         .name_repair = "unique"
-      ))
-  if (!tibble)
+      )
+    })
+  if (!tibble) {
     x <- lapply(x, as.data.frame)
+  }
   names(x) <- sheets
   return(x)
 }

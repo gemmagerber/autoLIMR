@@ -1,5 +1,4 @@
 test_that("demo data is created", {
-
   # If demo files are needed
   expect_message(
     demo_data(net_data_input = "demo", adj_mat_input = "demo"),
@@ -11,6 +10,6 @@ test_that("demo data is created", {
         matrix input) have been created and saved in the
         working directory."
       )
-    ))
-
+    )
+  )
 })

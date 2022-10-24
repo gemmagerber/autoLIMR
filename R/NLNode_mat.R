@@ -8,13 +8,19 @@
 NLNode_mat <- function(x, NLNode) {
   if (length(NLNode) > 0) {
     colnames(x) <- ifelse(colnames(x) %in% NLNode,
-                          paste0(NLNode[match(colnames(x), NLNode)],
-                                 "NLNode"),
-                          colnames(x))
+      paste0(
+        NLNode[match(colnames(x), NLNode)],
+        "NLNode"
+      ),
+      colnames(x)
+    )
     rownames(x) <- ifelse(rownames(x) %in% NLNode,
-                          paste0(NLNode[match(rownames(x), NLNode)],
-                                 "NLNode"),
-                          rownames(x))
+      paste0(
+        NLNode[match(rownames(x), NLNode)],
+        "NLNode"
+      ),
+      rownames(x)
+    )
 
     return(x)
   }

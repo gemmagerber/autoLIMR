@@ -1,5 +1,4 @@
 test_that("Tidies up adjacency matrix input sheet", {
-
   x <- data.frame(
     X = c("Detritus", "Plant", "Invertebrate", "Vertebrate"),
     Detritus = c(NA, 1, 1, 1),
@@ -16,5 +15,4 @@ test_that("Tidies up adjacency matrix input sheet", {
 
   expect_no_match(tidy_net, " ", all = FALSE)
   expect_no_match(tidy_net, ",", all = FALSE)
-
 })

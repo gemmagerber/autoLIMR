@@ -19,32 +19,23 @@
 #' @return Two folders containing weighted, and unweighted network LIM
 #'   declaration files respectively. For use with R package LIM
 #' @export
-#' @examples \dontrun{autoLIMR(net_data_input = "your_network_data_workbook.xlsx",
-#' adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
-#' NLNode = NULL,
-#' respiration = NULL,
-#' respiration_element = "CO2",
-#' primary_producer = NULL,
-#' author = "<your name>",
-#' date = "<the date>",
-#' weighted = TRUE)}
-#'
-autoLIMR <- function (net_data_input = "demo",
-                      adj_mat_input = "demo",
-                      NLNode = NULL,
-                      respiration = NULL,
-                      respiration_element = "CO2",
-                      primary_producer = NULL,
-                      author = NULL,
-                      date = NULL,
-                      weighted = TRUE) {
+
+autoLIMR <- function(net_data_input = "demo",
+                     adj_mat_input = "demo",
+                     NLNode = NULL,
+                     respiration = NULL,
+                     respiration_element = "CO2",
+                     primary_producer = NULL,
+                     author = NULL,
+                     date = NULL,
+                     weighted = TRUE) {
   # Execution: Print Errors for undefined sheets
   error_print(net_data_input, adj_mat_input)
 
   # Execution: Demo data
   if (net_data_input == "demo" | adj_mat_input == "demo") {
-      demo_data(net_data_input, adj_mat_input)
-    }
+    demo_data(net_data_input, adj_mat_input)
+  }
 
   # Execution: Read in net data sheets
   net_data_sheet_list <- read_all_sheets(filename = net_data_input)
@@ -65,10 +56,12 @@ autoLIMR <- function (net_data_input = "demo",
 
   # Execution: define externals list
   externals.list <-
-    lapply(X = net_data_sheets,
-           FUN = net_data_external_list,
-           respiration,
-           respiration_element)
+    lapply(
+      X = net_data_sheets,
+      FUN = net_data_external_list,
+      respiration,
+      respiration_element
+    )
 
   # Execution: define QPU variables, change based on primary producers
   vars <- lapply(
@@ -126,19 +119,27 @@ autoLIMR <- function (net_data_input = "demo",
   )
 
   # Execution: get metadata table2
-  meta_2 <- lapply(X = adj_matrix_sheets,
-                   FUN = meta2)
+  meta_2 <- lapply(
+    X = adj_matrix_sheets,
+    FUN = meta2
+  )
 
   # Execution: merge_sections compartments, give name
 
   # comp.lim <- merge_sections(comp.list, type = "Compartments")
-  comp.lim <- lapply(X = comp.list,
-                     function(x) c('### COMPARTMENTS',
-                                   "",
-                                   x,
-                                   "",
-                                   "### END COMPARTMENTS",
-                                   ""))
+  comp.lim <- lapply(
+    X = comp.list,
+    function(x) {
+      c(
+        "### COMPARTMENTS",
+        "",
+        x,
+        "",
+        "### END COMPARTMENTS",
+        ""
+      )
+    }
+  )
 
   # Execution: merge_sections compartments, give name
   externals.lim <-
@@ -150,7 +151,8 @@ autoLIMR <- function (net_data_input = "demo",
   # Execution: merge_sections flow lists, add section headings
   flow.lim <-
     merge_sections(resp_flows, inex.flow.list, adj.mats.flow.list,
-                   type = "Flows")
+      type = "Flows"
+    )
   # Execution: merge_sections inequalities lists, add section headings
   ineq.lim <-
     merge_sections(net_data_ineq_list, adj_mat_ineq_list, type = "Inequalities")
@@ -158,27 +160,30 @@ autoLIMR <- function (net_data_input = "demo",
   # Execution: merge_sections all sections into full lim files
   Weighted <-
     merge_sections(meta_w,
-                   meta_2,
-                   comp.lim,
-                   externals.lim,
-                   var.lim,
-                   flow.lim,
-                   ineq.lim,
-                   type = NULL)
+      meta_2,
+      comp.lim,
+      externals.lim,
+      var.lim,
+      flow.lim,
+      ineq.lim,
+      type = NULL
+    )
   Unweighted <-
     merge_sections(meta_uw,
-                   meta_2,
-                   comp.lim,
-                   externals.lim,
-                   var.lim,
-                   flow.lim,
-                   type = NULL)
+      meta_2,
+      comp.lim,
+      externals.lim,
+      var.lim,
+      flow.lim,
+      type = NULL
+    )
 
   # Function: write limfiles to subfolders in working directory
   testdir2 <- paste(getwd(),
-                    "autoLIMR Weighted Network LIMfiles",
-                    collapse = "/",
-                    sep = "/")
+    "autoLIMR Weighted Network LIMfiles",
+    collapse = "/",
+    sep = "/"
+  )
 
   if (dir.exists(paste(
     getwd(),
@@ -196,11 +201,15 @@ autoLIMR <- function (net_data_input = "demo",
   }
 
   for (i in names(Weighted)) {
-    write(Weighted[[i]],
-          paste0(testdir2,
-                 "////",
-                 i,
-                 "_Weighted Network LIMfile.R"))
+    write(
+      Weighted[[i]],
+      paste0(
+        testdir2,
+        "////",
+        i,
+        "_Weighted Network LIMfile.R"
+      )
+    )
   }
 
 
@@ -227,11 +236,28 @@ autoLIMR <- function (net_data_input = "demo",
   }
 
   for (i in names(Unweighted)) {
-    write(Unweighted[[i]],
-          paste0(testdir3,
-                 "////",
-                 i,
-                 "_Unweighted Network LIMfile.R"))
+    write(
+      Unweighted[[i]],
+      paste0(
+        testdir3,
+        "////",
+        i,
+        "_Unweighted Network LIMfile.R"
+      )
+    )
   }
-
 }
+
+# @examples \dontrun{
+# autoLIMR(
+#   net_data_input = "your_network_data_workbook.xlsx",
+#   adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
+#   NLNode = NULL,
+#   respiration = NULL,
+#   respiration_element = "CO2",
+#   primary_producer = NULL,
+#   author = "<your name>",
+#   date = "<the date>",
+#   weighted = TRUE
+# )
+# }

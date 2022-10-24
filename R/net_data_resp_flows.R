@@ -27,47 +27,48 @@ net_data_resp_flows <- function(x,
       if (is.null(respiration_element)) {
         gppF <- paste(gpp, "_GPP: ", "CO2", " -> ", gpp, sep = "")
         RF <- paste(LN, "_R: ", LN, " -> ", "CO2", sep = "")
-
       } else {
         gppF <-
           paste(gpp,
-                "_GPP: ",
-                toupper(respiration_element),
-                " -> ",
-                gpp,
-                sep = "")
+            "_GPP: ",
+            toupper(respiration_element),
+            " -> ",
+            gpp,
+            sep = ""
+          )
         RF <-
           paste(LN,
-                "_R: ",
-                LN,
-                " -> ",
-                toupper(respiration_element),
-                sep = "")
-
+            "_R: ",
+            LN,
+            " -> ",
+            toupper(respiration_element),
+            sep = ""
+          )
       }
       toreturn <-
-        c("! GPP flows",
+        c(
+          "! GPP flows",
           "",
           gppF,
           "",
           "! Respiration flows",
           "",
           RF,
-          "")
+          ""
+        )
       return(toreturn)
-
     } else {
       if (is.null(respiration_element)) {
         RF <- paste(LN, "_R: ", LN, " -> ", "CO2", sep = "")
-
       } else {
         RF <-
           paste(LN,
-                "_R: ",
-                LN,
-                " -> ",
-                toupper(respiration_element),
-                sep = "")
+            "_R: ",
+            LN,
+            " -> ",
+            toupper(respiration_element),
+            sep = ""
+          )
       }
       toreturn <- c("! Respiration flows", "", RF, "")
       return(toreturn)

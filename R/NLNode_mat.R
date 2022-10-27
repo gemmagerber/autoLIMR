@@ -3,8 +3,7 @@
 #' @param x the matrix/matrices
 #' @param NLNode the defined NLNodes from the main autoLIMR argument
 #'
-#' @export
-#'
+
 NLNode_mat <- function(x, NLNode) {
   if (length(NLNode) > 0) {
     colnames(x) <- ifelse(colnames(x) %in% NLNode,

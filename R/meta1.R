@@ -33,7 +33,7 @@ meta1 <- function(x,
     "Network LIM Declaration File"
   )
   reference2 <-
-    "! Composed with autoLIM::autoLIMR (Gerber et al., in prep)"
+    "! Composed with autoLIMR"
 
   author2 <- if (is.null(author)) {
     paste0("! Author: ", Sys.getenv("USERNAME"))

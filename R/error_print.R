@@ -20,6 +20,6 @@ error_print <-
     }
     if (!is.null(net_data_input) &
       !is.null(adj_mat_input)) {
-      message("Good to go!")
+      message("Both workbooks are readable, good job! Creating LIM declaration files...")
     }
   }

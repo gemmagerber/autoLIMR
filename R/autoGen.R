@@ -1,26 +1,50 @@
-#' autoLIMR Automatically defines LIM weighted and unweighted declaration files
-#' from two input workbooks
+#' Function autoGen()
+#' Automatically defines LIM weighted and unweighted declaration files
+#' from two input workbooks.
+#'
+#' This function takes some action. It also attempts to create a
+#' few files in your working directory called \code{data.R},
+#' under folders \code{autoLIMR Weighted Network LIMfiles},
+#' and \code{autoLIMR Unweighted Network LIMfiles}.
+#' If \code{data.R} files cannot be created a warning is raised.
+#'
 #' @inheritParams error_print
 #' @inheritParams read_all_sheets
 #' @inheritParams net_data_tidy
 #' @inheritParams adj_mat_tidy
+#' @inheritParams meta1
 
-#' @param NLNode the defined NLNodes from the main autoLIMR argument
-#' @param respiration If respiration = TRUE in main autoLIMR argument
-#' @param respiration_element if Respiration = TRUE, the respiration element to
-#'   be defined. Default to "CO2"
-#' @param primary_producer Primary producers defined in main autoLIMR function
-#' @param author author name. Defined in the main autoLIMR function. Defaults to
-#'   system user
-#' @param date date. Defined in the main autoLIMR function. Defaults to system
-#'   date
-#' @param weighted whether to return weighted LIM declaration files. Default to
-#'   TRUE
+#' @param NLNode Character vector defining non-living compartments e.g.,
+#'  NLNode = "Detritus", NLNode = c("Detritus", "Detritus2")
+#' @param respiration Logical. Is respiration included in the network model? Default = TRUE
+#' @param respiration_element Character vector. If Respiration = TRUE,
+#'   the external respiration sink element to be defined. Defaults to "CO2"
+#' @param primary_producer Character vector defining primary producer compartments e.g.,
+#'   primary_producer = "Plant", primary_producer = c("Plant", "Plant2")
+#' @param author Character vector. LIM declaration file author name.Defaults to system user.
+#' @param date Character vector. Date of file creation. Defaults to system date.
+#' @param weighted Logical. Return weighted LIM declaration files? Defaults to TRUE
 #' @return Two folders containing weighted, and unweighted network LIM
-#'   declaration files respectively. For use with R package LIM
+#'   declaration files respectively. For use with R packages 'LIM' and 'limSolve'
+#' @param force If set to \code{TRUE}, files of \code{data.R},
+#' under folders \code{autoLIMR Weighted Network LIMfiles},
+#' and \code{autoLIMR Unweighted Network LIMfiles} will be created on the
+#' user's working directory. If this function is used in an
+#' interactive session the user will be asked whether or not \code{data.R}
+#' files should be created. The default value is \code{FALSE}.
+#' @examples \dontrun{
+#' autoGen(net_data_input = "your_network_data_workbook.xlsx",
+#' adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
+#' NLNode = "Detritus",
+#' primary_producer = "Plant"
+#' respiration = TRUE,
+#' respiration_element = "CO2",
+#' author = "Gemma Gerber",
+#' weighted = TRUE,
+#' force = TRUE)}
 #' @export
 
-autoLIMR <- function(net_data_input = "demo",
+autoGen <- function(net_data_input = "demo",
                      adj_mat_input = "demo",
                      NLNode = NULL,
                      respiration = NULL,
@@ -28,20 +52,31 @@ autoLIMR <- function(net_data_input = "demo",
                      primary_producer = NULL,
                      author = NULL,
                      date = NULL,
-                     weighted = TRUE) {
+                     weighted = TRUE,
+                     force = FALSE) {
   # Execution: Print Errors for undefined sheets
   error_print(net_data_input, adj_mat_input)
 
-  # Execution: Demo data
-  if (net_data_input == "demo" | adj_mat_input == "demo") {
-    demo_data(net_data_input, adj_mat_input)
+  # Are we reading in demo data, or actual .xlsx files?
+
+  if(net_data_input == "demo") {
+    # Get demo data
+    net_data_sheet_list <- demo_net_input()
+    #return(net_data_sheet_list)
+  } else {
+    # Execution: Read in net data sheets
+    net_data_sheet_list <- read_all_sheets(filename = net_data_input)
+    #return(net_data_sheet_list)
   }
 
-  # Execution: Read in net data sheets
-  net_data_sheet_list <- read_all_sheets(filename = net_data_input)
-
-  # Execution: Read in Fmats
-  adj_matrix_sheet_list <- read_all_sheets(filename = adj_mat_input)
+  if(adj_mat_input == "demo") {
+    adj_matrix_sheet_list <- demo_adj_mat()
+    #return(adj_matrix_sheet_list)
+  } else {
+    # Execution: Read in Fmats
+    adj_matrix_sheet_list <- read_all_sheets(filename = adj_mat_input)
+    #return(adj_matrix_sheet_list)
+  }
 
   # Execution: Tidy up net_data_sheet_list
   net_data_sheets <-
@@ -104,7 +139,9 @@ autoLIMR <- function(net_data_input = "demo",
     respiration = respiration,
     respiration_element = respiration_element,
     NLNode = NLNode,
-    weighted = TRUE
+    weighted = TRUE,
+    author = author,
+    date = date
   )
 
   # Execution: Get metadata table1 for unweighted file
@@ -124,8 +161,7 @@ autoLIMR <- function(net_data_input = "demo",
     FUN = meta2
   )
 
-  # Execution: merge_sections compartments, give name
-
+  ## Execution: merge_sections compartments, give name
   # comp.lim <- merge_sections(comp.list, type = "Compartments")
   comp.lim <- lapply(
     X = comp.list,
@@ -157,7 +193,8 @@ autoLIMR <- function(net_data_input = "demo",
   ineq.lim <-
     merge_sections(net_data_ineq_list, adj_mat_ineq_list, type = "Inequalities")
 
-  # Execution: merge_sections all sections into full lim files
+  # Execution: merge_sections all sections into full lim files,
+  # Then write into folders
   Weighted <-
     merge_sections(meta_w,
       meta_2,
@@ -178,86 +215,69 @@ autoLIMR <- function(net_data_input = "demo",
       type = NULL
     )
 
-  # Function: write limfiles to subfolders in working directory
-  testdir2 <- paste(getwd(),
-    "autoLIMR Weighted Network LIMfiles",
-    collapse = "/",
-    sep = "/"
-  )
+  ### Function: write LIMfiles to subfolders in working directory
+  # Check if working directory exists (it should)
+  # Then check if folder names exist
+  # If folders do not exist, create them
+  # Then write LIMfiles into the folders
 
-  if (dir.exists(paste(
-    getwd(),
-    "autoLIMR Weighted Network LIMfiles",
-    collapse = "/",
-    sep = "/"
-  )) == FALSE) {
-    path <- paste(
-      getwd(),
-      "autoLIMR Weighted Network LIMfiles",
-      collapse = "/",
-      sep = "/"
-    )
-    dir.create(path)
+  write_limfile <- function(type, object) {
+
+    if(type == "Weighted") {
+      path <- file.path(getwd(), "autoLIMR Weighted Network LIMfiles")
+    }
+    if(type == "Unweighted") {
+      path <- file.path(getwd(), "autoLIMR Unweighted Network LIMfiles")
+    }
+
+    # Check if working directory available. It should be.
+    if(!dir.exists(file.path(getwd()))){
+      warning("No working directory exists. Please set with setwd().")
+    } else {
+
+      if (!force && interactive()) {
+        title <- paste0("May autoLIMR create a folder of ", type, " LIMfiles in your working directory?")
+        result <- utils::select.list(c("Yes", "No"), title = title)
+        if (result == "Yes") {
+          # Check if dir exists. If not, create them.
+          if (dir.exists(path) == FALSE) {
+            dir.create(path)
+          }
+          # Write files into subfolders in working directory
+          for (i in names(object)) {
+            write(object[[i]],
+                  paste0(path,
+                         "////",
+                         i,
+                         "_",
+                         type,
+                         " Network LIMfile.R"))
+
+    }
+        }
+      } else if(force) {
+        # Check if dir exists. If not, create them.
+        if (dir.exists(path) == FALSE) {
+          dir.create(path)
+        }
+        # Write files into subfolders in working directory
+        for (i in names(object)) {
+          write(object[[i]],
+                paste0(path,
+                       "////",
+                       i,
+                       "_",
+                       type,
+                       " Network LIMfile.R"))
+
+        }
+      } else {
+        warning("No working directory exists. Please set with setwd().")
+      }
+    }
   }
 
-  for (i in names(Weighted)) {
-    write(
-      Weighted[[i]],
-      paste0(
-        testdir2,
-        "////",
-        i,
-        "_Weighted Network LIMfile.R"
-      )
-    )
-  }
+  write_limfile(type = "Weighted", object = Weighted)
+  write_limfile(type = "Unweighted", object = Unweighted)
 
-
-  testdir3 <- paste(
-    getwd(),
-    "autoLIMR Unweighted Network LIMfiles",
-    collapse = "/",
-    sep = "/"
-  )
-
-  if (dir.exists(paste(
-    getwd(),
-    "autoLIMR Unweighted Network LIMfiles",
-    collapse = "/",
-    sep = "/"
-  )) == FALSE) {
-    path <- paste(
-      getwd(),
-      "autoLIMR Unweighted Network LIMfiles",
-      collapse = "/",
-      sep = "/"
-    )
-    dir.create(path)
-  }
-
-  for (i in names(Unweighted)) {
-    write(
-      Unweighted[[i]],
-      paste0(
-        testdir3,
-        "////",
-        i,
-        "_Unweighted Network LIMfile.R"
-      )
-    )
-  }
 }
-
-# @examples \dontrun{
-# autoLIMR(
-#   net_data_input = "your_network_data_workbook.xlsx",
-#   adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
-#   NLNode = NULL,
-#   respiration = NULL,
-#   respiration_element = "CO2",
-#   primary_producer = NULL,
-#   author = "<your name>",
-#   date = "<the date>",
-#   weighted = TRUE
-# )
-# }

@@ -2,8 +2,7 @@
 #' Defines inequalities from adjacency matrix input workbook
 #' @param x Adjacency matrix
 #'
-#' @export
-#'
+
 adj_mat_ineq <- function(x) {
   x <- na.omit(as.data.frame(as.table(x)))
   x$flowtype <-

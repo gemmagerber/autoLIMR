@@ -3,8 +3,6 @@
 #' @param x the sheet from network data input
 #' @param NLNode the defined NLNodes from the main autoLIMR argument
 #'
-#' @export
-#'
 adj_mat_tidy <- function(x, NLNode) {
   x <- as.matrix(x)
   rownames(x) <- x[, 1] # Make Compartment Name the Row Name

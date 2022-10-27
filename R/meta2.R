@@ -16,7 +16,7 @@ meta2 <- function(x) {
     "! R = respiration",
     "! U = Passive flows to non-living compartments/Unassimilated material",
     "! AE = Assimilation Efficiency",
-    "! IN = Import flow",
+    "! IM = Import flow",
     "! EX = Export Flow",
     "! NLNode = Non-living compartment",
     ""

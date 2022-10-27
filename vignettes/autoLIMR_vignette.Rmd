@@ -6,6 +6,9 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+```{r, include=FALSE}
+devtools::load_all(".")
+```
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -14,6 +17,105 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+\#`{r setup} #library(autoLIMR) #`
+
+## autoLIMR: Automated Translation of Network Data into Declaration Files Compatible with LIM and limSolve
+
+The R package "autoLIM" is <what is it>
+
+'autoLIM' can be installed from CRAN (not yet)
+
+```{r, eval = FALSE}
+utils::install.packages("autoLIMR")
 library(autoLIMR)
+```
+
+autoLIMR package can be installed form GitHub
+```{r}
+#devtools::install_github("gemmageber/autoLIMR")
+```
+
+
+
+## Justification for multiple plausible networks
+
+Uses linear inverse modelling.
+
+## Creating LIM Declaration Files
+
+The first step in solving multiple plausible networks is coding a LIM declaration file. This is tedious and diffcult, depending on the network size.
+We automate this process with two solutions.
+
+### autoLIM-Excel
+autoLIM-Excel is a spreadsheet-based tool for novice network builders. It
+is designed for once-off LIM declaration file builds, or for users not 
+familiar with R. autoLIM-Excel can be downloaded from within autoLIMR package
+using function `fetch_autoLIMExcel()`. Alternatively, autoLIM-Excel can
+be downloaded directly from [Github](https://github.com/gemmagerber/autoLIM-Excel/raw/main/autoLIM_Excel.xlsx)
+
+
+```{r}
+fetch_autoLIMExcel()
+```
+
+Once downloaded, open the datasheet
+
+Once opened, information is filled in the two datasheets
+Network data input (metadata, CPREM and inequalities)
+Adjacency Matrix (internal flows and inequalities)
+
+Once information has been filled in, the LIM files must be refreshed.
+Ctrl+Alt+F5 or Data > Refresh All
+This updates two sheets - weighted and unweighted LIMfiles.
+From here, the user has the option to either copy and paste the
+new LIM file into an R script in R studio, or can use the handy function
+`import_autoLIMExcel_limfile()` which directly pulls in the weighted or unweighted
+sheets from autoLIMExcel, saves as an R script, and opens the script in R
+
+```{r}
+import_autoLIMExcel_limfile(
+file = "autoLIM_Excel.xlsx",
+weighted = TRUE,
+limname = NULL,
+open_script = FALSE
+)
+```
+
+### autoLIMR
+autoLIMR is an R function to build multiple LIM declaration files from
+spreadsheet input data at once.
+
+The first spreadsheet workbook is...
+The second spreadsheet workbook is...
+
+We have also included the demonstration spreadsheets containing inputs for four theoretical four-compartment networks (Summer, Autumn, Winter, Spring). These can be downloaded directly from GitHub, but there is a handy demo feature to create them within the package and use them in the function.
+
+To see the network data input:
+```{r}
+demo_netdata <- demo_net_input()
+str(demo_netdata)
+```
+
+
+To see the adjacency matrix input:
+```{r}
+demo_adjmat <- demo_adj_mat()
+str(demo_adjmat)
+```
+
+
+To write LIM declrations files into folders in the working directory
+
+```{r, eval = FALSE}
+autoGen(
+  net_data_input = "demo",
+  adj_mat_input = "demo",
+  NLNode = "Detritus",
+  primary_producer = "Plant",
+  respiration = TRUE,
+  respiration_element = "CO2",
+  author = "Gemma Gerber",
+  weighted = TRUE,
+  force = TRUE
+)
 ```

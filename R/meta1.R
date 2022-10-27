@@ -1,6 +1,7 @@
 #' Function: meta1()
 #' Defines the first part of the metadata from network input data workbook sheets
 #'
+
 #' @param x network input data matrix
 #' @param author author name. Defined in the main autoLIMR function. Defaults to system user
 #' @param date date. Defined in the main autoLIMR function. Defaults to system date

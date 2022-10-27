@@ -2,8 +2,7 @@
 #' Turns off scientific notation
 #' @param x the imported matrix/matrices
 #'
-#' @export
-#'
+
 sci_notation_off <- function(x) {
   x <- as.matrix(x)
   poss_num <- suppressWarnings(as.numeric(x))

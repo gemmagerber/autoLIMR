@@ -221,7 +221,7 @@ autoGen <- function(net_data_input = "demo",
   # If folders do not exist, create them
   # Then write LIMfiles into the folders
 
-  write_limfile <- function(type, object) {
+  write_limfile <- function(type, object, force) {
 
     if(type == "Weighted") {
       path <- file.path(getwd(), "autoLIMR Weighted Network LIMfiles")
@@ -277,7 +277,9 @@ autoGen <- function(net_data_input = "demo",
     }
   }
 
-  write_limfile(type = "Weighted", object = Weighted)
-  write_limfile(type = "Unweighted", object = Unweighted)
+  write_limfile(type = "Weighted", object = Weighted, force)
+  write_limfile(type = "Unweighted", object = Unweighted, force)
+
+  message("LIM Declaration files successfully written to folders. Please check working directory.")
 
 }

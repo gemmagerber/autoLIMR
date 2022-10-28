@@ -67,9 +67,9 @@ We describe how to use __autoLIMR__ using a theoretical four-compartment network
 
 <!-- Figure -->
 
-(ref:network-image-png) *Conceptual four-compartment network*
+<!-- (ref:network-image-png) *Conceptual four-compartment network with flows describing exchanges between compartments within and across a defined system boundary* -->
 
-```{r network-image-png, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = 'justified', fig.cap = '(ref:network-image-png)'}
+```{r network-image-png, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = 'justified', fig.cap = 'Conceptual four-compartment network with flows describing exchanges between compartments within and across a defined system boundary'}
 knitr::include_graphics("images/network.PNG")
 ```
 

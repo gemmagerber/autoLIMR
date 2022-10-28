@@ -272,10 +272,11 @@ Invertebrate_Q_Vertebrate = Vertebrate_Q * [0.6,1]
 ## An alternative to __autoLIMR__: __autoLIM-Excel__
 We also have developed an automated LIM declaration file translator with Microsoft Excel 2016, aptly named __autoLIM-Excel__. __autoLIM-Excel__ is a spreadsheet-based tool for novice network builders. It
 is designed for once-off LIM declaration file builds, or for users not 
-familiar with R. The latest version of __autoLIM-Excel__ can be download from the [autoLIM-Excel GitHub repository](https://github.com/gemmagerber/autoLIM-Excel) or downloaded to the working directory with the autoLIMR function `fetch_autoLIMExcel()` during an active R session.
+familiar with R. The latest version of __autoLIM-Excel__ can be download from the [autoLIM-Excel GitHub repository](https://github.com/gemmagerber/autoLIM-Excel) or downloaded to the working directory with the autoLIMR function `fetch_autoLIMExcel()` during an active R session. Please set `force = TRUE` to
+give R permission to download autoLIM-Excel and save to the working directory.
 
 ```{r, tidy = TRUE, eval = FALSE}
-fetch_autoLIMExcel()
+fetch_autoLIMExcel(force = TRUE)
 ```
 
 auotLIM-Excel contains two input sheets, and two output sheets. The two input sheets are separated into 1) Network Input Data, and 2) Adjacency Matrix. As with autoLIMR, the Network Input Data sheet contains all compartment names, biomasses, and metabolic constraints. The arguments for respiration, non-living nodes, and primary producers are also in this sheet, and are simple binary arguments (`1` for 'Yes', `0` for 'No')

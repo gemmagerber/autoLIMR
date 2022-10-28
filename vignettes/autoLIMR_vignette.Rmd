@@ -293,7 +293,7 @@ knitr::include_graphics("images/exceladjmat.PNG")
 
 After populating both __autoLIM-Excel__ input sheets, the user selects the “Data” tab and “Refresh All”, or hotkey “Ctrl+Alt+F5” (Microsoft Excel 2016) to activate several pre-coded Excel’s Power Query functions that select and arrange the generated linear equations into appropriate LIM declaration sections, and to finally gather the sections into two complete, independent LIM declaration text output sheets. The first sheet contains a weighted LIM declaration file and the second sheet contains the equivalent unweighted LIM declaration file. Users can copy and paste these files directly into an R script or use autoLIMR package read-in function `import_autoLIMExcel_limfile()` to extract the LIM declaration from __autoLIM-Excel__ into R. The argument `weighted = TRUE` imports the __autoLIM-Excel__ generated weighted LIM declaration file, whereas `weighted = FALSE` imports the unweighted LIM declaration file.
 
-```{r}
+```{r, eval = FALSE}
 import_autoLIMExcel_limfile(
 file = "autoLIM_Excel.xlsx",
 weighted = TRUE,

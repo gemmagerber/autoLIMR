@@ -13,8 +13,10 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' import_autoLIMExcel_limfile(file = "autoLIM_Excel_test2.xlsx",
-#' weighted = TRUE, limname = NULL, open_script = FALSE)
+#' import_autoLIMExcel_limfile(
+#'   file = "autoLIM_Excel_test2.xlsx",
+#'   weighted = TRUE, limname = NULL, open_script = FALSE
+#' )
 #' }
 import_autoLIMExcel_limfile <- function(file,
                                         weighted = TRUE,
@@ -30,21 +32,23 @@ import_autoLIMExcel_limfile <- function(file,
 
   if (is.null(limname)) {
     tosave <- paste0(sheetname, ".R")
-    tosave <- gsub(x = tosave,
-                   pattern = " ",
-                   replacement = "_")
-
+    tosave <- gsub(
+      x = tosave,
+      pattern = " ",
+      replacement = "_"
+    )
   }
 
   if (!is.null(limname)) {
     tosave <- paste0(limname, ".R")
-    tosave <- gsub(x = tosave,
-                   pattern = " ",
-                   replacement = "_")
-
+    tosave <- gsub(
+      x = tosave,
+      pattern = " ",
+      replacement = "_"
+    )
   }
 
-  options('scipen' = 99999)
+  options("scipen" = 99999)
   x <- readxl::read_excel(
     path = file,
     sheet = sheetname,
@@ -60,10 +64,8 @@ import_autoLIMExcel_limfile <- function(file,
     row.names = FALSE,
     quote = FALSE
   )
-  #print(x)
+  # print(x)
   if (open_script == TRUE) {
     file.edit(tosave)
   }
-
 }
-

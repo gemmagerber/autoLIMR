@@ -272,7 +272,7 @@ autoGen <- function(net_data_input = "demo",
 
         }
       } else {
-        warning("No working directory exists. Please set with setwd().")
+        warning("No permission to write LIMfiles. Please change by setting force = TRUE.")
       }
     }
   }

@@ -5,7 +5,15 @@
 \title{Function: fetch_autoLIMExcel()
 Downloads the latest version of autoLIM-Excel from GitHub}
 \usage{
-fetch_autoLIMExcel()
+fetch_autoLIMExcel(force = FALSE)
+}
+\arguments{
+\item{force}{#' If set to \code{TRUE}, files of \code{autoLIM_Excel.xlsx}
+will be downloaded from GitHub and saved in the users working directory. If
+this function is used in an interactive session the user will be asked
+whether or not \code{autoLIM_Excel.xlsx} can be downloaded. The default
+value is \code{FALSE}. Users will need to explicityl change \code{TRUE} to
+provide permission for download.}
 }
 \value{
 autoLIM-Excel as .xlsx file in working directory

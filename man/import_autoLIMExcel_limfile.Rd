@@ -30,7 +30,9 @@ Imports autoLIM-Excel LIM declaration file from autoLIM-Excel
 }
 \examples{
 \dontrun{
-import_autoLIMExcel_limfile(file = "autoLIM_Excel_test2.xlsx",
-weighted = TRUE, limname = NULL, open_script = FALSE)
+import_autoLIMExcel_limfile(
+  file = "autoLIM_Excel_test2.xlsx",
+  weighted = TRUE, limname = NULL, open_script = FALSE
+)
 }
 }

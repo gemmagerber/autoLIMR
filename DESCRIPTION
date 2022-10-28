@@ -21,16 +21,16 @@ URL: https://github.com/gemmagerber/autoLIMR
 BugReports: https://github.com/gemmagerber/autoLIMR/issues
 Imports:
     cellranger (>= 1.1.0),
-    readxl (>= 1.4.0),
-    utils (>= 4.2.0)
+    readxl (>= 1.4.1),
+    utils (>= 4.2.1)
 Suggests: 
-    devtools (>= 2.4.3),
-    knitr (>= 1.39),
-    rmarkdown (>= 2.14),
-    testthat (>= 3.1.4)
+    devtools (>= 2.4.5),
+    knitr (>= 1.40),
+    rmarkdown (>= 2.17),
+    testthat (>= 3.1.5)
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1

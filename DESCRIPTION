@@ -24,6 +24,7 @@ Imports:
     readxl (>= 1.4.1),
     utils (>= 4.2.1)
 Suggests: 
+    covr,
     devtools (>= 2.4.5),
     knitr (>= 1.40),
     rmarkdown (>= 2.17),

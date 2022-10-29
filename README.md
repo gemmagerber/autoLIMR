@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/gemmagerber/autoLIMR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/gemmagerber/autoLIMR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/gemmagerber/autoLIMR?branch=main)
 <!-- badges: end -->
 
 The goal of autoLIMR is to …

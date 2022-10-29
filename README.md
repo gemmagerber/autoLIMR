@@ -17,7 +17,7 @@ packages [LIM](https://cran.r-project.org/web/packages/LIM/index.html)
 and
 [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
 
-For more information please consult the vignette
+For more information please consult the html vignette
 
 ## Installation
 

@@ -17,7 +17,6 @@ knitr::opts_chunk$set(
 devtools::load_all(".")
 ```
 
-
 # autoLIMR
 
 <!-- badges: start -->

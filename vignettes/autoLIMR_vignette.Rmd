@@ -18,6 +18,7 @@ text-align: justify}
 
 ```{r, include=FALSE}
 devtools::load_all(".")
+library(formatR)
 ```
 
 ```{r, include = FALSE}
@@ -50,7 +51,7 @@ library(autoLIMR)
 We describe how to use __autoLIMR__ using a theoretical four-compartment network, describing the network interactions and flow constraints over seasonal time-steps of Winter, Spring, Summer, and Autumn.
 
 ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = 'justified', fig.cap = "_Conceptual four-compartment network with flows describing exchanges between compartments within and across a defined system boundary_"}
-knitr::include_graphics("images/network.PNG")
+knitr::include_graphics("images/network.png")
 ```
 
 

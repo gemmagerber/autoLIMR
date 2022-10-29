@@ -66,7 +66,7 @@ __autoLIMR__ requires the final list of internal compartments to be listed under
 For all compartments that feature imports (IM) and exports (EX) across the system boundary the user inputs lower and upper inequalities in separate columns. If a compartment receives an import or export, but the inequalities are not known, the user inputs a `1` in the respective column.
 
 ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = 'justified', fig.cap = "_Network input data sheet Winter example, showing pre-calculated data describing the food web model compartments, biomasses, and metabolic constraints entered a named Excel spreadsheet. Column headings describe the metabolic data in the column, and each row corresponding to one compartment. Each named spreadsheet corresponds to a seperate network ('Winter', 'Spring', 'Summer', 'Autumn'), each containing all relevant network-specific information. __autoLIMR__ accepts both character and numeric input from the spreadsheet._"}
-knitr::include_graphics("images/netinputwinter.PNG")
+knitr::include_graphics("images/netinputwinter.png")
 ```
 
 To view the network input data for all seasons, the example network data provided with __autoLIMR__ can be downloaded from the [autoLIMR Supplemental Information GitHub repository](https://github.com/gemmagerber/autoLIM_Supplemental_Information), or fetched with `demo_net_input()`. The demo network data input is a list of four data tables containing network data input for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks.
@@ -81,7 +81,7 @@ demo_net_input()
 In the 'Adjacency Matrix Input' workbook, flows between source (row _i_) and recipient (column _j_) are defined by `1`. If the proportions of compartmental inflow from different sources are provided, these can instead be entered as a constraint in the form of _lower value, upper value_. For example, `0.2,0.5` indicates that a specific flow comprises 20 - 50 % of compartment _j_'s total consumptive input. If only the lower proportion is known, it can be entered as _lower value, 1_, e.g., `0.2, 1` indicates that the flow contributes a minimum of 20 % and a maximum of 100% to total consumption. If only the upper diet proportion is known, it can be entered as the constraint _upper value_ or _0, upper value_ (e.g., `0.6` or `0, 0.6` – indicating that the flow contributes a maximum of 60 % to total consumption). R packages LIM and limSolve do not use flow values below or equal to zero (van Oevelen et al., 2010).
 
 ```{r, echo = FALSE, out.width = "100%", fig.align = 'center', fig.cap = "_Adjacency matrix data Winter example, describing flows and flow constraints from compartment in row _i_ to compartment in column _j_. Each named spreadsheet corresponds to a seperate network ('Winter', 'Spring', 'Summer', 'Autumn'), each containing all relevant network-specific information. __autoLIMR__ accepts both character and numeric input from the spreadsheet._"}
-knitr::include_graphics("images/adjmatwinter.PNG")
+knitr::include_graphics("images/adjmatwinter.png")
 ```
 
 To view the adjacency matrix data for all seasons, the example adjacency matrix data provided with __autoLIMR__ can be downloaded from the [autoLIMR Supplemental Information GitHub repository](https://github.com/gemmagerber/autoLIM_Supplemental_Information), or fetched with `demo_adj_mat()`. The demo adjacency matrix input is a list of four data tables containing adjacency matrices for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks. Each adjacency matrix describes internal flows of energy/material from compartment in row _i_ to compartment in column _j_.
@@ -285,14 +285,14 @@ fetch_autoLIMExcel(force = TRUE)
 auotLIM-Excel contains two input sheets, and two output sheets. The two input sheets are separated into 1) Network Input Data, and 2) Adjacency Matrix. As with autoLIMR, the Network Input Data sheet contains all compartment names, biomasses, and metabolic constraints. The arguments for respiration, non-living nodes, and primary producers are also in this sheet, and are simple binary arguments (`1` for 'Yes', `0` for 'No')
 
 ```{r, echo = FALSE, out.width = "100%", fig.align = 'center', fig.cap = "___autoLIM-Excel__ Network Input sheet_"}
-knitr::include_graphics("images/excelnetdata.PNG")
+knitr::include_graphics("images/excelnetdata.png")
 ```
 
 
 The adjacency matrix sheet contains all flows and flow constraints from compartment in row _i_ to compartment in column _j_. __autoLIM-Excel__ automatically pulls all compartment names from the Network Data sheet into rows and columns in the adjacency matrix. Flow constraints can be entered in the same manner as for __autoLIMR__.
 
 ```{r, echo = FALSE, out.width = "100%", fig.align = 'center', fig.cap = "___autoLIM-Excel__ Adjacency Matrix sheet_"}
-knitr::include_graphics("images/exceladjmat.PNG")
+knitr::include_graphics("images/exceladjmat.png")
 ```
 
 After populating both __autoLIM-Excel__ input sheets, the user selects the “Data” tab and “Refresh All”, or hotkey “Ctrl+Alt+F5” (Microsoft Excel 2016) to activate several pre-coded Excel’s Power Query functions that select and arrange the generated linear equations into appropriate LIM declaration sections, and to finally gather the sections into two complete, independent LIM declaration text output sheets. The first sheet contains a weighted LIM declaration file and the second sheet contains the equivalent unweighted LIM declaration file. Users can copy and paste these files directly into an R script or use autoLIMR package read-in function `import_autoLIMExcel_limfile()` to extract the LIM declaration from __autoLIM-Excel__ into R. The argument `weighted = TRUE` imports the __autoLIM-Excel__ generated weighted LIM declaration file, whereas `weighted = FALSE` imports the unweighted LIM declaration file.

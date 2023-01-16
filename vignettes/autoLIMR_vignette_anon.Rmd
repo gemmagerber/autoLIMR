@@ -1,13 +1,13 @@
 ---
-title: "autoLIMR_vignette"
-author: "autoLIMR authors"
+title: "autoLIMR_vignette_anon"
+author: "XXXX-2 XXXX-3"
 date: "2022"
 output:
   rmarkdown::html_vignette:
     number_sections: false
     fig_caption: true
 vignette: >
-  %\VignetteIndexEntry{autoLIMR_vignette}
+  %\VignetteIndexEntry{autoLIMR_vignette_anon}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -38,10 +38,10 @@ To support researchers in translating network model input data into LIM declarat
 The automation saves time and effort, reduces coding error rates, and can be applied to networks of any size. While our example focuses on ecological networks, autoLIM applications are flexible and easily adaptable to a variety of system science disciplines. By removing a barrier in the network construction process, __autoLIMR__ can improve the uptake of LIM techniques in network modelling, and the quality of constructed networks. 
 
 ## Installation
-The latest version of '__autoLIMR__' can be installed from [GitHub](https://github.com/gemmagerber/autoLIMR). __autoLIMR__ dependencies are automatically installed, including cellranger (>= 1.1.0) (Bryan, 2016), readxl (>= 1.4.1) (Wickham and Bryan, 2022), and utils (>= 4.2.1) (R Core Team, 2022). 
+The latest version of '__autoLIMR__' can be installed from [GitHub](https://b10200cbde7d/r/autoLIMR-084C). __autoLIMR__ dependencies are automatically installed, including cellranger (>= 1.1.0) (Bryan, 2016), readxl (>= 1.4.1) (Wickham and Bryan, 2022), and utils (>= 4.2.1) (R Core Team, 2022). 
 
 ```{r, eval = FALSE}
-devtools::install_github("gemmageber/autoLIMR")
+devtools::install_github("XXXX-XXXX/autoLIMR")
 library(autoLIMR)
 ```
 
@@ -69,7 +69,7 @@ For all compartments that feature imports (IM) and exports (EX) across the syste
 knitr::include_graphics("images/netinputwinter.png")
 ```
 
-To view the network input data for all seasons, the example network data provided with __autoLIMR__ can be downloaded from the [autoLIMR Supplemental Information GitHub repository](https://github.com/gemmagerber/autoLIM_Supplemental_Information), or fetched with `demo_net_input()`. The demo network data input is a list of four data tables containing network data input for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks.
+To view the network input data for all seasons, the example network data provided with __autoLIMR__ can be downloaded from the [autoLIMR Supplemental Information GitHub repository](XXXX-1), or fetched with `demo_net_input()`. The demo network data input is a list of four data tables containing network data input for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks.
 
 ```{r, echo = TRUE}
 demo_net_input()
@@ -84,7 +84,7 @@ In the 'Adjacency Matrix Input' workbook, flows between source (row _i_) and rec
 knitr::include_graphics("images/adjmatwinter.PNG")
 ```
 
-To view the adjacency matrix data for all seasons, the example adjacency matrix data provided with __autoLIMR__ can be downloaded from the [autoLIMR Supplemental Information GitHub repository](https://github.com/gemmagerber/autoLIM_Supplemental_Information), or fetched with `demo_adj_mat()`. The demo adjacency matrix input is a list of four data tables containing adjacency matrices for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks. Each adjacency matrix describes internal flows of energy/material from compartment in row _i_ to compartment in column _j_.
+To view the adjacency matrix data for all seasons, the example adjacency matrix data provided with __autoLIMR__ can be downloaded from the [autoLIMR Supplemental Information GitHub repository](XXXX-1), or fetched with `demo_adj_mat()`. The demo adjacency matrix input is a list of four data tables containing adjacency matrices for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks. Each adjacency matrix describes internal flows of energy/material from compartment in row _i_ to compartment in column _j_.
 
 ```{r, echo = TRUE}
 demo_adj_mat()
@@ -130,7 +130,7 @@ An example of the Winter weighted LIM declaration output from __autoLIMR__:
 ! Weighted Network
 ! Network LIM Declaration File
 ! Composed with autoLIMR
-! Author: Gemma Gerber
+! Author: XXXX-2 XXXX-3
 ! Date: 2022-10-28
 
 ! Respiration included: Yes
@@ -275,7 +275,7 @@ Invertebrate_Q_Vertebrate = Vertebrate_Q * [0.6,1]
 ## An alternative to __autoLIMR__: __autoLIM-Excel__
 We also have developed an automated LIM declaration file translator with Microsoft Excel 2016, aptly named __autoLIM-Excel__. __autoLIM-Excel__ is a spreadsheet-based tool for novice network builders. It
 is designed for once-off LIM declaration file builds, or for users not 
-familiar with R. The latest version of __autoLIM-Excel__ can be download from the [autoLIM-Excel GitHub repository](https://github.com/gemmagerber/autoLIM-Excel) or downloaded to the working directory with the autoLIMR function `fetch_autoLIMExcel()` during an active R session. Please set `force = TRUE` to
+familiar with R. The latest version of __autoLIM-Excel__ can be download from the [autoLIM-Excel GitHub repository](XXXX-1) or downloaded to the working directory with the autoLIMR function `fetch_autoLIMExcel()` during an active R session. Please set `force = TRUE` to
 give R permission to download autoLIM-Excel and save to the working directory.
 
 ```{r, eval = FALSE}
@@ -312,7 +312,7 @@ Here is an example of a weighted LIM declaration file constructed using __autoLI
 ! Weighted Network
 ! 4node Winter Network LIM Declaration File
 ! Composed with autoLIM-Excel
-! Author: Gemma Gerber
+! Author: XXXX-2 XXXX-3
 ! Date: 23.Oct.2022
 
 ! Respiration included: Yes

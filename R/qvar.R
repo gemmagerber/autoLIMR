@@ -20,12 +20,12 @@ qvar <- function(x) {
   if (length(wo.in) > 0 & length(w.in) > 0) {
     wo.in_qvar <- paste0(wo.in, "_Q = ", "Flowto(", wo.in, ")")
     w.in_qvar <-
-      paste0(w.in, "_Q = ", "Flowto(", w.in, ") - ", w.in, "_IN")
+      paste0(w.in, "_Q = ", "Flowto(", w.in, ") - ", w.in, "_IM")
     var <- c(wo.in_qvar, w.in_qvar)
   }
 
   if (identical(wo.in, character(0)) & length(w.in) > 0) {
-    var <- paste0(w.in, "_Q = ", "Flowto(", w.in, ") - ", w.in, "_IN")
+    var <- paste0(w.in, "_Q = ", "Flowto(", w.in, ") - ", w.in, "_IM")
   }
 
   if (length(wo.in) > 0 & identical(w.in, character(0))) {

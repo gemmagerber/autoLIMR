@@ -224,10 +224,10 @@ autoGen <- function(net_data_input = "demo",
   write_limfile <- function(type, object, force) {
 
     if(type == "Weighted") {
-      path <- file.path(getwd(), "autoLIMR Weighted Network LIMfiles")
+      path <- file.path(getwd(), "weighted_limfiles")
     }
     if(type == "Unweighted") {
-      path <- file.path(getwd(), "autoLIMR Unweighted Network LIMfiles")
+      path <- file.path(getwd(), "unweighted_limfiles")
     }
 
     # Check if working directory available. It should be.
@@ -251,7 +251,7 @@ autoGen <- function(net_data_input = "demo",
                          i,
                          "_",
                          type,
-                         " Network LIMfile.R"))
+                         "_Network_LIMfile.R"))
 
     }
         }
@@ -268,7 +268,7 @@ autoGen <- function(net_data_input = "demo",
                        i,
                        "_",
                        type,
-                       " Network LIMfile.R"))
+                       "_Network_LIMfile.R"))
 
         }
       } else {

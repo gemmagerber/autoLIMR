@@ -28,7 +28,7 @@ net_data_node <- function(x, node.type, NLNode) {
 
   if (node.type == "Input") {
     input.matrix <- matrix_def(x, mat.type = "Input")
-    in.mat3 <- as.vector(paste0(rownames(input.matrix), "Input"))
+    in.mat3 <- as.vector(paste0(rownames(input.matrix), "Import"))
     return(in.mat3)
   }
 

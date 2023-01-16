@@ -2,7 +2,7 @@ Type: Package
 Package: autoLIMR
 Title: Automated Translation of Network Data into Declaration Files
     Compatible with 'LIM' and 'limSolve'
-Version: 1.0.0
+Version: 2.0.0
 Authors@R: c(
     person("Gemma", "Gerber", email = "gemmagerber@live.com", role =
     c("aut", "cre"), comment = c(ORCID = "0000-0002-8722-3113")),

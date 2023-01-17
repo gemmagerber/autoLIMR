@@ -6,17 +6,23 @@ bugs.
 ## Breaking changes
 
 * Brand new features mean some dependencies not previously included. These
-include coda (>= 0.19.4), LIM (>= 1.4.7), and network (>= 1.18.0)
+include `coda` (>= 0.19.4), `LIM` (>= 1.4.7), and `network` (>= 1.18.0)
 * Roxygen update 7.2.1 -> 7.2.3
 
 
 ## New features
 
 * Added a `NEWS.md` file to track changes to the package.
+
+### Calculate multiple plausible networks
+
 * Added `multi_net()` function and friends to calculate multiple plausible networks. Friend functions include:
   + Starting point functions `centralx0()` and `defaultx0`
   + Network packing function `prepack_fun()` and inner functions `export_fun()`,
   `fmat_fun()`, `input_fun()`, `living_fun()`, `output_fun()`, `resp_fun()`
+  
+### Markov Chain Monte Carlo (MCMC) Convergence Diagnostics
+
 * Added various functions for visual MCMC convergence diagnostics:
   + `trace_plot()`
   + `dens_plot()`
@@ -34,6 +40,9 @@ include coda (>= 0.19.4), LIM (>= 1.4.7), and network (>= 1.18.0)
   + `autocorr_diag()`
   + `mcmc_diags()` function returns all statistical MCMC convergence diagnostics
   in a single list or data frame.
+  
+### Examples
+
 * Added eight example LIM Declaration files for a toy four-node network in 
 `inst/example_limfiles` directory
   + Four weighted network LIM Declaration files (Summer, Spring, Autumn, Winter)

@@ -13,18 +13,22 @@ coverage](https://codecov.io/gh/gemmagerber/autoLIMR/branch/main/graph/badge.svg
 
 The goal of autoLIMR is to automate the construction, calculation, and
 evaluation of multiple plausible networks using linear inverse modelling
-coupled with Markov Chain Monte Carlo (LIM_MCMC).
+coupled with Markov Chain Monte Carlo (LIM-MCMC).
 
-autoLIMR achieves this by: \* 1. Translating network input data into
-files directly compatible with R packages
-[LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
-[limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
-\* 2. Solves multiple plausible networks using LIM-MCMC procedures in
-[LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
-[limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
-\* 3. Evaluates if the multiple plausible networks are representitave of
-the original input data using a suite of visual and statistical MCMC
-diagnostics.
+autoLIMR achieves this by:
+
+- Translating network input data into files directly compatible with R
+  packages [LIM](https://cran.r-project.org/web/packages/LIM/index.html)
+  and
+  [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
+
+- Solves multiple plausible networks using LIM-MCMC procedures in
+  [LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
+  [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
+
+- Evaluates if the multiple plausible networks are representitave of the
+  original input data using a suite of visual and statistical MCMC
+  diagnostics.
 
 For more information please consult the html vignette (in progress)
 

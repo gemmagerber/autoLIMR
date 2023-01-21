@@ -7,7 +7,7 @@
 #' @export
 demo_net_input <- function() {
   net_summer <- data.frame(
-    Compartment = c("Det", "Plant", "Invert", "V"),
+    Compartment = c("Det", "Plant", "Invert", "Vert"),
     Biomass = c(10000.2, 800, 2000, 55),
     Consumption_lower = c(NA, 0.05, 100, NA),
     Consumption_upper = c(NA, 0.6, 10000, NA),

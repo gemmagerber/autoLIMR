@@ -10,7 +10,7 @@ autoGen(
   net_data_input = "demo",
   adj_mat_input = "demo",
   NLNode = NULL,
-  respiration = NULL,
+  respiration = TRUE,
   respiration_element = "CO2",
   primary_producer = NULL,
   author = NULL,

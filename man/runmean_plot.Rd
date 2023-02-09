@@ -7,7 +7,7 @@ variable
 Shows time average estimates against the number of iterations.
 Used to decide iteration stopping times.}
 \usage{
-runmean_plot(x, flow, ...)
+runmean_plot(x, flow, addtitle = FALSE, ...)
 }
 \arguments{
 \item{x}{The solved MCMC flow values in a data.frame, accessible
@@ -16,6 +16,9 @@ output[["solved.flow.values"]]. Can also refer to the entire multi_net()
 output list (class(output) == "multi_net_model).}
 
 \item{flow}{Character argument. The specified name of the flow plot.}
+
+\item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+a title descrbing the type of plot is included above the plot.}
 
 \item{...}{Other base R graphical parameters. See ?plot for more details.}
 }
@@ -29,10 +32,10 @@ Shows time average estimates against the number of iterations.
 Used to decide iteration stopping times.
 }
 \examples{
-# Example 1: Running mean plot from a data frame, matrix,
+# Example 1: Running mean plot from a data frame
 # or coda::as.mcmc() object.
 set.seed(1)
-x <- matrix(rnorm(1000, m = 0, s = 1))
+x <- data.frame(rnorm(1000, m = 0, s = 1))
 colnames(x) <- "Value"
 runmean_plot(x = x, flow = "Value")
 

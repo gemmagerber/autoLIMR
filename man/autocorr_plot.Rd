@@ -6,7 +6,7 @@
 variable over time.
 Useful for...}
 \usage{
-autocorr_plot(x, flow, ...)
+autocorr_plot(x, flow, lag.max = 50, addtitle = FALSE, ...)
 }
 \arguments{
 \item{x}{The solved MCMC flow values in a data.frame, accessible
@@ -15,6 +15,11 @@ output[["solved.flow.values"]]. Can also refer to the entire multi_net()
 output list (class(output) == "multi_net_model).}
 
 \item{flow}{Character argument. The specified name of the flow plot.}
+
+\item{lag.max}{Maximum value at which to calculate acf}
+
+\item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+a title descrbing the type of plot is included above the plot.}
 
 \item{...}{Other graphical parameters from coda::autocorr_plot.}
 }
@@ -27,10 +32,10 @@ variable over time.
 Useful for...
 }
 \examples{
-# Example 1: Running mean plot from a data frame, matrix,
+# Example 1: Running mean plot from a data frame
 # or coda::as.mcmc() object.
 set.seed(1)
-x <- matrix(rnorm(1000, m = 0, s = 1))
+x <- data.frame(rnorm(1000, m = 0, s = 1))
 colnames(x) <- "Value"
 autocorr_plot(x = x, flow = "Value")
 

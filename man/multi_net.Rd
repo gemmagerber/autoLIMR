@@ -2,14 +2,9 @@
 % Please edit documentation in R/multi_net.R
 \name{multi_net}
 \alias{multi_net}
-\title{multi_net(): function for calculating multiple plausible networks from
-a LIM declaration file. Based on LIM and limSolve packages with novel extras!
-Includes options to change 1) starting points (x0), 2) jump sizes, and 3)
-number of iterations. A further option, 'pack' is to pack the solved values
-into network objects for network visualistion and analysis with additional
-network manipulation packages (see igraph, enaR, etc.)}
+\title{multi_net(): function for calculating multiple plausible networks}
 \usage{
-multi_net(file = NULL, iter = NULL, jmp = NULL, x0 = NULL, pack = FALSE)
+multi_net(file = NULL, iter = NULL, jmp = NULL, x0 = NULL, pack = TRUE)
 }
 \arguments{
 \item{file}{R script (".R" extension) containing the LIM declaration file}
@@ -33,8 +28,9 @@ solved flow values packed into matrices, and if pack = TRUE, 5) list of
 packed network objects, and 6) list of balanced network objects.
 }
 \description{
-multi_net(): function for calculating multiple plausible networks from
-a LIM declaration file. Based on LIM and limSolve packages with novel extras!
+This function calculates multiple plasuible network solutions
+from a LIM declaration file.
+Based on LIM and limSolve packages with novel extras!
 Includes options to change 1) starting points (x0), 2) jump sizes, and 3)
 number of iterations. A further option, 'pack' is to pack the solved values
 into network objects for network visualistion and analysis with additional

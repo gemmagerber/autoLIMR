@@ -5,7 +5,7 @@
 \title{trace_plot(): a function to plot an MCMC object variable over time (iterations)
 Trace plots can be used to assess the mixing of the MCMC chain over time}
 \usage{
-trace_plot(x, flow, xranges = FALSE, ...)
+trace_plot(x, flow, xranges = FALSE, addtitle = FALSE, ...)
 }
 \arguments{
 \item{x}{The solved MCMC flow values in a data.frame, accessible
@@ -20,6 +20,9 @@ includes horizontal lines in the trace plot indicating absolute maximum and
 minimum values of the flow range calculated by LIM::Xranges.
 If xranges = FALSE, the minimum and maximum lines are omitted from the plot.}
 
+\item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+a title descrbing the type of plot is included above the plot.}
+
 \item{...}{Other base R graphical parameters. See ?plot for more details.}
 }
 \value{
@@ -30,12 +33,12 @@ trace_plot(): a function to plot an MCMC object variable over time (iterations)
 Trace plots can be used to assess the mixing of the MCMC chain over time
 }
 \examples{
-# Example 1: Traceplot from a data.frame, matrix, or coda::as.mcmc() object.
+# Example 1: Traceplot from a data.frame or coda::as.mcmc() object.
 # Since this example is not directly from a "multi_net_object" class, the
 # flow ranges from the LIM Declaration file cannot be included.
 
 set.seed(1)
-x <- as.matrix(rnorm(1000, m = 0, s = 1))
+x <- data.frame(rnorm(1000, m = 0, s = 1))
 colnames(x) <- "Value"
 trace_plot(x = x, flow = "Value", xranges = FALSE)
 

@@ -2,8 +2,7 @@
 % Please edit documentation in R/net_data_tidy.R
 \name{net_data_tidy}
 \alias{net_data_tidy}
-\title{net_data_tidy
-Tidies up network data input sheet}
+\title{net_data_tidy()}
 \usage{
 net_data_tidy(x, NLNode)
 }
@@ -13,6 +12,5 @@ net_data_tidy(x, NLNode)
 \item{NLNode}{the defined NLNodes from the main autoLIMR argument}
 }
 \description{
-net_data_tidy
 Tidies up network data input sheet
 }

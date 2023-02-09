@@ -2,7 +2,7 @@
 % Please edit documentation in R/demo_adj_mat.R
 \name{demo_adj_mat}
 \alias{demo_adj_mat}
-\title{Create a named list of demo adjacency matrix sheets for 4node}
+\title{demo_adj_mat() function}
 \usage{
 demo_adj_mat()
 }

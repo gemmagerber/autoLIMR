@@ -4,7 +4,7 @@
 \alias{dens_plot}
 \title{dens_plot(): a function to plot the Kernel Density of an MCMC object variable}
 \usage{
-dens_plot(x, flow, ...)
+dens_plot(x, flow, addtitle = FALSE, ...)
 }
 \arguments{
 \item{x}{The solved MCMC flow values in a data.frame, accessible
@@ -13,6 +13,9 @@ output[["solved.flow.values"]]. Can also refer to the entire multi_net()
 output list (class(output) == "multi_net_model).}
 
 \item{flow}{Character argument. The specified name of the flow plot.}
+
+\item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+a title descrbing the type of plot is included above the plot.}
 
 \item{...}{Other graphical parameters from coda::densplot.}
 }
@@ -23,7 +26,7 @@ A kernel density plot showing sample size and bin width
 dens_plot(): a function to plot the Kernel Density of an MCMC object variable
 }
 \examples{
-# Example 1: Kernel density plot from a data frame, matrix,
+# Example 1: Kernel density plot from a data frame
 # or coda::as.mcmc() object.
 
 set.seed(1)

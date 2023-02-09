@@ -8,7 +8,16 @@ Used to decide...
 Inspired by coda package
 See (references) for more information}
 \usage{
-geweke_plot(x, flow, nbins = 20, pvalue = 0.05, ...)
+geweke_plot(
+  x,
+  flow,
+  nbins = 20,
+  pvalue = 0.05,
+  frac1 = 0.1,
+  frac2 = 0.5,
+  addtitle = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{The solved MCMC flow values in a data.frame, accessible
@@ -21,6 +30,13 @@ output list (class(output) == "multi_net_model).}
 \item{nbins}{Number of segments.}
 
 \item{pvalue}{p-value used to plot confidence limits for the null hypothesis.}
+
+\item{frac1}{fraction to use from beginning of chain.}
+
+\item{frac2}{fraction to use from end of chain.}
+
+\item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+a title descrbing the type of plot is included above the plot.}
 
 \item{...}{Other graphical parameters from coda::geweke.plot.}
 }
@@ -35,10 +51,10 @@ Inspired by coda package
 See (references) for more information
 }
 \examples{
-# Example 1: Geweke Plot from a data frame, matrix,
+# Example 1: Geweke Plot from a data frame
 # or coda::as.mcmc() object.
 set.seed(1)
-x <- matrix(rnorm(1000, m = 0, s = 1))
+x <- data.frame(rnorm(1000, m = 0, s = 1))
 names(x) <- "Value"
 geweke_plot(x = x, flow = "Value")
 

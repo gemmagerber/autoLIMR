@@ -11,5 +11,6 @@ check_build <- function(file) {
   }
   if (!is.null(file)) {
     full_limfile <- LIM::Setup(LIM::Read(file))
+    return(full_limfile)
   }
 }

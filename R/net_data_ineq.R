@@ -53,24 +53,30 @@ net_data_ineq <- function(x, respiration,
 
   x$Freq <- as.character(x$Freq)
 
-  x$Inequality <- ifelse(grepl("^1$|^0$|^0.00$|^1.00$", x$Freq),
-    "none",
-    ifelse(
-      grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),
-      paste0(x$Variable, " > ", x$Freq),
-      ifelse(
-        grepl("upper|up|max|maximum", x$Var2, ignore.case = TRUE),
-        paste0(x$Variable, " < ", x$Freq),
-        "none"
-      )
-    )
-  )
+  # x$Inequality <- ifelse(grepl("^1$|^0$|^0.00$|^1.00$", x$Freq),
+  #   "none",
+  #   ifelse(
+  #     grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),
+  #     paste0(x$Variable, " > ", x$Freq),
+  #     ifelse(
+  #       grepl("upper|up|max|maximum", x$Var2, ignore.case = TRUE),
+  #       paste0(x$Variable, " < ", x$Freq),
+  #       "none"
+  #     )
+  #   )
+  # )
 
-  x$Inequality <- ifelse(
-    grepl("_AE", x$Inequality),
-    paste0(x$Variable, " > ", x$Var1, "_Q * ", x$Freq),
-    paste0(x$Inequality)
-  )
+  x$Inequality <- ifelse(x$Freq %in% c(1, 0, "1", "0", "1.00"),
+                         "none",
+                         ifelse(
+                           grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),
+                           paste0(x$Variable, " > ", x$Freq),
+                           ifelse(
+                             grepl("upper|up|max|maximum", x$Var2, ignore.case = TRUE),
+                             paste0(x$Variable, " < ", x$Freq),
+                             "none"
+                           )
+                         ))
 
   x <- x[!grepl("none", x$Inequality), ]
 

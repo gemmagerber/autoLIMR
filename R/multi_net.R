@@ -1,5 +1,8 @@
-#' multi_net(): function for calculating multiple plausible networks from
-#' a LIM declaration file. Based on LIM and limSolve packages with novel extras!
+#' @title multi_net(): function for calculating multiple plausible networks
+#'
+#' @description This function calculates multiple plasuible network solutions
+#' from a LIM declaration file.
+#' Based on LIM and limSolve packages with novel extras!
 #' Includes options to change 1) starting points (x0), 2) jump sizes, and 3)
 #' number of iterations. A further option, 'pack' is to pack the solved values
 #' into network objects for network visualistion and analysis with additional
@@ -31,7 +34,7 @@ multi_net <-
            iter = NULL,
            jmp = NULL,
            x0 = NULL,
-           pack = FALSE) {
+           pack = TRUE) {
     ############################### Check and build LIM Declaration File
     full_limfile <- check_build(file = file)
 
@@ -78,7 +81,7 @@ multi_net <-
           lapply(
             X = solved$solved.flow.matrices,
             FUN = prepack_fun,
-            limfile = full_limfile
+            full_limfile = full_limfile
           )
         balanced <- lapply(X = packed.nets, FUN = ssCheck)
         solved.2 = list(packed.nets = packed.nets,

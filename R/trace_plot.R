@@ -11,6 +11,10 @@
 #' includes horizontal lines in the trace plot indicating absolute maximum and
 #' minimum values of the flow range calculated by LIM::Xranges.
 #' If xranges = FALSE, the minimum and maximum lines are omitted from the plot.
+#'
+#' @param addtitle Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+#' a title describing the type of plot is included above the plot.
+#'
 #' @param ... Other base R graphical parameters. See ?plot for more details.
 #' @importFrom graphics abline legend
 #' @importFrom utils data
@@ -19,12 +23,12 @@
 #' @export
 #'
 #' @examples
-#' # Example 1: Traceplot from a data.frame, matrix, or coda::as.mcmc() object.
+#' # Example 1: Traceplot from a data.frame or coda::as.mcmc() object.
 #' # Since this example is not directly from a "multi_net_object" class, the
 #' # flow ranges from the LIM Declaration file cannot be included.
 #'
 #' set.seed(1)
-#' x <- as.matrix(rnorm(1000, m = 0, s = 1))
+#' x <- data.frame(rnorm(1000, m = 0, s = 1))
 #' colnames(x) <- "Value"
 #' trace_plot(x = x, flow = "Value", xranges = FALSE)
 #'
@@ -52,37 +56,42 @@
 #' trace_plot(x = x, flow = "Plant_GPP", xranges = FALSE)
 
 
-trace_plot <- function(x, flow, xranges = FALSE, ...) {
+trace_plot <- function(x, flow, xranges = FALSE,
+                       addtitle = FALSE, ...) {
 
   ### Errors
   # Error: MCMC object must be provided
   if (is.null(x)) {
     stop(
       'Please provide the name of the MCMC object as a "data.frame",
-         "mcmc", "matrix", or "multi_net_output"'
+         "mcmc", or "multi_net_output"'
     )
   }
   # Error: Flow name must be provided
   if (is.null(flow)) {
     stop(
-      'Please provide the chracter string name of the flow in the MCMC object
+      'Please provide the character string name of the flow in the MCMC object
       to plot, e.g., flow = "Plant_GPP".'
     )
   }
 
-  ### Four input types accepted (mcmc, matrix, data.frame, multi_net_output)
-  if (is.data.frame(x) | is.matrix(x) | inherits(x, "mcmc")) {
+  ### Four input types accepted (mcmc, data.frame, multi_net_output)
+  if (is.data.frame(x) | inherits(x, "mcmc")) {
     z <- coda::as.mcmc(x)
 
     plot(
-      x = 1:length(z),
+      x = 1:nrow(z),
       y = z[, paste0(flow)],
       type = "l",
       xlab = "Iteration",
-      ylab = paste0(flow),
-      main = "Trace Plot"
+      ylab = "Value"
     )
-    title(main = "Trace Plot", col.main = "black")
+
+    if (addtitle == TRUE) {
+      title(main = "Trace Plot", col.main = "black")
+    }
+
+
   } else if (inherits(x, "multi_net_output")) {
     all <- as.data.frame(x[["solved.flow.values"]])
     z <- as.data.frame(all[[paste0(flow)]])
@@ -91,14 +100,15 @@ trace_plot <- function(x, flow, xranges = FALSE, ...) {
 
     if (xranges == FALSE | is.null(xranges)) {
       plot(
-        x = 1:length(z),
+        x = 1:nrow(z),
         y = z[, paste0(flow)],
         type = "l",
         xlab = "Iteration",
-        ylab = paste0(flow),
-        main = "Trace Plot"
-      )
-      title(main = "Trace Plot", col.main = "black")
+        ylab = "Value"
+      ) # ylab = paste0(flow)
+      if (addtitle == TRUE) {
+        title(main = "Trace Plot", col.main = "black")
+      }
     }
     if (xranges == TRUE) {
       xr <- t(LIM::Xranges(x[["full_limfile"]]))
@@ -114,8 +124,7 @@ trace_plot <- function(x, flow, xranges = FALSE, ...) {
         ylim = c(min, max),
         type = "l",
         xlab = "Iteration",
-        ylab = paste0(flow),
-        main = "Trace Plot"
+        ylab = "Value"
       )
       abline(h = min, col = "blue", lty = 2)
       abline(h = max, col = "red", lty = 2)
@@ -127,14 +136,16 @@ trace_plot <- function(x, flow, xranges = FALSE, ...) {
         lty = c(2, 2),
         col = c("blue", "red")
       )
-      title(main = "Trace Plot", col.main = "black")
+      if (addtitle == TRUE) {
+        title(main = "Trace Plot", col.main = "black")
+      }
 
     }
   } else {
     stop(
       paste0(
         'Please ensure the MCMC object "x" type is one of "mcmc", "data.frame",
-             "matrix",  or "multi_net_output"'
+             or "multi_net_output"'
       )
     )
   }

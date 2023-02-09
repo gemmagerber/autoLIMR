@@ -10,10 +10,10 @@
 #' @export
 #'
 #' @examples
-#' # Example 1: Running mean plot from a data frame, matrix,
+#' # Example 1: Running mean plot from a data frame
 #' # or coda::as.mcmc() object.
 #' set.seed(1)
-#' x <- matrix(rnorm(1000, m = 0, s = 1))
+#' x <- data.frame(rnorm(1000, m = 0, s = 1))
 #' colnames(x) <- "Value"
 #' runmean_plot(x = x, flow = "Value")
 #'
@@ -37,26 +37,27 @@
 #'   x0 = NULL)
 #' runmean_plot(x = x, flow = "Plant_GPP")
 
-runmean_plot <- function(x, flow, ...) {
-  # Four input types accepted (mcmc, matrix, data.frame, multi_net_output).
+runmean_plot <- function(x, flow, addtitle = FALSE,
+                         ...) {
+  # Three input types accepted (mcmc, data.frame, multi_net_output).
 
   # MCMC object must be provided
   if (is.null(x)) {
     stop(
       'Please provide the name of the MCMC object as a "data.frame",
-         "mcmc", "matrix", or "multi_net_output"'
+         "mcmc", or "multi_net_output"'
     )
   }
 
   # Flow name must be provided
   if (is.null(flow)) {
     stop(
-      'Please provide the chracter string name of the flow in the MCMC object
+      'Please provide the character string name of the flow in the MCMC object
       to plot, e.g., flow = "Plant_GPP".'
     )
   }
 
-  if (is.data.frame(x) | is.matrix(x) | inherits(x, "mcmc")) {
+  if (is.data.frame(x) | inherits(x, "mcmc")) {
     z <- coda::as.mcmc(x)
 
     plot(
@@ -72,9 +73,13 @@ runmean_plot <- function(x, flow, ...) {
       x = 1:nrow(z),
       type = "l",
       xlab = "Iteration",
-      ylab = paste0(flow),
-      main = "Running Mean Plot"
+      ylab = "Value"
     )
+
+    if (addtitle == TRUE) {
+      title(main = "Running Mean Plot", col.main = "black")
+    }
+
   } else if (inherits(x, "multi_net_output")) {
     all <- as.data.frame(x[["solved.flow.values"]])
     z <- as.data.frame(all[[paste0(flow)]])
@@ -94,9 +99,12 @@ runmean_plot <- function(x, flow, ...) {
       x = 1:nrow(z),
       type = "l",
       xlab = "Iteration",
-      ylab = paste0(flow),
-      main = "Running Mean Plot"
+      ylab = "Value"
     )
+
+    if (addtitle == TRUE) {
+      title(main = "Running Mean Plot", col.main = "black")
+    }
 
   }
 

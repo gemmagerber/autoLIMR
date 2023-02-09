@@ -2,7 +2,7 @@
 ! Network LIM Declaration File
 ! Composed with autoLIMR
 ! Author: Gemma Gerber
-! Date: 2023-01-09
+! Date: 2023-02-07
 
 ! Respiration included: Yes
 ! U included: Yes
@@ -27,21 +27,21 @@
 
 ### COMPARTMENTS
 
-Invertebrate = 2000.0000
-Plant = 800.0000
-Vertebrate = 55.0000
-DetritusNLNode = 10000.2000
+Invert = 2000.00
+Plant = 800.00
+Vert = 55.00
+DetNLNode = 10000.20
 
 ### END COMPARTMENTS
 
 ### EXTERNALS
 
 CO2
-DetritusNLNodeImport
+DetNLNodeImport
 PlantImport
-DetritusNLNodeExport
+DetNLNodeExport
 PlantExport
-VertebrateExport
+VertExport
 
 ### END EXTERNALS
 
@@ -49,26 +49,26 @@ VertebrateExport
 
 ! Consumption (Q) / Gross Primary Production (GPP) Variables
 
-Invertebrate_Q = Flowto(Invertebrate)
+Invert_Q = Flowto(Invert)
 Plant_GPP = Flowto(Plant) - Plant_IM
-Vertebrate_Q = Flowto(Vertebrate)
+Vert_Q = Flowto(Vert)
 
 ! Production (P/NPP) Variables
 
-Invertebrate_P = Flowfrom(Invertebrate) - Invertebrate_R - Invertebrate_U
+Invert_P = Flowfrom(Invert) - Invert_R - Invert_U
 Plant_NPP = Flowfrom(Plant) - Plant_R - Plant_U - Plant_EX
-Vertebrate_P = Flowfrom(Vertebrate) - Vertebrate_R - Vertebrate_U - Vertebrate_EX
+Vert_P = Flowfrom(Vert) - Vert_R - Vert_U - Vert_EX
 
 ! Unused Energy/Material (U) Variables
 
-Invertebrate_U = Flowto(Invertebrate) - Invertebrate_P - Invertebrate_R
+Invert_U = Flowto(Invert) - Invert_P - Invert_R
 Plant_U = Flowto(Plant) - Plant_NPP - Plant_R - Plant_EX
-Vertebrate_U = Flowto(Vertebrate) - Vertebrate_P - Vertebrate_R - Vertebrate_EX
+Vert_U = Flowto(Vert) - Vert_P - Vert_R - Vert_EX
 
 ! Assimilation Efficiency (AE) Variables
 
-Invertebrate_AE = Invertebrate_P + Invertebrate_R
-Vertebrate_AE = Vertebrate_P + Vertebrate_R
+Invert_AE = Invert_P + Invert_R
+Vert_AE = Vert_P + Vert_R
 
 ### END VARIABLES
 
@@ -81,28 +81,28 @@ Plant_GPP: CO2 -> Plant
 ! Respiration flows
 
 Plant_R: Plant -> CO2
-Invertebrate_R: Invertebrate -> CO2
-Vertebrate_R: Vertebrate -> CO2
+Invert_R: Invert -> CO2
+Vert_R: Vert -> CO2
 
 ! Import flows
 
-DetritusNLNode_IM: DetritusNLNodeImport -> DetritusNLNode
+DetNLNode_IM: DetNLNodeImport -> DetNLNode
 Plant_IM: PlantImport -> Plant
 
 ! Export flows
 
-DetritusNLNode_EX: DetritusNLNode -> DetritusNLNodeExport
+DetNLNode_EX: DetNLNode -> DetNLNodeExport
 Plant_EX: Plant -> PlantExport
-Vertebrate_EX: Vertebrate -> VertebrateExport
+Vert_EX: Vert -> VertExport
 
 ! Adjacency Matrix flows
 
-DetritusNLNode_Q_Invertebrate: DetritusNLNode -> Invertebrate
-Invertebrate_Q_Vertebrate: Invertebrate -> Vertebrate
-Invertebrate_U_DetritusNLNode: Invertebrate -> DetritusNLNode
-Plant_Q_Invertebrate: Plant -> Invertebrate
-Plant_U_DetritusNLNode: Plant -> DetritusNLNode
-Vertebrate_U_DetritusNLNode: Vertebrate -> DetritusNLNode
+DetNLNode_Q_Invert: DetNLNode -> Invert
+Invert_Q_Vert: Invert -> Vert
+Invert_U_DetNLNode: Invert -> DetNLNode
+Plant_Q_Invert: Plant -> Invert
+Plant_U_DetNLNode: Plant -> DetNLNode
+Vert_U_DetNLNode: Vert -> DetNLNode
 
 ### END FLOWS
 
@@ -110,28 +110,22 @@ Vertebrate_U_DetritusNLNode: Vertebrate -> DetritusNLNode
 
 ! Network Data Input Inequalities
 
-Plant_GPP > 0.0500
-Invertebrate_Q > 100.0000
-Plant_GPP < 0.6000
-Invertebrate_Q < 10000.0000
-Plant_NPP > 0.6000
-Invertebrate_P > 0.004*Invertebrate_U
-Vertebrate_P > 0.0003
-Plant_NPP < 1.1000
-Invertebrate_P < 0.06*Invertebrate_U
-Vertebrate_P < 0.0050
+Plant_GPP > 1100.00
+Invert_Q > 100.00
+Plant_GPP < 2600.00
+Invert_Q < 3000.00
+Plant_NPP > 0.6*Plant_GPP
+Invert_P > 0.4*Invert_Q
+Plant_NPP < 0.8*Plant_GPP
+Invert_P < 0.6*Invert_Q
 Plant_R > 0.4*Plant_NPP
-Invertebrate_R > 1*Invertebrate_P
-Vertebrate_R > 0.7500
+Invert_R > 1*Invert_P
+Vert_R > 0.75
 Plant_R < 0.7*Plant_NPP
-Invertebrate_R < 5*Invertbrate_P
-Vertebrate_R < 0.7500
-Vertebrate_U > 0.5000
-Vertebrate_U < 0.6000
-Invertebrate_AE > Invertebrate_Q * 0.5000
-Vertebrate_AE > Vertebrate_Q * 0.2000
-Invertebrate_AE > Invertebrate_Q * 0.8000
-Vertebrate_AE > Vertebrate_Q * 0.3000
+Vert_R < 0.75
+Vert_U < 0.05*Vert_Q
+Invert_AE > 0.5*Invert_Q
+Vert_AE > 0.2*Vert_Q
 
 ! Adjacency Matrix Inequalities
 

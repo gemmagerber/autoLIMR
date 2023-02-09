@@ -2,15 +2,15 @@
 ! Network LIM Declaration File
 ! Composed with autoLIMR
 ! Author: gemma
-! Date: 2023-01-09
+! Date: 2023-02-07
 
 ! Respiration included: Yes
 ! U included: Yes
 
 ! Living compartments: 3
 ! Non-living compartments: 1
-! External compartments: 7
-! Boundary flows: 10
+! External compartments: 8
+! Boundary flows: 11
 ! Internal flows: 7
 
 ! Abbreviations
@@ -27,22 +27,23 @@
 
 ### COMPARTMENTS
 
-Invertebrate = 800.00
-Plant = 500.00
-Vertebrate = 200.00
-DetritusNLNode = 7000.00
+Invert = 822
+Plant = 500
+Vert = 222
+DetNLNode = 7111
 
 ### END COMPARTMENTS
 
 ### EXTERNALS
 
 CO2
-DetritusNLNodeImport
-InvertebrateImport
+DetNLNodeImport
+InvertImport
 PlantImport
-DetritusNLNodeExport
+VertImport
+DetNLNodeExport
 PlantExport
-VertebrateExport
+VertExport
 
 ### END EXTERNALS
 
@@ -50,26 +51,23 @@ VertebrateExport
 
 ! Consumption (Q) / Gross Primary Production (GPP) Variables
 
-Invertebrate_Q = Flowto(Invertebrate) - Invertebrate_IM
+Invert_Q = Flowto(Invert) - Invert_IM
 Plant_GPP = Flowto(Plant) - Plant_IM
-Vertebrate_Q = Flowto(Vertebrate)
+Vert_Q = Flowto(Vert) - Vert_IM
 
 ! Production (P/NPP) Variables
 
-Invertebrate_P = Flowfrom(Invertebrate) - Invertebrate_R - Invertebrate_U
+Invert_P = Flowfrom(Invert) - Invert_R - Invert_U
 Plant_NPP = Flowfrom(Plant) - Plant_R - Plant_U - Plant_EX
-Vertebrate_P = Flowfrom(Vertebrate) - Vertebrate_R - Vertebrate_U - Vertebrate_EX
+Vert_P = Flowfrom(Vert) - Vert_R - Vert_U - Vert_EX
 
 ! Unused Energy/Material (U) Variables
 
-Invertebrate_U = Flowto(Invertebrate) - Invertebrate_P - Invertebrate_R
+Invert_U = Flowto(Invert) - Invert_P - Invert_R
 Plant_U = Flowto(Plant) - Plant_NPP - Plant_R - Plant_EX
-Vertebrate_U = Flowto(Vertebrate) - Vertebrate_P - Vertebrate_R - Vertebrate_EX
+Vert_U = Flowto(Vert) - Vert_P - Vert_R - Vert_EX
 
-! Assimilation Efficiency (AE) Variables
-
-Invertebrate_AE = Invertebrate_P + Invertebrate_R
-Vertebrate_AE = Vertebrate_P + Vertebrate_R
+! No Assimilation Efficiency (AE) Variables defined
 
 ### END VARIABLES
 
@@ -82,30 +80,31 @@ Plant_GPP: CO2 -> Plant
 ! Respiration flows
 
 Plant_R: Plant -> CO2
-Invertebrate_R: Invertebrate -> CO2
-Vertebrate_R: Vertebrate -> CO2
+Invert_R: Invert -> CO2
+Vert_R: Vert -> CO2
 
 ! Import flows
 
-DetritusNLNode_IM: DetritusNLNodeImport -> DetritusNLNode
-Invertebrate_IM: InvertebrateImport -> Invertebrate
+DetNLNode_IM: DetNLNodeImport -> DetNLNode
+Invert_IM: InvertImport -> Invert
 Plant_IM: PlantImport -> Plant
+Vert_IM: VertImport -> Vert
 
 ! Export flows
 
-DetritusNLNode_EX: DetritusNLNode -> DetritusNLNodeExport
+DetNLNode_EX: DetNLNode -> DetNLNodeExport
 Plant_EX: Plant -> PlantExport
-Vertebrate_EX: Vertebrate -> VertebrateExport
+Vert_EX: Vert -> VertExport
 
 ! Adjacency Matrix flows
 
-DetritusNLNode_Q_Invertebrate: DetritusNLNode -> Invertebrate
-DetritusNLNode_Q_Vertebrate: DetritusNLNode -> Vertebrate
-Invertebrate_Q_Vertebrate: Invertebrate -> Vertebrate
-Invertebrate_U_DetritusNLNode: Invertebrate -> DetritusNLNode
-Plant_Q_Invertebrate: Plant -> Invertebrate
-Plant_U_DetritusNLNode: Plant -> DetritusNLNode
-Vertebrate_U_DetritusNLNode: Vertebrate -> DetritusNLNode
+DetNLNode_Q_Invert: DetNLNode -> Invert
+DetNLNode_Q_Vert: DetNLNode -> Vert
+Invert_Q_Vert: Invert -> Vert
+Invert_U_DetNLNode: Invert -> DetNLNode
+Plant_Q_Invert: Plant -> Invert
+Plant_U_DetNLNode: Plant -> DetNLNode
+Vert_U_DetNLNode: Vert -> DetNLNode
 
 ### END FLOWS
 

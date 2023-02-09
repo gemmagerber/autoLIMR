@@ -2,7 +2,7 @@
 ! Network LIM Declaration File
 ! Composed with autoLIMR
 ! Author: Gemma Gerber
-! Date: 2023-01-09
+! Date: 2023-02-07
 
 ! Respiration included: Yes
 ! U included: Yes
@@ -27,24 +27,24 @@
 
 ### COMPARTMENTS
 
-Invertebrate = 1000.0000
+Invert = 1000.0000
 Plant = 700.5000
-Vertebrate = 44.0000
-DetritusNLNode = 9000.0000
+Vert = 44.0000
+DetNLNode = 9000.0000
 
 ### END COMPARTMENTS
 
 ### EXTERNALS
 
 CO2
-DetritusNLNodeImport
-InvertebrateImport
+DetNLNodeImport
+InvertImport
 PlantImport
-VertebrateImport
-DetritusNLNodeExport
-InvertebrateExport
+VertImport
+DetNLNodeExport
+InvertExport
 PlantExport
-VertebrateExport
+VertExport
 
 ### END EXTERNALS
 
@@ -52,21 +52,21 @@ VertebrateExport
 
 ! Consumption (Q) / Gross Primary Production (GPP) Variables
 
-Invertebrate_Q = Flowto(Invertebrate) - Invertebrate_IM
+Invert_Q = Flowto(Invert) - Invert_IM
 Plant_GPP = Flowto(Plant) - Plant_IM
-Vertebrate_Q = Flowto(Vertebrate) - Vertebrate_IM
+Vert_Q = Flowto(Vert) - Vert_IM
 
 ! Production (P/NPP) Variables
 
-Invertebrate_P = Flowfrom(Invertebrate) - Invertebrate_R - Invertebrate_U - Invertebrate_EX
+Invert_P = Flowfrom(Invert) - Invert_R - Invert_U - Invert_EX
 Plant_NPP = Flowfrom(Plant) - Plant_R - Plant_U - Plant_EX
-Vertebrate_P = Flowfrom(Vertebrate) - Vertebrate_R - Vertebrate_U - Vertebrate_EX
+Vert_P = Flowfrom(Vert) - Vert_R - Vert_U - Vert_EX
 
 ! Unused Energy/Material (U) Variables
 
-Invertebrate_U = Flowto(Invertebrate) - Invertebrate_P - Invertebrate_R - Invertebrate_EX
+Invert_U = Flowto(Invert) - Invert_P - Invert_R - Invert_EX
 Plant_U = Flowto(Plant) - Plant_NPP - Plant_R - Plant_EX
-Vertebrate_U = Flowto(Vertebrate) - Vertebrate_P - Vertebrate_R - Vertebrate_EX
+Vert_U = Flowto(Vert) - Vert_P - Vert_R - Vert_EX
 
 ! No Assimilation Efficiency (AE) Variables defined
 
@@ -81,31 +81,31 @@ Plant_GPP: CO2 -> Plant
 ! Respiration flows
 
 Plant_R: Plant -> CO2
-Invertebrate_R: Invertebrate -> CO2
-Vertebrate_R: Vertebrate -> CO2
+Invert_R: Invert -> CO2
+Vert_R: Vert -> CO2
 
 ! Import flows
 
-DetritusNLNode_IM: DetritusNLNodeImport -> DetritusNLNode
-Invertebrate_IM: InvertebrateImport -> Invertebrate
+DetNLNode_IM: DetNLNodeImport -> DetNLNode
+Invert_IM: InvertImport -> Invert
 Plant_IM: PlantImport -> Plant
-Vertebrate_IM: VertebrateImport -> Vertebrate
+Vert_IM: VertImport -> Vert
 
 ! Export flows
 
-DetritusNLNode_EX: DetritusNLNode -> DetritusNLNodeExport
+DetNLNode_EX: DetNLNode -> DetNLNodeExport
 Plant_EX: Plant -> PlantExport
-Invertebrate_EX: Invertebrate -> InvertebrateExport
-Vertebrate_EX: Vertebrate -> VertebrateExport
+Invert_EX: Invert -> InvertExport
+Vert_EX: Vert -> VertExport
 
 ! Adjacency Matrix flows
 
-DetritusNLNode_Q_Invertebrate: DetritusNLNode -> Invertebrate
-Invertebrate_Q_Vertebrate: Invertebrate -> Vertebrate
-Invertebrate_U_DetritusNLNode: Invertebrate -> DetritusNLNode
-Plant_Q_Invertebrate: Plant -> Invertebrate
-Plant_U_DetritusNLNode: Plant -> DetritusNLNode
-Vertebrate_U_DetritusNLNode: Vertebrate -> DetritusNLNode
+DetNLNode_Q_Invert: DetNLNode -> Invert
+Invert_Q_Vert: Invert -> Vert
+Invert_U_DetNLNode: Invert -> DetNLNode
+Plant_Q_Invert: Plant -> Invert
+Plant_U_DetNLNode: Plant -> DetNLNode
+Vert_U_DetNLNode: Vert -> DetNLNode
 
 ### END FLOWS
 
@@ -113,19 +113,19 @@ Vertebrate_U_DetritusNLNode: Vertebrate -> DetritusNLNode
 
 ! Network Data Input Inequalities
 
-Plant_GPP > 0.0400
-Plant_GPP < 0.5000
-Plant_NPP > 0.5000
-Invertebrate_P > 0.003*Invertebrate_U
-Vertebrate_P > 0.0003
-Invertebrate_P < 0.005*Invertebrate_U
-Vertebrate_P < 0.0040
+Plant_GPP > 950.0000
+Plant_GPP < 1850.0000
+Plant_NPP > 0.5*Plant_GPP
+Invert_P > 0.3*Invert_Q
+Vert_P > 0.0003
+Plant_NPP < 1*Plant_GPP
+Invert_P < 0.5*Invert_Q
 Plant_R > 0.3*Plant_NPP
-Invertebrate_R > 0.9*Invertebrate_P
-Vertebrate_R > 0.6500
+Invert_R > 0.9*Invert_P
+Vert_R > 0.6500
 Plant_R < 0.6*Plant_NPP
-Invertebrate_R < 4*Invertbrate_P
-Vertebrate_R < 0.6500
+Invert_R < 4*Invert_P
+Vert_R < 0.6500
 
 ! Adjacency Matrix Inequalities
 

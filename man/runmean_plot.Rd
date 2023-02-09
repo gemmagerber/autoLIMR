@@ -18,7 +18,7 @@ output list (class(output) == "multi_net_model).}
 \item{flow}{Character argument. The specified name of the flow plot.}
 
 \item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
-a title descrbing the type of plot is included above the plot.}
+a title describing the type of plot is included above the plot.}
 
 \item{...}{Other base R graphical parameters. See ?plot for more details.}
 }

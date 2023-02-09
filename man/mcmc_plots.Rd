@@ -24,7 +24,7 @@ If xranges = FALSE, the minimum and maximum lines are omitted from the plot.}
 \value{
 A plot containing various Markov chain convergence diagnostic plots
 for a single Markov chian variable:
-1) trace, 2) kernal density, 3) running mena, 4) Geweke, and 5) Autocorrelation
+1) trace, 2) kernal density, 3) running mean, 4) Geweke, and 5) Autocorrelation
 }
 \description{
 Function to return five visual Markov chain convergence

@@ -21,7 +21,7 @@ minimum values of the flow range calculated by LIM::Xranges.
 If xranges = FALSE, the minimum and maximum lines are omitted from the plot.}
 
 \item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
-a title descrbing the type of plot is included above the plot.}
+a title describing the type of plot is included above the plot.}
 
 \item{...}{Other base R graphical parameters. See ?plot for more details.}
 }

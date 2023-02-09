@@ -19,7 +19,7 @@ output list (class(output) == "multi_net_model).}
 \item{lag.max}{Maximum value at which to calculate acf}
 
 \item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
-a title descrbing the type of plot is included above the plot.}
+a title describing the type of plot is included above the plot.}
 
 \item{...}{Other graphical parameters from coda::autocorr_plot.}
 }

@@ -1,5 +1,5 @@
-#' net_data_tidy
-#' Tidies up network data input sheet
+#' @title net_data_tidy()
+#' @description Tidies up network data input sheet
 
 #' @inheritParams NLNode_mat
 #' @inheritParams sci_notation_off

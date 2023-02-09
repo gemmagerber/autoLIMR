@@ -7,7 +7,7 @@
 #' @export
 #' @importFrom coda densplot as.mcmc
 #' @examples
-#' # Example 1: Kernel density plot from a data frame, matrix,
+#' # Example 1: Kernel density plot from a data frame
 #' # or coda::as.mcmc() object.
 #'
 #' set.seed(1)
@@ -34,25 +34,25 @@
 #'   x0 = NULL)
 #' dens_plot(x = x, flow = "Plant_GPP")
 #'
-dens_plot <- function(x, flow, ...) {
-  # Four input types accepted (mcmc, matrix, data.frame, multi_net_output).
+dens_plot <- function(x, flow, addtitle = FALSE, ...) {
+  # Three input types accepted (mcmc, data.frame, multi_net_output).
 
   # MCMC object must be provided
   if (is.null(x)) {
     stop(
       'Please provide the name of the MCMC object as a "data.frame",
-         "mcmc", "matrix", or "multi_net_output"'
+         "mcmc", or "multi_net_output"'
     )
   }
 
   # Flow name must be provided
   if (is.null(flow)) {
     stop(
-      'Please provide the chracter string name of the flow in the MCMC object
+      'Please provide the character string name of the flow in the MCMC object
       to plot, e.g., flow = "Plant_GPP".'
     )
   }
-  if (is.data.frame(x) | is.matrix(x) | inherits(x, "mcmc")) {
+  if (is.data.frame(x) | inherits(x, "mcmc")) {
     z <- coda::as.mcmc(x)
 
     coda::densplot(
@@ -60,9 +60,13 @@ dens_plot <- function(x, flow, ...) {
       show.obs = TRUE,
       ylab = "",
       type = "l",
-      main = "Kernel Density Plot",
+      main = "",
       right = TRUE
     )
+
+    if (addtitle == TRUE) {
+      title(main = "Kernel Density Plot", col.main = "black")
+    }
 
   } else if (inherits(x, "multi_net_output")) {
     all <- as.data.frame(x[["solved.flow.values"]])
@@ -74,10 +78,15 @@ dens_plot <- function(x, flow, ...) {
       z,
       show.obs = TRUE,
       ylab = "",
+      main = "",
       type = "l",
-      main = "Kernel Density Plot",
       right = TRUE
     )
+
+    if (addtitle == TRUE) {
+      title(main = "Kernel Density Plot", col.main = "black")
+    }
+
 
   }
 

@@ -13,7 +13,7 @@
 #'
 #' @return A plot containing various Markov chain convergence diagnostic plots
 #' for a single Markov chian variable:
-#' 1) trace, 2) kernal density, 3) running mena, 4) Geweke, and 5) Autocorrelation
+#' 1) trace, 2) kernal density, 3) running mean, 4) Geweke, and 5) Autocorrelation
 #' @export
 #'
 #' @importFrom graphics layout par title
@@ -48,13 +48,13 @@ mcmc_plots <- function(x, flow, xranges = FALSE, ...) {
   if (is.null(x)) {
     stop(
       'Please provide the name of the MCMC object as a "data.frame",
-         "mcmc", "matrix", or "multi_net_output"'
+         "mcmc", or "multi_net_output"'
     )
   }
   # Error: Flow name must be provided
   if (is.null(flow)) {
     stop(
-      'Please provide the chracter string name of the flow in the MCMC object
+      'Please provide the character string name of the flow in the MCMC object
       to plot, e.g., flow = "Plant_GPP".'
     )
   }
@@ -67,7 +67,7 @@ mcmc_plots <- function(x, flow, xranges = FALSE, ...) {
 
 
   ### Four input types accepted (mcmc, matrix, data.frame, multi_net_output)
-  if (is.data.frame(x) | is.matrix(x) | inherits(x, "mcmc")) {
+  if (is.data.frame(x) | inherits(x, "mcmc")) {
     z <- coda::as.mcmc(x)
 
     } else if (inherits(x, "multi_net_output")) {
@@ -80,7 +80,7 @@ mcmc_plots <- function(x, flow, xranges = FALSE, ...) {
         stop(
           paste0(
             'Please ensure the MCMC object "x" type is one of "mcmc", "data.frame",
-             "matrix",  or "multi_net_output"'
+             or "multi_net_output"'
           )
         )
       }
@@ -97,63 +97,4 @@ mcmc_plots <- function(x, flow, xranges = FALSE, ...) {
 
   par(mfrow=c(1,1)) # # Reset plotting device back to normal
 
-
-  # trace_plot(x = z, flow = flow, xranges = xranges, ...)
-  # dens_plot(x = z, flow = flow, ...)
-  # runmean_plot(x = z, flow = flow, ...)
-
-  #par(col.main = 'white')# Sets all titles to white
-  # geweke_plot(x = z, flow = flow, ...)
-  # title(main = "Geweke Plot", col.main = "black")
-
-  # autocorr_plot(x = z, flow = flow, ...)
-  # title(main = "Autocorrelation Plot", col.main = "black")
-
-
-  #layout(matrix(c(1, 1, 2, 3, 4, 5), 2, 3, byrow = TRUE))
-
-  # # Plot 1: Traceplot
-  # trace_plot(x = x,
-  #            flow = flow,
-  #            xranges = xranges)
-  # #title(main = "Trace Plot", col.main = "black")
-  #
-  # # Plot 2: Kernel Density Plot
-  # dens_plot(x = x, flow = flow)
-  # #title(main = "Kernel Density Plot", col.main = "black")
-  #
-  # # Plot 3: Running Mean Plot
-  # runmean_plot(x = x, flow = flow)
-  # title(main = "Running Mean Plot", col.main = "black")
-  #
-  # x <- as.data.frame(x[["solved.flow.values"]])
-  # y <- as.data.frame(x[[paste0(flow)]])
-  # names(y) <- paste0(flow)
-  # z <- as.mcmc(y)
-
-  # par(col.main = 'white')
-
-  # Plot 4: Geweke Plot
-
-  # coda::geweke.plot(
-  #   x = z,
-  #   frac1 = 0.1,
-  #   frac2 = 0.5,
-  #   nbins = 20,
-  #   pvalue = 0.05,
-  #   auto.layout = FALSE,
-  #   ask = FALSE
-  # )
-  #par(col.main = 'white')
-  #title(main = "Geweke Plot", col.main = "black")
-
-# Plot 5: Autocorrelation Plot
-  # coda::autocorr.plot(
-  #   x = z,
-  #   lag.max = 50,
-  #   auto.layout = FALSE,
-  #   ask = FALSE,
-  #   main = NULL
-  # )
-  # title(main = "Autocorrelation Plot", col.main = "black")
 }

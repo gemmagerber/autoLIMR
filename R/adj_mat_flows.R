@@ -1,5 +1,5 @@
-# Function: adj_mat_flows()
-#' Defines internal network flows from adjacency matrix workbook
+#' @title Function: adj_mat_flows()
+#' @description Defines internal network flows from adjacency matrix workbook
 #' @param x adjacency matrix
 #' @importFrom stats na.omit
 #'

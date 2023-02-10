@@ -1,4 +1,4 @@
-#' @title heidel_diag(): Heidelberger and Welch’s convergence diagnostic
+#' @title heidel_diag(): Heidelberger and Welch convergence diagnostic
 #'
 #' @description Function to calculate Heidelberger and Welch’s
 #' convergence diagnostic for autoLIMR Markov chains.

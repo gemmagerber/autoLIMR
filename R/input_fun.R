@@ -1,8 +1,8 @@
-#' input_fun: part of multinets function
-#' Grabs input nodes (only boundary flows in)
+#' @title input_fun: part of prepack_net() function
+#' @description Grabs input nodes (only boundary flows in)
 #'
 #' @param x an object?
-#'
+#'the input matrix
 input_fun <- function(x) {
   input.vector <-
     as.vector(colSums(x[c(grep(

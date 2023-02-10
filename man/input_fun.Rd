@@ -2,15 +2,14 @@
 % Please edit documentation in R/input_fun.R
 \name{input_fun}
 \alias{input_fun}
-\title{input_fun: part of multinets function
-Grabs input nodes (only boundary flows in)}
+\title{input_fun: part of prepack_net() function}
 \usage{
 input_fun(x)
 }
 \arguments{
-\item{x}{an object?}
+\item{x}{an object?
+the input matrix}
 }
 \description{
-input_fun: part of multinets function
 Grabs input nodes (only boundary flows in)
 }

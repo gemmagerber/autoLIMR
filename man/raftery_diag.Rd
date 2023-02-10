@@ -66,14 +66,16 @@ function returns an error. We suggest keeping the sample size > 4000.
 # working directory, the function will accept a valid file path.
 
 fpath <- system.file("example_limfiles",
-"Winter_Weighted_Network_LIMfile.R",
-package = "autoLIMR")
+  "Winter_Weighted_Network_LIMfile.R",
+  package = "autoLIMR"
+)
 set.seed(1)
 x <- multi_net(
   file = fpath,
   iter = 4000,
   jmp = NULL,
-  x0 = NULL)
+  x0 = NULL
+)
 raftery_diag(x = x)
 raftery_diag(x = x, flow = "Plant_GPP")
 

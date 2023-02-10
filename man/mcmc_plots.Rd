@@ -49,14 +49,16 @@ For any variable of MCMC object, this function returns the following plots:
 # working directory, the function will accept a valid file path.
 
 fpath <- system.file("example_limfiles",
-"Winter_Weighted_Network_LIMfile.R",
-package = "autoLIMR")
+  "Winter_Weighted_Network_LIMfile.R",
+  package = "autoLIMR"
+)
 set.seed(1)
 x <- multi_net(
   file = fpath,
   iter = 1000,
   jmp = NULL,
-  x0 = NULL)
+  x0 = NULL
+)
 mcmc_plots(x = x, flow = "Plant_GPP", xranges = TRUE)
 mcmc_plots(x = x, flow = "Plant_GPP", xranges = FALSE)
 

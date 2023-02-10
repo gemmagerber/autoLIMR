@@ -40,14 +40,16 @@ Based on coda::autocorr.diag() function (Plummer et al., 2020).
 # working directory, the function will accept a valid file path.
 
 fpath <- system.file("example_limfiles",
-"Winter_Weighted_Network_LIMfile.R",
-package = "autoLIMR")
+  "Winter_Weighted_Network_LIMfile.R",
+  package = "autoLIMR"
+)
 set.seed(1)
 x <- multi_net(
   file = fpath,
   iter = 1000,
   jmp = NULL,
-  x0 = NULL)
+  x0 = NULL
+)
 autocorr_diag(x = x)
 autocorr_diag(x = x, flow = "Plant_GPP")
 

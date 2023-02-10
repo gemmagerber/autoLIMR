@@ -2,8 +2,7 @@
 % Please edit documentation in R/prepack_fun.R
 \name{prepack_fun}
 \alias{prepack_fun}
-\title{prepack_fun(): function to pack network values into network objects
-Based on package enaR network packing criteria}
+\title{prepack_fun(): function to pack network values into network objects}
 \usage{
 prepack_fun(x, full_limfile)
 }
@@ -13,6 +12,5 @@ prepack_fun(x, full_limfile)
 \item{full_limfile}{LIM Declaration file built from check_build()}
 }
 \description{
-prepack_fun(): function to pack network values into network objects
-Based on package enaR network packing criteria
+Based on package enaR network packing criteria (Lau et al., 2017)
 }

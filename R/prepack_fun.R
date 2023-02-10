@@ -8,7 +8,8 @@
 prepack_fun <- function(x, full_limfile) {
   if (!requireNamespace("network", quietly = TRUE)) {
     stop("Package \"network\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   # List objects together
@@ -34,7 +35,4 @@ prepack_fun <- function(x, full_limfile) {
   network::set.vertex.attribute(y, "storage", as.vector(full_limfile[["Components"]][["val"]]))
   network::set.vertex.attribute(y, "living", living_fun(x))
   network::set.vertex.attribute(y, "vertex.names", rownames(flow))
-
-
-
 }

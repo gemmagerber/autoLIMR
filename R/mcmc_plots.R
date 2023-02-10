@@ -30,19 +30,20 @@
 #' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
-#' "Winter_Weighted_Network_LIMfile.R",
-#' package = "autoLIMR")
+#'   "Winter_Weighted_Network_LIMfile.R",
+#'   package = "autoLIMR"
+#' )
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 1000,
 #'   jmp = NULL,
-#'   x0 = NULL)
+#'   x0 = NULL
+#' )
 #' mcmc_plots(x = x, flow = "Plant_GPP", xranges = TRUE)
 #' mcmc_plots(x = x, flow = "Plant_GPP", xranges = FALSE)
 #'
 mcmc_plots <- function(x, flow, xranges = FALSE, ...) {
-
   ### Errors
   # Error: MCMC object must be provided
   if (is.null(x)) {
@@ -62,39 +63,37 @@ mcmc_plots <- function(x, flow, xranges = FALSE, ...) {
   # Error: Stop, load coda
   if (!requireNamespace("coda", quietly = TRUE)) {
     stop("Package \"coda\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
 
   ### Four input types accepted (mcmc, matrix, data.frame, multi_net_output)
   if (is.data.frame(x) | inherits(x, "mcmc")) {
     z <- coda::as.mcmc(x)
-
-    } else if (inherits(x, "multi_net_output")) {
-      all <- as.data.frame(x[["solved.flow.values"]])
-      z <- as.data.frame(all[[paste0(flow)]])
-      colnames(z) <- paste0(flow)
-      z <- coda::as.mcmc(z)
-
-      } else {
-        stop(
-          paste0(
-            'Please ensure the MCMC object "x" type is one of "mcmc", "data.frame",
+  } else if (inherits(x, "multi_net_output")) {
+    all <- as.data.frame(x[["solved.flow.values"]])
+    z <- as.data.frame(all[[paste0(flow)]])
+    colnames(z) <- paste0(flow)
+    z <- coda::as.mcmc(z)
+  } else {
+    stop(
+      paste0(
+        'Please ensure the MCMC object "x" type is one of "mcmc", "data.frame",
              or "multi_net_output"'
-          )
-        )
-      }
+      )
+    )
+  }
 
   reset_par()
   layout(matrix(c(1, 1, 2, 3, 4, 5), 2, 3, byrow = TRUE))
 
-  #par(col.main = 'white')# Sets all titles to white
+  # par(col.main = 'white')# Sets all titles to white
   trace_plot(x = z, flow = flow, xranges = xranges, ...)
   dens_plot(x = z, flow = flow, ...)
   runmean_plot(x = z, flow = flow, ...)
   geweke_plot(x = z, flow = flow, ...)
   autocorr_plot(x = z, flow = flow, ...)
 
-  par(mfrow=c(1,1)) # # Reset plotting device back to normal
-
+  par(mfrow = c(1, 1)) # # Reset plotting device back to normal
 }

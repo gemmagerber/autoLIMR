@@ -33,18 +33,20 @@
 #' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
-#' "Winter_Weighted_Network_LIMfile.R",
-#' package = "autoLIMR")
+#'   "Winter_Weighted_Network_LIMfile.R",
+#'   package = "autoLIMR"
+#' )
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 1000,
 #'   jmp = NULL,
-#'   x0 = NULL)
+#'   x0 = NULL
+#' )
 #' summary_diag(x = x) # MCMC Summary for all flows
 #' summary_diag(x = x, flow = "Plant_GPP") # MCMC summary for flow "Plant_GPP"
 #'
-summary_diag <- function (x, flow = NULL, xranges = TRUE, ...) {
+summary_diag <- function(x, flow = NULL, xranges = TRUE, ...) {
   ### Errors
   # Error: MCMC object must be provided
   if (is.null(x)) {
@@ -55,12 +57,14 @@ summary_diag <- function (x, flow = NULL, xranges = TRUE, ...) {
   # Error: Stop, load coda
   if (!requireNamespace("coda", quietly = TRUE)) {
     stop("Package \"coda\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
   # Error: Stop, load LIM
   if (!requireNamespace("LIM", quietly = TRUE)) {
     stop("Package \"LIM\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
   # Error: if MCMC object is not class "multi_net_output"
   if (!inherits(x, "multi_net_output")) {
@@ -74,8 +78,10 @@ summary_diag <- function (x, flow = NULL, xranges = TRUE, ...) {
 
     # Fetch Summary Stats for every flow
     sumlst <- summary(object = z)
-    sumdat <- as.data.frame(cbind(sumlst[["statistics"]],
-                                  sumlst[["quantiles"]]))
+    sumdat <- as.data.frame(cbind(
+      sumlst[["statistics"]],
+      sumlst[["quantiles"]]
+    ))
 
     # Add LIM::Xranges
     if (is.null(xranges) | xranges == TRUE) {

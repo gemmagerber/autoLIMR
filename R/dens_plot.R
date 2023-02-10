@@ -25,13 +25,16 @@
 #' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
-#' "Winter_Weighted_Network_LIMfile.R", package = "autoLIMR")
+#'   "Winter_Weighted_Network_LIMfile.R",
+#'   package = "autoLIMR"
+#' )
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 1000,
 #'   jmp = NULL,
-#'   x0 = NULL)
+#'   x0 = NULL
+#' )
 #' dens_plot(x = x, flow = "Plant_GPP")
 #'
 dens_plot <- function(x, flow, addtitle = FALSE, ...) {
@@ -67,7 +70,6 @@ dens_plot <- function(x, flow, addtitle = FALSE, ...) {
     if (addtitle == TRUE) {
       title(main = "Kernel Density Plot", col.main = "black")
     }
-
   } else if (inherits(x, "multi_net_output")) {
     all <- as.data.frame(x[["solved.flow.values"]])
     z <- as.data.frame(all[[paste0(flow)]])
@@ -86,8 +88,5 @@ dens_plot <- function(x, flow, addtitle = FALSE, ...) {
     if (addtitle == TRUE) {
       title(main = "Kernel Density Plot", col.main = "black")
     }
-
-
   }
-
 }

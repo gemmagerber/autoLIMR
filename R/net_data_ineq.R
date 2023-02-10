@@ -67,16 +67,17 @@ net_data_ineq <- function(x, respiration,
   # )
 
   x$Inequality <- ifelse(x$Freq %in% c(1, 0, "1", "0", "1.00"),
-                         "none",
-                         ifelse(
-                           grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),
-                           paste0(x$Variable, " > ", x$Freq),
-                           ifelse(
-                             grepl("upper|up|max|maximum", x$Var2, ignore.case = TRUE),
-                             paste0(x$Variable, " < ", x$Freq),
-                             "none"
-                           )
-                         ))
+    "none",
+    ifelse(
+      grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),
+      paste0(x$Variable, " > ", x$Freq),
+      ifelse(
+        grepl("upper|up|max|maximum", x$Var2, ignore.case = TRUE),
+        paste0(x$Variable, " < ", x$Freq),
+        "none"
+      )
+    )
+  )
 
   x <- x[!grepl("none", x$Inequality), ]
 

@@ -17,7 +17,8 @@ centralx0 <-
            ...) {
     if (!requireNamespace("LIM", quietly = TRUE)) {
       stop("Package \"LIM\" must be installed to use this function.",
-           call. = FALSE)
+        call. = FALSE
+      )
     }
 
 

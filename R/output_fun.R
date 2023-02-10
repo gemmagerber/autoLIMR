@@ -3,7 +3,7 @@
 #'
 #' @param x the flow matrix
 #'
-output_fun <- function (x) {
+output_fun <- function(x) {
   # Create output vector function
   # output.fun <- function (a) {
   #   respiration <- resp.fun(a)

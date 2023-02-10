@@ -46,24 +46,26 @@
 #' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
-#' "Winter_Weighted_Network_LIMfile.R",
-#' package = "autoLIMR")
+#'   "Winter_Weighted_Network_LIMfile.R",
+#'   package = "autoLIMR"
+#' )
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 4000,
 #'   jmp = NULL,
-#'   x0 = NULL)
+#'   x0 = NULL
+#' )
 #' raftery_diag(x = x)
 #' raftery_diag(x = x, flow = "Plant_GPP")
 #'
-raftery_diag <- function (x,
-                          flow = NULL,
-                          q = 0.025,
-                          r = 0.005,
-                          s = 0.95,
-                          converge.eps = 0.001,
-                          ...) {
+raftery_diag <- function(x,
+                         flow = NULL,
+                         q = 0.025,
+                         r = 0.005,
+                         s = 0.95,
+                         converge.eps = 0.001,
+                         ...) {
   ### Errors
   # Error: MCMC object must be provided
   if (is.null(x)) {
@@ -72,12 +74,14 @@ raftery_diag <- function (x,
   # Error: Stop, load coda
   if (!requireNamespace("coda", quietly = TRUE)) {
     stop("Package \"coda\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
   # Error: Stop, load LIM
   if (!requireNamespace("LIM", quietly = TRUE)) {
     stop("Package \"LIM\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
   # Error: if MCMC object is not class "multi_net_output"
   if (!inherits(x, "multi_net_output")) {
@@ -96,9 +100,8 @@ raftery_diag <- function (x,
       converge.eps = converge.eps
     )
 
-    if ('Error' %in% raft[["resmatrix"]] == TRUE) {
-      stop('Sample size too small . Please adjust > 4000')
-
+    if ("Error" %in% raft[["resmatrix"]] == TRUE) {
+      stop("Sample size too small . Please adjust > 4000")
     } else {
       RL.mat <- as.data.frame.matrix(raft[["resmatrix"]])
       # Rename columns for easier identification
@@ -110,9 +113,11 @@ raftery_diag <- function (x,
       )
       RL.params <- as.data.frame(as.list(raft[["params"]]))
       colnames(RL.params) <-
-        c("RL.Margin.of.error.r",
+        c(
+          "RL.Margin.of.error.r",
           "RL.Probablity.s",
-          "RL.Quantile.q")
+          "RL.Quantile.q"
+        )
       RL.all <- cbind(RL.mat, RL.params)
 
       if (is.null(flow)) {
@@ -122,5 +127,5 @@ raftery_diag <- function (x,
         return(flow1)
       }
     }
-}}
-
+  }
+}

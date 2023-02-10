@@ -17,7 +17,7 @@
 #' colnames(x) <- "Value"
 #' runmean_plot(x = x, flow = "Value")
 #'
-#' #Example 2: Running mean plot from multi_net() function output
+#' # Example 2: Running mean plot from multi_net() function output
 #' # (class "model_class_output").
 #' # The example LIM Declaration files can be found in the package folder
 #' # "example_limfiles". If using a custom LIM Declaration file, users can
@@ -27,16 +27,17 @@
 #' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
-#' "Winter_Weighted_Network_LIMfile.R",
-#' package = "autoLIMR")
+#'   "Winter_Weighted_Network_LIMfile.R",
+#'   package = "autoLIMR"
+#' )
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 1000,
 #'   jmp = NULL,
-#'   x0 = NULL)
+#'   x0 = NULL
+#' )
 #' runmean_plot(x = x, flow = "Plant_GPP")
-
 runmean_plot <- function(x, flow, addtitle = FALSE,
                          ...) {
   # Three input types accepted (mcmc, data.frame, multi_net_output).
@@ -61,15 +62,7 @@ runmean_plot <- function(x, flow, addtitle = FALSE,
     z <- coda::as.mcmc(x)
 
     plot(
-      y = cumsum({
-        {
-          z[, paste0(flow)]
-        }
-      }) / seq_along({
-        {
-          z[, paste0(flow)]
-        }
-      }),
+      y = cumsum({{ z[, paste0(flow)] }}) / seq_along({{ z[, paste0(flow)] }}),
       x = 1:nrow(z),
       type = "l",
       xlab = "Iteration",
@@ -79,7 +72,6 @@ runmean_plot <- function(x, flow, addtitle = FALSE,
     if (addtitle == TRUE) {
       title(main = "Running Mean Plot", col.main = "black")
     }
-
   } else if (inherits(x, "multi_net_output")) {
     all <- as.data.frame(x[["solved.flow.values"]])
     z <- as.data.frame(all[[paste0(flow)]])
@@ -87,15 +79,7 @@ runmean_plot <- function(x, flow, addtitle = FALSE,
     z <- coda::as.mcmc(z)
 
     plot(
-      y = cumsum({
-        {
-          z[, paste0(flow)]
-        }
-      }) / seq_along({
-        {
-          z[, paste0(flow)]
-        }
-      }),
+      y = cumsum({{ z[, paste0(flow)] }}) / seq_along({{ z[, paste0(flow)] }}),
       x = 1:nrow(z),
       type = "l",
       xlab = "Iteration",
@@ -105,8 +89,5 @@ runmean_plot <- function(x, flow, addtitle = FALSE,
     if (addtitle == TRUE) {
       title(main = "Running Mean Plot", col.main = "black")
     }
-
   }
-
-
 }

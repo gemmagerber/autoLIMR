@@ -44,21 +44,20 @@
 #' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
-#' "Winter_Weighted_Network_LIMfile.R",
-#' package = "autoLIMR")
+#'   "Winter_Weighted_Network_LIMfile.R",
+#'   package = "autoLIMR"
+#' )
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 1000,
 #'   jmp = NULL,
-#'   x0 = NULL)
+#'   x0 = NULL
+#' )
 #' trace_plot(x = x, flow = "Plant_GPP", xranges = TRUE)
 #' trace_plot(x = x, flow = "Plant_GPP", xranges = FALSE)
-
-
 trace_plot <- function(x, flow, xranges = FALSE,
                        addtitle = FALSE, ...) {
-
   ### Errors
   # Error: MCMC object must be provided
   if (is.null(x)) {
@@ -90,8 +89,6 @@ trace_plot <- function(x, flow, xranges = FALSE,
     if (addtitle == TRUE) {
       title(main = "Trace Plot", col.main = "black")
     }
-
-
   } else if (inherits(x, "multi_net_output")) {
     all <- as.data.frame(x[["solved.flow.values"]])
     z <- as.data.frame(all[[paste0(flow)]])
@@ -113,11 +110,15 @@ trace_plot <- function(x, flow, xranges = FALSE,
     if (xranges == TRUE) {
       xr <- t(LIM::Xranges(x[["full_limfile"]]))
       min <-
-        xr[grep(pattern = "min", x = rownames(xr)),
-           grep(pattern = paste0(flow), x = colnames(xr))]
+        xr[
+          grep(pattern = "min", x = rownames(xr)),
+          grep(pattern = paste0(flow), x = colnames(xr))
+        ]
       max <-
-        xr[grep(pattern = "max", x = rownames(xr)),
-           grep(pattern = paste0(flow), x = colnames(xr))]
+        xr[
+          grep(pattern = "max", x = rownames(xr)),
+          grep(pattern = paste0(flow), x = colnames(xr))
+        ]
       plot(
         x = 1:length(z),
         y = z[, paste0(flow)],
@@ -139,7 +140,6 @@ trace_plot <- function(x, flow, xranges = FALSE,
       if (addtitle == TRUE) {
         title(main = "Trace Plot", col.main = "black")
       }
-
     }
   } else {
     stop(
@@ -149,5 +149,4 @@ trace_plot <- function(x, flow, xranges = FALSE,
       )
     )
   }
-
 }

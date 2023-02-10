@@ -17,5 +17,4 @@ resp_fun <- function(x) {
       invert = FALSE,
       ignore.case = TRUE
     ))])
-
 }

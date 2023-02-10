@@ -1,6 +1,6 @@
 ---
-title: "autoLIMR_vignette"
-author: "autoLIMR authors"
+title: "autoLIMR: an R package for including data uncertainty in ecological network models"
+author: "Gemma Gerber"
 date: "2022"
 output:
   rmarkdown::html_vignette:
@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 ```
 
 
-# __autoLIMR__: Automated Translation of Network Data into Declaration Files Compatible with LIM and limSolve
+<!-- # __autoLIMR__: Automated Translation of Network Data into Declaration Files Compatible with LIM and limSolve -->
 ## Introduction 
 
 A popular method of using linear inverse modelling with Markov Chain Monte Carlo (LIM-MCMC) to calculate multiple plausible networks is with opensource R and R package [LIM](https://cran.r-project.org/web/packages/LIM/index.html) (van Oevelen et al., 2010), and embedded R package [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html) (Soetaert et al., 2009). To use these packages, all input data on network structure (compartments and directed flows) and flow constraints (lower and upper bounds) need to be manually coded into linear equations and declared in particular sections in a LIM-readable text file, the so-called LIM declaration file (van Oevelen et al., 2010). For small networks, the manual construction of a LIM declaration file is straightforward but becomes less manageable in terms of complexity and time as network size increases.

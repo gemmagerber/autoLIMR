@@ -9,6 +9,7 @@
 [![Codecov test
 coverage](https://codecov.io/gh/gemmagerber/autoLIMR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/gemmagerber/autoLIMR?branch=main)
 [![test-coverage](https://github.com/gemmagerber/autoLIMR/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/test-coverage.yaml)
+[![Style](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml)
 <!-- badges: end -->
 
 The goal of autoLIMR is to automate the construction, calculation, and

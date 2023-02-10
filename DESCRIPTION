@@ -25,7 +25,7 @@ Imports:
     LIM (>= 1.4.7),
     network (>= 1.18.0),
     readxl (>= 1.4.1),
-    utils (>= 4.2.1)
+    utils (>= 3.6.3)
 Suggests: 
     covr (>= 3.6.1),
     devtools (>= 2.4.5),

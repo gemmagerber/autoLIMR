@@ -14,7 +14,8 @@
 fetch_autoLIMExcel <- function(force = FALSE) {
   if (!requireNamespace("utils", quietly = TRUE)) {
     stop("Package \"utils\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   filename <- paste0(getwd(), "/", "autoLIM_Excel.xlsx")
@@ -25,7 +26,6 @@ fetch_autoLIMExcel <- function(force = FALSE) {
   if (!dir.exists(file.path(getwd()))) {
     stop("No working directory exists. Please set with setwd().", call. = FALSE)
   } else {
-
     if (!force && interactive()) {
       title <-
         paste0("May autoLIMR download autoLIM_Excel.xlsx and save to the workign directory?")
@@ -57,38 +57,34 @@ fetch_autoLIMExcel <- function(force = FALSE) {
           )
         }
       }
-    }
-
-    else if(force == TRUE) {
-    # Check if dir exists. If not, create them.
-    if (file.exists(filename) == FALSE) {
-      utils::download.file(
-        url = fileURL,
-        destfile = filename,
-        mode = "wb",
-        method = "auto"
-      )
-
-      message(
-        strwrap(
-          prefix = " \n",
-          initial = "",
-          "Success! The latest version of autoLIM-Excel has been downloaded and saved in the working directory."
+    } else if (force == TRUE) {
+      # Check if dir exists. If not, create them.
+      if (file.exists(filename) == FALSE) {
+        utils::download.file(
+          url = fileURL,
+          destfile = filename,
+          mode = "wb",
+          method = "auto"
         )
-      )
-    } else {
-      message(
-        strwrap(
-          prefix = " \n",
-          initial = "",
-          "autoLIM-Excel already exists. Check the working directory."
+
+        message(
+          strwrap(
+            prefix = " \n",
+            initial = "",
+            "Success! The latest version of autoLIM-Excel has been downloaded and saved in the working directory."
+          )
         )
-      )
-    }
       } else {
-  warning("No permission to download autoLIM_Excel.xlsx. Please change by setting force = TRUE..")
+        message(
+          strwrap(
+            prefix = " \n",
+            initial = "",
+            "autoLIM-Excel already exists. Check the working directory."
+          )
+        )
       }
+    } else {
+      warning("No permission to download autoLIM_Excel.xlsx. Please change by setting force = TRUE..")
+    }
   }
 }
-
-

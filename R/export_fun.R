@@ -3,7 +3,7 @@
 #'
 #' @param x The flow matrix
 #'
-export_fun <- function (x) {
+export_fun <- function(x) {
   row.i <-
     grep(
       rownames(x),

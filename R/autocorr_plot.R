@@ -61,7 +61,7 @@ autocorr_plot <- function(x, flow, lag.max = 50,
 
   if (is.data.frame(x) | inherits(x, "mcmc")) {
     z <- coda::as.mcmc(x)
-    #par(col.main = 'white')# Sets all titles to white
+    # par(col.main = 'white')# Sets all titles to white
     coda::autocorr.plot(
       x = z,
       lag.max = lag.max,
@@ -69,18 +69,17 @@ autocorr_plot <- function(x, flow, lag.max = 50,
       auto.layout = FALSE,
       ask = FALSE
     )
-    par(col.main = 'white')# Sets all titles to white
+    par(col.main = "white") # Sets all titles to white
     if (addtitle == TRUE) {
       title(main = "Autocorrelation Plot", col.main = "black")
     }
-
   } else if (inherits(x, "multi_net_output")) {
     all <- as.data.frame(x[["solved.flow.values"]])
     z <- as.data.frame(all[[paste0(flow)]])
     colnames(z) <- paste0(flow)
     z <- coda::as.mcmc(z)
 
-    par(col.main = 'white')# Sets all titles to white
+    par(col.main = "white") # Sets all titles to white
     coda::autocorr.plot(
       x = z,
       lag.max = lag.max,
@@ -88,13 +87,10 @@ autocorr_plot <- function(x, flow, lag.max = 50,
       auto.layout = FALSE,
       ask = FALSE
     )
-    par(col.main = 'white')# Sets all titles to white
+    par(col.main = "white") # Sets all titles to white
 
     if (addtitle == TRUE) {
       title(main = "Autocorrelation Plot", col.main = "black")
     }
-
-
   }
-
 }

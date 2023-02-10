@@ -21,21 +21,21 @@
 #' # Example 2: Geweke Plot from multi_net() function output
 #' # (class "model_class_output").
 #' fpath <- system.file("example_limfiles",
-#'                      "Winter_Weighted_Network_LIMfile.R",
-#'                      package = "autoLIMR")
+#'   "Winter_Weighted_Network_LIMfile.R",
+#'   package = "autoLIMR"
+#' )
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 1000,
 #'   jmp = NULL,
-#'   x0 = NULL)
+#'   x0 = NULL
+#' )
 #' geweke_plot(x = x, flow = "Plant_GPP")
 #'
-
-geweke_plot <- function (x, flow, nbins = 20,
-                         pvalue = 0.05, frac1 = 0.1,
-                         frac2 = 0.5, addtitle = FALSE, ...) {
-
+geweke_plot <- function(x, flow, nbins = 20,
+                        pvalue = 0.05, frac1 = 0.1,
+                        frac2 = 0.5, addtitle = FALSE, ...) {
   ### Errors
   # Error: MCMC object must be provided
   if (is.null(x)) {
@@ -55,7 +55,8 @@ geweke_plot <- function (x, flow, nbins = 20,
   # Error: Stop, load coda
   if (!requireNamespace("coda", quietly = TRUE)) {
     stop("Package \"coda\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
 
@@ -64,7 +65,7 @@ geweke_plot <- function (x, flow, nbins = 20,
   if (is.data.frame(x) | inherits(x, "mcmc")) {
     z <- coda::as.mcmc(x)
 
-    par(col.main = 'white')# Sets all titles to white
+    par(col.main = "white") # Sets all titles to white
     coda::geweke.plot(
       x = z,
       frac1 = frac1,
@@ -78,14 +79,13 @@ geweke_plot <- function (x, flow, nbins = 20,
     if (addtitle == TRUE) {
       title(main = "Geweke Plot", col.main = "black")
     }
-
   } else if (inherits(x, "multi_net_output")) {
     x <- as.data.frame(x[["solved.flow.values"]])
     y <- as.data.frame(x[[paste0(flow)]])
     names(y) <- paste0(flow)
     z <- coda::as.mcmc(y)
 
-    par(col.main = 'white')# Sets all titles to white
+    par(col.main = "white") # Sets all titles to white
     coda::geweke.plot(
       x = z,
       frac1 = frac1,
@@ -98,12 +98,10 @@ geweke_plot <- function (x, flow, nbins = 20,
     if (addtitle == TRUE) {
       title(main = "Geweke Plot", col.main = "black")
     }
-
   } else {
     stop(
       paste0('Please ensure the object "x" type is one of "mcmc", "data.frame",
              or "multi_net_output"')
     )
   }
-
 }

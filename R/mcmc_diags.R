@@ -34,18 +34,20 @@
 #' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
-#' "Winter_Weighted_Network_LIMfile.R",
-#' package = "autoLIMR")
+#'   "Winter_Weighted_Network_LIMfile.R",
+#'   package = "autoLIMR"
+#' )
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 4000,
 #'   jmp = NULL,
-#'   x0 = NULL)
+#'   x0 = NULL
+#' )
 #' mcmc_diags(x = x)
 #' mcmc_diags(x = x, flow = "Plant_GPP")
 #'
-mcmc_diags <- function (x, flow = NULL, ...) {
+mcmc_diags <- function(x, flow = NULL, ...) {
   ### Errors
   # Error: MCMC object must be provided
   if (is.null(x)) {
@@ -54,12 +56,14 @@ mcmc_diags <- function (x, flow = NULL, ...) {
   # Error: Stop, load coda
   if (!requireNamespace("coda", quietly = TRUE)) {
     stop("Package \"coda\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
   # Error: Stop, load LIM
   if (!requireNamespace("LIM", quietly = TRUE)) {
     stop("Package \"LIM\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
   # Error: if MCMC object is not class "multi_net_output"
   if (!inherits(x, "multi_net_output")) {

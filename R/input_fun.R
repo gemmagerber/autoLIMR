@@ -2,7 +2,7 @@
 #' @description Grabs input nodes (only boundary flows in)
 #'
 #' @param x an object?
-#'the input matrix
+#' the input matrix
 input_fun <- function(x) {
   input.vector <-
     as.vector(colSums(x[c(grep(

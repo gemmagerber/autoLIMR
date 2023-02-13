@@ -4,7 +4,7 @@
 #' @param col.match the node type to match
 #' @export
 search_cols <- function(x, col.match) {
-  if (col.match == "Input") {
+  if (col.match == "Import") {
     x <- grep(
       as.vector(colnames(x)),
       pattern = paste0(

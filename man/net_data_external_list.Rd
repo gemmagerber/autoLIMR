@@ -2,7 +2,7 @@
 % Please edit documentation in R/net_data_external_list.R
 \name{net_data_external_list}
 \alias{net_data_external_list}
-\title{define externals list}
+\title{Function: net_data_external_list()}
 \usage{
 net_data_external_list(x, respiration, respiration_element)
 }

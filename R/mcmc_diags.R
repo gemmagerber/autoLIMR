@@ -41,10 +41,10 @@
 #' x <- multi_net(
 #'   file = fpath,
 #'   iter = 4000,
-#'   jmp = NULL,
+#'   jmp = 0.0001,
 #'   x0 = NULL
 #' )
-#' mcmc_diags(x = x)
+#' # mcmc_diags(x = x)
 #' mcmc_diags(x = x, flow = "Plant_GPP")
 #'
 mcmc_diags <- function(x, flow = NULL, ...) {

@@ -73,10 +73,10 @@ set.seed(1)
 x <- multi_net(
   file = fpath,
   iter = 4000,
-  jmp = NULL,
+  jmp = 0.0001,
   x0 = NULL
 )
-raftery_diag(x = x)
+# raftery_diag(x = x)
 raftery_diag(x = x, flow = "Plant_GPP")
 
 }

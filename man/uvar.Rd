@@ -2,17 +2,19 @@
 % Please edit documentation in R/uvar.R
 \name{uvar}
 \alias{uvar}
-\title{Function uvar()
-Unused material/energy variable definition}
+\title{Function uvar()}
 \usage{
-uvar(x, respiration)
+uvar(x, respiration, NLNode)
 }
 \arguments{
-\item{x}{matrices defined from Network Data Input workbook}
+\item{x}{tidy network input data matrix}
 
-\item{respiration}{If respiration = TRUE in main autoLIMR argument}
+\item{respiration}{Logical. Is respiration included in the network model? Default = TRUE}
+
+\item{NLNode}{Character vector defining non-living compartments e.g.,
+NLNode = "Detritus", NLNode = c("Detritus", "Detritus2")}
 }
 \description{
-Function uvar()
-Unused material/energy variable definition
+Defines unused material/energy variable for living compartments.
+Depends on exports and arguments NLNode and respiration.
 }

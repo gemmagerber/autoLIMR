@@ -2,18 +2,20 @@
 % Please edit documentation in R/variable_def.R
 \name{variable_def}
 \alias{variable_def}
-\title{Defines whole variables sections from various other functions}
+\title{Function: variable_def()}
 \usage{
 variable_def(x, NLNode, primary_producer, respiration)
 }
 \arguments{
-\item{x}{network input data matrix}
+\item{x}{tidy network input data matrix}
 
-\item{NLNode}{the defined NLNodes from the main autoLIMR argument}
+\item{NLNode}{Character vector defining non-living compartments e.g.,
+NLNode = "Detritus", NLNode = c("Detritus", "Detritus2")}
 
-\item{primary_producer}{Primary producers defined in main autoLIMR function}
+\item{primary_producer}{Character vector defining primary producer compartments e.g.,
+primary_producer = "Plant", primary_producer = c("Plant", "Plant2")}
 
-\item{respiration}{If respiration = TRUE in main autoLIMR argument}
+\item{respiration}{Logical. Is respiration included in the network model? Default = TRUE}
 }
 \description{
 Defines whole variables sections from various other functions

@@ -1,9 +1,8 @@
-### Function: net_data_ineq()
-#' Inequalities definition (with headings)
+#' @title Function: net_data_ineq()
+#' @description Inequalities definition (with headings)
 #' @param x network input data matrix
 #' @param respiration  If respiration = TRUE in main autoLIMR argument
 #' @param primary_producer Primary producers defined in main autoLIMR function
-#' @export
 #'
 net_data_ineq <- function(x, respiration,
                           primary_producer) {
@@ -53,20 +52,9 @@ net_data_ineq <- function(x, respiration,
 
   x$Freq <- as.character(x$Freq)
 
-  # x$Inequality <- ifelse(grepl("^1$|^0$|^0.00$|^1.00$", x$Freq),
-  #   "none",
-  #   ifelse(
-  #     grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),
-  #     paste0(x$Variable, " > ", x$Freq),
-  #     ifelse(
-  #       grepl("upper|up|max|maximum", x$Var2, ignore.case = TRUE),
-  #       paste0(x$Variable, " < ", x$Freq),
-  #       "none"
-  #     )
-  #   )
-  # )
-
-  x$Inequality <- ifelse(x$Freq %in% c(1, 0, "1", "0", "1.00"),
+  x$Inequality <- ifelse(
+    x$Freq %in% c(1, 0, "1", "0", "1.00",
+                  "0.00000", "0.00000000", "0.000"),
     "none",
     ifelse(
       grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),
@@ -79,13 +67,11 @@ net_data_ineq <- function(x, respiration,
     )
   )
 
-  x <- x[!grepl("none", x$Inequality), ]
+  x <- x[!grepl("none", x$Inequality),]
 
-  toreturn <- c(
-    "! Network Data Input Inequalities",
-    "",
-    as.vector(x$Inequality),
-    ""
-  )
+  toreturn <- c("! Network Data Input Inequalities",
+                "",
+                as.vector(x$Inequality),
+                "")
   return(toreturn)
 }

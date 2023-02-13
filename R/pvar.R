@@ -24,7 +24,6 @@ pvar <- function(x, respiration, NLNode) {
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_U - ", ln, "_EX"),
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_U")
     )
-
   }
 
   if (respiration == TRUE & length(NLNode) == 0) {
@@ -33,7 +32,6 @@ pvar <- function(x, respiration, NLNode) {
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_EX"),
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ")
     )
-
   }
 
   if (respiration == FALSE & length(NLNode) > 0) {
@@ -42,7 +40,6 @@ pvar <- function(x, respiration, NLNode) {
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_U - ", ln, "_EX"),
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_U")
     )
-
   }
 
   if (respiration == FALSE & length(NLNode) == 0) {
@@ -51,7 +48,6 @@ pvar <- function(x, respiration, NLNode) {
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_EX"),
       paste0(ln, "_P = Flowfrom(", ln, ")")
     )
-
   }
 
   if (length(variable) > 1) {

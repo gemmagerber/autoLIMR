@@ -27,6 +27,6 @@ read_all_sheets <- function(filename, tibble = FALSE) {
     x <- lapply(x, as.data.frame)
   }
   names(x) <- sheets
-  format(x, scientific=FALSE)
+  format(x, scientific = FALSE)
   return(x)
 }

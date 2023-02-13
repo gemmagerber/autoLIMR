@@ -41,7 +41,7 @@ multi_net <-
     ############################### Starting point choices
     # Choice 1: Default (x0 = NULL), or Choice 2: Central (x0 = "central")
     if (is.null(x0) |
-        missing(x0)) {
+      missing(x0)) {
       x0 <- NULL
       solved <-
         defaultx0(
@@ -83,8 +83,10 @@ multi_net <-
             full_limfile = full_limfile
           )
         balanced <- lapply(X = packed.nets, FUN = ssCheck)
-        solved.2 <- list(packed.nets = packed.nets,
-                         balanced = balanced)
+        solved.2 <- list(
+          packed.nets = packed.nets,
+          balanced = balanced
+        )
         out <- append(solved, solved.2)
 
         message(

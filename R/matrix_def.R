@@ -12,14 +12,12 @@ matrix_def <- function(x, mat.type) {
       mat[rowSums(is.na(mat)) != ncol(mat), ] # Drop rows where all are NA
 
     if (length(match) == 1) {
-      mat <- mat[!mat[, 1] %in% c(0, "0", NA) , , drop = FALSE]
-
+      mat <- mat[!mat[, 1] %in% c(0, "0", NA), , drop = FALSE]
     }
 
     if (length(match) == 2) {
       mat <- mat[!mat[, 1] %in% c(0, "0", NA) |
-                   !mat[, 2] %in% c(0, "0", NA), , drop = FALSE]
-
+        !mat[, 2] %in% c(0, "0", NA), , drop = FALSE]
     }
     return(mat)
   }

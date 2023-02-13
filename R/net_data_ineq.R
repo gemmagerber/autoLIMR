@@ -53,8 +53,10 @@ net_data_ineq <- function(x, respiration,
   x$Freq <- as.character(x$Freq)
 
   x$Inequality <- ifelse(
-    x$Freq %in% c(1, 0, "1", "0", "1.00",
-                  "0.00000", "0.00000000", "0.000"),
+    x$Freq %in% c(
+      1, 0, "1", "0", "1.00",
+      "0.00000", "0.00000000", "0.000"
+    ),
     "none",
     ifelse(
       grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),
@@ -67,11 +69,13 @@ net_data_ineq <- function(x, respiration,
     )
   )
 
-  x <- x[!grepl("none", x$Inequality),]
+  x <- x[!grepl("none", x$Inequality), ]
 
-  toreturn <- c("! Network Data Input Inequalities",
-                "",
-                as.vector(x$Inequality),
-                "")
+  toreturn <- c(
+    "! Network Data Input Inequalities",
+    "",
+    as.vector(x$Inequality),
+    ""
+  )
   return(toreturn)
 }

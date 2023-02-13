@@ -27,9 +27,11 @@ qvar <- function(x) {
   )
 
   qvar <-
-    c("! Consumption (Q) / Gross Primary Production (GPP) Variables",
+    c(
+      "! Consumption (Q) / Gross Primary Production (GPP) Variables",
       "",
       sort(variables),
-      "")
+      ""
+    )
   return(qvar)
 }

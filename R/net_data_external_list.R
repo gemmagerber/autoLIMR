@@ -29,8 +29,10 @@ net_data_external_list <- function(x, respiration,
   }
 
   returnme <-
-    c(resp.vec,
+    c(
+      resp.vec,
       sort(imports),
-      sort(exports))
+      sort(exports)
+    )
   return(returnme)
 }

@@ -25,7 +25,6 @@ uvar <- function(x, respiration, NLNode) {
         paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_R - ", ln, "_EX"),
         paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_R")
       )
-
     }
 
     if (respiration == FALSE) {
@@ -34,23 +33,21 @@ uvar <- function(x, respiration, NLNode) {
         paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_EX"),
         paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P")
       )
-
     }
-
-
-  }  else {
+  } else {
     variable <- c("! No Unused Energy/Material Variables defined", "")
   }
 
   if (length(variable) > 1) {
     u_var <-
-      c("! Unused Energy/Material (U) Variables",
+      c(
+        "! Unused Energy/Material (U) Variables",
         "",
         sort(variable),
-        "")
+        ""
+      )
   } else {
     u_var <- variable
   }
   return(u_var)
-
 }

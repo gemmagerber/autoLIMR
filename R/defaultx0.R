@@ -23,7 +23,8 @@ defaultx0 <-
            ...) {
     if (!requireNamespace("LIM", quietly = TRUE)) {
       stop("Package \"LIM\" must be installed to use this function.",
-           call. = FALSE)
+        call. = FALSE
+      )
     }
 
     message(
@@ -51,7 +52,7 @@ defaultx0 <-
 
     for (i in 1:as.numeric(nrow(solved.flow.values))) {
       solved.flow.matrices[[i]] <-
-        LIM::Flowmatrix(lim = full_limfile, web = solved.flow.values[i,])
+        LIM::Flowmatrix(lim = full_limfile, web = solved.flow.values[i, ])
     }
 
     solved.networks <- list(

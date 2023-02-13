@@ -1,5 +1,6 @@
-#' defaultx0(): function to solve MCMC objects using the default MCMC
-#' parsimonous solution (LIM::Xsample) as a starting point.
+#' @title function `defaultx0()`
+#' @description: Solves MCMC objects using the default MCMC
+#' parsimonious solution LSEI (LIM::Xsample) as a starting point.
 #'
 #' @param full_limfile LIM Declaration file built from check_build()
 #' @param iter Default = NULL. Number of iterations. Default = NULL returns 3000
@@ -22,8 +23,7 @@ defaultx0 <-
            ...) {
     if (!requireNamespace("LIM", quietly = TRUE)) {
       stop("Package \"LIM\" must be installed to use this function.",
-        call. = FALSE
-      )
+           call. = FALSE)
     }
 
     message(
@@ -36,6 +36,7 @@ defaultx0 <-
     )
 
     starting.solution.x0 <- "LSEI"
+
     print(system.time(
       solved.flow.values <- LIM::Xsample(
         lim = full_limfile,
@@ -50,7 +51,7 @@ defaultx0 <-
 
     for (i in 1:as.numeric(nrow(solved.flow.values))) {
       solved.flow.matrices[[i]] <-
-        LIM::Flowmatrix(full_limfile, web = solved.flow.values[i, ])
+        LIM::Flowmatrix(lim = full_limfile, web = solved.flow.values[i,])
     }
 
     solved.networks <- list(

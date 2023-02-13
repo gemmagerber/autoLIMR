@@ -25,7 +25,7 @@ net_data_tidy <- function(x, NLNode) {
   x <-
     x[!is.na(x[, "Biomass"]), ]
 
-  x <- sci_notation_off(x)
+  # x <- sci_notation_off(x)
   x <-
     apply(
       X = x,

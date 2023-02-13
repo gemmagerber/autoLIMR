@@ -1,14 +1,22 @@
-# Function: net_data_external_list()
-#' define externals list
+#' @title Function: net_data_external_list()
+#' @description define externals list
 #' @param x net data input matrix/matrices
 #' @param respiration Respiration = TRUE as defined in main autoLIMR function
 #' @param respiration_element if Respiration = TRUE, the respiration element to be defined. Default to "CO2"
-#' @export
 #'
 net_data_external_list <- function(x, respiration,
                                    respiration_element) {
-  exports <- net_data_node(x, node.type = "Export")
-  inputs <- net_data_node(x, node.type = "Input")
+  # Define all with Imports
+  import.mat <- matrix_def(x, mat.type = "Import")
+  im <- rownames(import.mat)
+
+  # Define all with exports
+  ex.mat <- matrix_def(x, mat.type = "Export")
+  ex <- rownames(ex.mat)
+
+  exports <- paste0(ex, "Export")
+  imports <- paste0(im, "Import")
+
 
   if (respiration == TRUE) {
     if (!is.null(respiration_element)) {
@@ -21,10 +29,8 @@ net_data_external_list <- function(x, respiration,
   }
 
   returnme <-
-    c(
-      resp.vec,
-      sort(inputs),
-      sort(exports)
-    )
+    c(resp.vec,
+      sort(imports),
+      sort(exports))
   return(returnme)
 }

@@ -1,8 +1,7 @@
-#' error_print
-#' Print Errors for undefined sheets
+#' @title function error_print()
+#' @description Print Errors for undefined sheets
 #' @param net_data_input the user-defined workbook with network input data
 #' @param adj_mat_input the user-defined workbook with adjacency matrices
-#' @export
 error_print <-
   function(net_data_input,
            adj_mat_input) {

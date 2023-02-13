@@ -1,7 +1,6 @@
-#' Function: meta2()
-#' Defines metadata from adjacency matrices with abbreviations
+#' @title Function: meta2()
+#' @description Defines metadata from adjacency matrices with abbreviations
 #' @param x Adjacency matrix
-#' @export
 #'
 meta2 <- function(x) {
   internals <- paste0("! Internal flows: ", sum(!is.na(x)))

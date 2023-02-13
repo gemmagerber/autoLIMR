@@ -1,5 +1,5 @@
-#' Function autoGen()
-#' Automatically defines LIM weighted and unweighted declaration files
+#' @title Function autoGen()
+#' @description Automatically defines LIM weighted and unweighted declaration files
 #' from two input workbooks.
 #'
 #' This function takes some action. It also attempts to create a
@@ -45,36 +45,38 @@
 #' @export
 
 autoGen <- function(net_data_input = "demo",
-                     adj_mat_input = "demo",
-                     NLNode = NULL,
-                     respiration = TRUE,
-                     respiration_element = "CO2",
-                     primary_producer = NULL,
-                     author = NULL,
-                     date = NULL,
-                     weighted = TRUE,
-                     force = FALSE) {
+                    adj_mat_input = "demo",
+                    NLNode = NULL,
+                    respiration = TRUE,
+                    respiration_element = "CO2",
+                    primary_producer = NULL,
+                    author = NULL,
+                    date = NULL,
+                    weighted = TRUE,
+                    force = FALSE) {
   # Execution: Print Errors for undefined sheets
   error_print(net_data_input, adj_mat_input)
 
   # Are we reading in demo data, or actual .xlsx files?
 
-  if(net_data_input == "demo") {
+  if (net_data_input == "demo") {
     # Get demo data
     net_data_sheet_list <- demo_net_input()
     #return(net_data_sheet_list)
   } else {
     # Execution: Read in net data sheets
-    net_data_sheet_list <- read_all_sheets(filename = net_data_input)
+    net_data_sheet_list <-
+      read_all_sheets(filename = net_data_input)
     #return(net_data_sheet_list)
   }
 
-  if(adj_mat_input == "demo") {
+  if (adj_mat_input == "demo") {
     adj_matrix_sheet_list <- demo_adj_mat()
     #return(adj_matrix_sheet_list)
   } else {
     # Execution: Read in Fmats
-    adj_matrix_sheet_list <- read_all_sheets(filename = adj_mat_input)
+    adj_matrix_sheet_list <-
+      read_all_sheets(filename = adj_mat_input)
     #return(adj_matrix_sheet_list)
   }
 
@@ -91,12 +93,10 @@ autoGen <- function(net_data_input = "demo",
 
   # Execution: define externals list
   externals.list <-
-    lapply(
-      X = net_data_sheets,
-      FUN = net_data_external_list,
-      respiration,
-      respiration_element
-    )
+    lapply(X = net_data_sheets,
+           FUN = net_data_external_list,
+           respiration,
+           respiration_element)
 
   # Execution: define QPU variables, change based on primary producers
   vars <- lapply(
@@ -156,64 +156,93 @@ autoGen <- function(net_data_input = "demo",
   )
 
   # Execution: get metadata table2
-  meta_2 <- lapply(
-    X = adj_matrix_sheets,
-    FUN = meta2
-  )
+  meta_2 <- lapply(X = adj_matrix_sheets,
+                   FUN = meta2)
 
   ## Execution: merge_sections compartments, give name
-  # comp.lim <- merge_sections(comp.list, type = "Compartments")
-  comp.lim <- lapply(
-    X = comp.list,
-    function(x) {
-      c(
-        "### COMPARTMENTS",
-        "",
-        x,
-        "",
-        "### END COMPARTMENTS",
-        ""
-      )
-    }
-  )
+  comp.lim <- lapply(X = comp.list,
+                     function(x) {
+                       c("### COMPARTMENTS",
+                         "",
+                         x,
+                         "",
+                         "### END COMPARTMENTS",
+                         "")
+                     })
 
   # Execution: merge_sections compartments, give name
-  externals.lim <-
-    merge_sections(externals.list, type = "Externals")
+  externals.lim <- lapply(X = externals.list,
+                          function(x) {
+                            c("### EXTERNALS",
+                              "",
+                              x,
+                              "",
+                              "### END EXTERNALS",
+                              "")
+                          })
 
   # Execution: merge_sections variable lists, name sections
-  var.lim <- merge_sections(vars, type = "Variables")
+  var.lim <- lapply(X = vars,
+                    function(x) {
+                      c("### VARIABLES",
+                        "",
+                        x,
+                        "",
+                        "### END VARIABLES",
+                        "")
+                    })
 
   # Execution: merge_sections flow lists, add section headings
-  flow.lim <-
-    merge_sections(resp_flows, inex.flow.list, adj.mats.flow.list,
-      type = "Flows"
-    )
-  # Execution: merge_sections inequalities lists, add section headings
-  ineq.lim <-
-    merge_sections(net_data_ineq_list, adj_mat_ineq_list, type = "Inequalities")
+  resp.lim <- lapply(X = resp_flows,
+                     function(x) {
+                       c("### FLOWS", "", x)
+                     })
 
-  # Execution: merge_sections all sections into full lim files,
-  # Then write into folders
+  inex.lim <- lapply(X = inex.flow.list,
+                     function(x) {
+                       c(x)
+                     })
+
+  admat.lim <- lapply(X = adj.mats.flow.list,
+                      function(x) {
+                        c(x, "", "### END FLOWS", "")
+                      })
+
+  netineq <- lapply(X = net_data_ineq_list,
+                    function(x) {
+                      c("### INEQUALITIES", "", x)
+                    })
+  admatineq <- lapply(X = adj_mat_ineq_list,
+                      function(x) {
+                        c(x, "", "### END INEQUALITIES", "")
+                      })
+
+
   Weighted <-
-    merge_sections(meta_w,
+    Map(
+      c,
+      meta_w,
       meta_2,
       comp.lim,
       externals.lim,
       var.lim,
-      flow.lim,
-      ineq.lim,
-      type = NULL
+      resp.lim,
+      inex.lim,
+      admat.lim,
+      netineq,
+      admatineq
     )
+
   Unweighted <-
-    merge_sections(meta_uw,
-      meta_2,
-      comp.lim,
-      externals.lim,
-      var.lim,
-      flow.lim,
-      type = NULL
-    )
+    Map(c,
+        meta_uw,
+        meta_2,
+        comp.lim,
+        externals.lim,
+        var.lim,
+        resp.lim,
+        inex.lim,
+        admat.lim)
 
   ### Function: write LIMfiles to subfolders in working directory
   # Check if working directory exists (it should)
@@ -222,21 +251,22 @@ autoGen <- function(net_data_input = "demo",
   # Then write LIMfiles into the folders
 
   write_limfile <- function(type, object, force) {
-
-    if(type == "Weighted") {
+    if (type == "Weighted") {
       path <- file.path(getwd(), "weighted_limfiles")
     }
-    if(type == "Unweighted") {
+    if (type == "Unweighted") {
       path <- file.path(getwd(), "unweighted_limfiles")
     }
 
     # Check if working directory available. It should be.
-    if(!dir.exists(file.path(getwd()))){
+    if (!dir.exists(file.path(getwd()))) {
       warning("No working directory exists. Please set with setwd().")
     } else {
-
       if (!force && interactive()) {
-        title <- paste0("May autoLIMR create a folder of ", type, " LIMfiles in your working directory?")
+        title <-
+          paste0("May autoLIMR create a folder of ",
+                 type,
+                 " LIMfiles in your working directory?")
         result <- utils::select.list(c("Yes", "No"), title = title)
         if (result == "Yes") {
           # Check if dir exists. If not, create them.
@@ -244,31 +274,35 @@ autoGen <- function(net_data_input = "demo",
             dir.create(path)
           }
           # Write files into subfolders in working directory
-          for (i in names(object)) {
+          for (i in 1:length(object)) {
             write(object[[i]],
-                  paste0(path,
-                         "////",
-                         i,
-                         "_",
-                         type,
-                         "_Network_LIMfile.R"))
+                  paste0(
+                    path,
+                    "////",
+                    names(object)[i],
+                    "_",
+                    type,
+                    "_Network_LIMfile.R"
+                  ))
 
-    }
+          }
         }
-      } else if(force) {
+      } else if (force) {
         # Check if dir exists. If not, create them.
         if (dir.exists(path) == FALSE) {
           dir.create(path)
         }
         # Write files into subfolders in working directory
-        for (i in names(object)) {
+        for (i in 1:length(object)) {
           write(object[[i]],
-                paste0(path,
-                       "////",
-                       i,
-                       "_",
-                       type,
-                       "_Network_LIMfile.R"))
+                paste0(
+                  path,
+                  "////",
+                  names(object)[i],
+                  "_",
+                  type,
+                  "_Network_LIMfile.R"
+                ))
 
         }
       } else {
@@ -280,6 +314,8 @@ autoGen <- function(net_data_input = "demo",
   write_limfile(type = "Weighted", object = Weighted, force)
   write_limfile(type = "Unweighted", object = Unweighted, force)
 
-  message("LIM Declaration files successfully written to folders. Please check working directory.")
+  message(
+    "LIM Declaration files successfully written to folders. Please check working directory."
+  )
 
 }

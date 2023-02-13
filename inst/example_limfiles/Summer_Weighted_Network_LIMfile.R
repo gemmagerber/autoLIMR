@@ -2,7 +2,7 @@
 ! Network LIM Declaration File
 ! Composed with autoLIMR
 ! Author: Gemma Gerber
-! Date: 2023-02-07
+! Date: 2023-02-13
 
 ! Respiration included: Yes
 ! U included: Yes
@@ -27,10 +27,10 @@
 
 ### COMPARTMENTS
 
-Invert = 2000.00
-Plant = 800.00
-Vert = 55.00
-DetNLNode = 10000.20
+Invert = 2000.0
+Plant = 800.0
+Vert = 55.0
+DetNLNode = 10000.2
 
 ### END COMPARTMENTS
 
@@ -110,10 +110,10 @@ Vert_U_DetNLNode: Vert -> DetNLNode
 
 ! Network Data Input Inequalities
 
-Plant_GPP > 1100.00
-Invert_Q > 100.00
-Plant_GPP < 2600.00
-Invert_Q < 3000.00
+Plant_GPP > 1100
+Invert_Q > 100
+Plant_GPP < 2600
+Invert_Q < 3000
 Plant_NPP > 0.6*Plant_GPP
 Invert_P > 0.4*Invert_Q
 Plant_NPP < 0.8*Plant_GPP

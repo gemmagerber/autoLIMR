@@ -2,7 +2,7 @@
 ! Network LIM Declaration File
 ! Composed with autoLIMR
 ! Author: gemma
-! Date: 2023-02-07
+! Date: 2023-02-13
 
 ! Respiration included: Yes
 ! U included: Yes
@@ -27,10 +27,10 @@
 
 ### COMPARTMENTS
 
-Invert = 900.1000
-Plant = 600.0000
-Vert = 33.0000
-DetNLNode = 8000.0000
+Invert = 900.1
+Plant = 600.0
+Vert = 33.0
+DetNLNode = 8000.0
 
 ### END COMPARTMENTS
 

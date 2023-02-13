@@ -2,8 +2,7 @@
 % Please edit documentation in R/defaultx0.R
 \name{defaultx0}
 \alias{defaultx0}
-\title{defaultx0(): function to solve MCMC objects using the default MCMC
-parsimonous solution (LIM::Xsample) as a starting point.}
+\title{function `defaultx0()`}
 \usage{
 defaultx0(full_limfile, iter = NULL, jmp = NULL, x0 = NULL, ...)
 }
@@ -26,6 +25,6 @@ Multiple plausible network flow values. The first sample is
 calculated with Least Squares with Equalities and Inequalities (LSEI).
 }
 \description{
-defaultx0(): function to solve MCMC objects using the default MCMC
-parsimonous solution (LIM::Xsample) as a starting point.
+: Solves MCMC objects using the default MCMC
+parsimonious solution LSEI (LIM::Xsample) as a starting point.
 }

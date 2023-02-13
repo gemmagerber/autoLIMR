@@ -2,12 +2,12 @@
 % Please edit documentation in R/matrix_def.R
 \name{matrix_def}
 \alias{matrix_def}
-\title{Return matrix based on search_cols function}
+\title{Function: matrix_def()}
 \usage{
 matrix_def(x, mat.type)
 }
 \arguments{
-\item{x}{the matrix}
+\item{x}{input matrix}
 
 \item{mat.type}{the matrix type to export}
 }

@@ -1,18 +1,9 @@
-#' Function: meta1()
-#' Defines the first part of the metadata from network input data workbook sheets
-#'
+#' @title Function: meta1()
+#' @description Defines the first part of the metadata from network input data workbook sheets
+#' @inheritParams autoGen
 
 #' @param x network input data matrix
-#' @param author author name. Defined in the main autoLIMR function. Defaults to system user
-#' @param date date. Defined in the main autoLIMR function. Defaults to system date
-#' @param respiration If respiration = TRUE in main autoLIMR argument
-#' @param NLNode the defined NLNodes from the main autoLIMR argument
-#' @param weighted whether to return weighted LIM declaration files. Default to TRUE
-#' @param primary_producer Primary producers defined in main autoLIMR function
-#' @param respiration_element if Respiration = TRUE, the respiration element to be defined. Default to "CO2"
 
-#' @export
-#'
 meta1 <- function(x,
                   author = NULL,
                   date = NULL,

@@ -2,19 +2,19 @@
 % Please edit documentation in R/pvar.R
 \name{pvar}
 \alias{pvar}
-\title{Function pvar(): Production variable definition
-Defines production variable based on many arguments}
+\title{Function pvar(): Production variable definition}
 \usage{
 pvar(x, respiration, NLNode)
 }
 \arguments{
-\item{x}{matrices defined from Network Data Input workbook}
+\item{x}{tidy network input data matrix}
 
-\item{respiration}{If respiration = TRUE in main autoLIMR argument}
+\item{respiration}{Logical. Is respiration included in the network model? Default = TRUE}
 
-\item{NLNode}{the defined NLNodes from the main autoLIMR argument}
+\item{NLNode}{Character vector defining non-living compartments e.g.,
+NLNode = "Detritus", NLNode = c("Detritus", "Detritus2")}
 }
 \description{
-Function pvar(): Production variable definition
-Defines production variable based on many arguments
+Defines production variables for living compartments only.
+Depends on exports and arguments NLNode and respiration.
 }

@@ -2,15 +2,17 @@
 % Please edit documentation in R/qvar.R
 \name{qvar}
 \alias{qvar}
-\title{Function qvar(): Consumption (Q) Variable definition
-Living nodes only, depends on Imports}
+\title{Function qvar()}
 \usage{
 qvar(x)
 }
 \arguments{
-\item{x}{network input data matrix}
+\item{x}{tidy network input data matrix}
 }
 \description{
-Function qvar(): Consumption (Q) Variable definition
-Living nodes only, depends on Imports
+Defines consumption variables for living nodes only.
+Depends on imports. For living compartments without imports, consumption
+is defined as `compartment_Q = Flowto(compartment)`. For compartments with
+imports, consumption is defined as `compartment_Q = Flowto(compartment) -
+compartment_IM`.
 }

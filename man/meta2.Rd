@@ -2,8 +2,7 @@
 % Please edit documentation in R/meta2.R
 \name{meta2}
 \alias{meta2}
-\title{Function: meta2()
-Defines metadata from adjacency matrices with abbreviations}
+\title{Function: meta2()}
 \usage{
 meta2(x)
 }
@@ -11,6 +10,5 @@ meta2(x)
 \item{x}{Adjacency matrix}
 }
 \description{
-Function: meta2()
 Defines metadata from adjacency matrices with abbreviations
 }

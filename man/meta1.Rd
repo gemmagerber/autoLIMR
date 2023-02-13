@@ -2,8 +2,7 @@
 % Please edit documentation in R/meta1.R
 \name{meta1}
 \alias{meta1}
-\title{Function: meta1()
-Defines the first part of the metadata from network input data workbook sheets}
+\title{Function: meta1()}
 \usage{
 meta1(
   x,
@@ -19,21 +18,23 @@ meta1(
 \arguments{
 \item{x}{network input data matrix}
 
-\item{author}{author name. Defined in the main autoLIMR function. Defaults to system user}
+\item{author}{Character vector. LIM declaration file author name.Defaults to system user.}
 
-\item{date}{date. Defined in the main autoLIMR function. Defaults to system date}
+\item{date}{Character vector. Date of file creation. Defaults to system date.}
 
-\item{respiration}{If respiration = TRUE in main autoLIMR argument}
+\item{respiration}{Logical. Is respiration included in the network model? Default = TRUE}
 
-\item{respiration_element}{if Respiration = TRUE, the respiration element to be defined. Default to "CO2"}
+\item{respiration_element}{Character vector. If Respiration = TRUE,
+the external respiration sink element to be defined. Defaults to "CO2"}
 
-\item{NLNode}{the defined NLNodes from the main autoLIMR argument}
+\item{NLNode}{Character vector defining non-living compartments e.g.,
+NLNode = "Detritus", NLNode = c("Detritus", "Detritus2")}
 
-\item{weighted}{whether to return weighted LIM declaration files. Default to TRUE}
+\item{weighted}{Logical. Return weighted LIM declaration files? Defaults to TRUE}
 
-\item{primary_producer}{Primary producers defined in main autoLIMR function}
+\item{primary_producer}{Character vector defining primary producer compartments e.g.,
+primary_producer = "Plant", primary_producer = c("Plant", "Plant2")}
 }
 \description{
-Function: meta1()
 Defines the first part of the metadata from network input data workbook sheets
 }

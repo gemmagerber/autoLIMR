@@ -1,48 +1,63 @@
-#' Function pvar(): Production variable definition
-#' Defines production variable based on many arguments
-#' @inheritParams pvar_wo_ex
-#' @inheritParams pvar_w_ex
-#'
-#' @export
-#'
+#' @title Function pvar(): Production variable definition
+#' @description Defines production variables for living compartments only.
+#' Depends on exports and arguments NLNode and respiration.
+#' @inheritParams autoGen
+#' @param x tidy network input data matrix
+
+
 pvar <- function(x, respiration, NLNode) {
-  # Search network input data for columns that match "Export" or similar
-  search.ex <- search_cols(x, col.match = "Export")
+  # Define all living nodes
+  living <-
+    x[grep("NLNode", rownames(x), invert = TRUE), , drop = FALSE]
+  ln <- rownames(living)
 
-  # Create matrix that only contains export columns and compartment names
-  exmat <- x[, grep(
-    pattern =
-      paste0(search.ex, collapse = "|"), colnames(x)
-  ), drop = TRUE]
+  # Define all living things with exports
+  ex.mat <- matrix_def(x, mat.type = "Export")
+  ln.ex <-
+    ex.mat[grep("NLNode", rownames(ex.mat), invert = TRUE), , drop = FALSE]
+  ln.ex <- rownames(ln.ex)
 
-  # Remove rows containing NLNodes
-  ex.mat <-
-    exmat[grep("NLNode", rownames(exmat), invert = TRUE), , drop = FALSE]
+  # Define all P variables
+  if (respiration == TRUE & length(NLNode) > 0) {
+    variable <- ifelse(
+      ln %in% ln.ex,
+      paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_U - ", ln, "_EX"),
+      paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_U")
+    )
 
-  # Select which compartments have no export (no values in EX_lower or EX_upper)
-  wo.ex <- names(which(rowSums(is.na(ex.mat)) == ncol(ex.mat)))
-
-  # Select which compartments have exports (values in EX_lower or EX_upper)
-  w.ex <- names(which(rowSums(is.na(ex.mat)) != ncol(ex.mat)))
-
-  # If there are compartments with exports, and some without
-  if (length(wo.ex) > 0 & length(w.ex) > 0) {
-    wo.ex_pvar <- pvar_wo_ex(wo.ex, respiration = respiration, NLNode = NLNode)
-    w.ex_pvar <- pvar_w_ex(w.ex, respiration = respiration, NLNode = NLNode)
-    var <- c(wo.ex_pvar, w.ex_pvar)
   }
 
-  if (identical(wo.ex, character(0)) & length(w.ex) > 0) {
-    var <- pvar_w_ex(w.ex, respiration = respiration, NLNode = NLNode)
+  if (respiration == TRUE & length(NLNode) == 0) {
+    variable <- ifelse(
+      ln %in% ln.ex,
+      paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_EX"),
+      paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ")
+    )
+
   }
 
-  if (length(wo.ex) > 0 & identical(w.ex, character(0))) {
-    var <- pvar_wo_ex(wo.ex, respiration = respiration, NLNode = NLNode)
+  if (respiration == FALSE & length(NLNode) > 0) {
+    variable <- ifelse(
+      ln %in% ln.ex,
+      paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_U - ", ln, "_EX"),
+      paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_U")
+    )
+
   }
 
-  if (length(var) > 0) {
-    p_var <- c("! Production (P/NPP) Variables", "", sort(var), "")
+  if (respiration == FALSE & length(NLNode) == 0) {
+    variable <- ifelse(
+      ln %in% ln.ex,
+      paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_EX"),
+      paste0(ln, "_P = Flowfrom(", ln, ")")
+    )
+
+  }
+
+  if (length(variable) > 1) {
+    p_var <- c("! Production (P/NPP) Variables", "", sort(variable), "")
   } else {
     p_var <- c("", "! No Production Variables (U) defined", "")
   }
+  return(p_var)
 }

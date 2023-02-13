@@ -1,39 +1,40 @@
-## Function: variable_def()
-#' Defines whole variables sections from various other functions
-#' @inheritParams qvar
-#' @inheritParams pvar
-#' @inheritParams uvar
-#' @inheritParams aevar
-#' @inheritParams pp_true
-#' @export
+#' @title Function: variable_def()
+#' @description Defines whole variables sections from various other functions
+#' @param x tidy network input data matrix
+#' @inheritParams autoGen
+
 variable_def <-
   function(x,
            NLNode,
            primary_producer,
            respiration) {
-    if (length(NLNode) > 0) {
-      u_var <- uvar(x, respiration = respiration)
-    } else {
-      u_var <- c("! No Unused Energy/Material Variables defined", "")
-    }
 
     q_var <- qvar(x)
     p_var <- pvar(x, NLNode = NLNode, respiration = respiration)
+    u_var <- uvar(x, respiration = respiration, NLNode = NLNode)
     ae_var <- aevar(x, respiration = respiration)
 
-    if (!is.null(primary_producer)) {
-      q_var <- pp_true(q_var, primary_producer = primary_producer)
-      p_var <- pp_true(p_var, primary_producer = primary_producer)
-      u_var <- pp_true(u_var, primary_producer = primary_producer)
-      ae_var <- pp_true(ae_var, primary_producer = primary_producer)
-    }
-
-    toreturn <- c(
+    combined <- c(
       q_var,
       p_var,
       u_var,
       ae_var
     )
 
-    return(toreturn)
+    # Check for primary producers
+    # Change Q to GPP, and P to NPP
+    if (!is.null(primary_producer)) {
+
+      qtogpp <- paste0(paste0(primary_producer, "_Q"), collapse = "|")
+      ptonpp <- paste0(paste0(primary_producer, "_P"), collapse = "|")
+
+      combined2 <- ifelse(grepl(x = combined, pattern = qtogpp) == TRUE,
+             gsub(x = combined, pattern = "_Q", replacement = "_GPP"),
+             ifelse(grepl(x = combined, pattern = ptonpp) == TRUE,
+                    gsub(x = combined, pattern = "_P", replacement = "_NPP"),
+                    combined))
+      return(combined2)
+    } else {
+      return(combined)
+    }
   }

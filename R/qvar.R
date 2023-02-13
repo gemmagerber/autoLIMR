@@ -1,43 +1,35 @@
-#' Function qvar(): Consumption (Q) Variable definition
-#' Living nodes only, depends on Imports
-#' @param x network input data matrix
-#' @export
+#' @title Function qvar()
+#' @description Defines consumption variables for living nodes only.
+#' Depends on imports. For living compartments without imports, consumption
+#' is defined as `compartment_Q = Flowto(compartment)`. For compartments with
+#' imports, consumption is defined as `compartment_Q = Flowto(compartment) -
+#' compartment_IM`.
+#'
+#' @param x tidy network input data matrix
+
 qvar <- function(x) {
-  search.in <- search_cols(x, col.match = "Input")
+  # Define all living nodes
+  living <-
+    x[grep("NLNode", rownames(x), invert = TRUE), , drop = FALSE]
+  ln <- rownames(living)
 
-  inmat <- x[, grep(
-    pattern =
-      paste0(search.in, collapse = "|"),
-    colnames(x)
-  ), drop = TRUE]
+  # Define all living things with Imports
+  import.mat <- matrix_def(x, mat.type = "Import")
+  ln.im <-
+    import.mat[grep("NLNode", rownames(import.mat), invert = TRUE), , drop = FALSE]
+  ln.im <- rownames(ln.im)
 
-  in.mat <-
-    inmat[grep("NLNode", rownames(inmat), invert = TRUE), , drop = FALSE]
-  wo.in <-
-    names(which(rowSums(is.na(in.mat)) == ncol(in.mat)))
-  w.in <- names(which(rowSums(is.na(in.mat)) != ncol(in.mat)))
-
-  if (length(wo.in) > 0 & length(w.in) > 0) {
-    wo.in_qvar <- paste0(wo.in, "_Q = ", "Flowto(", wo.in, ")")
-    w.in_qvar <-
-      paste0(w.in, "_Q = ", "Flowto(", w.in, ") - ", w.in, "_IM")
-    var <- c(wo.in_qvar, w.in_qvar)
-  }
-
-  if (identical(wo.in, character(0)) & length(w.in) > 0) {
-    var <- paste0(w.in, "_Q = ", "Flowto(", w.in, ") - ", w.in, "_IM")
-  }
-
-  if (length(wo.in) > 0 & identical(w.in, character(0))) {
-    var <- paste0(wo.in, "_Q = ", "Flowto(", wo.in, ")")
-  }
+  # Define all Q variables
+  variables <- ifelse(
+    ln %in% ln.im,
+    paste0(ln, "_Q = Flowto(", ln, ") - ", ln, "_IM"),
+    paste0(ln, "_Q = Flowto(", ln, ")")
+  )
 
   qvar <-
-    c(
-      "! Consumption (Q) / Gross Primary Production (GPP) Variables",
+    c("! Consumption (Q) / Gross Primary Production (GPP) Variables",
       "",
-      sort(var),
-      ""
-    )
+      sort(variables),
+      "")
   return(qvar)
 }

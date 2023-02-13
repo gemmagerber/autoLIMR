@@ -1,58 +1,56 @@
-#' Function uvar()
-#' Unused material/energy variable definition
-#'
-#' @inheritParams uvar_wo_ex
-#' @inheritParams uvar_w_ex
-#' @export
-#'
-uvar <- function(x, respiration) {
-  # Search network input data for columns that match "Export" or similar
-  search.ex <- search_cols(x, col.match = "Export")
+#' @title Function uvar()
+#' @description Defines unused material/energy variable for living compartments.
+#' Depends on exports and arguments NLNode and respiration.
+#' @inheritParams autoGen
+#' @param x tidy network input data matrix
 
-  # Create matrix that only contains export columns and compartment names
-  exmat <- x[, grep(
-    pattern =
-      paste0(search.ex, collapse = "|"), colnames(x)
-  ), drop = T]
 
-  # Remove rows containing NLNodes
-  ex.mat <-
-    exmat[grep("NLNode", rownames(exmat), invert = T), , drop = F]
+uvar <- function(x, respiration, NLNode) {
+  if (length(NLNode) > 0) {
+    # Define all living nodes
+    living <-
+      x[grep("NLNode", rownames(x), invert = TRUE), , drop = FALSE]
+    ln <- rownames(living)
 
-  # Select which compartments have no export (no values in EX_lower or EX_upper)
-  wo.ex <- names(which(rowSums(is.na(ex.mat)) == ncol(ex.mat)))
+    # Define all living things with exports
+    ex.mat <- matrix_def(x, mat.type = "Export")
+    ln.ex <-
+      ex.mat[grep("NLNode", rownames(ex.mat), invert = TRUE), , drop = FALSE]
+    ln.ex <- rownames(ln.ex)
 
-  # Select which compartments have exports (values in EX_lower or EX_upper)
-  w.ex <- names(which(rowSums(is.na(ex.mat)) != ncol(ex.mat)))
-
-  if (length(wo.ex) > 0 & length(w.ex) > 0) {
-    wo.ex_uvar <- uvar_wo_ex(wo.ex, respiration = respiration)
-    w.ex_uvar <- uvar_w_ex(w.ex, respiration = respiration)
-    var <- c(wo.ex_uvar, w.ex_uvar)
-  }
-
-  if (identical(wo.ex, character(0)) & length(w.ex) > 0) {
-    var <- uvar_w_ex(w.ex, respiration = respiration)
-  }
-
-  if (length(wo.ex) > 0 & identical(w.ex, character(0))) {
-    var <- uvar_wo_ex(wo.ex, respiration = respiration)
-  }
-
-  if (length(var) > 0) {
-    u_var <-
-      c(
-        "! Unused Energy/Material (U) Variables",
-        "",
-        sort(var),
-        ""
+    # Define all U variables
+    if (respiration == TRUE) {
+      variable <- ifelse(
+        ln %in% ln.ex,
+        paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_R - ", ln, "_EX"),
+        paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_R")
       )
+
+    }
+
+    if (respiration == FALSE) {
+      variable <- ifelse(
+        ln %in% ln.ex,
+        paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_EX"),
+        paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P")
+      )
+
+    }
+
+
+  }  else {
+    variable <- c("! No Unused Energy/Material Variables defined", "")
+  }
+
+  if (length(variable) > 1) {
+    u_var <-
+      c("! Unused Energy/Material (U) Variables",
+        "",
+        sort(variable),
+        "")
   } else {
-    u_var <-
-      c(
-        "",
-        "! No Unused Energy/Material (U) Variables defined",
-        ""
-      )
+    u_var <- variable
   }
+  return(u_var)
+
 }

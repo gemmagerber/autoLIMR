@@ -12,14 +12,14 @@ read_all_sheets <- function(filename, tibble = FALSE) {
       call. = FALSE
     )
   }
-  options("scipen" = 99999)
+  options("scipen" = 999)
   sheets <- readxl::excel_sheets(filename)
   x <-
     lapply(sheets, function(X) {
       readxl::read_excel(
         filename,
         sheet = X,
-        col_types = "text",
+        col_types = "guess",
         .name_repair = "unique"
       )
     })
@@ -27,5 +27,6 @@ read_all_sheets <- function(filename, tibble = FALSE) {
     x <- lapply(x, as.data.frame)
   }
   names(x) <- sheets
+  format(x, scientific=FALSE)
   return(x)
 }

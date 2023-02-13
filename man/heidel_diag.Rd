@@ -2,7 +2,7 @@
 % Please edit documentation in R/heidel_diag.R
 \name{heidel_diag}
 \alias{heidel_diag}
-\title{heidel_diag(): Heidelberger and Welch’s convergence diagnostic}
+\title{heidel_diag(): Heidelberger and Welch convergence diagnostic}
 \usage{
 heidel_diag(x, flow = NULL, eps = 0.1, pvalue = 0.05, ...)
 }

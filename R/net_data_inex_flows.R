@@ -1,11 +1,10 @@
-# Function: net_data_inex_flows
-#' Defines import and export flows from network input data workbook
+#' @title Function: net_data_inex_flows()
+#' @description Defines import and export flows from network input data workbook
 #' @param x network data input matrix
-#' @export
 
 net_data_inex_flows <- function(x) {
   ex.mat2 <- matrix_def(x, mat.type = "Export")
-  in.mat2 <- matrix_def(x, mat.type = "Input")
+  in.mat2 <- matrix_def(x, mat.type = "Import")
 
   x <- c(
     "! Import flows",

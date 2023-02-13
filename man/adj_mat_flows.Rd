@@ -2,7 +2,7 @@
 % Please edit documentation in R/adj_mat_flows.R
 \name{adj_mat_flows}
 \alias{adj_mat_flows}
-\title{Defines internal network flows from adjacency matrix workbook}
+\title{Function: adj_mat_flows()}
 \usage{
 adj_mat_flows(x)
 }

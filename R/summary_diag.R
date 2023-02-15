@@ -85,8 +85,8 @@ summary_diag <- function(x, flow = NULL, xranges = TRUE, ...) {
 
     # Add LIM::Xranges
     if (is.null(xranges) | xranges == TRUE) {
-      xr <- LIM::Xranges(x[["full_limfile"]])
-      colnames(xr) <- c("Xranges_min", "Xranges_max")
+      xr <- LIM::Xranges(x[["full_limfile"]], central = TRUE)
+      colnames(xr) <- c("Xranges_min", "Xranges_max", "Xranges_central")
       sumdat <- cbind(sumdat, xr)
     }
 

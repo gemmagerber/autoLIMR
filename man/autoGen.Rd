@@ -2,9 +2,7 @@
 % Please edit documentation in R/autoGen.R
 \name{autoGen}
 \alias{autoGen}
-\title{Function autoGen()
-Automatically defines LIM weighted and unweighted declaration files
-from two input workbooks.}
+\title{Function autoGen()}
 \usage{
 autoGen(
   net_data_input = "demo",
@@ -53,6 +51,9 @@ Two folders containing weighted, and unweighted network LIM
   declaration files respectively. For use with R packages 'LIM' and 'limSolve'
 }
 \description{
+Automatically defines LIM weighted and unweighted declaration files
+from two input workbooks.
+
 This function takes some action. It also attempts to create a
 few files in your working directory called \code{data.R},
 under folders \code{autoLIMR Weighted Network LIMfiles},

@@ -2,7 +2,7 @@
 % Please edit documentation in R/merge_sections.R
 \name{merge_sections}
 \alias{merge_sections}
-\title{Merge lists together, and names sections for LIM declaration file}
+\title{Function: merge_sections()}
 \usage{
 merge_sections(type = NULL, ...)
 }

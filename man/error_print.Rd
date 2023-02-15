@@ -2,8 +2,7 @@
 % Please edit documentation in R/error_print.R
 \name{error_print}
 \alias{error_print}
-\title{error_print
-Print Errors for undefined sheets}
+\title{function error_print()}
 \usage{
 error_print(net_data_input, adj_mat_input)
 }
@@ -13,6 +12,5 @@ error_print(net_data_input, adj_mat_input)
 \item{adj_mat_input}{the user-defined workbook with adjacency matrices}
 }
 \description{
-error_print
 Print Errors for undefined sheets
 }

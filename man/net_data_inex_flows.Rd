@@ -2,7 +2,7 @@
 % Please edit documentation in R/net_data_inex_flows.R
 \name{net_data_inex_flows}
 \alias{net_data_inex_flows}
-\title{Defines import and export flows from network input data workbook}
+\title{Function: net_data_inex_flows()}
 \usage{
 net_data_inex_flows(x)
 }

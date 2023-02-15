@@ -1,3 +1,5 @@
+# autoLIMR 2.1.0
+
 # autoLIMR 2.0.0
 
 This is a major release adding a range of substantial new features and fixing

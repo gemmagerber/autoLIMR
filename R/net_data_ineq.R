@@ -69,11 +69,13 @@ net_data_ineq <- function(x, respiration,
       )
     )
 
-  x <- x[!grepl("none", x$Inequality),]
+  x <- x[!grepl("none", x$Inequality), ]
 
-  toreturn <- c("! Network Data Input Inequalities",
-                "",
-                as.vector(x$Inequality),
-                "")
+  toreturn <- c(
+    "! Network Data Input Inequalities",
+    "",
+    as.vector(x$Inequality),
+    ""
+  )
   return(toreturn)
 }

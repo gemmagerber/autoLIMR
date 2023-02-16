@@ -1,6 +1,7 @@
 Type: Package
 Package: autoLIMR
-Title: Automated Translation of Network Data into Declaration Files
+Year: 2023
+Title: Include data uncertainty in ecological network models with LIM-MCMC
     Compatible with 'LIM' and 'limSolve'
 Version: 2.1.0
 Authors@R: c(
@@ -8,14 +9,19 @@ Authors@R: c(
     c("aut", "cre"), comment = c(ORCID = "0000-0002-8722-3113")),
     person("Ben", "Brooker", role = "ctb"))
 Maintainer: Gemma Gerber <gemmagerber@live.com>
-Description: Using linear inverse modelling (LIM) via R packages 'LIM' and
-    'limSolve' are a great way to calculate multiple plausible network
-    solutions. These packages require network data to be coded into "LIM
-    Declaration Files", which can be be tedious and difficult to manually
-    code. 'autoLIMR' provides an automated translation from network data (in
-    .xlsx format) to LIM declaration files compatible with 'LIM' and
-    'limSolve'. 'autoLIMR' provides the option to translate multiple network
-    datasets into multiple LIM Declaration Files at once.
+Description: Ecosystems are often modelled as complex food web networks with 
+    inherent input data uncertainties. Increasingly popular techniques of 
+    incorporating data uncertainties in food web networks are applying linear 
+    inverse modelling and Markov Chain Monte Carlo (LIM-MCMC) to calculate 
+    multiple plausible representations of the food web within ecological 
+    constraints. However, the practical application of LIM-MCMC is restricted 
+    by difficulty in coding input files, solving multiple plausible networks, 
+    and evaluating model quality. To address these restrictions, we present R
+    package autoLIMR: an open-source automated workflow using LIM-MCMC to 
+    incorporate data uncertainty in food web networks. The main objectives 
+    are to improve the accessibility of LIM-MCMC to incorporate data 
+    uncertainties and to provide a consistent framework to enhance model 
+    output reporting and reproducibility. 
 License: MIT + file LICENSE
 URL: https://github.com/gemmagerber/autoLIMR
 BugReports: https://github.com/gemmagerber/autoLIMR/issues

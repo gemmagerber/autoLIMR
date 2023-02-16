@@ -1,8 +1,9 @@
-#' @title Function: net_data_ineq()
-#' @description Inequalities definition (with headings)
+### Function: net_data_ineq()
+#' Inequalities definition (with headings)
 #' @param x network input data matrix
 #' @param respiration  If respiration = TRUE in main autoLIMR argument
 #' @param primary_producer Primary producers defined in main autoLIMR function
+#' @export
 #'
 net_data_ineq <- function(x, respiration,
                           primary_producer) {
@@ -52,11 +53,7 @@ net_data_ineq <- function(x, respiration,
 
   x$Freq <- as.character(x$Freq)
 
-  x$Inequality <- ifelse(
-    x$Freq %in% c(
-      1, 0, "1", "0", "1.00",
-      "0.00000", "0.00000000", "0.000"
-    ),
+  x$Inequality <- ifelse(x$Freq %in% c(1, 0, "1", "0", "1.00"),
     "none",
     ifelse(
       grepl("lower|low|min|minimum", x$Var2, ignore.case = TRUE),

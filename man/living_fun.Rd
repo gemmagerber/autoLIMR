@@ -2,15 +2,13 @@
 % Please edit documentation in R/living_fun.R
 \name{living_fun}
 \alias{living_fun}
-\title{living_fun() part of prepack::multinets function
-Grabs living nodes}
+\title{living_fun() part of prepack_fun() function}
 \usage{
 living_fun(x)
 }
 \arguments{
-\item{x}{an object?}
+\item{x}{Solved full flow matrix}
 }
 \description{
-living_fun() part of prepack::multinets function
-Grabs living nodes
+Grabs vector of living nodes
 }

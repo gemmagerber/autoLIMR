@@ -2,15 +2,14 @@
 % Please edit documentation in R/fmat_fun.R
 \name{fmat_fun}
 \alias{fmat_fun}
-\title{fmat_fun, part of multinets function
-Extracts f matrices (only internal matrices excluding boundary flows)}
+\title{function fmat_fun()}
 \usage{
 fmat_fun(x)
 }
 \arguments{
-\item{x}{an object?}
+\item{x}{Solved full flow matrix}
 }
 \description{
-fmat_fun, part of multinets function
-Extracts f matrices (only internal matrices excluding boundary flows)
+Part of pre_pack() function in multi_net() function
+Extracts flow matrices (only internal matrices excluding boundary flows)
 }

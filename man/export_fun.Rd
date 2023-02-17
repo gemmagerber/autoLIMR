@@ -2,8 +2,7 @@
 % Please edit documentation in R/export_fun.R
 \name{export_fun}
 \alias{export_fun}
-\title{export_fun() part of prepack::multinets function
-Grabs nodes that have export flows across the boundary}
+\title{export_fun() part of prepack_fun() in multi_net() function}
 \usage{
 export_fun(x)
 }
@@ -11,6 +10,5 @@ export_fun(x)
 \item{x}{The flow matrix}
 }
 \description{
-export_fun() part of prepack::multinets function
-Grabs nodes that have export flows across the boundary
+Grabs values of nodal exports across the boundary
 }

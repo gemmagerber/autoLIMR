@@ -2,7 +2,7 @@
 % Please edit documentation in R/net_data_ineq.R
 \name{net_data_ineq}
 \alias{net_data_ineq}
-\title{Function: net_data_ineq()}
+\title{function: net_data_ineq()}
 \usage{
 net_data_ineq(x, respiration, primary_producer)
 }

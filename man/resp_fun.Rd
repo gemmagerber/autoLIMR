@@ -2,8 +2,7 @@
 % Please edit documentation in R/resp_fun.R
 \name{resp_fun}
 \alias{resp_fun}
-\title{resp_fun() part of prepack::multinets function
-Grabs internal, living nodes that respire}
+\title{resp_fun() function, part of pre_pack() function in multi_net function()}
 \usage{
 resp_fun(x)
 }
@@ -11,6 +10,5 @@ resp_fun(x)
 \item{x}{The flow matrix}
 }
 \description{
-resp_fun() part of prepack::multinets function
-Grabs internal, living nodes that respire
+Grabs values of internal nodes that respire
 }

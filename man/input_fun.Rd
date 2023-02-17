@@ -2,14 +2,13 @@
 % Please edit documentation in R/input_fun.R
 \name{input_fun}
 \alias{input_fun}
-\title{input_fun: part of prepack_net() function}
+\title{input_fun() function, part of prepack_fun() function}
 \usage{
 input_fun(x)
 }
 \arguments{
-\item{x}{an object?
-the input matrix}
+\item{x}{the input matrix}
 }
 \description{
-Grabs input nodes (only boundary flows in)
+Grabs input nodes values (only boundary flows in)
 }

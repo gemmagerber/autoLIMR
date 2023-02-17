@@ -1,5 +1,5 @@
-#' resp_fun() part of prepack::multinets function
-#' Grabs internal, living nodes that respire
+#' @title resp_fun() function, part of pre_pack() function in multi_net function()
+#' @description Grabs values of internal nodes that respire
 #'
 #' @param x The flow matrix
 #'
@@ -7,7 +7,7 @@ resp_fun <- function(x) {
   resp.vector <-
     as.vector(x[c(grep(
       rownames(x),
-      pattern = "Input|Export|CO2",
+      pattern = "Import|Export|CO2",
       value = TRUE,
       invert = TRUE
     )), c(grep(

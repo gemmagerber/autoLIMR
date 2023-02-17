@@ -1,13 +1,13 @@
-#' living_fun() part of prepack::multinets function
-#' Grabs living nodes
+#' @title living_fun() part of prepack_fun() function
+#' @description Grabs vector of living nodes
 #'
-#' @param x an object?
+#' @param x Solved full flow matrix
 #'
 living_fun <- function(x) {
   row.i <-
     grep(
       rownames(x),
-      pattern = "Input|Export|CO2",
+      pattern = "Import|Export|CO2",
       value = TRUE,
       invert = TRUE
     )

@@ -1,6 +1,7 @@
-#' fmat_fun, part of multinets function
-#' Extracts f matrices (only internal matrices excluding boundary flows)
-#' @param x an object?
+#' @title function fmat_fun()
+#' @description Part of pre_pack() function in multi_net() function
+#' Extracts flow matrices (only internal matrices excluding boundary flows)
+#' @inheritParams living_fun
 #'
 #'
 fmat_fun <- function(x) {
@@ -8,7 +9,7 @@ fmat_fun <- function(x) {
     x[c(
       grep(
         rownames(x),
-        pattern = "Input|Export|CO2",
+        pattern = "Import|Export|CO2",
         value = TRUE,
         invert = TRUE,
         ignore.case = TRUE
@@ -16,7 +17,7 @@ fmat_fun <- function(x) {
     ), c(
       grep(
         colnames(x),
-        pattern = "Input|Export|CO2",
+        pattern = "Import|Export|CO2",
         value = TRUE,
         invert = TRUE,
         ignore.case = TRUE

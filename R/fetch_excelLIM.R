@@ -14,7 +14,8 @@
 fetch_excelLIM <- function(force = FALSE) {
   if (!requireNamespace("utils", quietly = TRUE)) {
     stop("Package \"utils\" must be installed to use this function.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   fileURL <-
@@ -31,14 +32,16 @@ fetch_excelLIM <- function(force = FALSE) {
   # Check if working directory available
   if (!dir.exists(file.path(getwd()))) {
     stop("No working directory exists. Please set with setwd().",
-         call. = FALSE)
-
+      call. = FALSE
+    )
   } else {
     if (!force && interactive()) {
       title <-
-        paste0("May autoLIMR download '",
-               file,
-               "' and save to the working directory?")
+        paste0(
+          "May autoLIMR download '",
+          file,
+          "' and save to the working directory?"
+        )
       result <- utils::select.list(c("Yes", "No"), title = title)
       if (result == "Yes") {
         # Download and save

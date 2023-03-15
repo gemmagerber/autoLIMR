@@ -23,7 +23,7 @@ fetch_excelLIM <- function(force = FALSE) {
 
   file <- gsub(
     "https://github.com/gemmagerber/excelLIM/raw/main/",
-    replace = "",
+    replacement = "",
     x = fileURL
   )
 

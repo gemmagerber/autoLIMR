@@ -4,7 +4,7 @@ Year: 2023
 Title: 'autoLIMR': including data uncertainty in 
     ecological network models with linear inverse modelling and Markov Chain
     Monte Carlo
-Version: 2.1.1
+Version: 2.2.0
 Authors@R: c(
     person("Gemma", "Gerber", email = "gemmagerber@live.com", role =
     c("aut", "cre"), comment = c(ORCID = "0000-0002-8722-3113"))

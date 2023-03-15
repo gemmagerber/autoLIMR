@@ -1,13 +1,13 @@
 Type: Package
 Package: autoLIMR
 Year: 2023
-Title: Include data uncertainty in ecological network models with LIM-MCMC
-    Compatible with 'LIM' and 'limSolve'
+Title: 'autoLIMR': including data uncertainty in 
+    ecological network models with linear inverse modelling and Markov Chain
+    Monte Carlo
 Version: 2.1.1
 Authors@R: c(
     person("Gemma", "Gerber", email = "gemmagerber@live.com", role =
-    c("aut", "cre"), comment = c(ORCID = "0000-0002-8722-3113")),
-    person("Ben", "Brooker", role = "ctb"))
+    c("aut", "cre"), comment = c(ORCID = "0000-0002-8722-3113"))
 Maintainer: Gemma Gerber <gemmagerber@live.com>
 Description: Ecosystems are often modelled as complex food web networks with 
     inherent input data uncertainties. Increasingly popular techniques of 
@@ -17,7 +17,7 @@ Description: Ecosystems are often modelled as complex food web networks with
     constraints. However, the practical application of LIM-MCMC is restricted 
     by difficulty in coding input files, solving multiple plausible networks, 
     and evaluating model quality. To address these restrictions, we present R
-    package autoLIMR: an open-source automated workflow using LIM-MCMC to 
+    package 'autoLIMR': an open-source automated workflow using LIM-MCMC to 
     incorporate data uncertainty in food web networks. The main objectives 
     are to improve the accessibility of LIM-MCMC to incorporate data 
     uncertainties and to provide a consistent framework to enhance model 

@@ -6,7 +6,6 @@
 #' @importFrom network network set.edge.attribute set.vertex.attribute
 
 prepack_fun <- function(x, full_limfile) {
-
   if (!requireNamespace("network", quietly = TRUE)) {
     stop("Package \"network\" must be installed to use this function.",
       call. = FALSE

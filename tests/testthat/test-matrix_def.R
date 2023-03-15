@@ -20,7 +20,7 @@ test_that("Return import/export matrix based on search_cols function", {
 
   # Test that import matrix only contains columns with "Imports" in columns
   input_mat <- matrix_def(x = example_net, mat.type = "Input")
-  in_pattern = paste0(c("Import", "Input", "^+In+$", "^+IN+$", "IN_"), collapse = "|")
+  in_pattern <- paste0(c("Import", "Input", "^+In+$", "^+IN+$", "IN_"), collapse = "|")
   x <- all(grepl(in_pattern, colnames(input_mat)))
   expect_true(x)
 
@@ -29,5 +29,4 @@ test_that("Return import/export matrix based on search_cols function", {
   ex_pattern <- paste0(c("Export", "Exports", "Ex", "EX", "EX_"), collapse = "|")
   y <- all(grepl(ex_pattern, colnames(export_mat)))
   expect_true(y)
-
 })

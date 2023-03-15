@@ -10,4 +10,3 @@ library(testthat)
 library(autoLIMR)
 
 test_check("autoLIMR")
-

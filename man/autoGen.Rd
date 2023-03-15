@@ -62,13 +62,16 @@ If \code{data.R} files cannot be created a warning is raised.
 }
 \examples{
 \dontrun{
-autoGen(net_data_input = "your_network_data_workbook.xlsx",
-adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
-NLNode = "Detritus",
-primary_producer = "Plant"
-respiration = TRUE,
-respiration_element = "CO2",
-author = "Gemma Gerber",
-weighted = TRUE,
-force = TRUE)}
+autoGen(
+  net_data_input = "your_network_data_workbook.xlsx",
+  adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
+  NLNode = "Detritus",
+  primary_producer = "Plant",
+  respiration = TRUE,
+  respiration_element = "CO2",
+  author = "Gemma Gerber",
+  weighted = TRUE,
+  force = TRUE
+)
+}
 }

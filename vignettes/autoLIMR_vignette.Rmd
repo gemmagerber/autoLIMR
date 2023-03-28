@@ -4,7 +4,7 @@ author: "Gemma Gerber"
 date: "2023"
 output:
   rmarkdown::html_vignette:
-    number_sections: false
+    number_sections: true
     fig_caption: true
 vignette: >
   %\VignetteIndexEntry{autoLIMR_vignette}
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Introduction 
+# Introduction 
 
 A popular method of using linear inverse modelling with Markov Chain Monte Carlo (LIM-MCMC) to calculate multiple plausible networks is with opensource R and R package [LIM](https://cran.r-project.org/web/packages/LIM/index.html) (van Oevelen et al., 2010), and embedded R package [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html) (Soetaert et al., 2009). To use these packages, all input data on network structure (compartments and directed flows) and flow constraints (lower and upper bounds) need to be manually coded into linear equations and declared in particular sections in a LIM-readable text file, the so-called LIM declaration file (van Oevelen et al., 2010). For small networks, the manual construction of a LIM declaration file is straightforward but becomes less manageable in terms of complexity and time as network size increases.
 
@@ -35,7 +35,8 @@ To support researchers in translating network model input data into LIM declarat
 
 The automation saves time and effort, reduces coding error rates, and can be applied to networks of any size. While our example focuses on ecological networks, autoLIM applications are flexible and easily adaptable to a variety of system science disciplines. By removing a barrier in the network construction process, __autoLIMR__ can improve the uptake of LIM techniques in network modelling, and the quality of constructed networks. 
 
-## Installation
+# Software Requirements & Getting Started
+
 The latest version of '__autoLIMR__' can be installed from [GitHub](https://github.com/gemmagerber/autoLIMR). __autoLIMR__ dependencies are automatically installed, including cellranger (>= 1.1.0) (Bryan, 2016), readxl (>= 1.4.1) (Wickham and Bryan, 2022), and utils (>= 4.2.1) (R Core Team, 2022). 
 
 ```{r, eval = FALSE}
@@ -43,13 +44,29 @@ devtools::install_github("gemmageber/autoLIMR")
 library(autoLIMR)
 ```
 
-## Creating LIM Declaration Files with __autoLIMR__
+# __autoLIMR__ workflow overview
+
+_under construction_
+
+# User Guide
 
 We describe how to use __autoLIMR__ using a theoretical four-compartment network, describing the network interactions and flow constraints over seasonal time-steps of Winter, Spring, Summer, and Autumn.
 
 ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = 'justified', fig.cap = "_Conceptual four-compartment network with flows describing exchanges between compartments within and across a defined system boundary_"}
 knitr::include_graphics("images/network.png")
 ```
+
+## Data requirements
+
+Prior to using
+__autoLIMR__,
+all network data are calculated to a specific model currency or defined as proportions of another variable (see Fath et al., 2007; Scharler and Borrett, 2021 for details). In our example, the model currency is in units of carbon, i.e., mg C·m^--2^ for compartment biomasses, and mg C·m^--2^·day^--1^ for flows.
+
+## Network construction with __autoLIMR__
+
+
+# Creating LIM Declaration Files with __autoLIMR__
+
 
 
 Prior to using __autoLIMR__, all network data are calculated to a specific model currency or defined as simple proportions of another variable (Fath et al., 2007; Scharler and Borrett, 2021). In our example, the model currency is in units of carbon, i.e., mg C·m^--2^ for compartment biomasses, and mg C·m^--2^·day^--1^ for flows.
@@ -74,7 +91,7 @@ demo_net_input()
 ```
 
 
-### Adjacency Matrix Data Workbook
+## Adjacency Matrix Data Workbook
 
 In the 'Adjacency Matrix Input' workbook, flows between source (row _i_) and recipient (column _j_) are defined by `1`. If the proportions of compartmental inflow from different sources are provided, these can instead be entered as a constraint in the form of _lower value, upper value_. For example, `0.2,0.5` indicates that a specific flow comprises 20 - 50 % of compartment _j_'s total consumptive input. If only the lower proportion is known, it can be entered as _lower value, 1_, e.g., `0.2, 1` indicates that the flow contributes a minimum of 20 % and a maximum of 100% to total consumption. If only the upper diet proportion is known, it can be entered as the constraint _upper value_ or _0, upper value_ (e.g., `0.6` or `0, 0.6` – indicating that the flow contributes a maximum of 60 % to total consumption). R packages LIM and limSolve do not use flow values below or equal to zero (van Oevelen et al., 2010).
 
@@ -88,7 +105,7 @@ To view the adjacency matrix data for all seasons, the example adjacency matrix 
 demo_adj_mat()
 ```
 
-### autoGen(): write LIM declaration files into folders in working directory
+## `autoGen()`: write LIM declaration files into folders in working directory
 
 Once both workbooks have been populated, __autoLIMR__ uses the function `autoGen()` to take the information from both workbooks, and output ready to use LIM declaration file in RStudio script format (_.R_). __autoLIMR__ creates two folders in the working directory: 1) 'autoLIMR Weighted Network LIMfiles' and 2) 'autoLIMR Unweighted Network LIMfiles'.
 
@@ -269,6 +286,7 @@ Invertebrate_Q_Vertebrate = Vertebrate_Q * [0.6,1]
 
 ```
 
+##
 
 ### References
 * Bryan, J., 2016. _cellranger: Translate Spreadsheet Cell Ranges to Rows and Columns_. https://doi.org/https://cran.r-project.org/package=cellranger

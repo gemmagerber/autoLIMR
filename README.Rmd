@@ -26,27 +26,21 @@ devtools::load_all(".")
 [![Style](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml)
 <!-- badges: end -->
 
-The goal of autoLIMR is to automate the construction, calculation, and
-evaluation of multiple plausible networks using linear inverse modelling coupled 
-with Markov Chain Monte Carlo (LIM-MCMC).
+![autoLIMR](docs/images/autoLIMR logo.png)
 
-autoLIMR achieves this by:
+The goal of __autoLIMR__ is to facilitate the inclusion of data uncertainty in ecological models. __autoLIMR__ does this by: 
 
-* Translating network input data into files directly compatible with R packages [LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
-[limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
+1. Automated construction of input files from network data, directly compatible with R packages [LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
+[limSolve](https://cran.r-project.org/web/packages/limSolve/index.html) 
+2. Calculation of multiple plausible network configuration using linear inverse modelling and Markov Chain Monte Carlo (LIM-MCMC), and 
+3. Evaluation of model quality using several visual and statistical MCMC convergence diagnostics.
 
-* Solves multiple plausible networks using LIM-MCMC procedures in
-[LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
-[limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
-
-* Evaluates if the multiple plausible networks are representitave of the
-original input data using a suite of visual and statistical MCMC diagnostics.
-
-For more information please consult the html vignette (in progress)
+For more information please consult the 
+[html vignette](https://gemmagerber.github.io/autoLIMR)
 
 ## Installation
 
-You can install the latest version of autoLIMR from [GitHub](https://github.com/) with:
+You can install the latest version of __autoLIMR__ from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")

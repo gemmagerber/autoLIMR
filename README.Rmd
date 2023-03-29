@@ -26,7 +26,7 @@ devtools::load_all(".")
 [![Style](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml)
 <!-- badges: end -->
 
-![autoLIMR](vignettes/images/autoLIMR_logo.png)
+![autoLIMR](inst/doc/images/autoLIMR_logo.png)
 
 The goal of __autoLIMR__ is to facilitate the inclusion of data uncertainty in ecological models. __autoLIMR__ does this by: 
 
@@ -35,8 +35,6 @@ The goal of __autoLIMR__ is to facilitate the inclusion of data uncertainty in e
 2. Calculation of multiple plausible network configuration using linear inverse modelling and Markov Chain Monte Carlo (LIM-MCMC), and 
 3. Evaluation of model quality using several visual and statistical MCMC convergence diagnostics.
 
-For more information please consult the 
-[html vignette](https://gemmagerber.github.io/autoLIMR)
 
 ## Installation
 

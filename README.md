@@ -12,7 +12,7 @@ coverage](https://codecov.io/gh/gemmagerber/autoLIMR/branch/main/graph/badge.svg
 [![Style](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml)
 <!-- badges: end -->
 
-![autoLIMR](vignettes/images/autoLIMR_logo.png)
+![autoLIMR](inst/doc/images/autoLIMR_logo.png)
 
 The goal of **autoLIMR** is to facilitate the inclusion of data
 uncertainty in ecological models. **autoLIMR** does this by:
@@ -25,9 +25,6 @@ uncertainty in ecological models. **autoLIMR** does this by:
     inverse modelling and Markov Chain Monte Carlo (LIM-MCMC), and
 3.  Evaluation of model quality using several visual and statistical
     MCMC convergence diagnostics.
-
-For more information please consult the [html
-vignette](https://gemmagerber.github.io/autoLIMR)
 
 ## Installation
 

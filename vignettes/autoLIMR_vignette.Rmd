@@ -13,6 +13,10 @@ body {
 text-align: justify}
 </style>
 
+```{r setup, include = FALSE}
+library(bookdown)
+```
+
 ```{r, include=FALSE}
 devtools::load_all(".")
 ```

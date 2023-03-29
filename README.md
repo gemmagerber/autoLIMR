@@ -12,7 +12,7 @@ coverage](https://codecov.io/gh/gemmagerber/autoLIMR/branch/main/graph/badge.svg
 [![Style](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml)
 <!-- badges: end -->
 
-![autoLIMR](inst/doc/images/autoLIMR_logo.png)
+![autoLIMR](vignettes/images/autoLIMR_logo.png)
 
 The goal of **autoLIMR** is to facilitate the inclusion of data
 uncertainty in ecological models. **autoLIMR** does this by:

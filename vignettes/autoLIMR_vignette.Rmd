@@ -2,7 +2,7 @@
 title: "autoLIMR: Automated workflow for incorporation and evaluation of data uncertainty in ecological networks"
 author: "Gemma Gerber"
 date: "2023"
-output: bookdown::html_document2
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{autoLIMR_vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,7 +14,7 @@ text-align: justify}
 </style>
 
 ```{r setup, include = FALSE}
-library(bookdown)
+#library(bookdown)
 ```
 
 ```{r, include=FALSE}

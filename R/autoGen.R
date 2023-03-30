@@ -282,7 +282,6 @@ autoGen <- function(net_data_input = "demo",
   # Then write LIMfiles into the folders
 
   write_limfile <- function(type, object, force) {
-
     if (force == FALSE | is.null(force)) {
       stop("No permission to write LIMfiles. Please change by setting force = TRUE.")
     }
@@ -295,8 +294,8 @@ autoGen <- function(net_data_input = "demo",
       path <- file.path(getwd(), "unweighted_limfiles")
     }
 
-    if(force == TRUE | !force && interactive()) {
-    # Interactive
+    if (force == TRUE | !force && interactive()) {
+      # Interactive
       title <-
         paste0(
           "May autoLIMR create a folder of ",
@@ -308,11 +307,13 @@ autoGen <- function(net_data_input = "demo",
 
       # Check if working directory available. It should be.
       if (!dir.exists(file.path(getwd()))) {
-        stop("No working directory exists. Please set with setwd().")}
+        stop("No working directory exists. Please set with setwd().")
+      }
 
       # Check if dir exists. If not, create them.
       if (dir.exists(path) == FALSE) {
-        dir.create(path)}
+        dir.create(path)
+      }
 
       if (result == "Yes") {
         # Write files into subfolders in working directory
@@ -333,12 +334,10 @@ autoGen <- function(net_data_input = "demo",
           "LIM Declaration files successfully written to folders. Please check working directory."
         )
       }
-
     }
   }
 
 
   write_limfile(type = "Weighted", object = Weighted, force)
   write_limfile(type = "Unweighted", object = Unweighted, force)
-
 }

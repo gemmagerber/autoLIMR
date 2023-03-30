@@ -9,7 +9,7 @@ search_cols <- function(x, col.match) {
       as.vector(colnames(x)),
       pattern = paste0(
         c(
-          "Import", "Input", "^+In+$", "^+IN+$", "IN_"
+          "Import", "Input", "^+In+$", "^+IN+$", "IN_", "IM_", "^+IM+$", "^+Im+$"
         ),
         collapse = "|"
       ),
@@ -35,7 +35,7 @@ search_cols <- function(x, col.match) {
 
   if (col.match == "AE") {
     x <- grep(
-      colnames(x),
+      as.vector(colnames(x)),
       pattern = paste0(
         c(
           "AE", "Assimilation", "efficiency", "AssEm"

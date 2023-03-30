@@ -34,5 +34,6 @@ net_data_tidy <- function(x, NLNode) {
       pattern = " ",
       replace = ""
     ) # Substitute spaces for nothing
-  x
+  as.data.frame(x)
+  return(x)
 }

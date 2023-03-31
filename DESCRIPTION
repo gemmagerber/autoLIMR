@@ -1,9 +1,6 @@
 Type: Package
 Package: autoLIMR
-Year: 2023
-Title: 'autoLIMR': including data uncertainty in 
-    ecological network models with linear inverse modelling and Markov Chain
-    Monte Carlo
+Title: 'autoLIMR': Automated Workflow for Incorporation and Evaluation of Data Uncertainty in Ecological Networks
 Version: 2.2.1
 Authors@R: person("Gemma", "Gerber", email = "gemmagerber@live.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8722-3113"))
 Maintainer: Gemma Gerber <gemmagerber@live.com>

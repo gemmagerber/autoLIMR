@@ -34,7 +34,7 @@ at once. Includes 1) Summary, 2) Geweke (1992) Diagnostics,
 5) Raftery Lewis Diagnostics, and 6) Autocorrelation.
 }
 \examples{
-# The example LIM Declaration files can be found in the package folder
+\dontrun{# The example LIM Declaration files can be found in the package folder
 # "example_limfiles". If using a custom LIM Declaration file, users can
 # save the LIM Declaration file in the working directory and refer directly
 # within the function e.g., file = "mylimfile.R".
@@ -53,6 +53,6 @@ x <- multi_net(
   x0 = NULL
 )
 # mcmc_diags(x = x)
-mcmc_diags(x = x, flow = "Plant_GPP")
+mcmc_diags(x = x, flow = "Plant_GPP")}
 
 }

@@ -54,7 +54,7 @@ If the sample size (i.e., iterations) are too small, the
 function returns an error. We suggest keeping the sample size > 4000.
 }
 \examples{
-# Raftery and Lewis’s diagnostic of variables in
+\dontrun{# Raftery and Lewis’s diagnostic of variables in
 # Markov Chain object "multi_net_output"
 # generated from autoLIMR::multi_net().
 
@@ -77,6 +77,6 @@ x <- multi_net(
   x0 = NULL
 )
 # raftery_diag(x = x)
-raftery_diag(x = x, flow = "Plant_GPP")
+raftery_diag(x = x, flow = "Plant_GPP")}
 
 }

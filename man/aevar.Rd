@@ -2,8 +2,7 @@
 % Please edit documentation in R/aevar.R
 \name{aevar}
 \alias{aevar}
-\title{Assimilation efficiency defintion
-Defines assimilation efficiency variables if included in network input data workbook sheets}
+\title{Function aevar() : assimilation efficiency definition}
 \usage{
 aevar(x, respiration)
 }
@@ -13,6 +12,5 @@ aevar(x, respiration)
 \item{respiration}{If respiration = TRUE in main autoLIMR argument}
 }
 \description{
-Assimilation efficiency defintion
 Defines assimilation efficiency variables if included in network input data workbook sheets
 }

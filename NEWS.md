@@ -1,5 +1,10 @@
 # autoLIMR 2.2.2
 
+* Changes for CRAN acceptance
+* Citation entry changes
+* Excluded @dontrun examples in functions `mcmc_diags()` and `raftery_diags()`
+* Fixed bugs in function `aevar()`
+
 # autoLIMR 2.2.1
 
 Vignette updates.

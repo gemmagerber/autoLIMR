@@ -32,7 +32,7 @@ knitr::opts_chunk$set(
 
 Data variability is an inherent part of ecosystem models. To include data uncertainty in model outputs, a popular method is to solve multiple plausible representations of the model. The multiple plausible representations each represent a plausible configuration of flow values given the ecological input constraints. Together, the ensemble of plausible model representations capture the inherent ecological variability, enabling increased realism of model outputs and interpretations.
 
-Multiple plausible ecological networks are frequently solved using linear inverse modelling with Markov Chain Monte Carlo (LIM-MCMC) with R packages [LIM](https://cran.r-project.org/web/packages/LIM/index.html) (van Oevelen et al., 2010), and embedded R package [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html) (Soetaert et al., 2009). 
+Multiple plausible ecological networks are frequently solved using linear inverse modelling with Markov Chain Monte Carlo (LIM-MCMC) with R packages [LIM](https://CRAN.R-project.org/package=LIM) (van Oevelen et al., 2010), and embedded R package [limSolve](https://CRAN.R-project.org/package=limSolve) (Soetaert et al., 2009). 
 To use these packages, all input data on network structure (compartments and directed flows) and flow constraints (lower and upper bounds) need to be manually coded into linear equations and declared in particular sections in a LIM-readable text file, the so-called LIM declaration file (van Oevelen et al., 2010). For small networks, the manual construction of a LIM declaration file is straightforward but becomes less manageable in terms of complexity and time as network size increases.
 
 Further, the evaluation of how well the multiple plausible food webs represent the ecological input data (model quality) needs to be assessed. In ecological modelling, model quality is often assessed with traceplots (Van den Meersche et al., 2009; van der Heijden et al., 2020) and interpretations of convergence of each flow mean and standard deviation values to a stable value (Bell et al., 2017; de Jonge et al., 2020) or not reported at all. While these diagnostics provide some indication of LIM-MCMC algorithm performance, they neglect critical measures of algorithm performance, such as precise measures of mixing or autocorrelation (the degree to which samples are correlated), limiting the confidence that the model outputs are fully representative of the ecological input data. 
@@ -53,13 +53,13 @@ library(autoLIMR)
 # __autoLIMR__ workflow overview
 
 An ecosystem network consists of the biomass of each functional group or species, their energy or nutrient requirements and outputs, and their trophic interactions. These data are collected before using __autoLIMR__ (e.g., see Fath et al., 2007; Scharler & Borrett, 2021 for instructions on network construction). The first step to using __autoLIMR__ is to consolidate the data into two Excel workbooks (‘.xlsx’ file extension) containing network input data on compartments, biomasses, and metabolic constraints (Workbook 1), and the proportional diet and egestive flows between compartments (‘who eats who and by how much’, Workbook 2) (Figure \@ref(fig:workflow)). After that, the __autoLIMR__ workflow consists of three core R functions. The first function, `autoGen()`, translates network data into LIM declaration files compatible with R packages
-[LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
-[limSolve](https://cran.r-project.org/web/packages/limSolve/index.html).
+[LIM](https://CRAN.R-project.org/package=LIM) and
+[limSolve](https://CRAN.R-project.org/package=limSolve).
 Function `autoGen()` imports network data from the two pre-defined Excel workbooks, translates the data into linear equations describing network topography and parameters, arranges them in multiple ‘LIM Declaration files’ (‘.R’ file extension) each representing one network model, and writes these files to the computer hard drive. 
 
 The second core function, `multi_net()`, solves multiple plausible networks for each network model described by a LIM declaration file. Function `multi_net()` uses LIM-MCMC methods from R packages 
-[LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
-[limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
+[LIM](https://CRAN.R-project.org/package=LIM) and
+[limSolve](https://CRAN.R-project.org/package=limSolve)
 to simulate a user-defined number of plausible solutions valid within the ecologically derived input data constraints. With the `multi_net()` function, users can toggle the LIM-MCMC algorithm parameters (starting point, jump size, iterations). The result of the `multi_net()` function is an R list of combined model output items, including 1) metadata, 2) a table of solved food web flow values, and 3) solved values packed into network objects. 
 
 The third and final core function, `mcmc_diags()`, evaluates the quality of the multiple plausible networks, i.e., how well the networks represent the input data constraints, using several Markov Chain Monte Carlo (MCMC) convergence diagnostics. To statistically assess MCMC convergence of every flow of the multiple plausible networks, function `mcmc_diags()` applies six different MCMC convergence diagnostics and returns the output in a list. The convergence diagnostic outputs, when assessed together, provide a holistic assessment of three main criteria of convergence (stationarity, mixing, and sampling efficiency). An additional function, `mcmc_plots()`, plots five visual diagnostics for a single flow simultaneously. This is useful to assess convergence of a few flows of research interest, rather than all flows at once. 
@@ -85,7 +85,7 @@ all network data are calculated to a specific model currency or defined as propo
 ## Network construction with __autoLIMR__
 
 Prior to using __autoLIMR__, all network data are calculated to a specific model currency or defined as simple proportions of another variable (Fath et al., 2007; Scharler and Borrett, 2021). In our example, the model currency is in units of carbon, i.e., mg C·m^--2^ for compartment biomasses, and mg C·m^--2^·day^--1^ for flows. This informtion will be used to create LIM declaration files, which are the necessary input files for solving mulriple plausible networks with 
-[LIM](https://cran.r-project.org/web/packages/LIM/index.html) (van Oevelen et al., 2010), and embedded R package [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html) (Soetaert et al., 2009). 
+[LIM](https://CRAN.R-project.org/package=LIM) (van Oevelen et al., 2010), and embedded R package [limSolve](https://CRAN.R-project.org/package=limSolve) (Soetaert et al., 2009). 
 
 
 __autoLIMR__ requires the user to differentiate and store the required network data in two separate Excel documents: 1) contains all 'Network Input Data', and 2) contains all internal compartment interactions in 'Adjacency Matrix'. In each document, each sheet corresponds to one network, and each sheet should be named uniquely, and matched identically between the two documents. Both documents should be saved in the active R session working directory. We go through each document in detail below.
@@ -102,7 +102,7 @@ For all compartments that feature imports (_IM_) and exports (_EX_) across the s
 knitr::include_graphics("images/netinputwinter.png")
 ```
 
-To view the network input data for all seasons, the example network data provided with __autoLIMR__ can be downloaded from the [autoLIMR Supplemental Information GitHub repository](https://github.com/gemmagerber/autoLIM_Supplemental_Information), or fetched with `demo_net_input()`. The demo network data input is a list of four data tables containing network data input for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks.
+To view the network input data for all seasons, the example network data provided with __autoLIMR__ can be fetched with `demo_net_input()`. The demo network data input is a list of four data tables containing network data input for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks.
 
 ```{r, echo = TRUE}
 demo_net_input()
@@ -116,7 +116,7 @@ In the 'Adjacency Matrix Input' workbook, flows between source (row _i_) and rec
 knitr::include_graphics("images/adjmatwinter.PNG")
 ```
 
-To view the adjacency matrix data for all seasons, the example adjacency matrix data provided with __autoLIMR__ can be downloaded from the [autoLIMR Supplemental Information GitHub repository](https://github.com/gemmagerber/autoLIM_Supplemental_Information), or fetched with `demo_adj_mat()`. The demo adjacency matrix input is a list of four data tables containing adjacency matrices for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks. Each adjacency matrix describes internal flows of energy/material from compartment in row _i_ to compartment in column _j_.
+To view the adjacency matrix data for all seasons, the example adjacency matrix data provided with __autoLIMR__ can fetched with `demo_adj_mat()`. The demo adjacency matrix input is a list of four data tables containing adjacency matrices for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks. Each adjacency matrix describes internal flows of energy/material from compartment in row _i_ to compartment in column _j_.
 
 ```{r, echo = TRUE}
 demo_adj_mat()
@@ -306,7 +306,7 @@ Invertebrate_Q_Vertebrate = Vertebrate_Q * [0.6,1]
 ## Calculating multiple plausible networks
 
 Function `multi_net()` uses LIM-MCMC methods from R packages 
-[LIM](https://cran.r-project.org/web/packages/LIM/index.html) (van Oevelen et al., 2010), and  [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html) (Soetaert et al., 2009) 
+[LIM](https://CRAN.R-project.org/package=LIM) (van Oevelen et al., 2010), and  [limSolve](https://CRAN.R-project.org/package=limSolve) (Soetaert et al., 2009) 
 to simulate a user-defined number of plausible solutions valid within the ecologically derived input data constraints. With the `multi_net()` function, users can toggle the LIM-MCMC algorithm parameters (starting point, jump size, iterations). The result of the `multi_net()` function is an R list of combined model output items, including 1) metadata, 2) a table of solved food web flow values, and 3) solved values packed into network objects.
 
 ```{r, eval = FALSE}
@@ -408,17 +408,17 @@ diags_table
 # References
 * Bell, J. B., Woulds, C., & Oevelen, D. van. (2017). _Hydrothermal activity, functional diversity and chemoautotrophy are major drivers of seafloor carbon cycling_. Scientific Reports, 7(1), 12025. https://doi.org/10.1038/s41598-017-12291-w
 
-* Bryan, J., 2016. _cellranger: Translate Spreadsheet Cell Ranges to Rows and Columns_. https://doi.org/https://cran.r-project.org/package=cellranger
+* Bryan, J., 2016. _cellranger: Translate Spreadsheet Cell Ranges to Rows and Columns_. https://cran.r-project.org/package=cellranger
 
 * de Jonge, D. S. W., Stratmann, T., Lins, L., Vanreusel, A., Purser, A., Marcon, Y., Rodrigues, C. F., Ravara, A., Esquete, P., Cunha, M. R., Simon-Lledó, E., van Breugel, P., Sweetman, A. K., Soetaert, K., & van Oevelen, D. (2020). _Abyssal food-web model indicates faunal carbon flow recovery and impaired microbial loop 26 years after a sediment disturbance experiment_. Progress in Oceanography, 189, 102446. https://doi.org/10.1016/J.POCEAN.2020.102446
 
 * Fath, B.D., Scharler, U.M., Ulanowicz, R.E., Hannon, B., 2007. _Ecological network analysis: network construction_. Ecological Modelling. 208, 49–55. https://doi.org/10.1016/J.ECOLMODEL.2007.04.029
 
-* R Core Team, 2022. R: _A language and environment for statistical computing_. https://doi.org/https://www.r-project.org/
+* R Core Team, 2022. R: _A language and environment for statistical computing_. https://www.r-project.org/
 
-* Scharler, U.M., Borrett, S.R., 2021. _Network construction, evaluation and documentation: A guideline_. Environ. Model. Softw. 140, 105020. https://doi.org/https://doi.org/10.1016/j.envsoft.2021.105020
+* Scharler, U.M., Borrett, S.R., 2021. _Network construction, evaluation and documentation: A guideline_. Environ. Model. Softw. 140, 105020. https://doi.org/10.1016/j.envsoft.2021.105020
 
-* Soetaert, K., van den Meersche, K., van Oevelen, D., 2009. _limSolve: Solving Linear Inverse Models_. https://doi.org/https://cran.r-project.org/package=limSolve
+* Soetaert, K., van den Meersche, K., van Oevelen, D., 2009. _limSolve: Solving Linear Inverse Models_. https://cran.r-project.org/package=limSolve
 
 * Van den Meersche, K., Soetaert, K., & Oevelen, D. Van. (2009). xsample(): _An R Function for Sampling Linear Inverse Problems_. Journal of Statistical Software, 30(Code Snippet 1). https://doi.org/10.18637/jss.v030.c01
 
@@ -426,4 +426,4 @@ diags_table
 
 * van Oevelen, D., van den Meersche, K., Meysman, F.J.R., Soetaert, K., Middelburg, J.J., Vézina, A.F., 2010. _Quantifying food web flows using linear inverse models_. Ecosystems 13, 32–45. https://doi.org/10.1007/s10021-009-9297-6
 
-* Wickham, H., Bryan, J., 2022. _readxl: Read Excel Files_. https://doi.org/https://cran.r-project.org/package=readxl
+* Wickham, H., Bryan, J., 2022. _readxl: Read Excel Files_. https://cran.r-project.org/package=readxl

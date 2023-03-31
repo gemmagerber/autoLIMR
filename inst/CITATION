@@ -1,15 +1,11 @@
 citHeader("To cite autoLIMR in publications use:")
 
-citEntry(
-  entry    = "Unpublished",
+bibentry(
+  bibtype  = "Unpublished",
   note     = "in review",
-  title    = "'autoLIMR': including data uncertainty in
-    ecological network models with linear inverse modelling and Markov Chain
-    Monte Carlo",
-  author   = "Gemma Gerber",
+  title    = "'autoLIMR': Automated Workflow for Incorporation and Evaluation of Data Uncertainty in Ecological Networks",
+  author   = person("Gemma Gerber"),
   year     = "2023",
   url      = "https://github.com/gemmagerber/autoLIMR",
-  textVersion = "Gerber, G. 2023. 'autoLIMR': including data uncertainty in
-    ecological network models with linear inverse modelling and Markov Chain
-    Monte Carlo. R package v 2.2.0. URL: https://github.com/gemmagerber/autoLIMR"
+  textVersion = "Gerber, G. 2023. 'autoLIMR': Automated Workflow for Incorporation and Evaluation of Data Uncertainty in Ecological Networks. R package v 2.2.2. URL: https://github.com/gemmagerber/autoLIMR"
 )

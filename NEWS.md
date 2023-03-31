@@ -1,3 +1,5 @@
+# autoLIMR 2.2.2
+
 # autoLIMR 2.2.1
 
 Vignette updates.

@@ -1,7 +1,7 @@
 Type: Package
 Package: autoLIMR
 Title: 'autoLIMR': Automated Workflow for Incorporation and Evaluation of Data Uncertainty in Ecological Networks
-Version: 2.2.1
+Version: 2.2.2
 Authors@R: person("Gemma", "Gerber", email = "gemmagerber@live.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8722-3113"))
 Maintainer: Gemma Gerber <gemmagerber@live.com>
 Description: Ecosystems are often modelled as complex food web networks with 

@@ -19,8 +19,8 @@ uncertainty in ecological models. **autoLIMR** does this by:
 
 1.  Automated construction of input files from network data, directly
     compatible with R packages
-    [LIM](https://cran.r-project.org/web/packages/LIM/index.html) and
-    [limSolve](https://cran.r-project.org/web/packages/limSolve/index.html)
+    [LIM](https://CRAN.R-project.org/package=LIM) and
+    [limSolve](https://CRAN.R-project.org/package=limSolve)
 2.  Calculation of multiple plausible network configuration using linear
     inverse modelling and Markov Chain Monte Carlo (LIM-MCMC), and
 3.  Evaluation of model quality using several visual and statistical

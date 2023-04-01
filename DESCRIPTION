@@ -1,13 +1,13 @@
 Type: Package
 Package: autoLIMR
-Title: 'autoLIMR': Automated Workflow for Incorporation and Evaluation of Data Uncertainty in Ecological Networks
+Title: 'Incorporation and Evaluation of Data Uncertainty in Ecological Networks'
 Version: 2.2.2
 Authors@R: person("Gemma", "Gerber", email = "gemmagerber@live.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8722-3113"))
 Maintainer: Gemma Gerber <gemmagerber@live.com>
 Description: Ecosystems are often modelled as complex food web networks with 
     inherent input data uncertainties. Increasingly popular techniques of 
     incorporating data uncertainties in food web networks are applying linear 
-    inverse modelling and Markov Chain Monte Carlo (LIM-MCMC) to calculate 
+    inverse modelling and Markov Chain Monte Carlo to calculate 
     multiple plausible representations of the food web within ecological 
     constraints. However, the practical application of LIM-MCMC is restricted 
     by difficulty in coding input files, solving multiple plausible networks, 

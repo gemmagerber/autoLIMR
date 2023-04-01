@@ -1,8 +1,9 @@
-#' Function: search_cols()
-#' search and return columns that match type (as character vector) "Inputs", "Exports", "Assimilation Efficieny"
-#' @param x the matrix
-#' @param col.match the node type to match
-#' @export
+#' @title Function: search_cols()
+#' @Description Search and return columns that match type (as character vector)
+#' "Imports", "Exports", "Assimilation Efficieny"
+#' @param x Tidy network data input matrix
+#' @param col.match the compartment type to match
+#' @return
 search_cols <- function(x, col.match) {
   if (col.match == "Import") {
     x <- grep(

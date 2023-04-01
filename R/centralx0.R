@@ -1,5 +1,5 @@
-#' centralx0(): function to solve MCMC objects using the central MCMC
-#' solution (LIM::Xsample) as a starting point.
+#' @title centralx0(): function to solve MCMC objects using the central MCMC
+#' @description solution (LIM::Xsample) as a starting point.
 #' If central solution is not valid, defaults to LSEI
 #'
 #' @inheritParams defaultx0

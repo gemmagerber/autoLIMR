@@ -3,7 +3,7 @@
 
 #' @inheritParams NLNode_mat
 #' @inheritParams sci_notation_off
-#' @export
+#' @return
 #'
 net_data_tidy <- function(x, NLNode) {
   x <- as.matrix(x)

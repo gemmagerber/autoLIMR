@@ -34,17 +34,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{# Raftery and Lewis’s diagnostic of variables in
-#' # Markov Chain object "multi_net_output"
-#' # generated from autoLIMR::multi_net().
-#'
-#' # The example LIM Declaration files can be found in the package folder
-#' # "example_limfiles". If using a custom LIM Declaration file, users can
-#' # save the LIM Declaration file in the working directory and refer directly
-#' # within the function e.g., file = "mylimfile.R".
-#' # If the LIM Declaration file is not saved in the
-#' # working directory, the function will accept a valid file path.
-#'
+#' \donttest{
 #' fpath <- system.file("example_limfiles",
 #'   "Winter_Weighted_Network_LIMfile.R",
 #'   package = "autoLIMR"

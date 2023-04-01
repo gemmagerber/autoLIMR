@@ -1,9 +1,9 @@
-#' Function: read_all_sheets()
-#' Read all excel sheets, define as list, with sheet names as list element names
+#' @title Function: read_all_sheets()
+#' @description Read all excel sheets, define as list, with sheet names as list element names
 #' @param filename the filename of the user-supplied workbook
 #' @param tibble import as tibble? Always FALSE
 #' @importFrom readxl excel_sheets read_excel
-#' @export
+#' @return
 #'
 read_all_sheets <- function(filename, tibble = FALSE) {
   if (!requireNamespace("readxl", quietly = TRUE)) {

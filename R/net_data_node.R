@@ -1,9 +1,11 @@
-#' Function: net_data_node()
-#' define list of living/NL nodes/input/export
-#' @param x matrix/matrices
-#' @param node.type living/nonliving/Input/Export
-#' @param NLNode the defined NLNodes from the main autoLIMR argument
-#' @export
+#' @title Function: net_data_node()
+#' @description Defines vectors of living/non-living/input/export compartments
+#' @param x Tidy network data input matrix
+#' @param node.type One of living/nonliving/Input/Export
+#' @param NLNode the defined non-living (NLNode) from the main autoGen() argument
+#' @return A vector containing the node names for the compartments defined as
+#' living/non-living/import/export
+
 net_data_node <- function(x, node.type, NLNode) {
   if (node.type == "living") {
     LN <- grep(

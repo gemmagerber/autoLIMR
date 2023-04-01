@@ -47,7 +47,8 @@
 #'   x0 = NULL
 #' )
 #' # raftery_diag(x = x)
-#' raftery_diag(x = x, flow = "Plant_GPP")}
+#' raftery_diag(x = x, flow = "Plant_GPP")
+#' }
 #'
 raftery_diag <- function(x,
                          flow = NULL,

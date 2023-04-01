@@ -39,7 +39,8 @@
 #'   x0 = NULL
 #' )
 #' # mcmc_diags(x = x)
-#' mcmc_diags(x = x, flow = "Plant_GPP")}
+#' mcmc_diags(x = x, flow = "Plant_GPP")
+#' }
 #'
 mcmc_diags <- function(x, flow = NULL, ...) {
   ### Errors

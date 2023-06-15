@@ -18,9 +18,12 @@ aevar <- function(x, respiration) {
 
     # Search and extract living node names that also have AE
     aecols <- paste0(ae.search, collapse = "|") # Find columns that match AE
-    aemat <- living.mat[, grep(pattern = aecols,
-                               colnames(living.mat), invert = FALSE),
-                        drop = FALSE] # Drop all columns that are not AE columns
+    aemat <- living.mat[, grep(
+      pattern = aecols,
+      colnames(living.mat), invert = FALSE
+    ),
+    drop = FALSE
+    ] # Drop all columns that are not AE columns
     with.ae <- names(which(rowSums(is.na(aemat)) != ncol(aemat))) # Extract names of compartments with AE
 
     # Define AE variables only for compartments with AE

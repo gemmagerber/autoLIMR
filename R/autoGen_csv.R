@@ -12,21 +12,21 @@
 #' network LIM declaration file. If argument \code{weighted = FALSE}, a list
 #' containing a single LIM declaration file describing an unweighted network.
 
-autoGen_csv <- function (net_data_input,
-                         adj_mat_input,
-                         NLNode = NULL,
-                         respiration = TRUE,
-                         respiration_element = "CO2",
-                         primary_producer = NULL,
-                         author = NULL,
-                         date = NULL,
-                         weighted = TRUE,
-                         force = FALSE) {
+autoGen_csv <- function(net_data_input,
+                        adj_mat_input,
+                        NLNode = NULL,
+                        respiration = TRUE,
+                        respiration_element = "CO2",
+                        primary_producer = NULL,
+                        author = NULL,
+                        date = NULL,
+                        weighted = TRUE,
+                        force = FALSE) {
   # Execution: Print Errors for undefined sheets
   error_print(net_data_input, adj_mat_input)
 
   # Read in .csv files
-  read_all_csv <- function (filename, tibble = FALSE) {
+  read_all_csv <- function(filename, tibble = FALSE) {
     options("scipen" = 999)
     x <- utils::read.csv(paste0(filename), colClasses = "character", na.strings = "")
     x <- as.data.frame(x)
@@ -43,19 +43,23 @@ autoGen_csv <- function (net_data_input,
   # Define compartment list
   comp.list <- net_data_node_list(x = tidy_net_data)
   comp.list <-
-    c('### COMPARTMENTS',
+    c(
+      "### COMPARTMENTS",
       "",
       comp.list,
       "",
-      '### END COMPARTMENTS',
-      "")
+      "### END COMPARTMENTS",
+      ""
+    )
 
   # Define externals list
-  externals.list <- net_data_external_list(x = tidy_net_data,
-                                           respiration = respiration,
-                                           respiration_element = respiration_element)
+  externals.list <- net_data_external_list(
+    x = tidy_net_data,
+    respiration = respiration,
+    respiration_element = respiration_element
+  )
   externals.list <-
-    c('### EXTERNALS', "", externals.list, "", '### END EXTERNALS', "")
+    c("### EXTERNALS", "", externals.list, "", "### END EXTERNALS", "")
 
   # Define variables, change based on primary producers
   vars.list <- variable_def(
@@ -65,7 +69,7 @@ autoGen_csv <- function (net_data_input,
     respiration = respiration
   )
   vars.list <-
-    c('### VARIABLES', "", vars.list, '### END VARIABLES', "")
+    c("### VARIABLES", "", vars.list, "### END VARIABLES", "")
 
   ### Define flows
   # Define respiration and GPP flows
@@ -84,28 +88,32 @@ autoGen_csv <- function (net_data_input,
   admat.flows <- adj_mat_flows(x = tidy_admat_data)
 
   # Bind flows, give heading
-  flows <- c('### FLOWS',
-             "",
-             resp.flows,
-             inex.flows,
-             admat.flows,
-             "",
-             '### END FLOWS',
-             "")
+  flows <- c(
+    "### FLOWS",
+    "",
+    resp.flows,
+    inex.flows,
+    admat.flows,
+    "",
+    "### END FLOWS",
+    ""
+  )
 
 
   # Define inequalities
-  net_inequalities <- net_data_ineq(x = tidy_net_data,
-                                    primary_producer = primary_producer)
+  net_inequalities <- net_data_ineq(
+    x = tidy_net_data,
+    primary_producer = primary_producer
+  )
   admat_inequalities <- adj_mat_ineq(x = tidy_admat_data)
 
   ineq <- c(
-    '### INEQUALITIES',
+    "### INEQUALITIES",
     "",
     net_inequalities,
     admat_inequalities,
     "",
-    '### END INEQUALITIES',
+    "### END INEQUALITIES",
     ""
   )
 
@@ -139,40 +147,42 @@ autoGen_csv <- function (net_data_input,
   # Merge compartments with headings
   if (weighted == TRUE) {
     # Return weighted and unweighted
-    Weighted <- c(meta_w,
-                  meta_2,
-                  comp.list,
-                  externals.list,
-                  vars.list,
-                  flows,
-                  ineq)
-    Unweighted <- c(meta_uw,
-                    meta_2,
-                    comp.list,
-                    externals.list,
-                    vars.list,
-                    flows)
+    Weighted <- c(
+      meta_w,
+      meta_2,
+      comp.list,
+      externals.list,
+      vars.list,
+      flows,
+      ineq
+    )
+    Unweighted <- c(
+      meta_uw,
+      meta_2,
+      comp.list,
+      externals.list,
+      vars.list,
+      flows
+    )
     returnlist <- list(Weighted, Unweighted)
-    names(returnlist) <- c('Weighted', 'Unweighted')
+    names(returnlist) <- c("Weighted", "Unweighted")
     return(returnlist)
-
   } else if (weighted == FALSE) {
     # return only unweighted
-    Unweighted <- c(meta_uw,
-                    meta_2,
-                    comp.list,
-                    externals.list,
-                    vars.list,
-                    flows)
+    Unweighted <- c(
+      meta_uw,
+      meta_2,
+      comp.list,
+      externals.list,
+      vars.list,
+      flows
+    )
     returnlist <- list(Unweighted)
-    names(returnlist) <- c('Unweighted')
+    names(returnlist) <- c("Unweighted")
     return(returnlist)
   }
 
 
   ## Do we write the files to hard drive?
   ## If not, return as list of two objects
-
-
-
 }

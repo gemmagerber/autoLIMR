@@ -6,7 +6,6 @@
 error_print <-
   function(net_data_input,
            adj_mat_input) {
-
     if (is.null(net_data_input)) {
       stop(
         "Please provide the network input data workbook (.xlsx) or comma
@@ -24,10 +23,9 @@ error_print <-
     }
 
     if (!is.null(net_data_input) &
-        !is.null(adj_mat_input)) {
-
+      !is.null(adj_mat_input)) {
       # Test that network input data is an .xlsx workbook, .csv file, or 'demo'
-      if (grepl(net_data_input, pattern = '\\.csv$|\\.xlsx$|demo') == FALSE) {
+      if (grepl(net_data_input, pattern = "\\.csv$|\\.xlsx$|demo") == FALSE) {
         stop(
           "No network input workbook (.xlsx or .csv) provided, nor has the 'demo'
           data been stipulated. Within the 'net_data_input' argument, please
@@ -36,12 +34,11 @@ error_print <-
           biomass and inequalities. If you would like to use the demo datasets,
           please stipulate 'demo'."
         )
-
       }
 
       # Test that adjacency matrix input data is an .xlsx workbook, .csv file,
       # or 'demo'
-      if (grepl(adj_mat_input, pattern = '\\.csv$|\\.xlsx$|demo') == FALSE) {
+      if (grepl(adj_mat_input, pattern = "\\.csv$|\\.xlsx$|demo") == FALSE) {
         stop(
           "No adjacency matrix workbook (.xlsx or .csv) provided, nor has the
           'demo' data been stipulated. Within the 'adj_mat_input' argument,
@@ -53,12 +50,14 @@ error_print <-
       }
       # Test that network input data and adjacency matrix input data are the same file type
       net_data_input_filetype <- sub(net_data_input,
-                                     pattern = ".*\\.(.*)",
-                                     replacement = "\\1")
+        pattern = ".*\\.(.*)",
+        replacement = "\\1"
+      )
 
       adj_mat_input_filetype <- sub(adj_mat_input,
-                                    pattern = ".*\\.(.*)",
-                                    replacement = "\\1")
+        pattern = ".*\\.(.*)",
+        replacement = "\\1"
+      )
 
       if (net_data_input_filetype != adj_mat_input_filetype) {
         stop(
@@ -78,5 +77,4 @@ error_print <-
         )
       }
     }
-
   }

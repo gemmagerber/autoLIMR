@@ -8,7 +8,6 @@
 #' @examples
 #' x <- demo_net_input()
 #'
-
 demo_net_input <- function() {
   net_summer <- data.frame(
     Compartment = c("Det", "Plant", "Invert", "Vert"),

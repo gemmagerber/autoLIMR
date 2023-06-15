@@ -109,7 +109,8 @@
 #'   respiration = TRUE,
 #'   respiration_element = "CO2",
 #'   weighted = TRUE,
-#'   force = TRUE)
+#'   force = TRUE
+#' )
 #'
 #' autoGen(
 #'   net_data_input = "your_network_data_workbook.xlsx",
@@ -119,7 +120,8 @@
 #'   respiration = TRUE,
 #'   respiration_element = "CO2",
 #'   weighted = TRUE,
-#'   force = TRUE)
+#'   force = TRUE
+#' )
 #' }
 #'
 #' @export
@@ -134,103 +136,102 @@ autoGen <- function(net_data_input = "demo",
                     date = NULL,
                     weighted = TRUE,
                     force = FALSE) {
-
   # Function setup
   write_limfiles <- function(x, weighted, path = NULL) {
     if (is.null(path)) {
       path <- getwd()
-    } else if(!is.null(path)) {
+    } else if (!is.null(path)) {
       path <- path
     }
 
-    if(weighted == TRUE | is.null(weighted)) {
+    if (weighted == TRUE | is.null(weighted)) {
       # Create folders
       path_w <- file.path(path, "weighted_limfiles")
-      if (dir.exists(path_w) == FALSE) {dir.create(path_w)}
+      if (dir.exists(path_w) == FALSE) {
+        dir.create(path_w)
+      }
       path_uw <- file.path(path, "unweighted_limfiles")
-      if (dir.exists(path_uw) == FALSE) {dir.create(path_uw)}
+      if (dir.exists(path_uw) == FALSE) {
+        dir.create(path_uw)
+      }
 
       # For .csv original files
-      if(inherits(class(x[["Weighted"]]), 'character') == TRUE &
-         inherits(class(x[["Unweighted"]]),'character') == TRUE) {
-
-        write(x[['Weighted']],
-              paste0(path_w, "////", "Weighted_Network_LIMfile.R"))
-        write(x[['Unweighted']],
-              paste0(path_uw, "////", "Unweighted_Network_LIMfile.R"))
-
-      } else if(inherits(class(x[["Weighted"]]), 'list') == TRUE &
-                inherits(class(x[["Unweighted"]]), 'list') == TRUE) {
+      if (inherits(class(x[["Weighted"]]), "character") == TRUE &
+        inherits(class(x[["Unweighted"]]), "character") == TRUE) {
+        write(
+          x[["Weighted"]],
+          paste0(path_w, "////", "Weighted_Network_LIMfile.R")
+        )
+        write(
+          x[["Unweighted"]],
+          paste0(path_uw, "////", "Unweighted_Network_LIMfile.R")
+        )
+      } else if (inherits(class(x[["Weighted"]]), "list") == TRUE &
+        inherits(class(x[["Unweighted"]]), "list") == TRUE) {
         #
-        w <- x[['Weighted']]
-        uw <- x[['Unweighted']]
+        w <- x[["Weighted"]]
+        uw <- x[["Unweighted"]]
 
         for (i in 1:length(w)) {
-          write(w[[i]],
-                paste0(path_w, "////", names(w)[i], "_Weighted_Network_LIMfile.R"))
+          write(
+            w[[i]],
+            paste0(path_w, "////", names(w)[i], "_Weighted_Network_LIMfile.R")
+          )
         }
         for (i in 1:length(uw)) {
-          write(uw[[i]],
-                paste0(path_uw, "////", names(uw)[i], "_Unweighted_Network_LIMfile.R"))
+          write(
+            uw[[i]],
+            paste0(path_uw, "////", names(uw)[i], "_Unweighted_Network_LIMfile.R")
+          )
         }
-
       }
       message("LIM Declaration files successfully written to the working directory.")
-
-
-
-      } else if (weighted == FALSE) {
+    } else if (weighted == FALSE) {
       # Create folders
       path_uw <- file.path(path, "unweighted_limfiles")
-      if (dir.exists(path_uw) == FALSE) {dir.create(path_uw)}
+      if (dir.exists(path_uw) == FALSE) {
+        dir.create(path_uw)
+      }
 
       # For .csv original files
-      if(inherits(class(x[["Unweighted"]]), 'character') == TRUE) {
-
-        write(x[['Unweighted']],
-              paste0(path_uw, "////", "Unweighted_Network_LIMfile.R"))
-
-      } else if(inherits(class(x[["Unweighted"]]), 'list') == TRUE) {
-
-        uw <- x[['Unweighted']]
+      if (inherits(class(x[["Unweighted"]]), "character") == TRUE) {
+        write(
+          x[["Unweighted"]],
+          paste0(path_uw, "////", "Unweighted_Network_LIMfile.R")
+        )
+      } else if (inherits(class(x[["Unweighted"]]), "list") == TRUE) {
+        uw <- x[["Unweighted"]]
 
         for (i in 1:length(uw)) {
-          write(uw[[i]],
-                paste0(path_uw, "////", names(uw)[i], "_Unweighted_Network_LIMfile.R"))
+          write(
+            uw[[i]],
+            paste0(path_uw, "////", names(uw)[i], "_Unweighted_Network_LIMfile.R")
+          )
         }
-
       }
       message("LIM Declaration files successfully written to the working directory.")
     }
   }
 
   force_write_test <- function(x, weighted) {
-    if(force == FALSE | is.null(force)) {
+    if (force == FALSE | is.null(force)) {
       return(x)
-
     } else if (force == TRUE) {
-
-      if(interactive() == TRUE) {
-
+      if (interactive() == TRUE) {
         title <-
           paste0("May autoLIMR write LIM declaration files to the working directory?")
         result <- utils::select.list(c("Yes", "No"), title = title)
 
-        if(result == 'Yes') {
-
+        if (result == "Yes") {
           write_limfiles(x, weighted = weighted)
-
-        } else if(result == 'No') {
-
+        } else if (result == "No") {
           return(x)
         }
-      } else if(interactive() == FALSE) {
+      } else if (interactive() == FALSE) {
         # print('not interactive')
         return(x)
       }
-
     }
-
   }
 
   # Error checks
@@ -238,235 +239,233 @@ autoGen <- function(net_data_input = "demo",
 
   # Are input files .csv, .xlsx, or 'demo'?
   # If .csv ...
-  if (grepl(net_data_input, pattern = '\\.csv$') == TRUE &
-      grepl(adj_mat_input, pattern = '\\.csv$') == TRUE) {
-
-    limfile_list <- autoGen_csv(net_data_input = net_data_input,
-                                adj_mat_input = adj_mat_input,
-                                NLNode = NLNode,
-                                respiration = respiration,
-                                respiration_element = respiration_element,
-                                primary_producer = primary_producer,
-                                weighted = weighted,
-                                author = author,
-                                date = date)
+  if (grepl(net_data_input, pattern = "\\.csv$") == TRUE &
+    grepl(adj_mat_input, pattern = "\\.csv$") == TRUE) {
+    limfile_list <- autoGen_csv(
+      net_data_input = net_data_input,
+      adj_mat_input = adj_mat_input,
+      NLNode = NLNode,
+      respiration = respiration,
+      respiration_element = respiration_element,
+      primary_producer = primary_producer,
+      weighted = weighted,
+      author = author,
+      date = date
+    )
 
     force_write_test(x = limfile_list, weighted = weighted)
   } else {
-
-  # If input files are .xlsx or 'demo':
-  # Are we reading in demo data, or actual .xlsx files?
-  if (net_data_input == "demo") {
-    net_data_sheet_list <- demo_net_input() # Get demo data
-  } else {
-    net_data_sheet_list <-
-      read_all_sheets(filename = net_data_input) # Read in net data sheets
-  }
-
-  if (adj_mat_input == "demo") {
-    adj_matrix_sheet_list <- demo_adj_mat()
-  } else {
-
-    adj_matrix_sheet_list <-
-      read_all_sheets(filename = adj_mat_input) # Read in adjacency matrices
-  }
-
-  # Execution: Tidy up net_data_sheet_list
-  net_data_sheets <-
-    lapply(X = net_data_sheet_list, net_data_tidy, NLNode = NLNode)
-
-  # Execution: Tidy up adj mat sheets
-  adj_matrix_sheets <-
-    lapply(X = adj_matrix_sheet_list, adj_mat_tidy, NLNode = NLNode)
-
-  # Execution: define compartment list
-  comp.list <- lapply(X = net_data_sheets, FUN = net_data_node_list)
-  comp.list <- lapply(
-    X = comp.list,
-    function(x) {
-      c(
-        "### COMPARTMENTS",
-        "",
-        x,
-        "",
-        "### END COMPARTMENTS",
-        ""
-      )
+    # If input files are .xlsx or 'demo':
+    # Are we reading in demo data, or actual .xlsx files?
+    if (net_data_input == "demo") {
+      net_data_sheet_list <- demo_net_input() # Get demo data
+    } else {
+      net_data_sheet_list <-
+        read_all_sheets(filename = net_data_input) # Read in net data sheets
     }
-  )
 
-  # Execution: define externals list
-  externals.list <-
-    lapply(
+    if (adj_mat_input == "demo") {
+      adj_matrix_sheet_list <- demo_adj_mat()
+    } else {
+      adj_matrix_sheet_list <-
+        read_all_sheets(filename = adj_mat_input) # Read in adjacency matrices
+    }
+
+    # Execution: Tidy up net_data_sheet_list
+    net_data_sheets <-
+      lapply(X = net_data_sheet_list, net_data_tidy, NLNode = NLNode)
+
+    # Execution: Tidy up adj mat sheets
+    adj_matrix_sheets <-
+      lapply(X = adj_matrix_sheet_list, adj_mat_tidy, NLNode = NLNode)
+
+    # Execution: define compartment list
+    comp.list <- lapply(X = net_data_sheets, FUN = net_data_node_list)
+    comp.list <- lapply(
+      X = comp.list,
+      function(x) {
+        c(
+          "### COMPARTMENTS",
+          "",
+          x,
+          "",
+          "### END COMPARTMENTS",
+          ""
+        )
+      }
+    )
+
+    # Execution: define externals list
+    externals.list <-
+      lapply(
+        X = net_data_sheets,
+        FUN = net_data_external_list,
+        respiration,
+        respiration_element
+      )
+    externals.list <- lapply(
+      X = externals.list,
+      function(x) {
+        c(
+          "### EXTERNALS",
+          "",
+          x,
+          "",
+          "### END EXTERNALS",
+          ""
+        )
+      }
+    )
+
+    # Execution: define QPU variables, change based on primary producers
+    vars.list <- lapply(
       X = net_data_sheets,
-      FUN = net_data_external_list,
-      respiration,
-      respiration_element
+      FUN = variable_def,
+      NLNode = NLNode,
+      primary_producer = primary_producer,
+      respiration = respiration
     )
-  externals.list <- lapply(
-    X = externals.list,
-    function(x) {
-      c(
-        "### EXTERNALS",
-        "",
-        x,
-        "",
-        "### END EXTERNALS",
-        ""
+    var.list <- lapply(
+      X = vars.list,
+      function(x) {
+        c(
+          "### VARIABLES",
+          "",
+          x,
+          "",
+          "### END VARIABLES",
+          ""
+        )
+      }
+    )
+
+    ## Flow definition
+    # Define Respiration flows
+    resp.flows <- lapply(
+      X = net_data_sheets,
+      FUN = net_data_resp_flows,
+      respiration = TRUE,
+      respiration_element = respiration_element,
+      primary_producer = primary_producer,
+      NLNode = NLNode
+    )
+
+    # Define Import and Export flows
+    inex.flows <-
+      lapply(X = net_data_sheets, FUN = net_data_inex_flows)
+
+    # Define adjacency matrix flows (internal flows)
+    admat.flows <-
+      lapply(X = adj_matrix_sheets, adj_mat_flows)
+
+    # Merge flow lists, add section heading and ending
+    resp.lim <- lapply(
+      X = resp.flows,
+      function(x) {
+        c("### FLOWS", "", x)
+      }
+    )
+
+    inex.lim <- lapply(
+      X = inex.flows,
+      function(x) {
+        c(x)
+      }
+    )
+
+    admat.lim <- lapply(
+      X = admat.flows,
+      function(x) {
+        c(x, "", "### END FLOWS", "")
+      }
+    )
+
+
+    # Execution: Get inequalities from matrices
+    net_data_ineq_list <-
+      lapply(X = net_data_sheets, net_data_ineq, primary_producer = primary_producer)
+
+    netineq <- lapply(
+      X = net_data_ineq_list,
+      function(x) {
+        c("### INEQUALITIES", "", x)
+      }
+    )
+
+    adj_mat_ineq_list <-
+      lapply(X = adj_matrix_sheets, adj_mat_ineq)
+
+    admatineq <- lapply(
+      X = adj_mat_ineq_list,
+      function(x) {
+        c(x, "", "### END INEQUALITIES", "")
+      }
+    )
+
+    # Execution: Get metadata table1 for weighted file
+    meta_w <- lapply(
+      X = net_data_sheets,
+      FUN = meta1,
+      primary_producer = primary_producer,
+      respiration = respiration,
+      respiration_element = respiration_element,
+      NLNode = NLNode,
+      weighted = TRUE,
+      author = author,
+      date = date
+    )
+
+    # Execution: Get metadata table1 for unweighted file
+    meta_uw <- lapply(
+      X = net_data_sheets,
+      FUN = meta1,
+      primary_producer = primary_producer,
+      respiration = respiration,
+      respiration_element = respiration_element,
+      NLNode = NLNode,
+      weighted = FALSE
+    )
+
+    # Execution: get metadata table2
+    meta_2 <- lapply(
+      X = adj_matrix_sheets,
+      FUN = meta2
+    )
+
+
+
+    Weighted <-
+      Map(
+        c,
+        meta_w,
+        meta_2,
+        comp.list,
+        externals.list,
+        var.list,
+        resp.lim,
+        inex.lim,
+        admat.lim,
+        netineq,
+        admatineq
       )
-    }
-  )
 
-  # Execution: define QPU variables, change based on primary producers
-  vars.list <- lapply(
-    X = net_data_sheets,
-    FUN = variable_def,
-    NLNode = NLNode,
-    primary_producer = primary_producer,
-    respiration = respiration
-  )
-  var.list <- lapply(
-    X = vars.list,
-    function(x) {
-      c(
-        "### VARIABLES",
-        "",
-        x,
-        "",
-        "### END VARIABLES",
-        ""
+    Unweighted <-
+      Map(
+        c,
+        meta_uw,
+        meta_2,
+        comp.list,
+        externals.list,
+        var.list,
+        resp.lim,
+        inex.lim,
+        admat.lim
       )
-    }
-  )
 
-  ## Flow definition
-  # Define Respiration flows
-  resp.flows <- lapply(
-    X = net_data_sheets,
-    FUN = net_data_resp_flows,
-    respiration = TRUE,
-    respiration_element = respiration_element,
-    primary_producer = primary_producer,
-    NLNode = NLNode
-  )
+    returnlist <- list(Weighted, Unweighted)
+    names(returnlist) <- c("Weighted", "Unweighted")
 
-  # Define Import and Export flows
-  inex.flows <-
-    lapply(X = net_data_sheets, FUN = net_data_inex_flows)
-
-  # Define adjacency matrix flows (internal flows)
-  admat.flows <-
-    lapply(X = adj_matrix_sheets, adj_mat_flows)
-
-  # Merge flow lists, add section heading and ending
-  resp.lim <- lapply(
-    X = resp.flows,
-    function(x) {
-      c("### FLOWS", "", x)
-    }
-  )
-
-  inex.lim <- lapply(
-    X = inex.flows,
-    function(x) {
-      c(x)
-    }
-  )
-
-  admat.lim <- lapply(
-    X = admat.flows,
-    function(x) {
-      c(x, "", "### END FLOWS", "")
-    }
-  )
-
-
-  # Execution: Get inequalities from matrices
-  net_data_ineq_list <-
-    lapply(X = net_data_sheets, net_data_ineq, primary_producer = primary_producer)
-
-  netineq <- lapply(
-    X = net_data_ineq_list,
-    function(x) {
-      c("### INEQUALITIES", "", x)
-    }
-  )
-
-  adj_mat_ineq_list <-
-    lapply(X = adj_matrix_sheets, adj_mat_ineq)
-
-  admatineq <- lapply(
-    X = adj_mat_ineq_list,
-    function(x) {
-      c(x, "", "### END INEQUALITIES", "")
-    }
-  )
-
-  # Execution: Get metadata table1 for weighted file
-  meta_w <- lapply(
-    X = net_data_sheets,
-    FUN = meta1,
-    primary_producer = primary_producer,
-    respiration = respiration,
-    respiration_element = respiration_element,
-    NLNode = NLNode,
-    weighted = TRUE,
-    author = author,
-    date = date
-  )
-
-  # Execution: Get metadata table1 for unweighted file
-  meta_uw <- lapply(
-    X = net_data_sheets,
-    FUN = meta1,
-    primary_producer = primary_producer,
-    respiration = respiration,
-    respiration_element = respiration_element,
-    NLNode = NLNode,
-    weighted = FALSE
-  )
-
-  # Execution: get metadata table2
-  meta_2 <- lapply(
-    X = adj_matrix_sheets,
-    FUN = meta2
-  )
-
-
-
-  Weighted <-
-    Map(
-      c,
-      meta_w,
-      meta_2,
-      comp.list,
-      externals.list,
-      var.list,
-      resp.lim,
-      inex.lim,
-      admat.lim,
-      netineq,
-      admatineq
-    )
-
-  Unweighted <-
-    Map(
-      c,
-      meta_uw,
-      meta_2,
-      comp.list,
-      externals.list,
-      var.list,
-      resp.lim,
-      inex.lim,
-      admat.lim
-    )
-
-  returnlist <- list(Weighted, Unweighted)
-  names(returnlist) <- c('Weighted', 'Unweighted')
-
-  ### Function: write LIMfiles to sub folders in working directory
-  force_write_test(x = returnlist, weighted = weighted)
-
+    ### Function: write LIMfiles to sub folders in working directory
+    force_write_test(x = returnlist, weighted = weighted)
   }
-  }
+}

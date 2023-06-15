@@ -2,29 +2,40 @@
 % Please edit documentation in R/defaultx0.R
 \name{defaultx0}
 \alias{defaultx0}
-\title{function `defaultx0()`}
+\title{function defaultx0()}
 \usage{
 defaultx0(full_limfile, iter = NULL, jmp = NULL, x0 = NULL, ...)
 }
 \arguments{
-\item{full_limfile}{LIM Declaration file built from check_build()}
+\item{full_limfile}{LIM Declaration file built from \code{LIM_Read()}.}
 
-\item{iter}{Default = NULL. Number of iterations. Default = NULL returns 3000
-iterations of the MCMC samples.}
+\item{iter}{An integer defining the total number of iterations (samples)
+of the Markov Chain. If \code{NULL}, the default, the number of iterations
+is set at 3000. In our experience, we recommend setting a larger number of
+iterations (> 10,000) to ensure adequate sampling.}
 
-\item{jmp}{Default = NULL. If jmp = NULL, jump size is internally calculated.}
+\item{jmp}{An integer defining the jump size (loosely interpreted as the
+'distance' between iterative samples in the solution space).
+If \code{NULL}, the default, the jump size is internally
+calculated. If a value is provided, the value should be within the ranges of
+the flow magnitudes.}
 
-\item{x0}{Default = NULL. The inital starting point. Defaults to LSEI
-(x0 = NULL), or can be changed to the Central solutions calcualted with
-LIM::Xranges (x0 = "central").}
+\item{x0}{A single string defining the starting solution algorithm.
+If \code{NULL}, the default, the first solution of the Markov Chain is
+solved with Least Squares with Equalities and Inequalities (LSEI).
+If \code{"central"}, the first solution of the Markov Chain is solved with
+the central solution as per \code{LIM:Xranges}.}
 
 \item{...}{Further LIM::Xsample arguments.}
 }
 \value{
-Multiple plausible network flow values. The first sample is
+A list of multiple plausible network flow values. The first sample is
 calculated with Least Squares with Equalities and Inequalities (LSEI).
 }
 \description{
-: Solves MCMC objects using the default MCMC
-parsimonious solution LSEI (LIM::Xsample) as a starting point.
+Function to solve multiple plausible networks with Markov
+Chain Monte Carlo methods, with starting solution calculated by
+Least Squares with Equalities and
+Inequalities (LSEI), suitable
+for under determined LIM problems.
 }

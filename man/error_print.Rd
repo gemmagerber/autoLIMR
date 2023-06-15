@@ -2,15 +2,23 @@
 % Please edit documentation in R/error_print.R
 \name{error_print}
 \alias{error_print}
-\title{function error_print()}
+\title{Function: error_print()}
 \usage{
 error_print(net_data_input, adj_mat_input)
 }
 \arguments{
-\item{net_data_input}{the user-defined workbook with network input data}
+\item{net_data_input}{the user-defined network input data workbook
+(.xlsx) or comma separated value (.csv) filename and file extension
+containing biomass and inequalities. If the argument is missing, the
+function will stop and return an error prompting the user to declare
+the appropriate input file.}
 
-\item{adj_mat_input}{the user-defined workbook with adjacency matrices}
+\item{adj_mat_input}{the user-defined input data workbook (.xlsx) or comma
+separated value (.csv) filename and file extension containing
+adjacency matrices of internal network flows. If the argument is missing, the
+function will stop and return an error prompting the user to declare
+the appropriate input file.}
 }
 \description{
-Print Errors for undefined sheets
+Prints errors if input files are undefined
 }

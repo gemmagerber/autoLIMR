@@ -2,13 +2,16 @@
 % Please edit documentation in R/living_fun.R
 \name{living_fun}
 \alias{living_fun}
-\title{living_fun() part of prepack_fun() function}
+\title{living_fun()}
 \usage{
 living_fun(x)
 }
 \arguments{
 \item{x}{Solved full flow matrix}
 }
+\value{
+A vector of living compartments
+}
 \description{
-Grabs vector of living nodes
+Part of \code{prepack_fun()} function. Grabs living compartments.
 }

@@ -2,17 +2,20 @@
 % Please edit documentation in R/read_all_sheets.R
 \name{read_all_sheets}
 \alias{read_all_sheets}
-\title{Function: read_all_sheets()
-Read all excel sheets, define as list, with sheet names as list element names}
+\title{read_all_sheets()}
 \usage{
 read_all_sheets(filename, tibble = FALSE)
 }
 \arguments{
-\item{filename}{the filename of the user-supplied workbook}
+\item{filename}{the file name of the user-supplied workbook}
 
 \item{tibble}{import as tibble? Always FALSE}
 }
+\value{
+A list of data frames, each one describing a single network defined
+per sheet in the original network input data
+}
 \description{
-Function: read_all_sheets()
-Read all excel sheets, define as list, with sheet names as list element names
+Read all excel sheets, define as list,
+with sheet names as list element names
 }

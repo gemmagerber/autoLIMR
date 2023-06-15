@@ -2,15 +2,21 @@
 % Please edit documentation in R/net_data_node_list.R
 \name{net_data_node_list}
 \alias{net_data_node_list}
-\title{Function net_data_node_list()
-define compartment list}
+\title{net_data_node_list()}
 \usage{
 net_data_node_list(x)
 }
 \arguments{
-\item{x}{the net data input matrix}
+\item{x}{Tidy network data input matrix}
+}
+\value{
+A vector of compartments together with standing stock equalities.
+Living compartments arranged in alphabetical order.
+Non-living compartments (if applicable) are moved to the end of the list.
 }
 \description{
-Function net_data_node_list()
-define compartment list
+Defines the final compartment list with standing stock equalities
+to include in the LIM declaration file. Orders living compartments in
+alphabetical order, then moves non-living compartments (if applicable) to
+the end of the list
 }

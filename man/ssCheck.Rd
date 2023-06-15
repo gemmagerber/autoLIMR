@@ -2,21 +2,22 @@
 % Please edit documentation in R/ssCheck.R
 \name{ssCheck}
 \alias{ssCheck}
-\title{ssCheck
-A brief description goes here}
+\title{ssCheck}
 \usage{
 ssCheck(x, tol = 5, more = FALSE, zero.na = TRUE)
 }
 \arguments{
-\item{x}{not sure}
+\item{x}{network object}
 
-\item{tol}{not sure}
+\item{tol}{tolerance}
 
 \item{more}{not sure}
 
 \item{zero.na}{convert NA to zero}
 }
+\value{
+Are network objects balanced? Logical.
+}
 \description{
-ssCheck
 A brief description goes here
 }

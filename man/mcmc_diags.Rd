@@ -8,7 +8,7 @@ mcmc_diags(x, flow = NULL, ...)
 }
 \arguments{
 \item{x}{Object of class "multi_net_output" generated from
-autoLIMR::multi_net() function.}
+\code{autoLIMR::multi_net()} function.}
 
 \item{flow}{Character argument. By default, flow = NULL, and the convergence
 diagnostics are returned for each Markov Chain variable. If convergence
@@ -18,10 +18,10 @@ We suggest leaving the default flow = NULL.}
 
 \item{...}{Other arguments inherited from Markov chain convergence
 diagnostic functions. Check defaults in
-the coda package.}
+the \code{coda} package (Plummer et al., 2020).}
 }
 \value{
-A list containing data.tables of various Markov Chain
+A list containing data frames of various Markov Chain
 diagnostics included in package autoLIMR: 1) summary,
 2) Geweke (1992) Diagnostics, 3) Effective Sample Size,
 4) Heidelberger-Welch Diagnostics, 5) Raftery Lewis Diagnostics, and 6)
@@ -34,13 +34,7 @@ at once. Includes 1) Summary, 2) Geweke (1992) Diagnostics,
 5) Raftery Lewis Diagnostics, and 6) Autocorrelation.
 }
 \examples{
-\dontrun{# The example LIM Declaration files can be found in the package folder
-# "example_limfiles". If using a custom LIM Declaration file, users can
-# save the LIM Declaration file in the working directory and refer directly
-# within the function e.g., file = "mylimfile.R".
-# If the LIM Declaration file is not saved in the
-# working directory, the function will accept a valid file path.
-
+\donttest{
 fpath <- system.file("example_limfiles",
   "Winter_Weighted_Network_LIMfile.R",
   package = "autoLIMR"
@@ -53,6 +47,7 @@ x <- multi_net(
   x0 = NULL
 )
 # mcmc_diags(x = x)
-mcmc_diags(x = x, flow = "Plant_GPP")}
+mcmc_diags(x = x, flow = "Plant_GPP")
+}
 
 }

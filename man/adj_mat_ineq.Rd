@@ -2,15 +2,17 @@
 % Please edit documentation in R/adj_mat_ineq.R
 \name{adj_mat_ineq}
 \alias{adj_mat_ineq}
-\title{Function: adj_mat_ineq()
-Defines inequalities from adjacency matrix input workbook}
+\title{adj_mat_ineq()}
 \usage{
 adj_mat_ineq(x)
 }
 \arguments{
 \item{x}{Adjacency matrix}
 }
+\value{
+A vector of adjacency matrix inequalities with vanity headings
+to be included in the LIM declaration file
+}
 \description{
-Function: adj_mat_ineq()
 Defines inequalities from adjacency matrix input workbook
 }

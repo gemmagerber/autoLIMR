@@ -13,10 +13,10 @@ autoLIMR::multi_net() function.}
 \item{flow}{Character argument. By default, flow = NULL, and the convergence
 diagnostics are returned for each Markov chain variable. If convergence
 diagnostics are required for one Markov chain variable only,
-it can be specified as a character string e.g., flow = "Plant_GPP".
+it can be specified as a character string e.g., \code{flow = "Plant_GPP"}.
 We suggest leaving the default flow = NULL.}
 
-\item{xranges}{Logical argument, default = TRUE. Includes the LIM:Xranges
+\item{xranges}{Logical argument, default = TRUE. Includes the LIM::Xranges
 calculated flow ranges for each flow.}
 
 \item{...}{Other arguments}

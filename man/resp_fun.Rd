@@ -2,13 +2,17 @@
 % Please edit documentation in R/resp_fun.R
 \name{resp_fun}
 \alias{resp_fun}
-\title{resp_fun() function, part of pre_pack() function in multi_net function()}
+\title{resp_fun()}
 \usage{
 resp_fun(x)
 }
 \arguments{
 \item{x}{The flow matrix}
 }
+\value{
+Vector of living compartments that respire
+}
 \description{
-Grabs values of internal nodes that respire
+Part of \code{pre_pack()} function in \code{multi_net} function.
+Grabs values of internal nodes that respire.
 }

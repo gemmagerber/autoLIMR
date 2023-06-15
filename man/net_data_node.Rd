@@ -2,19 +2,21 @@
 % Please edit documentation in R/net_data_node.R
 \name{net_data_node}
 \alias{net_data_node}
-\title{Function: net_data_node()
-define list of living/NL nodes/input/export}
+\title{net_data_node()}
 \usage{
 net_data_node(x, node.type, NLNode)
 }
 \arguments{
-\item{x}{matrix/matrices}
+\item{x}{Tidy network data input matrix}
 
-\item{node.type}{living/nonliving/Input/Export}
+\item{node.type}{One of living/nonliving/Input/Export}
 
-\item{NLNode}{the defined NLNodes from the main autoLIMR argument}
+\item{NLNode}{the defined non-living (NLNode) from the main autoGen() argument}
+}
+\value{
+A vector containing the node names for the compartments defined as
+living/non-living/import/export
 }
 \description{
-Function: net_data_node()
-define list of living/NL nodes/input/export
+Defines vectors of living/non-living/input/export compartments
 }

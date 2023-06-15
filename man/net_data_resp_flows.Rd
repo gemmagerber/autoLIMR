@@ -2,7 +2,7 @@
 % Please edit documentation in R/net_data_resp_flows.R
 \name{net_data_resp_flows}
 \alias{net_data_resp_flows}
-\title{Defines repiration flows}
+\title{net_data_resp_flows()}
 \usage{
 net_data_resp_flows(
   x,
@@ -13,16 +13,37 @@ net_data_resp_flows(
 )
 }
 \arguments{
-\item{x}{network data input matrix}
+\item{x}{Tidy network data input matrix.}
 
-\item{respiration}{If respiration = TRUE in main autoLIMR argument}
+\item{respiration}{Logical. Is respiration included in the network model?
+If \code{TRUE}, the default, named respiration
+flows are defined from all defined living compartments (in the case of
+ecological networks) to an external carbon dioxide \code{'CO2'} sink (e.g.,
+\code{Invertebrate_R: Invertebrate -> CO2}). Additionally, if primary
+producers are included in the network (e.g., ecological networks), Gross
+Primary Production (GPP) flows are defined for each primary-producing
+compartment as the flow of energy/material from the external carbon
+dioxide sink to the compartment (e.g., \code{Plant_GPP: CO2 -> Plant}).
+If \code{FALSE}, no
+respiration flows are defined for living compartments.}
 
-\item{respiration_element}{if Respiration = TRUE, the respiration element to be defined. Default to "CO2"}
+\item{respiration_element}{Character vector. If \code{NULL}, the default,
+the external respiration element is defined as \code{'CO2'}.
+This argument is only valid if argument \code{respiration = TRUE}.}
 
-\item{primary_producer}{Primary producers defined in main autoLIMR function}
+\item{primary_producer}{Character vector defining one or multiple
+primary producer compartments (in the case of ecological networks)
+e.g., \code{primary_producer = "Plant"},
+\code{primary_producer = c("Plant", "Plant2")}.}
 
-\item{NLNode}{character non-living nodes}
+\item{NLNode}{Character vector defining one or multiple non-living
+compartments e.g., \code{NLNode = "Detritus"},
+\code{NLNode = c("Detritus", "Detritus2")}.}
+}
+\value{
+Vector containing the respiration flows and vanity headings
 }
 \description{
-Defines repiration flows
+Constructs respiration flows for each living compartment, if
+respiration is included in the model, and the external sink is 'CO2'
 }

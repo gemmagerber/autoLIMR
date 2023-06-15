@@ -2,8 +2,7 @@
 % Please edit documentation in R/NLNode_mat.R
 \name{NLNode_mat}
 \alias{NLNode_mat}
-\title{NLNode_mat
-Append NLNode to non-living nodes in rows and columns of matrices}
+\title{NLNode_mat()}
 \usage{
 NLNode_mat(x, NLNode)
 }
@@ -12,7 +11,9 @@ NLNode_mat(x, NLNode)
 
 \item{NLNode}{the defined NLNodes from the main autoLIMR argument}
 }
+\value{
+a matrix with 'NLNode' string attached to non-living compartments
+}
 \description{
-NLNode_mat
 Append NLNode to non-living nodes in rows and columns of matrices
 }

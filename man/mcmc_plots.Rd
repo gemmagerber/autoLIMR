@@ -2,7 +2,7 @@
 % Please edit documentation in R/mcmc_plots.R
 \name{mcmc_plots}
 \alias{mcmc_plots}
-\title{mcmc_plots(): visual Markov chian doagnostics}
+\title{mcmc_plots(): visual Markov chain diagnostics}
 \usage{
 mcmc_plots(x, flow, xranges = FALSE, ...)
 }
@@ -14,17 +14,18 @@ output list (class(output) == "multi_net_model).}
 
 \item{flow}{Character argument. The specified name of the flow plot.}
 
-\item{xranges}{Logical argument, default FALSE. If xranges = TRUE, the plot
+\item{xranges}{Logical. If \code{xranges = FALSE}, the default, the lines
+indicaitng minimum and maximum are excluded from the plot.
+If \code{xranges = TRUE}, the plot
 includes horizontal lines in the trace plot indicating absolute maximum and
-minimum values of the flow range calculated by LIM::Xranges.
-If xranges = FALSE, the minimum and maximum lines are omitted from the plot.}
+minimum values of the flow range calculated by \code{LIM::Xranges}.}
 
 \item{...}{Other base R graphical parameters. See ?plot for more details.}
 }
 \value{
 A plot containing various Markov chain convergence diagnostic plots
-for a single Markov chian variable:
-1) trace, 2) kernal density, 3) running mean, 4) Geweke, and 5) Autocorrelation
+for a single Markov chain variable:
+1) trace, 2) kernel density, 3) running mean, 4) Geweke, and 5) Autocorrelation
 }
 \description{
 Function to return five visual Markov chain convergence
@@ -37,17 +38,6 @@ For any variable of MCMC object, this function returns the following plots:
 5) Autocorrelation.
 }
 \examples{
-# Visual diagnostics of variables in
-# Markov Chain object "multi_net_output"
-# generated from autoLIMR::multi_net().
-
-# The example LIM Declaration files can be found in the package folder
-# "example_limfiles". If using a custom LIM Declaration file, users can
-# save the LIM Declaration file in the working directory and refer directly
-# within the function e.g., file = "mylimfile.R".
-# If the LIM Declaration file is not saved in the
-# working directory, the function will accept a valid file path.
-
 fpath <- system.file("example_limfiles",
   "Winter_Weighted_Network_LIMfile.R",
   package = "autoLIMR"

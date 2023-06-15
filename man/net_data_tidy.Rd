@@ -7,9 +7,17 @@
 net_data_tidy(x, NLNode)
 }
 \arguments{
-\item{x}{the matrix/matrices}
+\item{x}{Network input data sheet}
 
-\item{NLNode}{the defined NLNodes from the main autoLIMR argument}
+\item{NLNode}{Character vector defining one or multiple non-living
+compartments e.g., \code{NLNode = "Detritus"},
+\code{NLNode = c("Detritus", "Detritus2")}.}
+}
+\value{
+Data frame of tidy input data. Tidy data includes adding 'NLNode'
+strings to non-living nodes, replacing spaces " " with a period "."
+in compartment names, switching off scientific notation, removing all
+compartments with a biomass of  <= 0
 }
 \description{
 Tidies up network data input sheet

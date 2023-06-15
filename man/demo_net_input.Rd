@@ -2,7 +2,7 @@
 % Please edit documentation in R/demo_net_input.R
 \name{demo_net_input}
 \alias{demo_net_input}
-\title{demo_net_input(): demo network data}
+\title{demo_net_input()}
 \usage{
 demo_net_input()
 }
@@ -12,4 +12,8 @@ A list containing 4 seasons worth of network input data
 \description{
 Create a named list of demo network input data sheets for
 four-node seasonal network
+}
+\examples{
+x <- demo_net_input()
+
 }

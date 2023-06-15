@@ -2,8 +2,7 @@
 % Please edit documentation in R/sci_notation_off.R
 \name{sci_notation_off}
 \alias{sci_notation_off}
-\title{sci_notation_off
-Turns off scientific notation}
+\title{sci_notation_off()}
 \usage{
 sci_notation_off(x)
 }
@@ -11,6 +10,5 @@ sci_notation_off(x)
 \item{x}{the imported matrix/matrices}
 }
 \description{
-sci_notation_off
 Turns off scientific notation
 }

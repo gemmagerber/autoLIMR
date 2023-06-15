@@ -2,7 +2,7 @@
 % Please edit documentation in R/raftery_diag.R
 \name{raftery_diag}
 \alias{raftery_diag}
-\title{raftery_diag(): Raftery and Lewis’s diagnostic}
+\title{raftery_diag()}
 \usage{
 raftery_diag(
   x,
@@ -16,13 +16,13 @@ raftery_diag(
 }
 \arguments{
 \item{x}{Object of class "multi_net_output" generated from
-autoLIMR::multi_net() function.}
+\code{autoLIMR::multi_net()} function.}
 
 \item{flow}{Character argument. By default, flow = NULL, and the convergence
 diagnostics are returned for each Markov Chain variable. If convergence
 diagnostics are required for one Markov chain variable only,
-it can be specified as a character string e.g., flow = "Plant_GPP".
-We suggest leaving the default flow = NULL.}
+it can be specified as a character string e.g., \code{flow = "Plant_GPP"}.
+We suggest leaving the default \code{flow = NULL}.}
 
 \item{q}{the quantile to be estimated.}
 
@@ -32,7 +32,7 @@ We suggest leaving the default flow = NULL.}
 
 \item{converge.eps}{Precision required for estimate of time to convergence.}
 
-\item{...}{Other arguments from coda::raftery.diag(). Check defaults in
+\item{...}{Other arguments from \code{coda::raftery.diag()}. Check defaults in
 the coda package.}
 }
 \value{
@@ -47,28 +47,20 @@ See coda package for further details.
 \description{
 Function to calculate Raftery and Lewis’s
 convergence diagnostic for autoLIMR Markov chains.
-Based on coda::raftery.diag() function (Plummer et al., 2020).
+Based on \code{coda::raftery.diag()} function (Plummer et al., 2020).
 }
 \details{
 If the sample size (i.e., iterations) are too small, the
 function returns an error. We suggest keeping the sample size > 4000.
 }
 \examples{
-\dontrun{# Raftery and Lewis’s diagnostic of variables in
-# Markov Chain object "multi_net_output"
-# generated from autoLIMR::multi_net().
-
-# The example LIM Declaration files can be found in the package folder
-# "example_limfiles". If using a custom LIM Declaration file, users can
-# save the LIM Declaration file in the working directory and refer directly
-# within the function e.g., file = "mylimfile.R".
-# If the LIM Declaration file is not saved in the
-# working directory, the function will accept a valid file path.
-
-fpath <- system.file("example_limfiles",
-  "Winter_Weighted_Network_LIMfile.R",
-  package = "autoLIMR"
+\donttest{
+fpath <- system.file(
+"example_limfiles",
+"Winter_Weighted_Network_LIMfile.R",
+package = "autoLIMR"
 )
+
 set.seed(1)
 x <- multi_net(
   file = fpath,
@@ -77,6 +69,7 @@ x <- multi_net(
   x0 = NULL
 )
 # raftery_diag(x = x)
-raftery_diag(x = x, flow = "Plant_GPP")}
+raftery_diag(x = x, flow = "Plant_GPP")
+}
 
 }

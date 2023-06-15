@@ -18,23 +18,45 @@ meta1(
 \arguments{
 \item{x}{network input data matrix}
 
-\item{author}{Character vector. LIM declaration file author name.Defaults to system user.}
+\item{author}{Character vector. LIM declaration file author name.
+Defaults to system user.}
 
-\item{date}{Character vector. Date of file creation. Defaults to system date.}
+\item{date}{Character vector. Date of file creation. If \code{NULL},
+the default, the date defaults to the system date.}
 
-\item{respiration}{Logical. Is respiration included in the network model? Default = TRUE}
+\item{respiration}{Logical. Is respiration included in the network model?
+If \code{TRUE}, the default, named respiration
+flows are defined from all defined living compartments (in the case of
+ecological networks) to an external carbon dioxide \code{'CO2'} sink (e.g.,
+\code{Invertebrate_R: Invertebrate -> CO2}). Additionally, if primary
+producers are included in the network (e.g., ecological networks), Gross
+Primary Production (GPP) flows are defined for each primary-producing
+compartment as the flow of energy/material from the external carbon
+dioxide sink to the compartment (e.g., \code{Plant_GPP: CO2 -> Plant}).
+If \code{FALSE}, no
+respiration flows are defined for living compartments.}
 
-\item{respiration_element}{Character vector. If Respiration = TRUE,
-the external respiration sink element to be defined. Defaults to "CO2"}
+\item{respiration_element}{Character vector. If \code{NULL}, the default,
+the external respiration element is defined as \code{'CO2'}.
+This argument is only valid if argument \code{respiration = TRUE}.}
 
-\item{NLNode}{Character vector defining non-living compartments e.g.,
-NLNode = "Detritus", NLNode = c("Detritus", "Detritus2")}
+\item{NLNode}{Character vector defining one or multiple non-living
+compartments e.g., \code{NLNode = "Detritus"},
+\code{NLNode = c("Detritus", "Detritus2")}.}
 
-\item{weighted}{Logical. Return weighted LIM declaration files? Defaults to TRUE}
+\item{weighted}{Logical. Return weighted LIM declaration files? If \code{NULL},
+the default, both weighted and unweighted LIM declaration files are returned.
+Defaults to \code{TRUE}.}
 
-\item{primary_producer}{Character vector defining primary producer compartments e.g.,
-primary_producer = "Plant", primary_producer = c("Plant", "Plant2")}
+\item{primary_producer}{Character vector defining one or multiple
+primary producer compartments (in the case of ecological networks)
+e.g., \code{primary_producer = "Plant"},
+\code{primary_producer = c("Plant", "Plant2")}.}
+}
+\value{
+a list of metadata
 }
 \description{
-Defines the first part of the metadata from network input data workbook sheets
+Defines the first part of the metadata from network
+input data workbook sheets
 }

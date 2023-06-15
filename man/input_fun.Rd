@@ -2,13 +2,17 @@
 % Please edit documentation in R/input_fun.R
 \name{input_fun}
 \alias{input_fun}
-\title{input_fun() function, part of prepack_fun() function}
+\title{input_fun()}
 \usage{
 input_fun(x)
 }
 \arguments{
 \item{x}{the input matrix}
 }
+\value{
+A matrix of imports
+}
 \description{
-Grabs input nodes values (only boundary flows in)
+Part of \code{prepack_fun()} function.
+Grabs input nodes values (only boundary flows in) from solved flow matrices.
 }

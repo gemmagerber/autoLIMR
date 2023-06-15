@@ -2,13 +2,13 @@
 % Please edit documentation in R/heidel_diag.R
 \name{heidel_diag}
 \alias{heidel_diag}
-\title{heidel_diag(): Heidelberger and Welch convergence diagnostic}
+\title{heidel_diag()}
 \usage{
 heidel_diag(x, flow = NULL, eps = 0.1, pvalue = 0.05, ...)
 }
 \arguments{
 \item{x}{Object of class "multi_net_output" generated from
-autoLIMR::multi_net() function.}
+\code{autoLIMR::multi_net()} function.}
 
 \item{flow}{Character argument. By default, flow = NULL, and the convergence
 diagnostics are returned for each Markov Chain variable. If convergence
@@ -20,7 +20,7 @@ We suggest leaving the default flow = NULL.}
 
 \item{pvalue}{significance level to use}
 
-\item{...}{Other arguments from coda::heidel.diag()}
+\item{...}{Other arguments from \code{coda::heidel.diag()}}
 }
 \value{
 Data frame with each row corresponding to one Markov chain variable,
@@ -35,20 +35,9 @@ and columns describing Heidelberger-Welch diagnostics. Includes
 \description{
 Function to calculate Heidelberger and Welch’s
 convergence diagnostic for autoLIMR Markov chains.
-Based on coda::heidel.diag() function (Plummer et al., 2020).
+Based on \code{coda::heidel.diag()} function (Plummer et al., 2020).
 }
 \examples{
-# Heidelberger and Welch’s convergence diagnostic of
-# variables in object "multi_net_output"
-# generated from autoLIMR::multi_net().
-
-# The example LIM Declaration files can be found in the package folder
-# "example_limfiles". If using a custom LIM Declaration file, users can
-# save the LIM Declaration file in the working directory and refer directly
-# within the function e.g., file = "mylimfile.R".
-# If the LIM Declaration file is not saved in the
-# working directory, the function will accept a valid file path.
-
 fpath <- system.file("example_limfiles",
   "Winter_Weighted_Network_LIMfile.R",
   package = "autoLIMR"

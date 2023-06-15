@@ -9,10 +9,25 @@ net_data_external_list(x, respiration, respiration_element)
 \arguments{
 \item{x}{net data input matrix/matrices}
 
-\item{respiration}{Respiration = TRUE as defined in main autoLIMR function}
+\item{respiration}{Logical. Is respiration included in the network model?
+If \code{TRUE}, the default, named respiration
+flows are defined from all defined living compartments (in the case of
+ecological networks) to an external carbon dioxide \code{'CO2'} sink (e.g.,
+\code{Invertebrate_R: Invertebrate -> CO2}). Additionally, if primary
+producers are included in the network (e.g., ecological networks), Gross
+Primary Production (GPP) flows are defined for each primary-producing
+compartment as the flow of energy/material from the external carbon
+dioxide sink to the compartment (e.g., \code{Plant_GPP: CO2 -> Plant}).
+If \code{FALSE}, no
+respiration flows are defined for living compartments.}
 
-\item{respiration_element}{if Respiration = TRUE, the respiration element to be defined. Default to "CO2"}
+\item{respiration_element}{Character vector. If \code{NULL}, the default,
+the external respiration element is defined as \code{'CO2'}.
+This argument is only valid if argument \code{respiration = TRUE}.}
+}
+\value{
+Vector of external compartments
 }
 \description{
-define externals list
+define externals list for LIM declaration file
 }

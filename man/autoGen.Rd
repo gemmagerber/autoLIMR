@@ -2,7 +2,7 @@
 % Please edit documentation in R/autoGen.R
 \name{autoGen}
 \alias{autoGen}
-\title{Function autoGen()}
+\title{autoGen()}
 \usage{
 autoGen(
   net_data_input = "demo",
@@ -18,26 +18,52 @@ autoGen(
 )
 }
 \arguments{
-\item{net_data_input}{the user-defined workbook with network input data}
+\item{net_data_input}{the user-defined network input data workbook
+(.xlsx) or comma separated value (.csv) filename and file extension
+containing biomass and inequalities. If the argument is missing, the
+function will stop and return an error prompting the user to declare
+the appropriate input file.}
 
-\item{adj_mat_input}{the user-defined workbook with adjacency matrices}
+\item{adj_mat_input}{the user-defined input data workbook (.xlsx) or comma
+separated value (.csv) filename and file extension containing
+adjacency matrices of internal network flows. If the argument is missing, the
+function will stop and return an error prompting the user to declare
+the appropriate input file.}
 
-\item{NLNode}{Character vector defining non-living compartments e.g.,
-NLNode = "Detritus", NLNode = c("Detritus", "Detritus2")}
+\item{NLNode}{Character vector defining one or multiple non-living
+compartments e.g., \code{NLNode = "Detritus"},
+\code{NLNode = c("Detritus", "Detritus2")}.}
 
-\item{respiration}{Logical. Is respiration included in the network model? Default = TRUE}
+\item{respiration}{Logical. Is respiration included in the network model?
+If \code{TRUE}, the default, named respiration
+flows are defined from all defined living compartments (in the case of
+ecological networks) to an external carbon dioxide \code{'CO2'} sink (e.g.,
+\code{Invertebrate_R: Invertebrate -> CO2}). Additionally, if primary
+producers are included in the network (e.g., ecological networks), Gross
+Primary Production (GPP) flows are defined for each primary-producing
+compartment as the flow of energy/material from the external carbon
+dioxide sink to the compartment (e.g., \code{Plant_GPP: CO2 -> Plant}).
+If \code{FALSE}, no
+respiration flows are defined for living compartments.}
 
-\item{respiration_element}{Character vector. If Respiration = TRUE,
-the external respiration sink element to be defined. Defaults to "CO2"}
+\item{respiration_element}{Character vector. If \code{NULL}, the default,
+the external respiration element is defined as \code{'CO2'}.
+This argument is only valid if argument \code{respiration = TRUE}.}
 
-\item{primary_producer}{Character vector defining primary producer compartments e.g.,
-primary_producer = "Plant", primary_producer = c("Plant", "Plant2")}
+\item{primary_producer}{Character vector defining one or multiple
+primary producer compartments (in the case of ecological networks)
+e.g., \code{primary_producer = "Plant"},
+\code{primary_producer = c("Plant", "Plant2")}.}
 
-\item{author}{Character vector. LIM declaration file author name.Defaults to system user.}
+\item{author}{Character vector. LIM declaration file author name.
+Defaults to system user.}
 
-\item{date}{Character vector. Date of file creation. Defaults to system date.}
+\item{date}{Character vector. Date of file creation. If \code{NULL},
+the default, the date defaults to the system date.}
 
-\item{weighted}{Logical. Return weighted LIM declaration files? Defaults to TRUE}
+\item{weighted}{Logical. Return weighted LIM declaration files? If \code{NULL},
+the default, both weighted and unweighted LIM declaration files are returned.
+Defaults to \code{TRUE}.}
 
 \item{force}{If set to \code{TRUE}, files of \code{data.R},
 under folders \code{autoLIMR Weighted Network LIMfiles},
@@ -47,12 +73,43 @@ interactive session the user will be asked whether or not \code{data.R}
 files should be created. The default value is \code{FALSE}.}
 }
 \value{
-Two folders containing weighted, and unweighted network LIM
-  declaration files respectively. For use with R packages 'LIM' and 'limSolve'
+If argument \code{weighted = TRUE}, the default, a list of character
+vectors describing a 1) weighted and 2) unweighted
+network LIM declaration files. If argument \code{weighted = FALSE}, a list
+containing a single LIM declaration file describing an unweighted network.
+Each LIM declaration file is the standard
+  input file to solve a single, or multiple plausible network configurations
+  using linear inverse modelling (LIM) and Markov Chain Monte Carlo (MCMC)
+  techniques using the autoLIMR function \code{multi_net()}, or with external
+  R packages \code{LIM} and '\code{limSolve}.
 }
 \description{
-Automatically defines LIM weighted and unweighted declaration files
-from two input workbooks.
+Automatically translate network input data into LIM declaration
+files describing weighted and unweighted networks. Capable of translating
+multiple networks at once (via Excel '\code{.xlsx}' inputs of multiple
+sheets), or a single network at a time (via comma separated value
+'\code{.csv}'inputs for a single network).
+
+When using \code{.xlsx} input files describing multiple networks,
+\code{autoGen()} simultaneously translates multiple network models into
+their respective LIM declaration files. This is advantageous when
+constructing multiple network models, e.g., for a time series.
+Function \code{autoGen()} requires two Workbooks, namely the
+‘Network Data Input’ workbook (Workbook 1) and the ‘Adjacency Matrix’
+workbook (Workbook 2) as input. Within both workbooks, the user specifies
+a unique worksheet name for each network model, which should match
+identically between the two workbooks.
+
+As Microsoft Excel is proprietary and may not function on all operating
+systems on which R is used, \code{autoGen()} also accepts
+non-proprietary comma separated values (CSV) input files. As CSV files are
+limited to a single sheet per file, as opposed to Excel workbooks that can
+contain multiple sheets, the translation of input data from CSV files to
+LIM declaration files with \code{autoGen()} is limited to a single network
+at a time. Despite this limitation, the translation functionality from CSV
+files allows autoLIMR to be used in R on multiple operating systems,
+aligning with the power of R’s open source nature, availability,
+and computer operating system interpretability.
 
 This function takes some action. It also attempts to create a
 few files in your working directory called \code{data.R},
@@ -63,15 +120,24 @@ If \code{data.R} files cannot be created a warning is raised.
 \examples{
 \dontrun{
 autoGen(
-  net_data_input = "your_network_data_workbook.xlsx",
-  adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
+  net_data_input = "your_network_data_workbook.csv",
+  adj_mat_input = "your_adjacency_matrix_data_workbook.csv",
   NLNode = "Detritus",
   primary_producer = "Plant",
   respiration = TRUE,
   respiration_element = "CO2",
-  author = "Gemma Gerber",
   weighted = TRUE,
-  force = TRUE
-)
+  force = TRUE)
+
+autoGen(
+  net_data_input = "your_network_data_workbook.xlsx",
+  adj_mat_input = "your_adjacency_matrix_data_workbook.xlsx",
+  NLNode = c("Detritus", "Detritus2"),
+  primary_producer = c("Plant", "Plant2"),
+  respiration = TRUE,
+  respiration_element = "CO2",
+  weighted = TRUE,
+  force = TRUE)
 }
+
 }

@@ -11,6 +11,9 @@ merge_sections(type = NULL, ...)
 
 \item{...}{other arguments}
 }
+\value{
+list of LIM file sections
+}
 \description{
 Merge lists together, and names sections for LIM declaration file
 }

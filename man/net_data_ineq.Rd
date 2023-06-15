@@ -9,9 +9,25 @@ net_data_ineq(x, respiration, primary_producer)
 \arguments{
 \item{x}{network input data matrix}
 
-\item{respiration}{If respiration = TRUE in main autoLIMR argument}
+\item{respiration}{Logical. Is respiration included in the network model?
+If \code{TRUE}, the default, named respiration
+flows are defined from all defined living compartments (in the case of
+ecological networks) to an external carbon dioxide \code{'CO2'} sink (e.g.,
+\code{Invertebrate_R: Invertebrate -> CO2}). Additionally, if primary
+producers are included in the network (e.g., ecological networks), Gross
+Primary Production (GPP) flows are defined for each primary-producing
+compartment as the flow of energy/material from the external carbon
+dioxide sink to the compartment (e.g., \code{Plant_GPP: CO2 -> Plant}).
+If \code{FALSE}, no
+respiration flows are defined for living compartments.}
 
-\item{primary_producer}{Primary producers defined in main autoLIMR function}
+\item{primary_producer}{Character vector defining one or multiple
+primary producer compartments (in the case of ecological networks)
+e.g., \code{primary_producer = "Plant"},
+\code{primary_producer = c("Plant", "Plant2")}.}
+}
+\value{
+Vector of inequalities from network input data matrix for LIM declration file
 }
 \description{
 Inequalities definition (with headings)

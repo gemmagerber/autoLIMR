@@ -2,9 +2,7 @@
 % Please edit documentation in R/autocorr_plot.R
 \name{autocorr_plot}
 \alias{autocorr_plot}
-\title{autocorr_plot(): a function to plot the Autocorrelation of an MCMC object
-variable over time.
-Useful for...}
+\title{autocorr_plot()}
 \usage{
 autocorr_plot(x, flow, lag.max = 50, addtitle = FALSE, ...)
 }
@@ -18,35 +16,24 @@ output list (class(output) == "multi_net_model).}
 
 \item{lag.max}{Maximum value at which to calculate acf}
 
-\item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+\item{addtitle}{Logical argument, defaults to \code{FALSE}.
+If \code{TRUE},
 a title describing the type of plot is included above the plot.}
 
-\item{...}{Other graphical parameters from coda::autocorr_plot.}
+\item{...}{Other graphical parameters from \code{coda::autocorr_plot}.}
 }
 \value{
-An autocorrelation plot over time (number if iterations).
+An autocorrelation plot over time (number of iterations).
 }
 \description{
-autocorr_plot(): a function to plot the Autocorrelation of an MCMC object
+a function to plot the Autocorrelation of an MCMC object
 variable over time.
-Useful for...
 }
 \examples{
-# Example 1: Running mean plot from a data frame
-# or coda::as.mcmc() object.
 set.seed(1)
 x <- data.frame(rnorm(1000, m = 0, s = 1))
 colnames(x) <- "Value"
 autocorr_plot(x = x, flow = "Value")
-
-# Example 2: Kernel Density plot from multi_net() function output
-# (class "model_class_output").
-# The example LIM Declaration files can be found in the package folder
-# "example_limfiles". If using a custom LIM Declaration file, users can
-# save the LIM Declaration file in the working directory and refer directly
-# within the function e.g., file = "mylimfile.R".
-# If the LIM Declaration file is not saved in the
-# working directory, the function will accept a valid file path.
 
 fpath <- system.file("example_limfiles",
 "Winter_Weighted_Network_LIMfile.R",

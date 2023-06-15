@@ -9,6 +9,9 @@ meta2(x)
 \arguments{
 \item{x}{Adjacency matrix}
 }
+\value{
+a vector of metadata
+}
 \description{
 Defines metadata from adjacency matrices with abbreviations
 }

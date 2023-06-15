@@ -2,7 +2,7 @@
 % Please edit documentation in R/matrix_def.R
 \name{matrix_def}
 \alias{matrix_def}
-\title{Function: matrix_def()}
+\title{matrix_def()}
 \usage{
 matrix_def(x, mat.type)
 }
@@ -11,6 +11,9 @@ matrix_def(x, mat.type)
 
 \item{mat.type}{the matrix type to export}
 }
+\value{
+a matrix of type 'Import', 'Export'
+}
 \description{
-Return matrix based on search_cols function
+Return matrix based on \code{search_cols()} function
 }

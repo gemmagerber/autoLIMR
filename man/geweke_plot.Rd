@@ -2,11 +2,7 @@
 % Please edit documentation in R/geweke_plot.R
 \name{geweke_plot}
 \alias{geweke_plot}
-\title{geweke_plot(): function to create Geweke (Date) plots for varibles of
-MCMC objects
-Used to decide...
-Inspired by coda package
-See (references) for more information}
+\title{geweke_plot():}
 \usage{
 geweke_plot(
   x,
@@ -35,20 +31,19 @@ output list (class(output) == "multi_net_model).}
 
 \item{frac2}{fraction to use from end of chain.}
 
-\item{addtitle}{Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+\item{addtitle}{Logical argument, defaults to \code{FALSE}.
+If \code{TRUE},
 a title describing the type of plot is included above the plot.}
 
-\item{...}{Other graphical parameters from coda::geweke.plot.}
+\item{...}{Other graphical parameters from \code{coda::geweke.plot}.}
 }
 \value{
 Geweke plot of variable
 }
 \description{
-geweke_plot(): function to create Geweke (Date) plots for varibles of
-MCMC objects
-Used to decide...
-Inspired by coda package
-See (references) for more information
+function to create Geweke (1992) plots for variables of
+MCMC objects. Inspired by coda package, see (Plummer et al., 2020)
+for more information
 }
 \examples{
 # Example 1: Geweke Plot from a data frame

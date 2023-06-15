@@ -12,3 +12,7 @@ A list containing 4 seasons worth of network input data
 \description{
 Create a named list of demo adjacency matrix sheets for 4node
 }
+\examples{
+x <- demo_adj_mat()
+
+}

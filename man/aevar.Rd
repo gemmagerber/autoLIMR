@@ -2,15 +2,29 @@
 % Please edit documentation in R/aevar.R
 \name{aevar}
 \alias{aevar}
-\title{Function aevar() : assimilation efficiency definition}
+\title{aevar()}
 \usage{
 aevar(x, respiration)
 }
 \arguments{
 \item{x}{network data input matrix}
 
-\item{respiration}{If respiration = TRUE in main autoLIMR argument}
+\item{respiration}{Logical. Is respiration included in the network model?
+If \code{TRUE}, the default, named respiration
+flows are defined from all defined living compartments (in the case of
+ecological networks) to an external carbon dioxide \code{'CO2'} sink (e.g.,
+\code{Invertebrate_R: Invertebrate -> CO2}). Additionally, if primary
+producers are included in the network (e.g., ecological networks), Gross
+Primary Production (GPP) flows are defined for each primary-producing
+compartment as the flow of energy/material from the external carbon
+dioxide sink to the compartment (e.g., \code{Plant_GPP: CO2 -> Plant}).
+If \code{FALSE}, no
+respiration flows are defined for living compartments.}
+}
+\value{
+Vector containing assimilation efficiencies
 }
 \description{
-Defines assimilation efficiency variables if included in network input data workbook sheets
+Defines assimilation efficiency variables if included
+in network input data files
 }

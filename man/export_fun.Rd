@@ -9,6 +9,9 @@ export_fun(x)
 \arguments{
 \item{x}{The flow matrix}
 }
+\value{
+A matrix containing only the exports of the flow matrix
+}
 \description{
 Grabs values of nodal exports across the boundary
 }

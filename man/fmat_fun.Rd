@@ -9,7 +9,10 @@ fmat_fun(x)
 \arguments{
 \item{x}{Solved full flow matrix}
 }
+\value{
+A matrix of internal flows
+}
 \description{
-Part of pre_pack() function in multi_net() function
+Part of \code{pre_pack()} function in \code{multi_net()} function
 Extracts flow matrices (only internal matrices excluding boundary flows)
 }

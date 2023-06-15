@@ -2,8 +2,7 @@
 % Please edit documentation in R/as_extended.R
 \name{as_extended}
 \alias{as_extended}
-\title{as_extended()
-Shamelessly from package enaR}
+\title{as_extended()}
 \usage{
 as_extended(x, zero.na = TRUE)
 }
@@ -16,6 +15,5 @@ as_extended(x, zero.na = TRUE)
 Extended flow matrices
 }
 \description{
-as_extended()
-Shamelessly from package enaR
+directly from package enaR
 }

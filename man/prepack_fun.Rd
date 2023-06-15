@@ -2,15 +2,16 @@
 % Please edit documentation in R/prepack_fun.R
 \name{prepack_fun}
 \alias{prepack_fun}
-\title{prepack_fun(): function to pack network values into network objects}
+\title{prepack_fun()}
 \usage{
 prepack_fun(x, full_limfile)
 }
 \arguments{
-\item{x}{A solved flow matrix, orientated from row i to column j}
+\item{x}{A solved flow matrix, orientated from row i to column j.}
 
-\item{full_limfile}{LIM Declaration file built from check_build()}
+\item{full_limfile}{LIM Declaration file.}
 }
 \description{
+Function to pack network values into network objects.
 Based on package enaR network packing criteria (Lau et al., 2017)
 }

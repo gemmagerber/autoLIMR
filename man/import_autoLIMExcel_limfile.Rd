@@ -2,8 +2,7 @@
 % Please edit documentation in R/import_autoLIMExcel_limfile.R
 \name{import_autoLIMExcel_limfile}
 \alias{import_autoLIMExcel_limfile}
-\title{Function: import_autoLIMExcel_limfile()#'
-Imports autoLIM-Excel LIM declaration file from autoLIM-Excel}
+\title{import_autoLIMExcel_limfile()}
 \usage{
 import_autoLIMExcel_limfile(
   file,
@@ -25,8 +24,7 @@ import_autoLIMExcel_limfile(
 LIM Declaration File, saved as an R script
 }
 \description{
-Function: import_autoLIMExcel_limfile()#'
-Imports autoLIM-Excel LIM declaration file from autoLIM-Excel
+Imports LIM declaration file from excelLIM
 }
 \examples{
 \dontrun{

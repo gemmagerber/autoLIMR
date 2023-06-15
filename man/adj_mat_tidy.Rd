@@ -2,14 +2,19 @@
 % Please edit documentation in R/adj_mat_tidy.R
 \name{adj_mat_tidy}
 \alias{adj_mat_tidy}
-\title{Tidies up adjacency matrix/matrices input}
+\title{adj_mat_tidy()}
 \usage{
 adj_mat_tidy(x, NLNode)
 }
 \arguments{
-\item{x}{the sheet from network data input}
+\item{x}{Adjacency matrix input sheet}
 
-\item{NLNode}{the defined NLNodes from the main autoLIMR argument}
+\item{NLNode}{Character vector defining one or multiple non-living
+compartments e.g., \code{NLNode = "Detritus"},
+\code{NLNode = c("Detritus", "Detritus2")}.}
+}
+\value{
+A tidy adjacency matrix
 }
 \description{
 Tidies up adjacency matrix/matrices input

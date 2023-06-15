@@ -2,15 +2,16 @@
 % Please edit documentation in R/output_fun.R
 \name{output_fun}
 \alias{output_fun}
-\title{part of prepack::multinets function
-Grabs output}
+\title{output_fun()}
 \usage{
 output_fun(x)
 }
 \arguments{
 \item{x}{the flow matrix}
 }
+\value{
+A vector of outputs (imports, exports, plus respiration)
+}
 \description{
-part of prepack::multinets function
-Grabs output
+part of \code{prepack_fun()} function. Grabs output
 }

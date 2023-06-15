@@ -2,17 +2,21 @@
 % Please edit documentation in R/search_cols.R
 \name{search_cols}
 \alias{search_cols}
-\title{Function: search_cols()
-search and return columns that match type (as character vector) "Inputs", "Exports", "Assimilation Efficieny"}
+\title{search_cols()}
 \usage{
 search_cols(x, col.match)
 }
 \arguments{
-\item{x}{the matrix}
+\item{x}{Tidy network data input matrix}
 
-\item{col.match}{the node type to match}
+\item{col.match}{the compartment type to match}
+}
+\value{
+A vector of column names that match one of "Imports", "Exports",
+ "Assimilation Efficiencies", "Custom" or "Parameters" from the original
+ network input data.
 }
 \description{
-Function: search_cols()
-search and return columns that match type (as character vector) "Inputs", "Exports", "Assimilation Efficieny"
+Search and return columns that match type (as character vector)
+"Imports", "Exports", "Assimilation Efficiency"
 }

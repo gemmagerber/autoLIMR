@@ -2,13 +2,16 @@
 % Please edit documentation in R/net_data_inex_flows.R
 \name{net_data_inex_flows}
 \alias{net_data_inex_flows}
-\title{Function: net_data_inex_flows()}
+\title{net_data_inex_flows()}
 \usage{
 net_data_inex_flows(x)
 }
 \arguments{
 \item{x}{network data input matrix}
 }
+\value{
+Vector of boundary flows - import and export flows.
+}
 \description{
-Defines import and export flows from network input data workbook
+Defines import and export flows from network input data.
 }

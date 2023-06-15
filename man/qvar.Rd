@@ -2,7 +2,7 @@
 % Please edit documentation in R/qvar.R
 \name{qvar}
 \alias{qvar}
-\title{Function qvar()}
+\title{qvar()}
 \usage{
 qvar(x)
 }
@@ -12,7 +12,7 @@ qvar(x)
 \description{
 Defines consumption variables for living nodes only.
 Depends on imports. For living compartments without imports, consumption
-is defined as `compartment_Q = Flowto(compartment)`. For compartments with
-imports, consumption is defined as `compartment_Q = Flowto(compartment) -
-compartment_IM`.
+is defined as \code{compartment_Q = Flowto(compartment)}. For compartments with
+imports, consumption is defined as \code{compartment_Q = Flowto(compartment) -
+compartment_IM}.
 }

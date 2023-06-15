@@ -1,10 +1,19 @@
-#' @title centralx0(): function to solve MCMC objects using the central MCMC
-#' @description solution (LIM::Xsample) as a starting point.
-#' If central solution is not valid, defaults to LSEI
+#' @title centralx0()
+#' @description Function to solve multiple plausible networks with Markov
+#' Chain Monte Carlo methods, with a 'central' starting solution calculated
+#' from \code{LIM::Xranges}.
+#'
+#' If the 'central' solution is not valid, the starting solution defaults
+#' to the Least Squares with Equalities and Inequalities (LSEI), suitable
+#' for under determined LIM problems.
 #'
 #' @inheritParams defaultx0
+#' @inheritParams multi_net
+#' @param ... Further LIM::Xsample arguments.
 #'
-#' @return Multiple plausible networks, starting point CENTRAL SOLUTION
+#' @return A list of multiple plausible network flow values. The first solution
+#' is solved with
+#' the central solution.
 
 #' @importFrom LIM Xsample Flowmatrix
 #'
@@ -30,16 +39,10 @@ centralx0 <-
       strwrap(
         prefix = " \n",
         initial = "",
-        "Initial solution (x0) calculated using LIM::Xranges central solution."
+        "Initial solution (x0) calculated using LIM::Xranges central solution.
+        Checking that the central solution is valid..."
       )
     )
-
-    message(strwrap(
-      prefix = " \n",
-      initial = "",
-      "Checking that the central solution is valid..."
-    ))
-
 
     cen1 <- max(abs(full_limfile$A %*% x0 - full_limfile$B))
     cen2 <- min(full_limfile$G %*% x0 - full_limfile$H)
@@ -78,11 +81,11 @@ centralx0 <-
         solved.flow.matrices = solved.flow.matrices
       )
 
-      message(strwrap(
-        prefix = " \n",
-        initial = "",
-        "Multiple plausible network values solved."
-      ))
+      # message(strwrap(
+      #   prefix = " \n",
+      #   initial = "",
+      #   "Multiple plausible network values solved."
+      # ))
 
       return(solved.networks)
     } else {

@@ -1,8 +1,8 @@
-#' @title autocorr_diag(): Autocorrelation function for autoLIMR Markov chains.
+#' @title autocorr_diag()
 #'
 #' @description Function to calculate the autocorrelation function at specified
 #' lags for autoLIMR Markov chains.
-#' Based on coda::autocorr.diag() function (Plummer et al., 2020).
+#' Based on \code{coda::autocorr.diag()} function (Plummer et al., 2020).
 #'
 #' @param x Object of class "multi_net_output" generated from
 #' autoLIMR::multi_net() function.
@@ -13,25 +13,15 @@
 #' it can be specified as a character string e.g., flow = "Plant_GPP".
 #' We suggest leaving the default flow = NULL.
 #'
-#' @param ... Other arguments from coda::autocorr.diag(). Check defaults in
-#' the coda package.
+#' @param ... Other arguments from \code{coda::autocorr.diag()}. Check defaults in
+#' the \code{coda} package.
 #'
 #' @return Data frame with each row corresponding to one Markov chain variable,
-#' and columns describing autocrrelation function at specified lags.
+#' and columns describing autocorrelation function at specified lags.
 
 #' @export
 #' @importFrom coda as.mcmc autocorr.diag
 #' @examples
-#' # Autocorrelation of variables in object "multi_net_output"
-#' # generated from autoLIMR::multi_net().
-#'
-#' # The example LIM Declaration files can be found in the package folder
-#' # "example_limfiles". If using a custom LIM Declaration file, users can
-#' # save the LIM Declaration file in the working directory and refer directly
-#' # within the function e.g., file = "mylimfile.R".
-#' # If the LIM Declaration file is not saved in the
-#' # working directory, the function will accept a valid file path.
-#'
 #' fpath <- system.file("example_limfiles",
 #'   "Winter_Weighted_Network_LIMfile.R",
 #'   package = "autoLIMR"

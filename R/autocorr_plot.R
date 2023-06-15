@@ -1,30 +1,18 @@
-#' autocorr_plot(): a function to plot the Autocorrelation of an MCMC object
+#' @title autocorr_plot()
+#' @description a function to plot the Autocorrelation of an MCMC object
 #' variable over time.
-#' Useful for...
 #'
 #' @inheritParams trace_plot
 #' @inheritParams coda::autocorr.plot
-#' @param ... Other graphical parameters from coda::autocorr_plot.
-#' @return An autocorrelation plot over time (number if iterations).
+#' @param ... Other graphical parameters from \code{coda::autocorr_plot}.
+#' @return An autocorrelation plot over time (number of iterations).
 #' @export
 #'
 #' @examples
-#' # Example 1: Running mean plot from a data frame
-#' # or coda::as.mcmc() object.
 #' set.seed(1)
 #' x <- data.frame(rnorm(1000, m = 0, s = 1))
 #' colnames(x) <- "Value"
 #' autocorr_plot(x = x, flow = "Value")
-#'
-
-#' # Example 2: Kernel Density plot from multi_net() function output
-#' # (class "model_class_output").
-#' # The example LIM Declaration files can be found in the package folder
-#' # "example_limfiles". If using a custom LIM Declaration file, users can
-#' # save the LIM Declaration file in the working directory and refer directly
-#' # within the function e.g., file = "mylimfile.R".
-#' # If the LIM Declaration file is not saved in the
-#' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
 #' "Winter_Weighted_Network_LIMfile.R",

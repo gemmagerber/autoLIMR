@@ -3,6 +3,9 @@
 #'
 #' @return A list containing 4 seasons worth of network input data
 #' @export
+#' @examples
+#' x <- demo_adj_mat()
+#'
 demo_adj_mat <- function() {
   adj_summer <- data.frame(
     X = c("Det", "Plant", "Invert", "Vert"),

@@ -1,12 +1,9 @@
-#' @title Function: net_data_resp_flows()
+#' @title net_data_resp_flows()
 #' @description Constructs respiration flows for each living compartment, if
 #' respiration is included in the model, and the external sink is 'CO2'
-#' @param x Tidy network data input matrix
-#' @param NLNode character non-living nodes
-#' @param respiration  If respiration = TRUE in main autoLIMR argument
-#' @param respiration_element if Respiration = TRUE, the respiration element to be defined. Default to "CO2"
-#' @param primary_producer Primary producers defined in main autoLIMR function
-#' @return
+#' @param x Tidy network data input matrix.
+#' @inheritParams autoGen
+#' @return Vector containing the respiration flows and vanity headings
 #'
 net_data_resp_flows <- function(x,
                                 respiration = respiration,

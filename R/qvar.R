@@ -1,9 +1,9 @@
-#' @title Function qvar()
+#' @title qvar()
 #' @description Defines consumption variables for living nodes only.
 #' Depends on imports. For living compartments without imports, consumption
-#' is defined as `compartment_Q = Flowto(compartment)`. For compartments with
-#' imports, consumption is defined as `compartment_Q = Flowto(compartment) -
-#' compartment_IM`.
+#' is defined as \code{compartment_Q = Flowto(compartment)}. For compartments with
+#' imports, consumption is defined as \code{compartment_Q = Flowto(compartment) -
+#' compartment_IM}.
 #'
 #' @param x tidy network input data matrix
 

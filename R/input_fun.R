@@ -1,6 +1,7 @@
-#' @title input_fun() function, part of prepack_fun() function
-#' @description Grabs input nodes values (only boundary flows in)
-#'
+#' @title input_fun()
+#' @description Part of \code{prepack_fun()} function.
+#' Grabs input nodes values (only boundary flows in) from solved flow matrices.
+#' @return A matrix of imports
 #' @param x the input matrix
 input_fun <- function(x) {
   input.vector <-

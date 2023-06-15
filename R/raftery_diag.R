@@ -1,24 +1,24 @@
-#' @title raftery_diag(): Raftery and Lewis’s diagnostic
+#' @title raftery_diag()
 #'
 #' @description Function to calculate Raftery and Lewis’s
 #' convergence diagnostic for autoLIMR Markov chains.
-#' Based on coda::raftery.diag() function (Plummer et al., 2020).
+#' Based on \code{coda::raftery.diag()} function (Plummer et al., 2020).
 #'
 #' @details If the sample size (i.e., iterations) are too small, the
 #' function returns an error. We suggest keeping the sample size > 4000.
 #'
 #' @param x Object of class "multi_net_output" generated from
-#' autoLIMR::multi_net() function.
+#' \code{autoLIMR::multi_net()} function.
 #'
 #' @param flow Character argument. By default, flow = NULL, and the convergence
 #' diagnostics are returned for each Markov Chain variable. If convergence
 #' diagnostics are required for one Markov chain variable only,
-#' it can be specified as a character string e.g., flow = "Plant_GPP".
-#' We suggest leaving the default flow = NULL.
+#' it can be specified as a character string e.g., \code{flow = "Plant_GPP"}.
+#' We suggest leaving the default \code{flow = NULL}.
 #'
 #' @inheritParams coda::raftery.diag
 #'
-#' @param ... Other arguments from coda::raftery.diag(). Check defaults in
+#' @param ... Other arguments from \code{coda::raftery.diag()}. Check defaults in
 #' the coda package.
 #'
 #' @importFrom coda as.mcmc raftery.diag
@@ -35,10 +35,12 @@
 #'
 #' @examples
 #' \donttest{
-#' fpath <- system.file("example_limfiles",
-#'   "Winter_Weighted_Network_LIMfile.R",
-#'   package = "autoLIMR"
+#' fpath <- system.file(
+#' "example_limfiles",
+#' "Winter_Weighted_Network_LIMfile.R",
+#' package = "autoLIMR"
 #' )
+#'
 #' set.seed(1)
 #' x <- multi_net(
 #'   file = fpath,

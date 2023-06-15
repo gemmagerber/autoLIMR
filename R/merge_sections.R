@@ -3,6 +3,7 @@
 #' @param type type of section
 #' @param ... other arguments
 #' @importFrom stats setNames
+#' @return list of LIM file sections
 merge_sections <- function(type = NULL, ...) {
   l <- list(...)
   keys <- unique(unlist(lapply(l, names)))

@@ -1,7 +1,7 @@
 #' @title geweke_diag(): Geweke (1992) convergence diagnostic.
 #'
 #' @description A function to calculate Geweke (1992) convergence diagnostic
-#' for autoLIMR Markov chains. Based on coda::geweke.diag() function
+#' for autoLIMR Markov chains. Based on \code{coda::geweke.diag()} function
 #' (Plummer et al., 2020).
 #'
 #' @param x Object of class "multi_net_output" generated from
@@ -13,7 +13,7 @@
 #' it can be specified as a character string e.g., flow = "Plant_GPP".
 #' We suggest leaving the default flow = NULL.
 #'
-#' @param ... Other arguments from coda::geweke.diag. Check defaults in
+#' @param ... Other arguments from \code{coda::geweke.diag}. Check defaults in
 #' the coda package.
 #'
 #' @importFrom coda as.mcmc geweke.diag
@@ -29,15 +29,6 @@
 #' @export
 #'
 #' @examples
-#' # Geweke diagnostic of variables in object "multi_net_output"
-#' # generated from autoLIMR::multi_net().
-#' # The example LIM Declaration files can be found in the package folder
-#' # "example_limfiles". If using a custom LIM Declaration file, users can
-#' # save the LIM Declaration file in the working directory and refer directly
-#' # within the function e.g., file = "mylimfile.R".
-#' # If the LIM Declaration file is not saved in the
-#' # working directory, the function will accept a valid file path.
-#'
 #' fpath <- system.file("example_limfiles",
 #'   "Winter_Weighted_Network_LIMfile.R",
 #'   package = "autoLIMR"

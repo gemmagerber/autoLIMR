@@ -1,10 +1,12 @@
-#' Function: adj_mat_ineq()
-#' Defines inequalities from adjacency matrix input workbook
+#' @title adj_mat_ineq()
+#' @description Defines inequalities from adjacency matrix input workbook
 #' @param x Adjacency matrix
-#'
+#' @return A vector of adjacency matrix inequalities with vanity headings
+#' to be included in the LIM declaration file
 
 adj_mat_ineq <- function(x) {
   x <- na.omit(as.data.frame(as.table(x)))
+
   x$flowtype <-
     ifelse(
       grepl("NLNode", x$Var1) & grepl("NLNode", x$Var2),
@@ -49,7 +51,7 @@ adj_mat_ineq <- function(x) {
 
   x$ineq <-
     ifelse(
-      grepl("1|1.0", x$Freq) & !grepl(",", x$Freq),
+      grepl("^1$|^1.0$|^1.00$", x$Freq) & !grepl(",", x$Freq),
       "none",
       ifelse(
         grepl(",", x$Freq) & grepl("NLNode", x$Var2),

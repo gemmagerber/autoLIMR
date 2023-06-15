@@ -1,7 +1,8 @@
 #' @title Function: meta1()
-#' @description Defines the first part of the metadata from network input data workbook sheets
+#' @description Defines the first part of the metadata from network
+#' input data workbook sheets
 #' @inheritParams autoGen
-
+#' @return a list of metadata
 #' @param x network input data matrix
 
 meta1 <- function(x,

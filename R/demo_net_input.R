@@ -1,10 +1,14 @@
-#' @title demo_net_input(): demo network data
+#' @title demo_net_input()
 #'
 #' @description Create a named list of demo network input data sheets for
 #' four-node seasonal network
 #'
 #' @return A list containing 4 seasons worth of network input data
 #' @export
+#' @examples
+#' x <- demo_net_input()
+#'
+
 demo_net_input <- function() {
   net_summer <- data.frame(
     Compartment = c("Det", "Plant", "Invert", "Vert"),

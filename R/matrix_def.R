@@ -1,7 +1,8 @@
-#' @title Function: matrix_def()
-#' @description Return matrix based on search_cols function
+#' @title matrix_def()
+#' @description Return matrix based on \code{search_cols()} function
 #' @param x input matrix
 #' @param mat.type the matrix type to export
+#' @return a matrix of type 'Import', 'Export'
 #'
 matrix_def <- function(x, mat.type) {
   if (mat.type == "Import" | mat.type == "Export") {

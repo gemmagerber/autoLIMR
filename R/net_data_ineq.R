@@ -1,9 +1,8 @@
 #' @title function: net_data_ineq()
 #' @description Inequalities definition (with headings)
 #' @param x network input data matrix
-#' @param respiration  If respiration = TRUE in main autoLIMR argument
-#' @param primary_producer Primary producers defined in main autoLIMR function
-#'
+#' @inheritParams autoGen
+#' @return Vector of inequalities from network input data matrix for LIM declration file
 net_data_ineq <- function(x, respiration,
                           primary_producer) {
   x <- na.omit(as.data.frame(as.table(x)))

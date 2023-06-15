@@ -1,11 +1,11 @@
-#' ssCheck
-#' A brief description goes here
+#' @title ssCheck
+#' @description A brief description goes here
 #'
-#' @param x not sure
-#' @param tol not sure
+#' @param x network object
+#' @param tol tolerance
 #' @param more not sure
 #' @param zero.na convert NA to zero
-#'
+#' @return Are network objects balanced? Logical.
 
 #' @importFrom network network.size
 #'

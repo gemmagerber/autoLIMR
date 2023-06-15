@@ -1,5 +1,5 @@
-#' as_extended()
-#' Shamelessly from package enaR
+#' @title as_extended()
+#' @description directly from package enaR
 #' @param x the something to be defined
 #' @param zero.na Change NA's to zero's
 #'

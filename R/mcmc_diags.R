@@ -6,7 +6,7 @@
 #' 5) Raftery Lewis Diagnostics, and 6) Autocorrelation.
 #'
 #' @param x Object of class "multi_net_output" generated from
-#' autoLIMR::multi_net() function.
+#' \code{autoLIMR::multi_net()} function.
 #'
 #' @param flow Character argument. By default, flow = NULL, and the convergence
 #' diagnostics are returned for each Markov Chain variable. If convergence
@@ -16,9 +16,9 @@
 #'
 #' @param ... Other arguments inherited from Markov chain convergence
 #' diagnostic functions. Check defaults in
-#' the coda package.
+#' the \code{coda} package (Plummer et al., 2020).
 #'
-#' @return A list containing data.tables of various Markov Chain
+#' @return A list containing data frames of various Markov Chain
 #' diagnostics included in package autoLIMR: 1) summary,
 #' 2) Geweke (1992) Diagnostics, 3) Effective Sample Size,
 #' 4) Heidelberger-Welch Diagnostics, 5) Raftery Lewis Diagnostics, and 6)

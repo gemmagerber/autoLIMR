@@ -1,8 +1,8 @@
 #' @title Function: net_data_external_list()
-#' @description define externals list
+#' @description define externals list for LIM declaration file
 #' @param x net data input matrix/matrices
-#' @param respiration Respiration = TRUE as defined in main autoLIMR function
-#' @param respiration_element if Respiration = TRUE, the respiration element to be defined. Default to "CO2"
+#' @inheritParams autoGen
+#' @return Vector of external compartments
 #'
 net_data_external_list <- function(x, respiration,
                                    respiration_element) {

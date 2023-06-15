@@ -1,7 +1,8 @@
-#' @title Function: variable_def()
+#' @title variable_def()
 #' @description Defines whole variables sections from various other functions
 #' @param x tidy network input data matrix
 #' @inheritParams autoGen
+#' @return vector of variables
 
 variable_def <-
   function(x,

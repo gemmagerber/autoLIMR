@@ -1,9 +1,12 @@
 #' @title net_data_tidy()
 #' @description Tidies up network data input sheet
-
-#' @inheritParams NLNode_mat
+#' @param x Network input data sheet
+#' @inheritParams autoGen
 #' @inheritParams sci_notation_off
-#' @return
+#' @return Data frame of tidy input data. Tidy data includes adding 'NLNode'
+#' strings to non-living nodes, replacing spaces " " with a period "."
+#' in compartment names, switching off scientific notation, removing all
+#' compartments with a biomass of  <= 0
 #'
 net_data_tidy <- function(x, NLNode) {
   x <- as.matrix(x)

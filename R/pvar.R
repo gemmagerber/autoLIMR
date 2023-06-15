@@ -1,5 +1,6 @@
-#' @title Function pvar(): Production variable definition
-#' @description Defines production variables for living compartments only.
+#' @title pvar()
+#' @description Production variable definition.
+#' Defines production variables for living compartments only.
 #' Depends on exports and arguments NLNode and respiration.
 #' @inheritParams autoGen
 #' @param x tidy network input data matrix

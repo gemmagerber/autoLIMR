@@ -1,6 +1,6 @@
-#' @title living_fun() part of prepack_fun() function
-#' @description Grabs vector of living nodes
-#'
+#' @title living_fun()
+#' @description Part of \code{prepack_fun()} function. Grabs living compartments.
+#' @return A vector of living compartments
 #' @param x Solved full flow matrix
 #'
 living_fun <- function(x) {

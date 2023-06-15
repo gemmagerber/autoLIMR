@@ -1,26 +1,21 @@
-#' part of prepack::multinets function
-#' Grabs output
-#'
+#' @title output_fun()
+#' @description part of \code{prepack_fun()} function. Grabs output
 #' @param x the flow matrix
+#' @return A vector of outputs (imports, exports, plus respiration)
 #'
 output_fun <- function(x) {
   # Create output vector function
-  # output.fun <- function (a) {
-  #   respiration <- resp.fun(a)
-  #   export <- export.fun(a)
-  #   output.vector <- respiration + export
-  # }
   row.i <-
     grep(
       rownames(x),
-      pattern = "Input|Export|CO2",
+      pattern = "Import|Input|Export|CO2",
       value = TRUE,
       invert = TRUE
     )
   col.j <-
     grep(
       colnames(x),
-      pattern = "Export|CO2",
+      pattern = "Input|Import|Export|CO2",
       value = TRUE,
       invert = FALSE,
       ignore.case = TRUE

@@ -1,11 +1,10 @@
-#' geweke_plot(): function to create Geweke (Date) plots for varibles of
-#' MCMC objects
-#' Used to decide...
-#' Inspired by coda package
-#' See (references) for more information
+#' @title geweke_plot():
+#' @description function to create Geweke (1992) plots for variables of
+#' MCMC objects. Inspired by coda package, see (Plummer et al., 2020)
+#' for more information
 #' @inheritParams trace_plot
 #' @inheritParams coda::geweke.plot
-#' @param ... Other graphical parameters from coda::geweke.plot.
+#' @param ... Other graphical parameters from \code{coda::geweke.plot}.
 #' @importFrom coda geweke.plot as.mcmc
 #' @return Geweke plot of variable
 #' @export

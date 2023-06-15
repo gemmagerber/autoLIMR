@@ -1,24 +1,44 @@
 #' @title multi_net(): function for calculating multiple plausible networks
 #'
-#' @description This function calculates multiple plasuible network solutions
+#' @description This function calculates multiple plausible network solutions
 #' from a LIM declaration file.
 #' Based on LIM and limSolve packages with novel extras!
-#' Includes options to change 1) starting points (x0), 2) jump sizes, and 3)
-#' number of iterations. A further option, 'pack' is to pack the solved values
+#'
+#' Includes options to change 1) starting points (\code{x0}),
+#' 2) jump sizes (\code{jmp}), and 3)
+#' number of iterations (\code{iter}).
+#'
+#' A further argument, \code{pack} is to pack the solved values
 #' into network objects for network visualistion and analysis with additional
 #' network manipulation packages (see igraph, enaR, etc.)
 #'
-
-#' @param pack Logical. Default = FALSE. If pack = TRUE, the function returns
-#' the flow values packed into network objects.
-#' @inheritParams check_build
-#' @inheritParams prepack_fun
-#' @inheritParams defaultx0
-#' @inheritParams centralx0
-#' @inheritParams as_extended
-#' @inheritParams ssCheck
+#' @param file Either an object from the environment, with no quotation (e.g.,
+#' \code{file = limfile)}, or a file from the working directory (
+#' e.g., \code{file = 'my_limfile.R'}).
+#' @param pack Logical. If \code{FALSE}, the default, solved flow values are
+#' not packed into network objects. If \code{TRUE}, the flow values are packed
+#' into network objects compatible with most network visualisation and
+#' analyses packages.
 #'
-#' @return A list of model outputs containing 1) LIM Declaration File, 2)
+#' @param iter An integer defining the total number of iterations (samples)
+#' of the Markov Chain. If \code{NULL}, the default, the number of iterations
+#' is set at 3000. In our experience, we recommend setting a larger number of
+#' iterations (> 10,000) to ensure adequate sampling.
+#'
+#' @param jmp An integer defining the jump size (loosely interpreted as the
+#' 'distance' between iterative samples in the solution space).
+#' If \code{NULL}, the default, the jump size is internally
+#' calculated. If a value is provided, the value should be within the ranges of
+#' the flow magnitudes.
+#'
+#' @param x0 A single string defining the starting solution algorithm.
+#' If \code{NULL}, the default, the first solution of the Markov Chain is
+#' solved with Least Squares with Equalities and Inequalities (LSEI).
+#' If \code{"central"}, the first solution of the Markov Chain is solved with
+#' the central solution as per \code{LIM:Xranges}.
+#'
+#' @return A list of model outputs of class 'multi_net_output' containing
+#' 1) LIM Declaration File, 2)
 #' a table of starting solution values, 3) table of solved flow values, 4)
 #' solved flow values packed into matrices, and if pack = TRUE, 5) list of
 #' packed network objects, and 6) list of balanced network objects.
@@ -36,7 +56,13 @@ multi_net <-
            x0 = NULL,
            pack = TRUE) {
     ############################### Check and build LIM Declaration File
-    full_limfile <- check_build(file = file)
+
+    if (is.null(file)) {
+      stop("No LIM Declaration File provided. Please check.")
+    }
+    if (!is.null(file)) {
+      full_limfile <- LIM::Setup(LIM_Read(file))
+    }
 
     ############################### Starting point choices
     # Choice 1: Default (x0 = NULL), or Choice 2: Central (x0 = "central")

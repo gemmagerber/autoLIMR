@@ -1,7 +1,8 @@
-#' @title Function: adj_mat_flows()
+#' @title adj_mat_flows()
 #' @description Defines internal network flows from adjacency matrix workbook
 #' @param x adjacency matrix
 #' @importFrom stats na.omit
+#' @return Vector of adjacency matrix flows with vanity headings
 #'
 adj_mat_flows <- function(x) {
   x <- stats::na.omit(as.data.frame(as.table(x)))

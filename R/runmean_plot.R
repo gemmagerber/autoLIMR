@@ -1,5 +1,6 @@
-#' runmean_plot(): a function to plot the running mean of an MCMC object
-#' variable
+#' @title runmean_plot()
+#' @description Function to plot the running mean of an MCMC object
+#' variable.
 #' Shows time average estimates against the number of iterations.
 #' Used to decide iteration stopping times.
 #'
@@ -10,21 +11,10 @@
 #' @export
 #'
 #' @examples
-#' # Example 1: Running mean plot from a data frame
-#' # or coda::as.mcmc() object.
 #' set.seed(1)
 #' x <- data.frame(rnorm(1000, m = 0, s = 1))
 #' colnames(x) <- "Value"
 #' runmean_plot(x = x, flow = "Value")
-#'
-#' # Example 2: Running mean plot from multi_net() function output
-#' # (class "model_class_output").
-#' # The example LIM Declaration files can be found in the package folder
-#' # "example_limfiles". If using a custom LIM Declaration file, users can
-#' # save the LIM Declaration file in the working directory and refer directly
-#' # within the function e.g., file = "mylimfile.R".
-#' # If the LIM Declaration file is not saved in the
-#' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
 #'   "Winter_Weighted_Network_LIMfile.R",

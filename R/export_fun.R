@@ -2,6 +2,7 @@
 #' @description Grabs values of nodal exports across the boundary
 #'
 #' @param x The flow matrix
+#' @return A matrix containing only the exports of the flow matrix
 #'
 export_fun <- function(x) {
   row.i <-

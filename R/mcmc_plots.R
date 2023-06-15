@@ -1,4 +1,4 @@
-#' @title mcmc_plots(): visual Markov chian doagnostics
+#' @title mcmc_plots(): visual Markov chain diagnostics
 #'
 #' @description Function to return five visual Markov chain convergence
 #' diagnostics at once.
@@ -12,23 +12,12 @@
 #' @inheritParams trace_plot
 #'
 #' @return A plot containing various Markov chain convergence diagnostic plots
-#' for a single Markov chian variable:
-#' 1) trace, 2) kernal density, 3) running mean, 4) Geweke, and 5) Autocorrelation
+#' for a single Markov chain variable:
+#' 1) trace, 2) kernel density, 3) running mean, 4) Geweke, and 5) Autocorrelation
 #' @export
 #'
 #' @importFrom graphics layout par title
 #' @examples
-#' # Visual diagnostics of variables in
-#' # Markov Chain object "multi_net_output"
-#' # generated from autoLIMR::multi_net().
-#'
-#' # The example LIM Declaration files can be found in the package folder
-#' # "example_limfiles". If using a custom LIM Declaration file, users can
-#' # save the LIM Declaration file in the working directory and refer directly
-#' # within the function e.g., file = "mylimfile.R".
-#' # If the LIM Declaration file is not saved in the
-#' # working directory, the function will accept a valid file path.
-#'
 #' fpath <- system.file("example_limfiles",
 #'   "Winter_Weighted_Network_LIMfile.R",
 #'   package = "autoLIMR"

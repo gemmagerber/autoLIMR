@@ -1,5 +1,5 @@
-#' Function: import_autoLIMExcel_limfile()#'
-#' Imports autoLIM-Excel LIM declaration file from autoLIM-Excel
+#' @title import_autoLIMExcel_limfile()
+#' @description Imports LIM declaration file from excelLIM
 #' @param file the autoLIMExcel file
 #' @param weighted are you importing the weighted or unweighted limfile? Defaults to weighted = TRUE
 #' @param limname the name you would like to give the network. Defaults to "Weighted_LIMfile.R" or " Unweighted_LIMfile.R" depending on weighted argument
@@ -10,7 +10,6 @@
 #' @importFrom cellranger cell_cols
 #' @importFrom readxl read_excel
 #' @importFrom utils write.table file.edit
-#' @export
 #' @examples
 #' \dontrun{
 #' import_autoLIMExcel_limfile(

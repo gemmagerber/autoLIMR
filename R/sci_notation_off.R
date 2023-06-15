@@ -1,5 +1,5 @@
-#' sci_notation_off
-#' Turns off scientific notation
+#' @title sci_notation_off()
+#' @description Turns off scientific notation
 #' @param x the imported matrix/matrices
 #'
 

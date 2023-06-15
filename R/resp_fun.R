@@ -1,7 +1,9 @@
-#' @title resp_fun() function, part of pre_pack() function in multi_net function()
-#' @description Grabs values of internal nodes that respire
+#' @title resp_fun()
+#' @description Part of \code{pre_pack()} function in \code{multi_net} function.
+#' Grabs values of internal nodes that respire.
 #'
 #' @param x The flow matrix
+#' @return Vector of living compartments that respire
 #'
 resp_fun <- function(x) {
   resp.vector <-

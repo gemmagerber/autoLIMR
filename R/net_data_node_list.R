@@ -1,4 +1,4 @@
-#' @title Function net_data_node_list()
+#' @title net_data_node_list()
 #' @description Defines the final compartment list with standing stock equalities
 #' to include in the LIM declaration file. Orders living compartments in
 #' alphabetical order, then moves non-living compartments (if applicable) to

@@ -2,7 +2,13 @@
 #'
 #' @description A function to calculate effective sample size for autoLIMR
 #' Markov chains.
-#' Based on coda::effectiveSize() function (Plummer et al., 2020).
+#' Based on \code{coda::effectiveSize()} function (Plummer et al., 2020).
+#' The example LIM Declaration files can be found in the package folder
+#' "example_limfiles". If using a custom LIM Declaration file, users can
+#' save the LIM Declaration file in the working directory and refer directly
+#' within the function e.g., \code{file = "mylimfile.R"}.
+#' If the LIM Declaration file is not saved in the
+#' working directory, the function will accept a valid file path.
 #'
 #' @importFrom coda as.mcmc effectiveSize
 #'
@@ -23,16 +29,6 @@
 #' "effective.sample.size".
 #' @export
 #' @examples
-#' # Effective sample size of variables in object "multi_net_output"
-#' # generated from autoLIMR::multi_net().
-#'
-#' # The example LIM Declaration files can be found in the package folder
-#' # "example_limfiles". If using a custom LIM Declaration file, users can
-#' # save the LIM Declaration file in the working directory and refer directly
-#' # within the function e.g., file = "mylimfile.R".
-#' # If the LIM Declaration file is not saved in the
-#' # working directory, the function will accept a valid file path.
-#'
 #' fpath <- system.file("example_limfiles",
 #'   "Winter_Weighted_Network_LIMfile.R",
 #'   package = "autoLIMR"

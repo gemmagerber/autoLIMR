@@ -1,17 +1,14 @@
-#' @title function `defaultx0()`
-#' @description: Solves MCMC objects using the default MCMC
-#' parsimonious solution LSEI (LIM::Xsample) as a starting point.
+#' @title function defaultx0()
+#' @description Function to solve multiple plausible networks with Markov
+#' Chain Monte Carlo methods, with starting solution calculated by
+#' Least Squares with Equalities and
+#' Inequalities (LSEI), suitable
+#' for under determined LIM problems.
 #'
-#' @param full_limfile LIM Declaration file built from check_build()
-#' @param iter Default = NULL. Number of iterations. Default = NULL returns 3000
-#' iterations of the MCMC samples.
-#' @param jmp Default = NULL. If jmp = NULL, jump size is internally calculated.
-#' @param x0 Default = NULL. The inital starting point. Defaults to LSEI
-#'  (x0 = NULL), or can be changed to the Central solutions calcualted with
-#'  LIM::Xranges (x0 = "central").
+#' @param full_limfile LIM Declaration file built from \code{LIM_Read()}.
+#' @inheritParams multi_net
 #' @param ... Further LIM::Xsample arguments.
-#'
-#' @return Multiple plausible network flow values. The first sample is
+#' @return A list of multiple plausible network flow values. The first sample is
 #' calculated with Least Squares with Equalities and Inequalities (LSEI).
 #' @importFrom LIM Xsample Flowmatrix
 
@@ -62,11 +59,11 @@ defaultx0 <-
       solved.flow.matrices = solved.flow.matrices
     )
 
-    message(strwrap(
-      prefix = " \n",
-      initial = "",
-      "Multiple plausible network values solved."
-    ))
+    # message(strwrap(
+    #   prefix = " \n",
+    #   initial = "",
+    #   "Multiple plausible network values solved."
+    # ))
 
     return(solved.networks)
   }

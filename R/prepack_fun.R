@@ -1,8 +1,9 @@
-#' @title prepack_fun(): function to pack network values into network objects
-#' @description Based on package enaR network packing criteria (Lau et al., 2017)
+#' @title prepack_fun()
+#' @description Function to pack network values into network objects.
+#' Based on package enaR network packing criteria (Lau et al., 2017)
 #'
-#' @param x A solved flow matrix, orientated from row i to column j
-#' @param full_limfile LIM Declaration file built from check_build()
+#' @param x A solved flow matrix, orientated from row i to column j.
+#' @param full_limfile LIM Declaration file.
 #' @importFrom network network set.edge.attribute set.vertex.attribute
 
 prepack_fun <- function(x, full_limfile) {

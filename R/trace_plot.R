@@ -1,4 +1,5 @@
-#' trace_plot(): a function to plot an MCMC object variable over time (iterations)
+#' @title trace_plot()
+#' @description Function to plot an MCMC object variable over time (iterations)
 #' Trace plots can be used to assess the mixing of the MCMC chain over time
 #'
 #' @param x The solved MCMC flow values in a data.frame, accessible
@@ -7,12 +8,14 @@
 #' output list (class(output) == "multi_net_model).
 #' @param flow Character argument. The specified name of the flow plot.
 #'
-#' @param xranges Logical argument, default FALSE. If xranges = TRUE, the plot
+#' @param xranges Logical. If \code{xranges = FALSE}, the default, the lines
+#' indicaitng minimum and maximum are excluded from the plot.
+#' If \code{xranges = TRUE}, the plot
 #' includes horizontal lines in the trace plot indicating absolute maximum and
-#' minimum values of the flow range calculated by LIM::Xranges.
-#' If xranges = FALSE, the minimum and maximum lines are omitted from the plot.
+#' minimum values of the flow range calculated by \code{LIM::Xranges}.
 #'
-#' @param addtitle Logical argument, defaults to FALSE. If 'addtitles = TRUE',
+#' @param addtitle Logical argument, defaults to \code{FALSE}.
+#' If \code{TRUE},
 #' a title describing the type of plot is included above the plot.
 #'
 #' @param ... Other base R graphical parameters. See ?plot for more details.
@@ -23,25 +26,10 @@
 #' @export
 #'
 #' @examples
-#' # Example 1: Traceplot from a data.frame or coda::as.mcmc() object.
-#' # Since this example is not directly from a "multi_net_object" class, the
-#' # flow ranges from the LIM Declaration file cannot be included.
-#'
 #' set.seed(1)
 #' x <- data.frame(rnorm(1000, m = 0, s = 1))
 #' colnames(x) <- "Value"
 #' trace_plot(x = x, flow = "Value", xranges = FALSE)
-#'
-#' # Example 2: Traceplot from multi_net() function output
-#' # (class "model_class_output"). If so, flow ranges calculated from the
-#' # LIM Declaration file using LIM::Xranges() can be included in the
-#' # trace_plot() function argument.
-#' # The example LIM Declaration files can be found in the package folder
-#' # "example_limfiles". If using a custom LIM Declaration file, users can
-#' # save the LIM Declaration file in the working directory and refer directly
-#' # within the function e.g., file = "mylimfile.R".
-#' # If the LIM Declaration file is not saved in the
-#' # working directory, the function will accept a valid file path.
 #'
 #' fpath <- system.file("example_limfiles",
 #'   "Winter_Weighted_Network_LIMfile.R",

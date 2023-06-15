@@ -1,8 +1,9 @@
-#' @title Function uvar()
+#' @title uvar()
 #' @description Defines unused material/energy variable for living compartments.
 #' Depends on exports and arguments NLNode and respiration.
 #' @inheritParams autoGen
 #' @param x tidy network input data matrix
+#' @return Vector of U flows with vanity headings.
 
 
 uvar <- function(x, respiration, NLNode) {

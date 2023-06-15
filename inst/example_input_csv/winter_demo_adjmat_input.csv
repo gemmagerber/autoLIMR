@@ -1,0 +1,5 @@
+,Det,Plant,Invert,Vert
+Det,,,"0.01, 0.6",0.1
+Plant,1,,0.6,
+Invert,1,,,"0.6, 1"
+Vert,1,,,

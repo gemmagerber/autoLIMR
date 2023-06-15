@@ -35,7 +35,7 @@ Data variability is an inherent part of ecosystem models. To include data uncert
 Multiple plausible ecological networks are frequently solved using linear inverse modelling with Markov Chain Monte Carlo (LIM-MCMC) with R packages [LIM](https://CRAN.R-project.org/package=LIM) (van Oevelen et al., 2010), and embedded R package [limSolve](https://CRAN.R-project.org/package=limSolve) (Soetaert et al., 2009). 
 To use these packages, all input data on network structure (compartments and directed flows) and flow constraints (lower and upper bounds) need to be manually coded into linear equations and declared in particular sections in a LIM-readable text file, the so-called LIM declaration file (van Oevelen et al., 2010). For small networks, the manual construction of a LIM declaration file is straightforward but becomes less manageable in terms of complexity and time as network size increases.
 
-Further, the evaluation of how well the multiple plausible food webs represent the ecological input data (model quality) needs to be assessed. In ecological modelling, model quality is often assessed with traceplots (Van den Meersche et al., 2009; van der Heijden et al., 2020) and interpretations of convergence of each flow mean and standard deviation values to a stable value (Bell et al., 2017; de Jonge et al., 2020) or not reported at all. While these diagnostics provide some indication of LIM-MCMC algorithm performance, they neglect critical measures of algorithm performance, such as precise measures of mixing or autocorrelation (the degree to which samples are correlated), limiting the confidence that the model outputs are fully representative of the ecological input data. 
+Further, the evaluation of how well the multiple plausible food webs represent the ecological input data (model quality) needs to be assessed. In ecological modelling, model quality is often assessed with trace plots (Van den Meersche et al., 2009; van der Heijden et al., 2020) and interpretations of convergence of each flow mean and standard deviation values to a stable value (Bell et al., 2017; de Jonge et al., 2020) or not reported at all. While these diagnostics provide some indication of LIM-MCMC algorithm performance, they neglect critical measures of algorithm performance, such as precise measures of mixing or autocorrelation (the degree to which samples are correlated), limiting the confidence that the model outputs are fully representative of the ecological input data. 
 
 To overcome the hurdles of input file construction, and evaluation of multiple plausible networks in ecological modelling, we developed R package __autoLIMR__: an inclusive and automated workflow to (1) create input files, (2) generate multiple plausible food web flow values, (3) pack solved flow values into network objects for network analysis and visualisation, and (4) evaluate solved flow values (‘model quality’) with established MCMC convergence diagnostics. We describe the latest package version and apply it to an empirically inspired four-compartment food web time series of four seasonal time steps (‘Summer’, ‘Autumn’, ‘Winter’, ‘Spring’). 
 
@@ -142,7 +142,7 @@ autoGen(
 )
 ```
 
-A handy demo of `autoGen()` is included in this package, using the demo datasets from `demo_net_input()` and `demo_adj_mat()`. Users can simply run the code below, with the `net_data_input = "demo"` and `adj_mat_input = "demo"` to automatically pull the respective demo datasets into `autoGen()` and write the respective folders of LIM declaration files to the working directory. 
+A handy demo of `autoGen()` is included in this package, using the demo data sets from `demo_net_input()` and `demo_adj_mat()`. Users can simply run the code below, with the `net_data_input = "demo"` and `adj_mat_input = "demo"` to automatically pull the respective demo data sets into `autoGen()` and write the respective folders of LIM declaration files to the working directory. 
 
 ```{r, eval = FALSE}
 autoGen(
@@ -403,27 +403,25 @@ diags_table
 
 
 
-
-
 # References
-* Bell, J. B., Woulds, C., & Oevelen, D. van. (2017). _Hydrothermal activity, functional diversity and chemoautotrophy are major drivers of seafloor carbon cycling_. Scientific Reports, 7(1), 12025. https://doi.org/10.1038/s41598-017-12291-w
+* Bell, J. B., Woulds, C., & van Oevelen, D. (2017). _Hydrothermal activity, functional diversity and chemoautotrophy are major drivers of seafloor carbon cycling_. Scientific Reports, 7(1), 12025. https://doi.org/10.1038/s41598-017-12291-w
 
-* Bryan, J., 2016. _cellranger: Translate Spreadsheet Cell Ranges to Rows and Columns_. https://cran.r-project.org/package=cellranger
+* Bryan, J. (2016). _cellranger: Translate Spreadsheet Cell Ranges to Rows and Columns_. https://cran.r-project.org/package=cellranger
 
 * de Jonge, D. S. W., Stratmann, T., Lins, L., Vanreusel, A., Purser, A., Marcon, Y., Rodrigues, C. F., Ravara, A., Esquete, P., Cunha, M. R., Simon-Lledó, E., van Breugel, P., Sweetman, A. K., Soetaert, K., & van Oevelen, D. (2020). _Abyssal food-web model indicates faunal carbon flow recovery and impaired microbial loop 26 years after a sediment disturbance experiment_. Progress in Oceanography, 189, 102446. https://doi.org/10.1016/J.POCEAN.2020.102446
 
-* Fath, B.D., Scharler, U.M., Ulanowicz, R.E., Hannon, B., 2007. _Ecological network analysis: network construction_. Ecological Modelling. 208, 49–55. https://doi.org/10.1016/J.ECOLMODEL.2007.04.029
+* Fath, B.D., Scharler, U.M., Ulanowicz, R.E., Hannon, B. (2007). _Ecological network analysis: network construction_. Ecological Modelling. 208, 49–55. https://doi.org/10.1016/J.ECOLMODEL.2007.04.029
 
-* R Core Team, 2022. R: _A language and environment for statistical computing_. https://www.r-project.org/
+* R Core Team (2022). R: _A language and environment for statistical computing_. https://www.r-project.org/
 
-* Scharler, U.M., Borrett, S.R., 2021. _Network construction, evaluation and documentation: A guideline_. Environ. Model. Softw. 140, 105020. https://doi.org/10.1016/j.envsoft.2021.105020
+* Scharler, U.M., Borrett, S.R. (2021). _Network construction, evaluation and documentation: A guideline_. Environ. Model. Softw. 140, 105020. https://doi.org/10.1016/j.envsoft.2021.105020
 
-* Soetaert, K., van den Meersche, K., van Oevelen, D., 2009. _limSolve: Solving Linear Inverse Models_. https://cran.r-project.org/package=limSolve
+* Soetaert, K., van den Meersche, K., van Oevelen, D. (2009). _limSolve: Solving Linear Inverse Models_. https://cran.r-project.org/package=limSolve
 
-* Van den Meersche, K., Soetaert, K., & Oevelen, D. Van. (2009). xsample(): _An R Function for Sampling Linear Inverse Problems_. Journal of Statistical Software, 30(Code Snippet 1). https://doi.org/10.18637/jss.v030.c01
+* Van den Meersche, K., Soetaert, K., & van Oevelen, D. (2009). xsample(): _An R Function for Sampling Linear Inverse Problems_. Journal of Statistical Software, 30(Code Snippet 1). https://doi.org/10.18637/jss.v030.c01
 
 * van der Heijden, L. H., Niquil, N., Haraldsson, M., Asmus, R. M., Pacella, S. R., Graeve, M., Rzeznik-Orignac, J., Asmus, H., Saint-Béat, B., & Lebreton, B. (2020). _Quantitative food web modeling unravels the importance of the microphytobenthos-meiofauna pathway for a high trophic transfer by meiofauna in soft-bottom intertidal food webs_. Ecological Modelling, 430. https://doi.org/10.1016/j.ecolmodel.2020.109129
 
-* van Oevelen, D., van den Meersche, K., Meysman, F.J.R., Soetaert, K., Middelburg, J.J., Vézina, A.F., 2010. _Quantifying food web flows using linear inverse models_. Ecosystems 13, 32–45. https://doi.org/10.1007/s10021-009-9297-6
+* van Oevelen, D., van den Meersche, K., Meysman, F.J.R., Soetaert, K., Middelburg, J.J., Vézina, A.F. (2010). _Quantifying food web flows using linear inverse models_. Ecosystems 13, 32–45. https://doi.org/10.1007/s10021-009-9297-6
 
-* Wickham, H., Bryan, J., 2022. _readxl: Read Excel Files_. https://cran.r-project.org/package=readxl
+* Wickham, H., Bryan, J. (2022). _readxl: Read Excel Files_. https://cran.r-project.org/package=readxl

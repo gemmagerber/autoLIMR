@@ -1,4 +1,4 @@
-#' @title Function: net_data_node()
+#' @title net_data_node()
 #' @description Defines vectors of living/non-living/input/export compartments
 #' @param x Tidy network data input matrix
 #' @param node.type One of living/nonliving/Input/Export
@@ -28,8 +28,8 @@ net_data_node <- function(x, node.type, NLNode) {
     return(NLN)
   }
 
-  if (node.type == "Input") {
-    input.matrix <- matrix_def(x, mat.type = "Input")
+  if (node.type == "Import") {
+    input.matrix <- matrix_def(x, mat.type = "Import")
     in.mat3 <- as.vector(paste0(rownames(input.matrix), "Import"))
     return(in.mat3)
   }

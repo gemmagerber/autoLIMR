@@ -1,3 +1,5 @@
+# autoLIMR 3.0.0
+
 # autoLIMR 2.2.2
 
 * Changes for CRAN acceptance

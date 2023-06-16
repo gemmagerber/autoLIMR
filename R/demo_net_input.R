@@ -42,7 +42,7 @@ demo_net_input <- function() {
     Imports_lower = c(NA, NA, NA, NA),
     Imports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
     Exports_lower = c(NA, NA, NA, NA),
-    Exports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
+    Exports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert')
   )
 
   net_winter <- data.frame(
@@ -59,7 +59,7 @@ demo_net_input <- function() {
     Imports_lower = c(NA, NA, NA, NA),
     Imports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
     Exports_lower = c(NA, NA, NA, NA),
-    Exports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
+    Exports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert')
   )
 
   net_spring <- data.frame(

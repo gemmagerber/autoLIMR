@@ -56,9 +56,9 @@ function returns an error. We suggest keeping the sample size > 4000.
 \examples{
 \donttest{
 fpath <- system.file(
-"example_limfiles",
-"Winter_Weighted_Network_LIMfile.R",
-package = "autoLIMR"
+  "example_limfiles",
+  "Winter_Weighted_Network_LIMfile.R",
+  package = "autoLIMR"
 )
 
 set.seed(1)

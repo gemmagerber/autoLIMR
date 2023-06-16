@@ -36,14 +36,16 @@ colnames(x) <- "Value"
 autocorr_plot(x = x, flow = "Value")
 
 fpath <- system.file("example_limfiles",
-"Winter_Weighted_Network_LIMfile.R",
-package = "autoLIMR")
+  "Winter_Weighted_Network_LIMfile.R",
+  package = "autoLIMR"
+)
 set.seed(1)
 x <- multi_net(
   file = fpath,
   iter = 1000,
   jmp = NULL,
-  x0 = NULL)
+  x0 = NULL
+)
 autocorr_plot(x = x, flow = "Plant_GPP")
 
 }

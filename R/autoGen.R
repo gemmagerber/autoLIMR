@@ -137,7 +137,8 @@ autoGen <- function(net_data_input = "demo",
                     weighted = TRUE,
                     force = FALSE) {
   # Function setup
-  write_limfiles <- function(x, weighted, path = NULL) {
+  write_limfiles <- function(x, weighted = NULL, path = NULL) {
+
     if (is.null(path)) {
       path <- getwd()
     } else if (!is.null(path)) {
@@ -155,9 +156,12 @@ autoGen <- function(net_data_input = "demo",
         dir.create(path_uw)
       }
 
+      # Check classes
+      w <- x[["Weighted"]]
+      uw <- x[["Unweighted"]]
+
       # For .csv original files
-      if (inherits(class(x[["Weighted"]]), "character") == TRUE &
-        inherits(class(x[["Unweighted"]]), "character") == TRUE) {
+      if (inherits(w, "character") == TRUE & inherits(uw, "character") == TRUE) {
         write(
           x[["Weighted"]],
           paste0(path_w, "////", "Weighted_Network_LIMfile.R")
@@ -166,11 +170,8 @@ autoGen <- function(net_data_input = "demo",
           x[["Unweighted"]],
           paste0(path_uw, "////", "Unweighted_Network_LIMfile.R")
         )
-      } else if (inherits(class(x[["Weighted"]]), "list") == TRUE &
-        inherits(class(x[["Unweighted"]]), "list") == TRUE) {
-        #
-        w <- x[["Weighted"]]
-        uw <- x[["Unweighted"]]
+
+      } else if (inherits(w, "list") == TRUE & inherits(uw, "list") == TRUE) {
 
         for (i in 1:length(w)) {
           write(
@@ -178,14 +179,18 @@ autoGen <- function(net_data_input = "demo",
             paste0(path_w, "////", names(w)[i], "_Weighted_Network_LIMfile.R")
           )
         }
+
         for (i in 1:length(uw)) {
           write(
             uw[[i]],
             paste0(path_uw, "////", names(uw)[i], "_Unweighted_Network_LIMfile.R")
           )
         }
+
       }
+
       message("LIM Declaration files successfully written to the working directory.")
+
     } else if (weighted == FALSE) {
       # Create folders
       path_uw <- file.path(path, "unweighted_limfiles")

@@ -127,7 +127,8 @@ autoGen(
   respiration = TRUE,
   respiration_element = "CO2",
   weighted = TRUE,
-  force = TRUE)
+  force = TRUE
+)
 
 autoGen(
   net_data_input = "your_network_data_workbook.xlsx",
@@ -137,7 +138,8 @@ autoGen(
   respiration = TRUE,
   respiration_element = "CO2",
   weighted = TRUE,
-  force = TRUE)
+  force = TRUE
+)
 }
 
 }

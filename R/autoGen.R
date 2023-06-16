@@ -159,7 +159,6 @@ autoGen <- function(net_data_input = "demo",
     uw <- x[["Unweighted"]]
 
     if (weighted == TRUE | is.null(weighted)) {
-
       # For .csv original files
       if (inherits(w, "character") == TRUE & inherits(uw, "character") == TRUE) {
         write(
@@ -188,17 +187,13 @@ autoGen <- function(net_data_input = "demo",
 
       message("LIM Declaration files successfully written to the working directory.")
     } else if (weighted == FALSE) {
-
       # For .csv original files
       if (inherits(uw, "character") == TRUE) {
-
         write(
           uw,
           paste0(path_uw, "////", "Unweighted_Network_LIMfile.R")
         )
-
       } else if (inherits(uw, "list") == TRUE) {
-
         for (i in 1:length(uw)) {
           write(
             uw[[i]],

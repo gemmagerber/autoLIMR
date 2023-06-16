@@ -28,7 +28,7 @@ demo_adj_mat <- function() {
     Det = c(NA, 1, 1, 1),
     Plant = c(NA, NA, NA, NA),
     Invert = c("0.01, 0.6", 0.6, NA, NA),
-    Vert = c(0.1, NA, "0.6, 1", NA)
+    Vert = c(NA, NA, "0.6, 1", NA)
   )
 
   adj_spring <- data.frame(

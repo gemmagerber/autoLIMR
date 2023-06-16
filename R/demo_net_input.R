@@ -21,9 +21,9 @@ demo_net_input <- function() {
     Unused_energy_lower = c(NA, NA, NA, NA),
     Unused_energy_upper = c(NA, NA, NA, "0.05 * Vert_Q"),
     Imports_lower = c(NA, NA, NA, NA),
-    Imports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
+    Imports_upper = c("0.1 * Det", "0.1 * Plant", "0.1 * Invert", "0.1 * Vert"),
     Exports_lower = c(NA, NA, NA, NA),
-    Exports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
+    Exports_upper = c("0.1 * Det", "0.1 * Plant", "0.1 * Invert", "0.1 * Vert"),
     AE_lower = c(NA, NA, "0.5 * Invert_Q", "0.2 * Vert_Q"),
     AE_upper = c(NA, NA, NA, NA)
   )
@@ -40,9 +40,9 @@ demo_net_input <- function() {
     Unused_energy_lower = c(NA, NA, NA, NA),
     Unused_energy_upper = c(NA, NA, NA, NA),
     Imports_lower = c(NA, NA, NA, NA),
-    Imports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
+    Imports_upper = c("0.1 * Det", "0.1 * Plant", "0.1 * Invert", "0.1 * Vert"),
     Exports_lower = c(NA, NA, NA, NA),
-    Exports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
+    Exports_upper = c("0.1 * Det", "0.1 * Plant", "0.1 * Invert", "0.1 * Vert"),
   )
 
   net_winter <- data.frame(
@@ -57,9 +57,9 @@ demo_net_input <- function() {
     Unused_energy_lower = c(NA, NA, NA, NA),
     Unused_energy_upper = c(NA, NA, NA, NA),
     Imports_lower = c(NA, NA, NA, NA),
-    Imports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
+    Imports_upper = c("0.1 * Det", "0.1 * Plant", "0.1 * Invert", "0.1 * Vert"),
     Exports_lower = c(NA, NA, NA, NA),
-    Exports_upper = c('0.1 * Det', '0.1 * Plant', '0.1 * Invert', '0.1 * Vert'),
+    Exports_upper = c("0.1 * Det", "0.1 * Plant", "0.1 * Invert", "0.1 * Vert"),
   )
 
   net_spring <- data.frame(

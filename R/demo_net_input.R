@@ -21,7 +21,7 @@ demo_net_input <- function() {
     Unused_energy_lower = c(NA, NA, NA, NA),
     Unused_energy_upper = c(NA, NA, NA, "0.05 * Vert_Q"),
     Imports_lower = c(NA, NA, NA, NA),
-    Imports_upper = c('0.1 * DetNLNode', '0.1 * Plant', NA, NA),
+    Imports_upper = c("0.1 * DetNLNode", "0.1 * Plant", NA, NA),
     Exports_lower = c(NA, NA, NA, NA),
     Exports_upper = c(
       "0.1 * DetNLNode", "0.1 * Plant",
@@ -43,7 +43,7 @@ demo_net_input <- function() {
     Unused_energy_lower = c(NA, NA, NA, NA),
     Unused_energy_upper = c(NA, NA, NA, NA),
     Imports_lower = c(NA, NA, NA, NA),
-    Imports_upper = c('0.1 * DetNLNode', '0.1 * Plant', NA, NA),
+    Imports_upper = c("0.1 * DetNLNode", "0.1 * Plant", NA, NA),
     Exports_lower = c(NA, NA, NA, NA),
     Exports_upper = c(
       "0.1 * DetNLNode", "0.1 * Plant",
@@ -63,7 +63,7 @@ demo_net_input <- function() {
     Unused_energy_lower = c(NA, NA, NA, NA),
     Unused_energy_upper = c(NA, NA, NA, NA),
     Imports_lower = c(NA, NA, NA, NA),
-    Imports_upper = c('0.1 * DetNLNode', '0.1 * Plant', NA, NA),
+    Imports_upper = c("0.1 * DetNLNode", "0.1 * Plant", NA, NA),
     Exports_lower = c(NA, NA, NA, NA),
     Exports_upper = c(
       "0.1 * DetNLNode", "0.1 * Plant",

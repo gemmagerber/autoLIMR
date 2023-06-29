@@ -1,5 +1,5 @@
 Compartment,Biomass,Consumption_lower,Consumption_upper,Production_lower,Production_upper,Respiration_lower,Respiration_upper,Unused_energy_lower,Unused_energy_upper,Imports_lower,Imports_upper,Exports_lower,Exports_upper
-Det,7111,,,,,,,,,200,1200,180,380
-Plant,500,700,1000,,,,,,,700,1300,300,1300
-Invert,822,,,,,,,,,1,,,
-Vert,222,,,,,,,,,1,,1,1
+Det,7111,,,,,,,,,,0.1 * DetNLNode,,0.1 * DetNLNode
+Plant,500,700,1000,,,,,,,,0.1 * Plant,,0.1 * Plant
+Invert,822,,,,,,,,,,,,0.1 * Invert
+Vert,222,,,,,,,,,,,,0.1 * Vert

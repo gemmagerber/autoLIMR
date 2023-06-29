@@ -2,16 +2,16 @@
 ! Network LIM Declaration File
 ! Composed with autoLIMR
 ! Author: gemma
-! Date: 2023-02-13
+! Date: 2023-06-17
 
 ! Respiration included: Yes
 ! U included: Yes
 
 ! Living compartments: 3
 ! Non-living compartments: 1
-! External compartments: 8
-! Boundary flows: 11
-! Internal flows: 7
+! External compartments: 7
+! Boundary flows: 10
+! Internal flows: 6
 
 ! Abbreviations
 ! GPP = Gross Primary Production (Primary Producers only)
@@ -38,10 +38,9 @@ DetNLNode = 7111
 
 CO2
 DetNLNodeImport
-InvertImport
 PlantImport
-VertImport
 DetNLNodeExport
+InvertExport
 PlantExport
 VertExport
 
@@ -51,23 +50,22 @@ VertExport
 
 ! Consumption (Q) / Gross Primary Production (GPP) Variables
 
-Invert_Q = Flowto(Invert) - Invert_IM
+Invert_Q = Flowto(Invert)
 Plant_GPP = Flowto(Plant) - Plant_IM
-Vert_Q = Flowto(Vert) - Vert_IM
+Vert_Q = Flowto(Vert)
 
 ! Production (P/NPP) Variables
 
-Invert_P = Flowfrom(Invert) - Invert_R - Invert_U
+Invert_P = Flowfrom(Invert) - Invert_R - Invert_U - Invert_EX
 Plant_NPP = Flowfrom(Plant) - Plant_R - Plant_U - Plant_EX
 Vert_P = Flowfrom(Vert) - Vert_R - Vert_U - Vert_EX
 
 ! Unused Energy/Material (U) Variables
 
-Invert_U = Flowto(Invert) - Invert_P - Invert_R
+Invert_U = Flowto(Invert) - Invert_P - Invert_R - Invert_EX
 Plant_U = Flowto(Plant) - Plant_NPP - Plant_R - Plant_EX
 Vert_U = Flowto(Vert) - Vert_P - Vert_R - Vert_EX
 
-! No Assimilation Efficiency (AE) Variables defined
 
 ### END VARIABLES
 
@@ -86,20 +84,18 @@ Vert_R: Vert -> CO2
 ! Import flows
 
 DetNLNode_IM: DetNLNodeImport -> DetNLNode
-Invert_IM: InvertImport -> Invert
 Plant_IM: PlantImport -> Plant
-Vert_IM: VertImport -> Vert
 
 ! Export flows
 
 DetNLNode_EX: DetNLNode -> DetNLNodeExport
 Plant_EX: Plant -> PlantExport
+Invert_EX: Invert -> InvertExport
 Vert_EX: Vert -> VertExport
 
 ! Adjacency Matrix flows
 
 DetNLNode_Q_Invert: DetNLNode -> Invert
-DetNLNode_Q_Vert: DetNLNode -> Vert
 Invert_Q_Vert: Invert -> Vert
 Invert_U_DetNLNode: Invert -> DetNLNode
 Plant_Q_Invert: Plant -> Invert

@@ -1,16 +1,16 @@
 ! Weighted Network
 ! Network LIM Declaration File
 ! Composed with autoLIMR
-! Author: Gemma Gerber
-! Date: 2023-02-13
+! Author: gemma
+! Date: 2023-06-17
 
 ! Respiration included: Yes
 ! U included: Yes
 
 ! Living compartments: 3
 ! Non-living compartments: 1
-! External compartments: 6
-! Boundary flows: 9
+! External compartments: 7
+! Boundary flows: 10
 ! Internal flows: 6
 
 ! Abbreviations
@@ -40,6 +40,7 @@ CO2
 DetNLNodeImport
 PlantImport
 DetNLNodeExport
+InvertExport
 PlantExport
 VertExport
 
@@ -55,17 +56,17 @@ Vert_Q = Flowto(Vert)
 
 ! Production (P/NPP) Variables
 
-Invert_P = Flowfrom(Invert) - Invert_R - Invert_U
+Invert_P = Flowfrom(Invert) - Invert_R - Invert_U - Invert_EX
 Plant_NPP = Flowfrom(Plant) - Plant_R - Plant_U - Plant_EX
 Vert_P = Flowfrom(Vert) - Vert_R - Vert_U - Vert_EX
 
 ! Unused Energy/Material (U) Variables
 
-Invert_U = Flowto(Invert) - Invert_P - Invert_R
+Invert_U = Flowto(Invert) - Invert_P - Invert_R - Invert_EX
 Plant_U = Flowto(Plant) - Plant_NPP - Plant_R - Plant_EX
 Vert_U = Flowto(Vert) - Vert_P - Vert_R - Vert_EX
 
-! Assimilation Efficiency (AE) Variables
+! Assimilation Efficiency (AE) variables
 
 Invert_AE = Invert_P + Invert_R
 Vert_AE = Vert_P + Vert_R
@@ -93,6 +94,7 @@ Plant_IM: PlantImport -> Plant
 
 DetNLNode_EX: DetNLNode -> DetNLNodeExport
 Plant_EX: Plant -> PlantExport
+Invert_EX: Invert -> InvertExport
 Vert_EX: Vert -> VertExport
 
 ! Adjacency Matrix flows
@@ -124,6 +126,12 @@ Vert_R > 0.75
 Plant_R < 0.7*Plant_NPP
 Vert_R < 0.75
 Vert_U < 0.05*Vert_Q
+DetNLNode_IM < 0.1*DetNLNode
+Plant_IM < 0.1*Plant
+DetNLNode_EX < 0.1*DetNLNode
+Plant_EX < 0.1*Plant
+Invert_EX < 0.1*Invert
+Vert_EX < 0.1*Vert
 Invert_AE > 0.5*Invert_Q
 Vert_AE > 0.2*Vert_Q
 

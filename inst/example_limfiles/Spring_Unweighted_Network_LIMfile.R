@@ -2,15 +2,15 @@
 ! Network LIM Declaration File
 ! Composed with autoLIMR
 ! Author: gemma
-! Date: 2023-02-13
+! Date: 2023-06-17
 
 ! Respiration included: Yes
 ! U included: Yes
 
 ! Living compartments: 3
 ! Non-living compartments: 1
-! External compartments: 9
-! Boundary flows: 12
+! External compartments: 7
+! Boundary flows: 10
 ! Internal flows: 6
 
 ! Abbreviations
@@ -38,9 +38,7 @@ DetNLNode = 9000.0
 
 CO2
 DetNLNodeImport
-InvertImport
 PlantImport
-VertImport
 DetNLNodeExport
 InvertExport
 PlantExport
@@ -52,9 +50,9 @@ VertExport
 
 ! Consumption (Q) / Gross Primary Production (GPP) Variables
 
-Invert_Q = Flowto(Invert) - Invert_IM
+Invert_Q = Flowto(Invert)
 Plant_GPP = Flowto(Plant) - Plant_IM
-Vert_Q = Flowto(Vert) - Vert_IM
+Vert_Q = Flowto(Vert)
 
 ! Production (P/NPP) Variables
 
@@ -68,7 +66,6 @@ Invert_U = Flowto(Invert) - Invert_P - Invert_R - Invert_EX
 Plant_U = Flowto(Plant) - Plant_NPP - Plant_R - Plant_EX
 Vert_U = Flowto(Vert) - Vert_P - Vert_R - Vert_EX
 
-! No Assimilation Efficiency (AE) Variables defined
 
 ### END VARIABLES
 
@@ -87,9 +84,7 @@ Vert_R: Vert -> CO2
 ! Import flows
 
 DetNLNode_IM: DetNLNodeImport -> DetNLNode
-Invert_IM: InvertImport -> Invert
 Plant_IM: PlantImport -> Plant
-Vert_IM: VertImport -> Vert
 
 ! Export flows
 

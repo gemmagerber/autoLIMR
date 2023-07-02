@@ -112,7 +112,7 @@ To view the adjacency matrix data for all seasons, the example adjacency matrix 
 
 ### `autoGen()`: write LIM declaration files into folders in working directory
 
-Once both workbooks have been populated, `autoGen()` uses data from both workbooks and translates the data into ready-to-use LIM declaration file formatted objects. Users can choose to manually write these to the computer hard drive, or can specify `force = TRUE` within the argument to give permissionto automatically write to the hard drive.
+Once both workbooks have been populated, `autoGen()` uses data from both workbooks and translates the data into ready-to-use LIM declaration file formatted objects. Users can choose to manually write these to the computer hard drive, or can specify `force = TRUE` within the argument to give permission to automatically write to the hard drive.
 
 The translation depends on three main `autoGen()` arguments: 1) whether respiration from living compartments to an external CO2 sink is included in the network (LOGICAL, default `respiration = TRUE`), 2) whether each compartment is living or non-living (character string or vector of inputs, default `NLNode = NULL`), and 3) whether each compartment sources its energy from outside the system boundary e.g., primary producers in ecological networks (character string or vector of inputs, default `primary_producer = NULL`).
 

@@ -26,7 +26,6 @@ Input’
 Jonge
 LIM
 LIMfile
-LIMfiles
 LSEI
 Lau
 Lebreton
@@ -41,6 +40,7 @@ Modelling
 NA's
 NLNode
 NLNodes
+NLNode’
 NPP
 Niquil
 Nmin
@@ -48,7 +48,6 @@ Oevelen
 Orignac
 Pacella
 Plummer
-RStudio
 Raftery
 Ravara
 Rodrigues
@@ -124,8 +123,8 @@ microphytobenthos
 modelling
 much’
 mulriple
+permissionto
 png
-pre
 prepack
 pvar
 quality’
@@ -134,7 +133,14 @@ raftery
 readxl
 reproducibility
 runmean
+sedPOC
+sedPOCNLNode’
+sedPOC’
+sedimented
 ssCheck
+susPOC
+susPOCNLNode’
+susPOC’
 tibble
 trophic
 uvar
@@ -142,5 +148,4 @@ visualisation
 visualises
 visualistion
 xlsx
-xlsx’
 xsample

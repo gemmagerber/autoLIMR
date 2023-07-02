@@ -14,7 +14,7 @@ text-align: justify}
 </style>
 
 ```{r setup, include = FALSE}
-#library(bookdown)
+library(bookdown)
 ```
 
 ```{r, include=FALSE}

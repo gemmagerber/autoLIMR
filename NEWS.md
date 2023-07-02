@@ -1,4 +1,4 @@
-# autoLIMR (development version)
+# autoLIMR 3.0.1
 
 # autoLIMR 3.0.0
 

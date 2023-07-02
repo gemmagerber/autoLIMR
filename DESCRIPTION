@@ -1,7 +1,7 @@
 Type: Package
 Package: autoLIMR
 Title: 'Incorporation and Evaluation of Data Uncertainty in Ecological Networks'
-Version: 3.0.0.9000
+Version: 3.0.1
 Authors@R: person("Gemma", "Gerber",
    email = "gemmagerber@live.com",
    role = c("aut", "cre"),

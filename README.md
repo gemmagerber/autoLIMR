@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Automated workflow for incorporation and evaluation of data uncertainty in ecological networks with autoLIMR
+# Automated workflow for incorporation and evaluation of data uncertainty in ecological networks with **autoLIMR**
 
 <!-- badges: start -->
 
@@ -12,7 +12,10 @@ coverage](https://codecov.io/gh/gemmagerber/autoLIMR/branch/main/graph/badge.svg
 [![Style](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/style.yaml)
 <!-- badges: end -->
 
-![autoLIMR](vignettes/images/autoLIMR_logo.png)
+<figure>
+<img src="vignettes/images/autoLIMR_logo.png" alt="autoLIMR" />
+<figcaption aria-hidden="true">autoLIMR</figcaption>
+</figure>
 
 The goal of **autoLIMR** is to facilitate the inclusion of data
 uncertainty in ecological models. **autoLIMR** does this by:
@@ -21,8 +24,10 @@ uncertainty in ecological models. **autoLIMR** does this by:
     compatible with R packages
     [LIM](https://CRAN.R-project.org/package=LIM) and
     [limSolve](https://CRAN.R-project.org/package=limSolve)
+
 2.  Calculation of multiple plausible network configuration using linear
     inverse modelling and Markov Chain Monte Carlo (LIM-MCMC), and
+
 3.  Evaluation of model quality using several visual and statistical
     MCMC convergence diagnostics.
 

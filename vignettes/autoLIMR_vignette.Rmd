@@ -1,8 +1,8 @@
 ---
-title: "autoLIMR: Automated workflow for incorporation and evaluation of data uncertainty in ecological networks"
+title: "Automated workflow for incorporation and evaluation of data uncertainty in ecological networks"
 author: "Gemma Gerber"
 date: "2023"
-output: rmarkdown::html_vignette
+output: bookdown::html_document2
 vignette: >
   %\VignetteIndexEntry{autoLIMR_vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 Data variability is an inherent part of ecosystem models. To include data uncertainty in model outputs, a popular method is to solve multiple plausible representations of the model. The multiple plausible representations each represent a plausible configuration of flow values given the ecological input constraints. Together, the ensemble of plausible model representations capture the inherent ecological variability, enabling increased realism of model outputs and interpretations.
 
 Multiple plausible ecological networks are frequently solved using linear inverse modelling with Markov Chain Monte Carlo (LIM-MCMC) with R packages [LIM](https://CRAN.R-project.org/package=LIM) (van Oevelen et al., 2010), and embedded R package [limSolve](https://CRAN.R-project.org/package=limSolve) (Soetaert et al., 2009). 
-To use these packages, all input data on network structure (compartments and directed flows) and flow constraints (lower and upper bounds) need to be manually coded into linear equations and declared in particular sections in a LIM-readable text file, the so-called LIM declaration file (van Oevelen et al., 2010). For small networks, the manual construction of a LIM declaration file is straightforward but becomes less manageable in terms of complexity and time as network size increases.
+To use these packages, all input data on network structure (compartments and directed flows) and flow constraints (lower and upper bounds) need to be manually coded into linear equations and declared in particular sections in a LIM-readable text file, the so-called LIM declaration file (van Oevelen et al., 2010). This becomes less manageable in terms of complexity and time as network size increases.
 
 Further, the evaluation of how well the multiple plausible food webs represent the ecological input data (model quality) needs to be assessed. In ecological modelling, model quality is often assessed with trace plots (Van den Meersche et al., 2009; van der Heijden et al., 2020) and interpretations of convergence of each flow mean and standard deviation values to a stable value (Bell et al., 2017; de Jonge et al., 2020) or not reported at all. While these diagnostics provide some indication of LIM-MCMC algorithm performance, they neglect critical measures of algorithm performance, such as precise measures of mixing or autocorrelation (the degree to which samples are correlated), limiting the confidence that the model outputs are fully representative of the ecological input data. 
 
@@ -52,10 +52,12 @@ library(autoLIMR)
 
 # __autoLIMR__ workflow overview
 
-An ecosystem network consists of the biomass of each functional group or species, their energy or nutrient requirements and outputs, and their trophic interactions. These data are collected before using __autoLIMR__ (e.g., see Fath et al., 2007; Scharler & Borrett, 2021 for instructions on network construction). The first step to using __autoLIMR__ is to consolidate the data into two Excel workbooks (‘.xlsx’ file extension) containing network input data on compartments, biomasses, and metabolic constraints (Workbook 1), and the proportional diet and egestive flows between compartments (‘who eats who and by how much’, Workbook 2) (Figure \@ref(fig:workflow)). After that, the __autoLIMR__ workflow consists of three core R functions. The first function, `autoGen()`, translates network data into LIM declaration files compatible with R packages
+An ecosystem network consists of the biomass of each functional group or species, their energy or nutrient requirements and outputs, and their trophic interactions. These data are collected before using __autoLIMR__ (e.g., see Fath et al., 2007; Scharler & Borrett, 2021 for instructions on network construction). The first step to using __autoLIMR__ is to consolidate the data into two Excel workbooks (`.xlsx`) or two CSV documents (`.csv`) containing network input data on compartments, biomasses, and metabolic constraints (Workbook 1), and the proportional diet and egestive flows between compartments (‘who eats who and by how much’, Workbook 2) (Figure \@ref(fig:workflow)). After that, the __autoLIMR__ workflow consists of three core R functions. 
+
+The first function, `autoGen()`, translates network data into LIM declaration files compatible with R packages
 [LIM](https://CRAN.R-project.org/package=LIM) and
 [limSolve](https://CRAN.R-project.org/package=limSolve).
-Function `autoGen()` imports network data from the two pre-defined Excel workbooks, translates the data into linear equations describing network topography and parameters, arranges them in multiple ‘LIM Declaration files’ (‘.R’ file extension) each representing one network model, and writes these files to the computer hard drive. 
+Function `autoGen()` imports network data from the two workbooks, translates the data into linear equations describing network topography and parameters, arranges them in multiple ‘LIM Declaration files’ (‘.R’ file extension) each representing one network model, and writes these files to the computer hard drive. 
 
 The second core function, `multi_net()`, solves multiple plausible networks for each network model described by a LIM declaration file. Function `multi_net()` uses LIM-MCMC methods from R packages 
 [LIM](https://CRAN.R-project.org/package=LIM) and
@@ -75,12 +77,6 @@ We describe how to use __autoLIMR__ using a theoretical four-compartment network
 ```{r network, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = 'justified', fig.cap = "_Conceptual four-compartment network with flows describing exchanges between compartments within and across a defined system boundary_"}
 knitr::include_graphics("images/network.png")
 ```
-
-## Data requirements
-
-Prior to using
-__autoLIMR__,
-all network data are calculated to a specific model currency or defined as proportions of another variable (see Fath et al., 2007; Scharler and Borrett, 2021 for details). In our example, the model currency is in units of carbon, i.e., mg C·m^--2^ for compartment biomasses, and mg C·m^--2^·day^--1^ for flows.
 
 ## Network construction with __autoLIMR__
 
@@ -104,10 +100,6 @@ knitr::include_graphics("images/netinputwinter.png")
 
 To view the network input data for all seasons, the example network data provided with __autoLIMR__ can be fetched with `demo_net_input()`. The demo network data input is a list of four data tables containing network data input for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks.
 
-```{r, echo = TRUE}
-demo_net_input()
-```
-
 ### Adjacency Matrix Data Workbook
 
 In the 'Adjacency Matrix Input' workbook, flows between source (row _i_) and recipient (column _j_) are defined by `1` (Figure \@ref(fig:admat)). If the proportions of compartmental inflow from different sources are provided, these can instead be entered as a constraint in the form of _lower value, upper value_. For example, `0.2,0.5` indicates that a specific flow comprises 20 - 50 % of compartment _j_'s total consumptive input. If only the lower proportion is known, it can be entered as _lower value, 1_, e.g., `0.2, 1` indicates that the flow contributes a minimum of 20 % and a maximum of 100% to total consumption. If only the upper diet proportion is known, it can be entered as the constraint _upper value_ or _0, upper value_ (e.g., `0.6` or `0, 0.6` – indicating that the flow contributes a maximum of 60 % to total consumption). R packages LIM and limSolve do not use flow values below or equal to zero (van Oevelen et al., 2010).
@@ -118,29 +110,11 @@ knitr::include_graphics("images/adjmatwinter.PNG")
 
 To view the adjacency matrix data for all seasons, the example adjacency matrix data provided with __autoLIMR__ can fetched with `demo_adj_mat()`. The demo adjacency matrix input is a list of four data tables containing adjacency matrices for 'Winter', 'Spring', 'Summer', and 'Autumn' four-compartment networks. Each adjacency matrix describes internal flows of energy/material from compartment in row _i_ to compartment in column _j_.
 
-```{r, echo = TRUE}
-demo_adj_mat()
-```
-
 ### `autoGen()`: write LIM declaration files into folders in working directory
 
-Once both workbooks have been populated, __autoLIMR__ uses the function `autoGen()` to take the information from both workbooks, and output ready to use LIM declaration file in RStudio script format (_.R_). __autoLIMR__ creates two folders in the working directory: 1) 'autoLIMR Weighted Network LIMfiles' and 2) 'autoLIMR Unweighted Network LIMfiles'.
+Once both workbooks have been populated, `autoGen()` uses data from both workbooks and translates the data into ready-to-use LIM declaration file formatted objects. Users can choose to manually write these to the computer hard drive, or can specify `force = TRUE` within the argument to give permissionto automatically write to the hard drive.
 
-The exact nature of translation depends on three main `autoGen()` arguments: 1) whether respiration from living compartments to an external CO2 sink is included in the network (LOGICAL, default `respiration = TRUE`), 2) whether each compartment is living or non-living (character vector, default `NLNode = NULL`), and 3) whether each compartment sources its energy from outside the system boundary e.g., primary producers in ecological networks (character vector, default `primary_producer = NULL`).
-
-A non-negotiable `autoGen()` argument is `force`, which is asking the user for permission to write to the working directory. By default, `force = FALSE`. The user will need to provide consent for __autoLIMR__ to write LIMfiles in their respective folders in the working directory by setting `force = TRUE`.
-
-```{r, eval = FALSE}
-autoGen(
-  net_data_input = "my_network_input_data.xlsx",
-  adj_mat_input = "my_network_adj_mat_data.xlsx",
-  NLNode = NULL,
-  primary_producer = NULL,
-  respiration = TRUE,
-  author = "Jane Doe",
-  force = TRUE
-)
-```
+The translation depends on three main `autoGen()` arguments: 1) whether respiration from living compartments to an external CO2 sink is included in the network (LOGICAL, default `respiration = TRUE`), 2) whether each compartment is living or non-living (character string or vector of inputs, default `NLNode = NULL`), and 3) whether each compartment sources its energy from outside the system boundary e.g., primary producers in ecological networks (character string or vector of inputs, default `primary_producer = NULL`).
 
 A handy demo of `autoGen()` is included in this package, using the demo data sets from `demo_net_input()` and `demo_adj_mat()`. Users can simply run the code below, with the `net_data_input = "demo"` and `adj_mat_input = "demo"` to automatically pull the respective demo data sets into `autoGen()` and write the respective folders of LIM declaration files to the working directory. 
 
@@ -156,14 +130,20 @@ autoGen(
 )
 ```
 
+In cases of multiple non-living compartments (Figure \@ref(fig:net2)), for example, differentiation between suspended and sedimented particulate organic carbon (susPOC and sedPOC), these can rather be entered as a vector of inputs e.g., c(‘susPOC’, ‘sedPOC’). autoGen() attaches an ‘NLNode’ text string to each of the defined inputs, such that ‘susPOC’ becomes ‘susPOCNLNode’, and ‘sedPOC’ becomes ‘sedPOCNLNode’. Multiple primary-producing compartments can be specified in the same way.
+
+```{r net2, echo = FALSE, out.width = "100%", fig.align = 'center', fig.cap = "_A network consisting of multiple non-living and primary producer compartments can easily be defined as vectors of inputs within the `autoGen()` function. In this example, the `NLNode` argument would be defined as `NLNode = c('Detritus_1', 'Detritus_2')`, and the 'primary_producer' argument as `primary_producer = c('Plant_1', 'Plant_2')._"}
+knitr::include_graphics("images/network2.png")
+```
+
 An example of the Winter weighted LIM declaration output from __autoLIMR__:
 
 ```{r, eval = FALSE}
 ! Weighted Network
 ! Network LIM Declaration File
 ! Composed with autoLIMR
-! Author: Gemma Gerber
-! Date: 2022-10-28
+! Author: gemma
+! Date: 2023-06-17
 
 ! Respiration included: Yes
 ! U included: Yes
@@ -172,7 +152,7 @@ An example of the Winter weighted LIM declaration output from __autoLIMR__:
 ! Non-living compartments: 1
 ! External compartments: 7
 ! Boundary flows: 10
-! Internal flows: 7
+! Internal flows: 6
 
 ! Abbreviations
 ! GPP = Gross Primary Production (Primary Producers only)
@@ -188,22 +168,22 @@ An example of the Winter weighted LIM declaration output from __autoLIMR__:
 
 ### COMPARTMENTS
 
-Invertebrate = 800.00
-Plant = 500.00
-Vertebrate = 200.00
-DetritusNLNode = 7000.00
+Invert = 822
+Plant = 500
+Vert = 222
+DetNLNode = 7111
 
 ### END COMPARTMENTS
 
 ### EXTERNALS
 
 CO2
-DetritusNLNodeInput
-InvertebrateInput
-PlantInput
-DetritusNLNodeExport
+DetNLNodeImport
+PlantImport
+DetNLNodeExport
+InvertExport
 PlantExport
-VertebrateExport
+VertExport
 
 ### END EXTERNALS
 
@@ -211,26 +191,22 @@ VertebrateExport
 
 ! Consumption (Q) / Gross Primary Production (GPP) Variables
 
-Invertebrate_Q = Flowto(Invertebrate) - Invertebrate_IN
-Plant_GPP = Flowto(Plant) - Plant_IN
-Vertebrate_Q = Flowto(Vertebrate)
+Invert_Q = Flowto(Invert)
+Plant_GPP = Flowto(Plant) - Plant_IM
+Vert_Q = Flowto(Vert)
 
 ! Production (P/NPP) Variables
 
-Invertebrate_P = Flowfrom(Invertebrate) - Invertebrate_R - Invertebrate_U
+Invert_P = Flowfrom(Invert) - Invert_R - Invert_U - Invert_EX
 Plant_NPP = Flowfrom(Plant) - Plant_R - Plant_U - Plant_EX
-Vertebrate_P = Flowfrom(Vertebrate) - Vertebrate_R - Vertebrate_U - Vertebrate_EX
+Vert_P = Flowfrom(Vert) - Vert_R - Vert_U - Vert_EX
 
 ! Unused Energy/Material (U) Variables
 
-Invertebrate_U = Flowto(Invertebrate) - Invertebrate_P - Invertebrate_R
+Invert_U = Flowto(Invert) - Invert_P - Invert_R - Invert_EX
 Plant_U = Flowto(Plant) - Plant_NPP - Plant_R - Plant_EX
-Vertebrate_U = Flowto(Vertebrate) - Vertebrate_P - Vertebrate_R - Vertebrate_EX
+Vert_U = Flowto(Vert) - Vert_P - Vert_R - Vert_EX
 
-! Assimilation Efficiency (AE) Variables
-
-Invertebrate_AE = Invertebrate_P + Invertebrate_R
-Vertebrate_AE = Vertebrate_P + Vertebrate_R
 
 ### END VARIABLES
 
@@ -243,30 +219,29 @@ Plant_GPP: CO2 -> Plant
 ! Respiration flows
 
 Plant_R: Plant -> CO2
-Invertebrate_R: Invertebrate -> CO2
-Vertebrate_R: Vertebrate -> CO2
+Invert_R: Invert -> CO2
+Vert_R: Vert -> CO2
 
 ! Import flows
 
-DetritusNLNode_IM: DetritusNLNodeImport -> DetritusNLNode
-Invertebrate_IM: InvertebrateImport -> Invertebrate
+DetNLNode_IM: DetNLNodeImport -> DetNLNode
 Plant_IM: PlantImport -> Plant
 
 ! Export flows
 
-DetritusNLNode_EX: DetritusNLNode -> DetritusNLNodeExport
+DetNLNode_EX: DetNLNode -> DetNLNodeExport
 Plant_EX: Plant -> PlantExport
-Vertebrate_EX: Vertebrate -> VertebrateExport
+Invert_EX: Invert -> InvertExport
+Vert_EX: Vert -> VertExport
 
 ! Adjacency Matrix flows
 
-DetritusNLNode_Q_Invertebrate: DetritusNLNode -> Invertebrate
-DetritusNLNode_Q_Vertebrate: DetritusNLNode -> Vertebrate
-Invertebrate_Q_Vertebrate: Invertebrate -> Vertebrate
-Invertebrate_U_DetritusNLNode: Invertebrate -> DetritusNLNode
-Plant_Q_Invertebrate: Plant -> Invertebrate
-Plant_U_DetritusNLNode: Plant -> DetritusNLNode
-Vertebrate_U_DetritusNLNode: Vertebrate -> DetritusNLNode
+DetNLNode_Q_Invert: DetNLNode -> Invert
+Invert_Q_Vert: Invert -> Vert
+Invert_U_DetNLNode: Invert -> DetNLNode
+Plant_Q_Invert: Plant -> Invert
+Plant_U_DetNLNode: Plant -> DetNLNode
+Vert_U_DetNLNode: Vert -> DetNLNode
 
 ### END FLOWS
 
@@ -274,32 +249,22 @@ Vertebrate_U_DetritusNLNode: Vertebrate -> DetritusNLNode
 
 ! Network Data Input Inequalities
 
-Plant_GPP > 200.00
-Invertebrate_Q > 500.00
-Plant_GPP < 1000.00
-Invertebrate_Q < 900.00
-Vertebrate_Q < 350.00
-Invertebrate_R > 0.75
-Invertebrate_R < 0.75
-Plant_U < 200.00
-Plant_IM > 700.00
-DetritusNLNode_IM < 1200.00
-Plant_IM < 1300.00
-DetritusNLNode_EX < 380.00
-Plant_EX < 1300.00
-Invertebrate_AE > Invertebrate_Q * 0.50
-Vertebrate_AE > Vertebrate_Q * 0.20
-Invertebrate_AE > Invertebrate_Q * 0.80
-Vertebrate_AE > Vertebrate_Q * 0.30
+Plant_GPP > 700
+Plant_GPP < 1000
+DetNLNode_IM < 0.1*DetNLNode
+Plant_IM < 0.1*Plant
+DetNLNode_EX < 0.1*DetNLNode
+Plant_EX < 0.1*Plant
+Invert_EX < 0.1*Invert
+Vert_EX < 0.1*Vert
 
 ! Adjacency Matrix Inequalities
 
-DetritusNLNode_Q_Invertebrate = Invertebrate_Q * [0.01,0.6]
-Plant_Q_Invertebrate < Invertebrate_Q * 0.6
-Invertebrate_Q_Vertebrate = Vertebrate_Q * [0.6,1]
+DetNLNode_Q_Invert = Invert_Q * [0.01,0.6]
+Plant_Q_Invert < Invert_Q * 0.6
+Invert_Q_Vert = Vert_Q * [0.6,1]
 
 ### END INEQUALITIES
-
 
 ```
 
@@ -307,15 +272,17 @@ Invertebrate_Q_Vertebrate = Vertebrate_Q * [0.6,1]
 
 Function `multi_net()` uses LIM-MCMC methods from R packages 
 [LIM](https://CRAN.R-project.org/package=LIM) (van Oevelen et al., 2010), and  [limSolve](https://CRAN.R-project.org/package=limSolve) (Soetaert et al., 2009) 
-to simulate a user-defined number of plausible solutions valid within the ecologically derived input data constraints. With the `multi_net()` function, users can toggle the LIM-MCMC algorithm parameters (starting point, jump size, iterations). The result of the `multi_net()` function is an R list of combined model output items, including 1) metadata, 2) a table of solved food web flow values, and 3) solved values packed into network objects.
+to simulate a user-defined number of plausible solutions valid within the ecologically derived input data constraints. 
+
+With the `multi_net()` function, users can toggle the LIM-MCMC algorithm parameters (starting point, jump size, iterations). The result of the `multi_net()` function is an R list of combined model output items, including 1) metadata, 2) a table of solved food web flow values, and 3) solved values packed into network objects.
 
 ```{r, eval = FALSE}
 set.seed(1) 						# Initialise pseudorandom number generator
-summer_nets <- multi_net(
+winter_nets <- multi_net(
   file =  ‘Winter_Weighted_Network_LIMfile.R’, # The LIM declaration file
   x0 = NULL,                                   # The algorithm starting solution
   iter = 5000,                                 # Define the number of iterations
-  jmp = 20,                                   # Define the jump size
+  jmp = 20,                                    # Define the jump size
   pack = TRUE                                  # Pack into network objects
 )
 
@@ -323,7 +290,7 @@ summer_nets <- multi_net(
 
 ## Evaluate model quality
 
-__autoLIMR__ allows users to evaluate model quality using Markov Chain Monte Carlo (MCMC) convergence diagnostics. Together, the diagnostics report three core aspects of MCMC convergence: 1) stationarity - whether the flow has successfully targeted the underlying solution space (posterior) distribution; 2) mixing - whether the samples are effectively integrating over the posterior probability; and 3) sampling intensity - whether enough samples (iterations) have been returned to describe the posterior distribution adequately.
+__autoLIMR__ evaluates model quality using Markov Chain Monte Carlo (MCMC) convergence diagnostics. Together, the diagnostics report three core aspects of MCMC convergence: 1) stationarity - whether the flow has successfully targeted the underlying solution space (posterior) distribution; 2) mixing - whether the samples are effectively integrating over the posterior probability; and 3) sampling intensity - whether enough samples (iterations) have been returned to describe the posterior distribution adequately.
 
 ### Visual MCMC diagnostics
 

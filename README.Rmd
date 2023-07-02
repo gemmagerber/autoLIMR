@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 devtools::load_all(".")
 ```
 
-# autoLIMR
+# Automated workflow for incorporation and evaluation of data uncertainty in ecological networks with __autoLIMR__
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/gemmagerber/autoLIMR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/R-CMD-check.yaml)

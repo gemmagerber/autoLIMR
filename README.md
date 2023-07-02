@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# autoLIMR
+# Automated workflow for incorporation and evaluation of data uncertainty in ecological networks with autoLIMR
 
 <!-- badges: start -->
 

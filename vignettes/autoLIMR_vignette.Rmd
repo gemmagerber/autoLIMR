@@ -2,7 +2,9 @@
 title: "Automated workflow for incorporation and evaluation of data uncertainty in ecological networks"
 author: "Gemma Gerber"
 date: "2023"
-output: bookdown::html_document2
+output: 
+  bookdown::html_document2:
+  base_format: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{autoLIMR_vignette}
   %\VignetteEngine{knitr::rmarkdown}

@@ -59,7 +59,11 @@ mcmc_plots <- function(x, flow, xranges = FALSE, ...) {
 
   ### Four input types accepted (mcmc, matrix, data.frame, multi_net_output)
   if (is.data.frame(x) | inherits(x, "mcmc")) {
-    z <- coda::as.mcmc(x)
+
+    z <- as.data.frame(x[[paste0(flow)]])
+    colnames(z) <- paste0(flow)
+    z <- coda::as.mcmc(z)
+
   } else if (inherits(x, "multi_net_output")) {
     all <- as.data.frame(x[["solved.flow.values"]])
     z <- as.data.frame(all[[paste0(flow)]])

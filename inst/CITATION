@@ -1,11 +1,14 @@
 citHeader("To cite autoLIMR in publications use:")
 
 bibentry(
-  bibtype  = "Unpublished",
-  note     = "in review",
+  bibtype  = "Article",
   title    = "'autoLIMR': Automated Workflow for Incorporation and Evaluation of Data Uncertainty in Ecological Networks",
-  author   = person("Gemma Gerber"),
+  author   = as.person("Gemma Gerber [aut], Ben Brooker [aut], Ursula M. Scharler[aut]"),
   year     = "2023",
-  url      = "https://github.com/gemmagerber/autoLIMR",
-  textVersion = "Gerber, G. 2023. 'autoLIMR': Automated Workflow for Incorporation and Evaluation of Data Uncertainty in Ecological Networks. R package v 2.2.2. URL: https://github.com/gemmagerber/autoLIMR"
+  journal  = "Ecological Informatics",
+  volume   = "78",
+  pages    = "102375",
+  issn     = "1574-9541",
+  doi      = "10.1016/j.ecoinf.2023.102375",
+  textVersion = "Gerber, G., Brooker, B., Scharler, U.M., 2023. Automated workflow for incorporation and evaluation of data uncertainty in ecological networks with autoLIMR. Ecol. Inform. 78, 102375. https://doi.org/10.1016/j.ecoinf.2023.102375"
 )

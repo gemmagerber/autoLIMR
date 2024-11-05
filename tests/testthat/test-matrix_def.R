@@ -1,5 +1,4 @@
 test_that("Return import/export matrix based on search_cols function", {
-
   input <- data.frame(
     Compartment = c("Det", "Plant", "Invert", "Vert"),
     Biomass = c(10000.2, 800, 2000, 55),

@@ -41,7 +41,8 @@ search_cols <- function(x, col.match) {
       as.vector(colnames(x)),
       pattern = paste0(
         c(
-          "AE", "Assimilation", "efficiency", "AssEm", "ae_"),
+          "AE", "Assimilation", "efficiency", "AssEm", "ae_"
+        ),
         collapse = "|"
       ),
       value = TRUE,

@@ -23,4 +23,3 @@ matrix_def <- function(x, mat.type) {
     return(mat)
   }
 }
-

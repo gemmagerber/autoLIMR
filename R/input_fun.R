@@ -4,7 +4,6 @@
 #' @return A matrix of imports
 #' @param x the input matrix
 input_fun <- function(x) {
-
   col.j <-
     grep(
       colnames(x),
@@ -25,5 +24,5 @@ input_fun <- function(x) {
   # Sum all inputs (in case of multiple rows)
   input.vec <- as.vector(colSums(input.vec, na.rm = FALSE))
 
-return(input.vec)
+  return(input.vec)
 }

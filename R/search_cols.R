@@ -12,13 +12,13 @@ search_cols <- function(x, col.match) {
       as.vector(colnames(x)),
       pattern = paste0(
         c(
-          "Import", "Input", "^+In+$", "^+IN+$", "IN_", "IM_", "^+IM+$", "^+Im+$"
+          "*Import*", "Input*", "^+In+$", "^+IN+$", "IN_", "IM_", "^+IM+$", "^+Im+$"
         ),
         collapse = "|"
       ),
       value = TRUE,
       invert = FALSE,
-      ignore.case = FALSE
+      ignore.case = TRUE
     )
     return(x)
   }
@@ -26,7 +26,7 @@ search_cols <- function(x, col.match) {
   if (col.match == "Export") {
     x <- grep(
       colnames(x),
-      pattern = paste0(c("Export", "Exports", "Ex", "EX", "EX_"),
+      pattern = paste0(c("Export*", "Ex", "EX", "EX_"),
         collapse = "|"
       ),
       value = TRUE,

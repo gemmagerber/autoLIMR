@@ -8,16 +8,23 @@ net_data_external_list <- function(x, respiration,
                                    respiration_element) {
   # Define all with Imports
   import.mat <- matrix_def(x, mat.type = "Import")
-  im <- rownames(import.mat)
+  if(nrow(import.mat) > 0) {
+    im <- rownames(import.mat)
+    imports <- paste0(im, "Import")
+  } else {
+    imports <- as.vector(paste0(""))
+  }
 
-  # Define all with exports
+  # Define all compartments with exports
   ex.mat <- matrix_def(x, mat.type = "Export")
-  ex <- rownames(ex.mat)
+  if(nrow(ex.mat) > 0) {
+    ex <- rownames(ex.mat)
+    exports <- paste0(ex, "Export")
+  } else {
+    exports <- as.vector(paste0(""))
+  }
 
-  exports <- paste0(ex, "Export")
-  imports <- paste0(im, "Import")
-
-
+ # Define Respiration compartment (CO2) if required
   if (respiration == TRUE) {
     if (!is.null(respiration_element)) {
       resp.vec <- as.vector(paste0(toupper(respiration_element)))
@@ -34,5 +41,7 @@ net_data_external_list <- function(x, respiration,
       sort(imports),
       sort(exports)
     )
+
+  returnme <- returnme[nzchar(returnme)] # remove empty strings
   return(returnme)
 }

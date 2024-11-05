@@ -4,7 +4,7 @@
 #' @return A vector of outputs (imports, exports, plus respiration)
 #'
 output_fun <- function(x) {
-  # Create output vector function
+  # Create output vector
   row.i <-
     grep(
       rownames(x),

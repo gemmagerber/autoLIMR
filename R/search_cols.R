@@ -26,7 +26,7 @@ search_cols <- function(x, col.match) {
   if (col.match == "Export") {
     x <- grep(
       colnames(x),
-      pattern = paste0(c("Export*", "Ex", "EX", "EX_"),
+      pattern = paste0(c("Export*", "Ex", "EX", "EX_", "_ex"),
         collapse = "|"
       ),
       value = TRUE,
@@ -41,7 +41,7 @@ search_cols <- function(x, col.match) {
       as.vector(colnames(x)),
       pattern = paste0(
         c(
-          "AE", "Assimilation", "efficiency", "AssEm"
+          "AE", "Assimilation", "efficiency", "AssEm", "ae_",
         ),
         collapse = "|"
       ),

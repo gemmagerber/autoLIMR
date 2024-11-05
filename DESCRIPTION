@@ -16,7 +16,7 @@ Description: An automated workflow to streamline incorporation and
     to improve the accessibility of LIM-MCMC,
     reduce coding errors, and provide a consistent framework to enhance 
     model output reporting and reproducibility.
-License: MIT + file LICENSE
+License: MIT
 URL: https://github.com/gemmagerber/autoLIMR
 BugReports: https://github.com/gemmagerber/autoLIMR/issues
 Imports:

@@ -10,6 +10,8 @@ in](https://img.shields.io/badge/Ecological_Informatics-green?style=plastic&labe
 [![Codecov test
 coverage](https://codecov.io/gh/gemmagerber/autoLIMR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/gemmagerber/autoLIMR?branch=main)
 [![test-coverage](https://github.com/gemmagerber/autoLIMR/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/test-coverage.yaml)
+[![rworkflows](https://github.com/gemmagerber/autoLIMR/actions/workflows/rworkflows.yml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/rworkflows.yml)
+
 <!-- badges: end -->
 
 ![](vignettes/images/autoLIMR_logo.png)
@@ -27,6 +29,17 @@ uncertainty in ecological models. **autoLIMR** does this by:
 
 3.  Evaluation of model quality using several visual and statistical
     MCMC convergence diagnostics.
+
+## Article
+
+You can find the published article
+[here](https://doi.org/10.1016/j.ecoinf.2023.102375). Please use this
+citation:
+
+*Gerber, G., Brooker, B., Scharler, U.M., 2023. Automated workflow for
+incorporation and evaluation of data uncertainty in ecological networks
+with autoLIMR. Ecol. Inform. 78, 102375.
+[https://doi.org/10.1016/j.ecoinf.2023.102375](10.1016/j.ecoinf.2023.102375)*
 
 ## Installation
 

@@ -27,7 +27,9 @@
 <url><loc>/reference/error_print.html</loc></url>
 <url><loc>/reference/export_fun.html</loc></url>
 <url><loc>/reference/fetch_excelLIM.html</loc></url>
+<url><loc>/reference/fix_primary_producer_notation.html</loc></url>
 <url><loc>/reference/fmat_fun.html</loc></url>
+<url><loc>/reference/force_write_test.html</loc></url>
 <url><loc>/reference/geweke_diag.html</loc></url>
 <url><loc>/reference/geweke_plot.html</loc></url>
 <url><loc>/reference/heidel_diag.html</loc></url>
@@ -65,5 +67,6 @@
 <url><loc>/reference/trace_plot.html</loc></url>
 <url><loc>/reference/uvar.html</loc></url>
 <url><loc>/reference/variable_def.html</loc></url>
+<url><loc>/reference/write_limfile.html</loc></url>
 </urlset>
 

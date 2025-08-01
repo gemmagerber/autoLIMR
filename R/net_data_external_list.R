@@ -7,7 +7,7 @@
 net_data_external_list <- function(x, respiration,
                                    respiration_element) {
   # Define all with Imports
-  import.mat <- matrix_def(x, mat.type = "Import")
+  import.mat <- matrix_def(x, mat_type = "Import")
   if (nrow(import.mat) > 0) {
     im <- rownames(import.mat)
     imports <- paste0(im, "Import")
@@ -16,7 +16,7 @@ net_data_external_list <- function(x, respiration,
   }
 
   # Define all compartments with exports
-  ex.mat <- matrix_def(x, mat.type = "Export")
+  ex.mat <- matrix_def(x, mat_type = "Export")
   if (nrow(ex.mat) > 0) {
     ex <- rownames(ex.mat)
     exports <- paste0(ex, "Export")

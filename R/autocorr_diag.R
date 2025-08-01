@@ -13,8 +13,8 @@
 #' it can be specified as a character string e.g., flow = "Plant_GPP".
 #' We suggest leaving the default flow = NULL.
 #'
-#' @param ... Other arguments from \code{coda::autocorr.diag()}. Check defaults in
-#' the \code{coda} package.
+#' @param ... Other arguments from \code{coda::autocorr.diag()}. Check defaults
+#' in the \code{coda} package.
 #'
 #' @return Data frame with each row corresponding to one Markov chain variable,
 #' and columns describing autocorrelation function at specified lags.

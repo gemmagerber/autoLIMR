@@ -354,13 +354,10 @@ winter_networks <- multi_net(
 
 # Statistical MCMC convergence diagnostics
 # All variables (flows) at once
-diags <- mcmc_diags(
-       x = winter_networks			# 'multi_net()' object of class ‘multi_net_object’
-)
 
-diags_table <- do.call(		      # Convert list to data frame
-       cbind, diags
-      	)
+diags <- mcmc_diags(x = winter_networks)	# winter_networks object of class ‘multi_net_object’)
+
+diags_table <- do.call(cbind, diags) # 
 
 diags_table
 

@@ -19,6 +19,10 @@ adjacency matrices of internal network flows. If the argument is missing, the
 function will stop and return an error prompting the user to declare
 the appropriate input file.}
 }
-\description{
-Prints errors if input files are undefined
+\value{
+Logical. TRUE if validation passed, FALSE otherwise.
 }
+\description{
+Validates input files and provides feedback
+}
+\keyword{internal}

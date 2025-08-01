@@ -1,12 +1,12 @@
 #' @title matrix_def()
 #' @description Return matrix based on \code{search_cols()} function
 #' @param x input matrix
-#' @param mat.type the matrix type to export
+#' @param mat_type the matrix type to export
 #' @return a matrix of type 'Import', 'Export'
 #'
-matrix_def <- function(x, mat.type) {
-  if (mat.type == "Import" | mat.type == "Export") {
-    match <- search_cols(x, col.match = mat.type)
+matrix_def <- function(x, mat_type) {
+  if (mat_type == "Import" | mat_type == "Export") {
+    match <- search_cols(x, col_match = mat_type)
     mat <-
       x[c(rownames(x)), c(match)] # create input matrix based on imports/exports only
     mat <-

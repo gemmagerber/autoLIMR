@@ -61,7 +61,7 @@ multi_net <-
       stop("No LIM Declaration File provided. Please check.")
     }
     if (!is.null(file)) {
-      full_limfile <- LIM::Setup(LIM_Read(file))
+      full_lim <- LIM::Setup(LIM_Read(file))
     }
 
     ############################### Starting point choices
@@ -71,7 +71,7 @@ multi_net <-
       x0 <- NULL
       solved <-
         defaultx0(
-          full_limfile = full_limfile,
+          full_lim = full_lim,
           iter = iter,
           jmp = jmp,
           x0 = NULL
@@ -79,7 +79,7 @@ multi_net <-
     } else if (x0 == "central") {
       solved <-
         centralx0(
-          full_limfile = full_limfile,
+          full_lim = full_lim,
           iter = iter,
           jmp = jmp,
           x0 = "central"
@@ -106,7 +106,7 @@ multi_net <-
           lapply(
             X = solved$solved.flow.matrices,
             FUN = prepack_fun,
-            full_limfile = full_limfile
+            full_lim = full_lim
           )
         balanced <- lapply(X = packed.nets, FUN = ssCheck)
         solved.2 <- list(

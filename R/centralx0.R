@@ -19,7 +19,7 @@
 #'
 
 centralx0 <-
-  function(full_limfile,
+  function(full_lim,
            iter = NULL,
            jmp = NULL,
            x0 = "central",
@@ -32,7 +32,7 @@ centralx0 <-
 
 
     x0 <-
-      LIM::Xranges(lim = full_limfile, central = TRUE, ispos = TRUE)[, "central"]
+      LIM::Xranges(lim = full_lim, central = TRUE, ispos = TRUE)[, "central"]
 
     starting.solution.x0 <- x0
     message(
@@ -44,8 +44,8 @@ centralx0 <-
       )
     )
 
-    cen1 <- max(abs(full_limfile$A %*% x0 - full_limfile$B))
-    cen2 <- min(full_limfile$G %*% x0 - full_limfile$H)
+    cen1 <- max(abs(full_lim$A %*% x0 - full_lim$B))
+    cen2 <- min(full_lim$G %*% x0 - full_lim$H)
 
     if (!is.na(cen1) & !is.na(cen2) == TRUE) {
       message(
@@ -59,7 +59,7 @@ centralx0 <-
 
       print(system.time(
         solved.flow.values <- LIM::Xsample(
-          lim = full_limfile,
+          lim = full_lim,
           x0 = x0,
           jmp = jmp,
           iter = iter,
@@ -71,11 +71,11 @@ centralx0 <-
       solved.flow.matrices <- list(NULL)
       for (i in 1:as.numeric(nrow(solved.flow.values))) {
         solved.flow.matrices[[i]] <-
-          LIM::Flowmatrix(lim = full_limfile, web = solved.flow.values[i, ])
+          LIM::Flowmatrix(lim = full_lim, web = solved.flow.values[i, ])
       }
 
       solved.networks <- list(
-        full_limfile = full_limfile,
+        full_lim = full_lim,
         starting.solution.x0 = starting.solution.x0,
         solved.flow.values = solved.flow.values,
         solved.flow.matrices = solved.flow.matrices
@@ -99,7 +99,7 @@ centralx0 <-
         )
 
         solved.networks <- defaultx0(
-          full_limfile = full_limfile,
+          full_lim = full_lim,
           x0 = x0,
           jmp = jmp,
           iter = iter,

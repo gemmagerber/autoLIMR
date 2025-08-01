@@ -14,7 +14,7 @@ autoGen(
   author = NULL,
   date = NULL,
   weighted = TRUE,
-  force = FALSE
+  force = TRUE
 )
 }
 \arguments{
@@ -61,13 +61,13 @@ Defaults to system user.}
 \item{date}{Character vector. Date of file creation. If \code{NULL},
 the default, the date defaults to the system date.}
 
-\item{weighted}{Logical. Return weighted LIM declaration files? If \code{NULL},
-the default, both weighted and unweighted LIM declaration files are returned.
-Defaults to \code{TRUE}.}
+\item{weighted}{Logical. Return weighted LIM declaration files? If
+\code{NULL}, the default, both weighted and unweighted LIM declaration files
+are returned. Defaults to \code{TRUE}.}
 
 \item{force}{If set to \code{TRUE}, files of \code{data.R},
-under folders \code{autoLIMR Weighted Network LIMfiles},
-and \code{autoLIMR Unweighted Network LIMfiles} will be created on the
+under folders \code{weighted_limfiles},
+and \code{unweighted_limfiles} will be created on the
 user's working directory. If this function is used in an
 interactive session the user will be asked whether or not \code{data.R}
 files should be created. The default value is \code{FALSE}.}

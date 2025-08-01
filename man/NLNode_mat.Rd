@@ -7,13 +7,14 @@
 NLNode_mat(x, NLNode)
 }
 \arguments{
-\item{x}{the matrix/matrices}
+\item{x}{the matrix/matrices or data frame}
 
 \item{NLNode}{the defined NLNodes from the main autoLIMR argument}
 }
 \value{
-a matrix with 'NLNode' string attached to non-living compartments
+a matrix/data frame with 'NLNode' string attached to non-living compartments
 }
 \description{
-Append NLNode to non-living nodes in rows and columns of matrices
+Append NLNode to non-living nodes in rows and columns of matrices or data frames
 }
+\keyword{internal}

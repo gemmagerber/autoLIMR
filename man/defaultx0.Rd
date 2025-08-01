@@ -4,10 +4,10 @@
 \alias{defaultx0}
 \title{function defaultx0()}
 \usage{
-defaultx0(full_limfile, iter = NULL, jmp = NULL, x0 = NULL, ...)
+defaultx0(full_lim, iter = NULL, jmp = NULL, x0 = NULL, ...)
 }
 \arguments{
-\item{full_limfile}{LIM Declaration file built from \code{LIM_Read()}.}
+\item{full_lim}{LIM Declaration file built from \code{LIM_Read()}.}
 
 \item{iter}{An integer defining the total number of iterations (samples)
 of the Markov Chain. If \code{NULL}, the default, the number of iterations

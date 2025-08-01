@@ -57,13 +57,13 @@ summary_diag <- function(x, flow = NULL, xranges = TRUE, ...) {
   # Error: Stop, load coda
   if (!requireNamespace("coda", quietly = TRUE)) {
     stop("Package \"coda\" must be installed to use this function.",
-      call. = FALSE
+         call. = FALSE
     )
   }
   # Error: Stop, load LIM
   if (!requireNamespace("LIM", quietly = TRUE)) {
     stop("Package \"LIM\" must be installed to use this function.",
-      call. = FALSE
+         call. = FALSE
     )
   }
   # Error: if MCMC object is not class "multi_net_output"
@@ -83,11 +83,42 @@ summary_diag <- function(x, flow = NULL, xranges = TRUE, ...) {
       sumlst[["quantiles"]]
     ))
 
-    # Add LIM::Xranges
-    if (is.null(xranges) | xranges == TRUE) {
-      xr <- LIM::Xranges(x[["full_limfile"]], central = TRUE)
-      colnames(xr) <- c("Xranges_min", "Xranges_max", "Xranges_central")
-      sumdat <- cbind(sumdat, xr)
+    # Add LIM::Xranges with error handling
+    if (is.null(xranges) || xranges == TRUE) {
+      # Check if full_limfile exists
+      if (is.null(x[["full_limfile"]])) {
+        warning("Missing 'full_limfile' element in input. Xranges could not be calculated, using NA values instead.")
+        # Add NA columns for Xranges
+        sumdat$Xranges_min <- NA
+        sumdat$Xranges_max <- NA
+        sumdat$Xranges_central <- NA
+      } else {
+        # Try to calculate Xranges, with explicit warning on failure
+        xr <- tryCatch({
+          LIM::Xranges(x[["full_limfile"]], central = TRUE)
+        }, error = function(e) {
+          warning("Xranges could not be calculated: ", conditionMessage(e),
+                  ". Using NA values instead.")
+          # Create NA matrix with proper dimensions
+          n_flows <- nrow(sumdat)
+          empty_xr <- matrix(NA, nrow = n_flows, ncol = 3)
+          colnames(empty_xr) <- c("Xranges_min", "Xranges_max", "Xranges_central")
+          rownames(empty_xr) <- rownames(sumdat)
+          return(empty_xr)
+        })
+
+        # Only process if xr has the right structure
+        if (!is.null(xr) && is.matrix(xr) && ncol(xr) >= 3) {
+          colnames(xr) <- c("Xranges_min", "Xranges_max", "Xranges_central")
+          sumdat <- cbind(sumdat, xr)
+        } else {
+          # If xr doesn't have the right structure, add NA columns
+          warning("Xranges returned invalid data structure. Using NA values instead.")
+          sumdat$Xranges_min <- NA
+          sumdat$Xranges_max <- NA
+          sumdat$Xranges_central <- NA
+        }
+      }
     }
 
     # Add MCMC number of variables, iterations, chain, and thinning value

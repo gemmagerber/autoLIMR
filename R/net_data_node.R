@@ -29,13 +29,13 @@ net_data_node <- function(x, node.type, NLNode) {
   }
 
   if (node.type == "Import") {
-    input.matrix <- matrix_def(x, mat.type = "Import")
+    input.matrix <- matrix_def(x, mat_type = "Import")
     in.mat3 <- as.vector(paste0(rownames(input.matrix), "Import"))
     return(in.mat3)
   }
 
   if (node.type == "Export") {
-    export.matrix <- matrix_def(x, mat.type = "Export")
+    export.matrix <- matrix_def(x, mat_type = "Export")
     export.nodes <-
       as.vector(paste0(rownames(export.matrix), "Export"))
     return(export.nodes)

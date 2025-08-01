@@ -2,17 +2,18 @@
 #' @description Search and return columns that match type (as character vector)
 #' "Imports", "Exports", "Assimilation Efficiency"
 #' @param x Tidy network data input matrix
-#' @param col.match the compartment type to match
+#' @param col_match the compartment type to match
 #' @return A vector of column names that match one of "Imports", "Exports",
-#'  "Assimilation Efficiencies", "Custom" or "Parameters" from the original
+#'  "Assimilation Efficiency", "Custom" or "Parameters" from the original
 #'  network input data.
-search_cols <- function(x, col.match) {
-  if (col.match == "Import") {
+search_cols <- function(x, col_match) {
+  if (col_match == "Import") {
     x <- grep(
       as.vector(colnames(x)),
       pattern = paste0(
         c(
-          "*Import*", "Input*", "^+In+$", "^+IN+$", "IN_", "IM_", "^+IM+$", "^+Im+$"
+          "*Import*", "Input*", "^+In+$", "^+IN+$",
+          "IN_", "IM_", "^+IM+$", "^+Im+$"
         ),
         collapse = "|"
       ),
@@ -23,7 +24,7 @@ search_cols <- function(x, col.match) {
     return(x)
   }
 
-  if (col.match == "Export") {
+  if (col_match == "Export") {
     x <- grep(
       colnames(x),
       pattern = paste0(c("Export*", "Ex", "EX", "EX_", "_ex"),
@@ -36,7 +37,7 @@ search_cols <- function(x, col.match) {
     return(x)
   }
 
-  if (col.match == "AE") {
+  if (col_match == "AE") {
     x <- grep(
       as.vector(colnames(x)),
       pattern = paste0(
@@ -52,7 +53,7 @@ search_cols <- function(x, col.match) {
     return(x)
   }
 
-  if (col.match == "Custom") {
+  if (col_match == "Custom") {
     x <- grep(
       colnames(x),
       pattern = paste0(c("Custom"),
@@ -65,7 +66,7 @@ search_cols <- function(x, col.match) {
     return(x)
   }
 
-  if (col.match == "Parameters") {
+  if (col_match == "Parameters") {
     x <- grep(
       colnames(x),
       pattern = paste0(c("Parameters|Parameters"),

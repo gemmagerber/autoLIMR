@@ -16,8 +16,8 @@ diagnostics are required for one Markov chain variable only,
 it can be specified as a character string e.g., flow = "Plant_GPP".
 We suggest leaving the default flow = NULL.}
 
-\item{...}{Other arguments from \code{coda::autocorr.diag()}. Check defaults in
-the \code{coda} package.}
+\item{...}{Other arguments from \code{coda::autocorr.diag()}. Check defaults
+in the \code{coda} package.}
 }
 \value{
 Data frame with each row corresponding to one Markov chain variable,

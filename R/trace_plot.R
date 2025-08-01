@@ -44,26 +44,21 @@
 #' )
 #' trace_plot(x = x, flow = "Plant_GPP", xranges = TRUE)
 #' trace_plot(x = x, flow = "Plant_GPP", xranges = FALSE)
-trace_plot <- function(x, flow, xranges = FALSE,
-                       addtitle = FALSE, ...) {
+trace_plot <- function(x, flow, xranges = FALSE, addtitle = FALSE, ...) {
   ### Errors
   # Error: MCMC object must be provided
   if (is.null(x)) {
-    stop(
-      'Please provide the name of the MCMC object as a "data.frame",
-         "mcmc", or "multi_net_output"'
-    )
-  }
-  # Error: Flow name must be provided
-  if (is.null(flow)) {
-    stop(
-      'Please provide the character string name of the flow in the MCMC object
-      to plot, e.g., flow = "Plant_GPP".'
-    )
+    stop('Please provide the name of the MCMC object as a "data.frame", "mcmc", or "multi_net_output"')
   }
 
-  ### Four input types accepted (mcmc, data.frame, multi_net_output)
-  if (is.data.frame(x) | inherits(x, "mcmc")) {
+  # Error: Flow name must be provided
+  if (is.null(flow)) {
+    stop('Please provide the character string name of the flow in the MCMC object to plot, e.g., flow = "Plant_GPP".')
+  }
+
+  ### Handle different input types
+  if (is.data.frame(x) || inherits(x, "mcmc")) {
+    # Handle data.frame or mcmc objects
     z <- coda::as.mcmc(x)
 
     plot(
@@ -78,63 +73,90 @@ trace_plot <- function(x, flow, xranges = FALSE,
       title(main = "Trace Plot", col.main = "black")
     }
   } else if (inherits(x, "multi_net_output")) {
+    # Handle multi_net_output objects
     all <- as.data.frame(x[["solved.flow.values"]])
     z <- as.data.frame(all[[paste0(flow)]])
     colnames(z) <- paste0(flow)
     z <- coda::as.mcmc(z)
 
-    if (xranges == FALSE | is.null(xranges)) {
+    if (xranges == FALSE || is.null(xranges)) {
+      # Simple plot without Xranges
       plot(
         x = 1:nrow(z),
         y = z[, paste0(flow)],
         type = "l",
         xlab = "Iteration",
         ylab = "Value"
-      ) # ylab = paste0(flow)
+      )
+
       if (addtitle == TRUE) {
         title(main = "Trace Plot", col.main = "black")
       }
-    }
-    if (xranges == TRUE) {
-      xr <- t(LIM::Xranges(x[["full_limfile"]]))
-      min <-
-        xr[
-          grep(pattern = "min", x = rownames(xr)),
-          grep(pattern = paste0(flow), x = colnames(xr))
-        ]
-      max <-
-        xr[
-          grep(pattern = "max", x = rownames(xr)),
-          grep(pattern = paste0(flow), x = colnames(xr))
-        ]
+    } else {
+      # Plot with Xranges - with error handling
+      min_val <- min(z[, paste0(flow)])
+      max_val <- max(z[, paste0(flow)])
+
+      # Try to get Xranges with error handling
+      xr <- tryCatch({
+        if (is.null(x[["full_limfile"]])) {
+          stop("Missing 'full_limfile' element in input")
+        }
+        t(LIM::Xranges(x[["full_limfile"]]))
+      }, error = function(e) {
+        warning("Could not calculate Xranges: ", conditionMessage(e),
+                ". Using min/max of data instead.")
+        return(NULL)
+      })
+
+      # Use Xranges if available, otherwise use data min/max
+      if (!is.null(xr)) {
+        # Try to extract min/max values safely
+        tryCatch({
+          flow_min_idx <- grep(pattern = "min", x = rownames(xr))
+          flow_col_idx <- grep(pattern = paste0(flow), x = colnames(xr))
+
+          if (length(flow_min_idx) > 0 && length(flow_col_idx) > 0) {
+            min_val <- xr[flow_min_idx, flow_col_idx]
+            max_val <- xr[grep(pattern = "max", x = rownames(xr)), flow_col_idx]
+          }
+        }, error = function(e) {
+          warning("Error extracting min/max from Xranges: ", conditionMessage(e))
+        })
+      }
+
+      # Create the plot with calculated min/max
       plot(
         x = 1:length(z),
         y = z[, paste0(flow)],
-        ylim = c(min, max),
+        ylim = c(min_val, max_val),
         type = "l",
         xlab = "Iteration",
         ylab = "Value"
       )
-      abline(h = min, col = "blue", lty = 2)
-      abline(h = max, col = "red", lty = 2)
+
+      # Add reference lines and legend
+      abline(h = min_val, col = "blue", lty = 2)
+      abline(h = max_val, col = "red", lty = 2)
+
+      # Safe legend placement
+      legend_x <- max(1, length(z) * 0.79)
+      legend_y <- max_val
+
       legend(
-        length(z) * 0.79,
-        max,
+        legend_x,
+        legend_y,
         c("Minimum", "Maximum"),
         lwd = c(1, 1),
         lty = c(2, 2),
         col = c("blue", "red")
       )
+
       if (addtitle == TRUE) {
         title(main = "Trace Plot", col.main = "black")
       }
     }
   } else {
-    stop(
-      paste0(
-        'Please ensure the MCMC object "x" type is one of "mcmc", "data.frame",
-             or "multi_net_output"'
-      )
-    )
+    stop('Please ensure the MCMC object "x" type is one of "mcmc", "data.frame", or "multi_net_output"')
   }
 }

@@ -1,101 +1,40 @@
-#' @title Function: meta1()
-#' @description Defines the first part of the metadata from network
-#' input data workbook sheets
+#' @title meta1()
+#' @description Create metadata for LIM declaration file
+#' @keywords internal
+#' @param x Network input data
 #' @inheritParams autoGen
-#' @return a list of metadata
-#' @param x network input data matrix
+#' @return Character vector of metadata
+meta1 <- function(x, primary_producer = NULL, respiration = TRUE,
+                  respiration_element = "CO2", NLNode = NULL,
+                  weighted = TRUE, author = NULL, date = NULL) {
 
-meta1 <- function(x,
-                  author = NULL,
-                  date = NULL,
-                  respiration,
-                  respiration_element,
-                  NLNode,
-                  weighted,
-                  primary_producer) {
-  if (weighted == TRUE) {
-    head1 <- "! Weighted Network"
-  } else {
-    head1 <- "! Unweighted Network"
+  # Set default author if NULL
+  if (is.null(author)) {
+    author <- Sys.info()[["user"]]
   }
 
-  heading2 <- paste0(
-    "! ",
-    names(x),
-    "Network LIM Declaration File"
-  )
-  reference2 <-
-    "! Composed with autoLIMR"
-
-  author2 <- if (is.null(author)) {
-    paste0("! Author: ", Sys.getenv("USERNAME"))
-  } else {
-    paste0("! Author: ", author)
+  # Set default date if NULL
+  if (is.null(date)) {
+    date <- format(Sys.Date(), "%Y-%m-%d")
   }
 
-  date <- if (is.null(date)) {
-    paste0("! Date: ", Sys.Date())
-  } else {
-    paste0("! Date: ", date)
-  }
+  # Count living and non-living compartments
+  living_count <- sum(!grepl("NLNode", rownames(x)))
+  nonliving_count <- sum(grepl("NLNode", rownames(x)))
 
-  living <-
-    paste0("! Living compartments: ", length(net_data_node(
-      x,
-      NLNode = NLNode, node.type = "living"
-    )))
+  # Create metadata with meaningful network information
+  network_type <- if(weighted) "Weighted" else "Unweighted"
 
-  NLN <- net_data_node(x,
-    NLNode = NLNode,
-    node.type = "nonliving"
-  )
-  nonliving <- paste0("! Non-living compartments: ", length(NLN))
-
-  resp <-
-    paste0(
-      "! Respiration included: ",
-      ifelse(respiration == TRUE, "Yes", "No")
-    )
-  uflows <-
-    paste0("! U included: ", ifelse(length(NLNode) > 0, "Yes", "No"))
-
-  externals <- net_data_external_list(x,
-    respiration = respiration,
-    respiration_element = respiration_element
+  metadata <- c(
+    paste0("! ", network_type, " Network LIM Declaration File"),
+    "! Composed with autoLIMR",
+    paste0("! Author: ", author),
+    paste0("! Date: ", date),
+    paste0("! Living compartments: ", living_count),
+    paste0("! Non-living compartments: ", nonliving_count),
+    paste0("! Total compartments: ", living_count + nonliving_count),
+    ""
   )
 
-  externals2 <-
-    paste0("! External compartments: ", length(externals))
-
-  countx <- if (respiration == TRUE) {
-    countx <- paste0(length(externals) - 1 +
-      length(primary_producer) +
-      length(net_data_node(
-        x,
-        NLNode = NLNode,
-        node.type = "living"
-      )))
-  } else {
-    countx <- paste0(length(externals))
-  }
-
-  boundary <- paste0("! Boundary flows: ", countx)
-
-  metadata1 <- c(
-    head1,
-    heading2,
-    reference2,
-    author2,
-    date,
-    "",
-    resp,
-    uflows,
-    "",
-    living,
-    nonliving,
-    externals2,
-    boundary
-  )
-
-  return(metadata1)
+  return(metadata)
 }

@@ -20,3 +20,4 @@ to include in the LIM declaration file. Orders living compartments in
 alphabetical order, then moves non-living compartments (if applicable) to
 the end of the list
 }
+\keyword{internal}

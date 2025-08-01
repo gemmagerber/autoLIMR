@@ -2,27 +2,26 @@
 % Please edit documentation in R/meta1.R
 \name{meta1}
 \alias{meta1}
-\title{Function: meta1()}
+\title{meta1()}
 \usage{
 meta1(
   x,
+  primary_producer = NULL,
+  respiration = TRUE,
+  respiration_element = "CO2",
+  NLNode = NULL,
+  weighted = TRUE,
   author = NULL,
-  date = NULL,
-  respiration,
-  respiration_element,
-  NLNode,
-  weighted,
-  primary_producer
+  date = NULL
 )
 }
 \arguments{
-\item{x}{network input data matrix}
+\item{x}{Network input data}
 
-\item{author}{Character vector. LIM declaration file author name.
-Defaults to system user.}
-
-\item{date}{Character vector. Date of file creation. If \code{NULL},
-the default, the date defaults to the system date.}
+\item{primary_producer}{Character vector defining one or multiple
+primary producer compartments (in the case of ecological networks)
+e.g., \code{primary_producer = "Plant"},
+\code{primary_producer = c("Plant", "Plant2")}.}
 
 \item{respiration}{Logical. Is respiration included in the network model?
 If \code{TRUE}, the default, named respiration
@@ -44,19 +43,20 @@ This argument is only valid if argument \code{respiration = TRUE}.}
 compartments e.g., \code{NLNode = "Detritus"},
 \code{NLNode = c("Detritus", "Detritus2")}.}
 
-\item{weighted}{Logical. Return weighted LIM declaration files? If \code{NULL},
-the default, both weighted and unweighted LIM declaration files are returned.
-Defaults to \code{TRUE}.}
+\item{weighted}{Logical. Return weighted LIM declaration files? If
+\code{NULL}, the default, both weighted and unweighted LIM declaration files
+are returned. Defaults to \code{TRUE}.}
 
-\item{primary_producer}{Character vector defining one or multiple
-primary producer compartments (in the case of ecological networks)
-e.g., \code{primary_producer = "Plant"},
-\code{primary_producer = c("Plant", "Plant2")}.}
+\item{author}{Character vector. LIM declaration file author name.
+Defaults to system user.}
+
+\item{date}{Character vector. Date of file creation. If \code{NULL},
+the default, the date defaults to the system date.}
 }
 \value{
-a list of metadata
+Character vector of metadata
 }
 \description{
-Defines the first part of the metadata from network
-input data workbook sheets
+Create metadata for LIM declaration file
 }
+\keyword{internal}

@@ -5,7 +5,7 @@
 #' Inequalities (LSEI), suitable
 #' for under determined LIM problems.
 #'
-#' @param full_limfile LIM Declaration file built from \code{LIM_Read()}.
+#' @param full_lim LIM Declaration file built from \code{LIM_Read()}.
 #' @inheritParams multi_net
 #' @param ... Further LIM::Xsample arguments.
 #' @return A list of multiple plausible network flow values. The first sample is
@@ -13,7 +13,7 @@
 #' @importFrom LIM Xsample Flowmatrix
 
 defaultx0 <-
-  function(full_limfile,
+  function(full_lim,
            iter = NULL,
            jmp = NULL,
            x0 = NULL,
@@ -37,7 +37,7 @@ defaultx0 <-
 
     print(system.time(
       solved.flow.values <- LIM::Xsample(
-        lim = full_limfile,
+        lim = full_lim,
         x0 = x0,
         jmp = jmp,
         iter = iter,
@@ -49,11 +49,11 @@ defaultx0 <-
 
     for (i in 1:as.numeric(nrow(solved.flow.values))) {
       solved.flow.matrices[[i]] <-
-        LIM::Flowmatrix(lim = full_limfile, web = solved.flow.values[i, ])
+        LIM::Flowmatrix(lim = full_lim, web = solved.flow.values[i, ])
     }
 
     solved.networks <- list(
-      full_limfile = full_limfile,
+      full_lim = full_lim,
       starting.solution.x0 = starting.solution.x0,
       solved.flow.values = solved.flow.values,
       solved.flow.matrices = solved.flow.matrices

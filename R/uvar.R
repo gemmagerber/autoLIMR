@@ -14,15 +14,15 @@ uvar <- function(x, respiration, NLNode) {
     ln <- rownames(living)
 
     # Define all living things with exports
-    ex.mat <- matrix_def(x, mat.type = "Export")
-    ln.ex <-
-      ex.mat[grep("NLNode", rownames(ex.mat), invert = TRUE), , drop = FALSE]
-    ln.ex <- rownames(ln.ex)
+    ex_mat <- matrix_def(x, mat_type = "Export")
+    ln_ex <-
+      ex_mat[grep("NLNode", rownames(ex_mat), invert = TRUE), , drop = FALSE]
+    ln_ex <- rownames(ln_ex)
 
     # Define all U variables
     if (respiration == TRUE) {
       variable <- ifelse(
-        ln %in% ln.ex,
+        ln %in% ln_ex,
         paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_R - ", ln, "_EX"),
         paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_R")
       )
@@ -30,7 +30,7 @@ uvar <- function(x, respiration, NLNode) {
 
     if (respiration == FALSE) {
       variable <- ifelse(
-        ln %in% ln.ex,
+        ln %in% ln_ex,
         paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P - ", ln, "_EX"),
         paste0(ln, "_U = Flowto(", ln, ") - ", ln, "_P")
       )

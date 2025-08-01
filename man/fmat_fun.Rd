@@ -16,3 +16,4 @@ A matrix of internal flows
 Part of \code{pre_pack()} function in \code{multi_net()} function
 Extracts flow matrices (only internal matrices excluding boundary flows)
 }
+\keyword{internal}

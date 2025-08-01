@@ -27,59 +27,47 @@
 #' )
 #' autocorr_plot(x = x, flow = "Plant_GPP")
 #'
-autocorr_plot <- function(x, flow, lag.max = 50,
+
+autocorr_plot <- function(x,
+                          flow,
+                          lag.max = 50,
                           addtitle = FALSE,
                           ...) {
-  # Three input types accepted (mcmc, data.frame, multi_net_output).
-
-  # MCMC object must be provided
+  # Validate inputs
   if (is.null(x)) {
-    stop(
-      'Please provide the name of the MCMC object as a "data.frame",
-         "mcmc", or "multi_net_output"'
-    )
+    stop('Provide the MCMC object as "data.frame", "mcmc", or "multi_net_output".')
   }
-
-  # Flow name must be provided
   if (is.null(flow)) {
-    stop(
-      'Please provide the character string name of the flow in the MCMC object
-      to plot, e.g., flow = "Plant_GPP".'
-    )
+    stop('Provide the flow name in the MCMC object,
+         e.g., flow = "Plant_GPP".')
   }
 
-  if (is.data.frame(x) | inherits(x, "mcmc")) {
-    z <- coda::as.mcmc(x)
-    # par(col.main = 'white')# Sets all titles to white
-    coda::autocorr.plot(
-      x = z,
-      lag.max = lag.max,
-      main = NULL,
-      auto.layout = FALSE,
-      ask = FALSE
-    )
-    par(col.main = "white") # Sets all titles to white
-    if (addtitle == TRUE) {
-      title(main = "Autocorrelation Plot", col.main = "black")
-    }
+  # Convert input to MCMC format
+  z <- if (is.data.frame(x) || inherits(x, "mcmc")) {
+    coda::as.mcmc(x)
   } else if (inherits(x, "multi_net_output")) {
-    all <- as.data.frame(x[["solved.flow.values"]])
-    z <- as.data.frame(all[[paste0(flow)]])
-    colnames(z) <- paste0(flow)
-    z <- coda::as.mcmc(z)
+    flow_data <- as.data.frame(x[["solved.flow.values"]])
+    flow_column <- flow_data[[flow]]
+    if (is.null(flow_column))
+      stop("Specified flow not found in multi_net_output.")
+    coda::as.mcmc(as.data.frame(flow_column))
+  } else {
+    stop("Unsupported input type for 'x'.
+         Must be data.frame, mcmc, or multi_net_output.")
+  }
 
-    par(col.main = "white") # Sets all titles to white
-    coda::autocorr.plot(
-      x = z,
-      lag.max = lag.max,
-      main = NULL,
-      auto.layout = FALSE,
-      ask = FALSE
-    )
-    par(col.main = "white") # Sets all titles to white
+  # Plot autocorrelation
+  par(col.main = "white")  # Temporarily hide titles
+  coda::autocorr.plot(
+    z,
+    lag.max = lag.max,
+    main = NULL,
+    auto.layout = FALSE,
+    ask = FALSE
+  )
 
-    if (addtitle == TRUE) {
-      title(main = "Autocorrelation Plot", col.main = "black")
-    }
+  # Optionally add a title
+  if (addtitle) {
+    title(main = "Autocorrelation Plot", col.main = "black")
   }
 }

@@ -5,7 +5,7 @@
 
 net_data_inex_flows <- function(x) {
   # Define import flows, where applicable
-  import.mat <- matrix_def(x, mat.type = "Import")
+  import.mat <- matrix_def(x, mat_type = "Import")
 
   # Check whether the import matrix has any data or not before translating
   if (nrow(import.mat) > 0) {
@@ -26,7 +26,7 @@ net_data_inex_flows <- function(x) {
   }
 
   # Define export flows, where applicable
-  ex.mat <- matrix_def(x, mat.type = "Export")
+  ex.mat <- matrix_def(x, mat_type = "Export")
   if (nrow(ex.mat) > 0) {
     z <- c(
       "",
@@ -43,7 +43,7 @@ net_data_inex_flows <- function(x) {
       ""
     )
   } else {
-    exports <- as.vector(paste0("! No export flows"))
+    z <- as.vector(paste0("! No export flows"))  # Changed from exports to z
   }
 
   a <- c(y, z)

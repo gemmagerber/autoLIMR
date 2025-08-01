@@ -18,37 +18,92 @@ LIM_Read <-
       return(NULL)
     }
 
+#  findsection <- function(Names) {
+#   pos <- NULL
+#
+#   # Loop through headlines to find matching section
+#   for (i in seq(1, numhead)) {
+#     sec1 <- toupper(gsub("[ #]", "", Lines[headline[i]]))
+#
+#     if (substr(sec1, 1, 4) %in% Names) {
+#       pos <- c(pos, i)
+#     }
+#   }
+#
+#   # Check if the section is present more than once
+#   if (length(pos) > 1) {
+#     stop("Error: section is present more than once", Names)
+#   }
+#
+#   # Return NA if no position found
+#   if (is.null(pos)) {
+#     return(NA)
+#   }
+#
+#   # Check if the section ends correctly
+#   sec2 <- toupper(gsub("[ #]", "", Lines[headline[pos + 1]]))
+#
+#   if (length(grep("END", sec2)) == 0) {
+#     warning("Heading not properly ended")
+#   }
+#
+#   sec2 <- gsub("END", "", sec2)
+#
+#   if (!substr(sec2, 1, 4) %in% Names) {
+#     warning("Heading not properly ended")
+#   }
+#
+#   # If the headlines are consecutive, return NA
+#   if (headline[pos] == headline[pos + 1] - 1) {
+#     return(NA)
+#   }
+#
+#   # Return the section range
+#   return(c(headline[pos] + 1, headline[pos + 1] - 1))
+# }
+
     findsection <- function(Names) {
       pos <- NULL
+
+      # Loop through headlines to find matching section
       for (i in seq(1, numhead)) {
         sec1 <- toupper(gsub("[ #]", "", Lines[headline[i]]))
+
         if (substr(sec1, 1, 4) %in% Names) {
           pos <- c(pos, i)
         }
       }
+
+      # Check if the section is present more than once
       if (length(pos) > 1) {
-        stop(
-          "error: section is present more than once",
-          Names
-        )
+        stop("Error: section is present more than once", Names)
       }
+
+      # Return NA if no position found
       if (is.null(pos)) {
         return(NA)
       }
-      sec2 <- toupper(gsub("[ #]", "", Lines[headline[pos +
-        1]]))
+
+      # Check if the section ends correctly
+      sec2 <- toupper(gsub("[ #]", "", Lines[headline[pos + 1]]))
+
       if (length(grep("END", sec2)) == 0) {
-        warning("heading not properly ended")
+        warning("Heading not properly ended")
       }
+
       sec2 <- gsub("END", "", sec2)
+
       if (!substr(sec2, 1, 4) %in% Names) {
-        warning("heading not properly ended")
+        warning("Heading not properly ended")
       }
+
+      # If the headlines are consecutive, return NA
       if (headline[pos] == headline[pos + 1] - 1) {
         return(NA)
       }
-      findsection <- c(headline[pos] + 1, headline[pos + 1] -
-        1)
+
+      # Return the section range
+      return(c(headline[pos] + 1, headline[pos + 1] - 1))
     }
 
     Replace <- function(Strings, replacement, pos, All = TRUE) {

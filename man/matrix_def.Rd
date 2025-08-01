@@ -4,12 +4,12 @@
 \alias{matrix_def}
 \title{matrix_def()}
 \usage{
-matrix_def(x, mat.type)
+matrix_def(x, mat_type)
 }
 \arguments{
 \item{x}{input matrix}
 
-\item{mat.type}{the matrix type to export}
+\item{mat_type}{the matrix type to export}
 }
 \value{
 a matrix of type 'Import', 'Export'

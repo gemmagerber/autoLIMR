@@ -4,12 +4,12 @@
 \alias{prepack_fun}
 \title{prepack_fun()}
 \usage{
-prepack_fun(x, full_limfile)
+prepack_fun(x, full_lim)
 }
 \arguments{
 \item{x}{A solved flow matrix, orientated from row i to column j.}
 
-\item{full_limfile}{LIM Declaration file.}
+\item{full_lim}{LIM Declaration file.}
 }
 \description{
 Function to pack network values into network objects.

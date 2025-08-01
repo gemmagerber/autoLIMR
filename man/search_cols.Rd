@@ -4,16 +4,16 @@
 \alias{search_cols}
 \title{search_cols()}
 \usage{
-search_cols(x, col.match)
+search_cols(x, col_match)
 }
 \arguments{
 \item{x}{Tidy network data input matrix}
 
-\item{col.match}{the compartment type to match}
+\item{col_match}{the compartment type to match}
 }
 \value{
 A vector of column names that match one of "Imports", "Exports",
- "Assimilation Efficiencies", "Custom" or "Parameters" from the original
+ "Assimilation Efficiency", "Custom" or "Parameters" from the original
  network input data.
 }
 \description{

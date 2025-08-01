@@ -14,7 +14,7 @@ qvar <- function(x) {
   ln <- rownames(living)
 
   # Define all living things with Imports
-  import.mat <- matrix_def(x, mat.type = "Import")
+  import.mat <- matrix_def(x, mat_type = "Import")
   ln.im <-
     import.mat[grep("NLNode", rownames(import.mat), invert = TRUE), , drop = FALSE]
   ln.im <- rownames(ln.im)

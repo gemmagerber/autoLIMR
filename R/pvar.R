@@ -13,39 +13,39 @@ pvar <- function(x, respiration, NLNode) {
   ln <- rownames(living)
 
   # Define all living things with exports
-  ex.mat <- matrix_def(x, mat.type = "Export")
-  ln.ex <-
-    ex.mat[grep("NLNode", rownames(ex.mat), invert = TRUE), , drop = FALSE]
-  ln.ex <- rownames(ln.ex)
+  ex_mat <- matrix_def(x, mat_type = "Export")
+  ln_ex <-
+    ex_mat[grep("NLNode", rownames(ex_mat), invert = TRUE), , drop = FALSE]
+  ln_ex <- rownames(ln_ex)
 
   # Define all P variables
-  if (respiration == TRUE & length(NLNode) > 0) {
+  if (respiration == TRUE && length(NLNode) > 0) {
     variable <- ifelse(
-      ln %in% ln.ex,
+      ln %in% ln_ex,
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_U - ", ln, "_EX"),
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_U")
     )
   }
 
-  if (respiration == TRUE & length(NLNode) == 0) {
+  if (respiration == TRUE && length(NLNode) == 0) {
     variable <- ifelse(
-      ln %in% ln.ex,
+      ln %in% ln_ex,
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ", ln, "_EX"),
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_R - ")
     )
   }
 
-  if (respiration == FALSE & length(NLNode) > 0) {
+  if (respiration == FALSE && length(NLNode) > 0) {
     variable <- ifelse(
-      ln %in% ln.ex,
+      ln %in% ln_ex,
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_U - ", ln, "_EX"),
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_U")
     )
   }
 
-  if (respiration == FALSE & length(NLNode) == 0) {
+  if (respiration == FALSE && length(NLNode) == 0) {
     variable <- ifelse(
-      ln %in% ln.ex,
+      ln %in% ln_ex,
       paste0(ln, "_P = Flowfrom(", ln, ") - ", ln, "_EX"),
       paste0(ln, "_P = Flowfrom(", ln, ")")
     )

@@ -21,7 +21,7 @@ test_that("Return import/export matrix based on search_cols function", {
   tidy <- net_data_tidy(x = input, NLNode = "Det")
 
   # Test that import matrix only contains columns with "Imports" in columns
-  input_mat <- matrix_def(x = tidy, mat.type = "Import")
+  input_mat <- matrix_def(x = tidy, mat_type = "Import")
   in_pattern <-
     paste0(
       c(
@@ -40,7 +40,7 @@ test_that("Return import/export matrix based on search_cols function", {
   expect_true(x)
 
   # Test that export matrix only contains columns with "Exports" in columns
-  export_mat <- matrix_def(x = tidy, mat.type = "Export")
+  export_mat <- matrix_def(x = tidy, mat_type = "Export")
   ex_pattern <-
     paste0(c("Export", "Exports", "Ex", "EX", "EX_"), collapse = "|")
   y <- all(grepl(ex_pattern, colnames(export_mat)))

@@ -4,10 +4,14 @@
 \alias{adj_mat_ineq}
 \title{adj_mat_ineq()}
 \usage{
-adj_mat_ineq(x)
+adj_mat_ineq(x, primary_producer = NULL, NLNode = NULL)
 }
 \arguments{
 \item{x}{Adjacency matrix}
+
+\item{primary_producer}{Character vector defining primary producer compartments}
+
+\item{NLNode}{Character vector defining one or multiple non-living compartments}
 }
 \value{
 A vector of adjacency matrix inequalities with vanity headings

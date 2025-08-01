@@ -4,12 +4,12 @@
 \alias{as_extended}
 \title{as_extended()}
 \usage{
-as_extended(x, zero.na = TRUE)
+as_extended(x, zero_na = TRUE)
 }
 \arguments{
 \item{x}{the something to be defined}
 
-\item{zero.na}{Change NA's to zero's}
+\item{zero_na}{Change NA's to zero's}
 }
 \value{
 Extended flow matrices

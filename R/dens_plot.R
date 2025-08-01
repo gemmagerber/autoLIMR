@@ -44,7 +44,7 @@ dens_plot <- function(x, flow, addtitle = FALSE, ...) {
       to plot, e.g., flow = "Plant_GPP".'
     )
   }
-  if (is.data.frame(x) | inherits(x, "mcmc")) {
+  if (is.data.frame(x) || inherits(x, "mcmc")) {
     z <- coda::as.mcmc(x)
 
     coda::densplot(

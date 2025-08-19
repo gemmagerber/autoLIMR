@@ -9,8 +9,7 @@
 in](https://img.shields.io/badge/Ecological_Informatics-green?style=plastic&label=Published%20in&link=https%3A%2F%2Fdoi.org%2F10.1016%2Fj.ecoinf.2023.102375)](https://doi.org/10.1016/j.ecoinf.2023.102375)
 [![Codecov test
 coverage](https://codecov.io/gh/gemmagerber/autoLIMR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/gemmagerber/autoLIMR?branch=main)
-[![test-coverage](https://github.com/gemmagerber/autoLIMR/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/test-coverage.yaml)
-[![rworkflows](https://github.com/gemmagerber/autoLIMR/actions/workflows/rworkflows.yml/badge.svg)](https://github.com/gemmagerber/autoLIMR/actions/workflows/rworkflows.yml)
+
 
 <!-- badges: end -->
 
